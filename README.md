@@ -1,3 +1,8 @@
+Forked from https://github.com/nombersDev/casemove, before the change to the more restrictive CC license.
+I will be developing this branch under a proper open source license going forward.
+
+
+
 # CASEMOVE
 
 *Casemove is an open-source desktop application that helps you easily move items out of and into Storage Units in Counter-Strike 2. The app utilizes the [Steam-user](https://github.com/DoctorMcKay/node-steam-user) & [Global Offensive](https://github.com/DoctorMcKay/node-globaloffensive) libraries to establish a connection with Steam and interact with the CS2 game coordinator.* 
