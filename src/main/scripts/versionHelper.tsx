@@ -5,7 +5,7 @@ import { GithubResponse } from 'main/interfaces/mainInterfaces';
 async function getGithubVersion(platform: string): Promise<GithubResponse> {
   return new Promise((resolve) => {
     axios
-      .get('https://api.github.com/repos/nombersDev/casemove/releases')
+      .get('https://api.github.com/repos/norbjert/casemove/releases')
       .then((response) => {
         const responseData: JSON = response.data;
 
@@ -27,7 +27,7 @@ async function getGithubVersion(platform: string): Promise<GithubResponse> {
 
               case 'linux':
                 value.assets.forEach((element) => {
-                  if (element.name.includes('.dmg')) {
+                  if (element.name.includes('.AppImage')) {
                     downloadLink = element.browser_download_url;
                   }
                 });
@@ -44,6 +44,11 @@ async function getGithubVersion(platform: string): Promise<GithubResponse> {
             break;
           }
         }
+        // No releases found — resolve with current version (no update needed)
+        resolve({ version: 0, downloadLink: '' });
+      })
+      .catch((_err) => {
+        resolve({ version: 0, downloadLink: '' });
       });
   });
 }

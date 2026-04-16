@@ -5,7 +5,7 @@ const axios = require('axios');
 // import { safeStorage } from 'electron';
 // import { Axios } from 'axios';
 
-import { DOMParser } from 'xmldom';
+import { DOMParser } from '@xmldom/xmldom';
 async function getURL(steamID) {
   return new Promise((resolve) => {
     axios
@@ -141,16 +141,16 @@ async function deleteUserData(username) {
 
 // Get login details
 async function getLoginDetails(username) {
-  const secretData = safeStorage.decryptString(
-    Buffer.from(store.get('account.' + username + '.safeData'), 'latin1')
-  );
+  const raw = store.get('account.' + username + '.safeData');
+  if (!raw) return null;
+  const secretData = safeStorage.decryptString(Buffer.from(raw, 'latin1'));
   return JSON.parse(secretData);
 }
 // Get login details
 async function getRefreshToken(username) {
-  const secretData = safeStorage.decryptString(
-    Buffer.from(store.get('account.' + username + '.refreshToken'), 'latin1')
-  );
+  const raw = store.get('account.' + username + '.refreshToken');
+  if (!raw) return null;
+  const secretData = safeStorage.decryptString(Buffer.from(raw, 'latin1'));
   return secretData;
 }
 // Get all account details

@@ -214,9 +214,9 @@ const createWindow = async () => {
   menuBuilder.buildMenu();
 
   // Open urls in the user's browser
-  mainWindow.webContents.on('new-window', (event, url) => {
-    event.preventDefault();
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
+    return { action: 'deny' };
   });
 
   if (process.platform == 'linux') {
@@ -984,7 +984,13 @@ ipcMain.on('getCurrency', async (event) => {
         rate: response as number,
       };
       event.reply('getCurrency-reply', returnObject);
+    }).catch((err) => {
+      console.log('getCurrency rate error:', err);
+      event.reply('getCurrency-reply', { currency: returnValue || 'USD', rate: 1 });
     });
+  }).catch((err) => {
+    console.log('getCurrency getValue error:', err);
+    event.reply('getCurrency-reply', { currency: 'USD', rate: 1 });
   });
 });
 
