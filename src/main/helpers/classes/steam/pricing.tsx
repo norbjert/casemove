@@ -13,7 +13,7 @@ async function getPricesBackup(cas) {
   cas.setPricing(pricesBackup);
 }
 async function getPrices(cas) {
-  const url = 'https://cdn.skinledger.com/casemove/prices.json';
+  const url = 'https://csroi.com/pricing.json';
   axios
     .get(url)
     .then(function (response) {
@@ -102,8 +102,11 @@ class runItems {
     getPrices(this);
     getValue('pricing.currency').then((returnValue) => {
       if (returnValue == undefined) {
-        setValue('pricing.currency', currencyCodes[steamUser.wallet.currency]);
+        const currencyCode = currencyCodes[steamUser?.wallet?.currency] || 'USD';
+        setValue('pricing.currency', currencyCode);
       }
+    }).catch((err) => {
+      console.log('pricing currency init error:', err);
     });
   }
   async setPricing(pricingData, commandFrom) {

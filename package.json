@@ -8,7 +8,7 @@
     "build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir src",
     "lint": "cross-env NODE_ENV=development eslint . --cache --ext .js,.jsx,.ts,.tsx",
-    "prepare": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish never",
+    "prepare": "ts-node ./.erb/scripts/clean.js dist && npm run build",
     "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish always",
     "postinstall": "ts-node .erb/scripts/check-native-dep.js && electron-builder install-app-deps && cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.ts && opencollective-postinstall",
     "start": "ts-node-dev ./.erb/scripts/check-port-in-use.js && npm run start:renderer",
@@ -75,13 +75,15 @@
       "target": [
         "nsis"
       ],
-      "sign": "./sign.js"
+      "signtoolOptions": {
+        "sign": "./sign.js"
+      }
     },
     "linux": {
       "target": [
-        "deb"
+        "AppImage"
       ],
-      "category": "Development"
+      "category": "Game"
     },
     "directories": {
       "app": "release/app",
@@ -97,6 +99,7 @@
       "repo": "casemove"
     }
   },
+  "homepage": "https://github.com/norbjert/casemove",
   "author": {
     "name": "norbjert"
   },
@@ -129,8 +132,10 @@
     ]
   },
   "devDependencies": {
-    "@heroicons/react": "^2.2.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "0.5.1",
+    "@electron/notarize": "^3.1.1",
+    "@electron/rebuild": "^4.0.3",
+    "@heroicons/react": "^1.0.6",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "@svgr/core": "^6.2.0",
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
     "@testing-library/jest-dom": "^5.14.1",
@@ -154,19 +159,17 @@
     "core-js": "^3.19.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.5.0",
-    "css-minimizer-webpack-plugin": "^7.0.0",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "detect-port": "^1.3.0",
     "dotenv": "^16.0.0",
-    "electron": "^15.3.0",
-    "electron-builder": "^23.0.2",
+    "electron": "^41.2.1",
+    "electron-builder": "^26.9.0",
     "electron-devtools-installer": "^3.2.0",
-    "electron-notarize": "^1.1.1",
-    "electron-rebuild": "^3.2.3",
     "electron-winstaller": "^5.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-erb": "^4.0.3",
-    "eslint-plugin-compat": "^3.13.0",
+    "eslint-plugin-compat": "^7.0.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^25.2.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -193,7 +196,7 @@
     "style-loader": "^3.3.1",
     "tailwindcss": "^2.2.19",
     "terser-webpack-plugin": "^5.2.4",
-    "ts-jest": "^27.0.7",
+    "ts-jest": "^29.2.0",
     "ts-loader": "^9.2.6",
     "ts-node": "10.8.1",
     "ts-node-dev": "^2.0.0",
@@ -202,7 +205,7 @@
     "webpack": "^5.60.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.3",
+    "webpack-dev-server": "^5.2.3",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
@@ -211,18 +214,19 @@
     "@node-steam/vdf": "^2.2.0",
     "@redux-beacon/google-analytics": "^1.2.3",
     "@reduxjs/toolkit": "^1.7.1",
-    "axios": "^0.24.0",
+    "@xmldom/xmldom": "^0.9.6",
+    "axios": "^1.7.0",
     "bytebuffer": "^5.0.1",
     "chart.js": "^3.8.0",
     "chartjs-plugin-datalabels": "^2.0.0",
-    "currency-converter-lt": "^1.2.4",
+    "currency-converter-lt": "^2.0.1",
     "electron-debug": "^3.2.0",
     "electron-dl": "^3.3.0",
     "electron-log": "^4.4.8",
     "electron-redux": "^1.5.4",
     "electron-store": "^8.0.1",
     "electron-updater": "^6.3.9",
-    "fernet": "^0.4.0",
+    "fernet": "^0.3.3",
     "find-process": "^1.4.7",
     "globaloffensive": "^3.1.0",
     "history": "4.x.x",
@@ -240,8 +244,7 @@
     "steam-session": "^1.1.1",
     "steam-totp": "^2.1.1",
     "steam-user": "^4.28.1",
-    "update-electron-app": "^2.0.1",
-    "xmldom": "^0.6.0"
+    "update-electron-app": "^2.0.1"
   },
   "engines": {
     "node": ">=14.x",
@@ -264,6 +267,12 @@
       }
     ],
     "singleQuote": true
+  },
+  "overrides": {
+    "crypto-js": "^4.2.0",
+    "form-data": "^4.0.0",
+    "tough-cookie": "^4.1.3",
+    "qs": "^6.14.1"
   },
   "husky": {
     "hooks": {

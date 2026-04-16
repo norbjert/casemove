@@ -3,9 +3,9 @@ const VDF = require('@node-steam/vdf');
 const axios = require('axios');
 
 const itemsLink =
-  'https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/master/csgo/scripts/items/items_game.txt';
+  'https://raw.githubusercontent.com/SteamTracking/GameTracking-CS2/master/game/csgo/pak01_dir/scripts/items/items_game.txt';
 const translationsLink =
-  'https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/master/csgo/resource/csgo_english.txt';
+  'https://raw.githubusercontent.com/SteamTracking/GameTracking-CS2/master/game/csgo/pak01_dir/resource/csgo_english.txt';
 
 function fileCatcher(endNote) {
   return `${csgo_install_directory}${endNote}`;
@@ -544,9 +544,9 @@ class items {
   }
 
   getTranslation(csgoString) {
+    if (!csgoString) return '';
     let stringFormatted = csgoString.replace('#', '').toLowerCase();
-
-    return this.translation[stringFormatted].replaceAll('"', '');
+    return (this.translation[stringFormatted] || '').replaceAll('"', '');
   }
   getPrefab(prefab) {
     return this.csgoItems['prefabs'][prefab.toString()];
@@ -561,6 +561,7 @@ class items {
   }
 
   getGraffitiKitName(graffitiID) {
+    if (!this.csgoItems['graffiti_tints']) return 'unknown';
     for (const [key, value] of Object.entries(
       this.csgoItems['graffiti_tints']
     )) {
@@ -568,6 +569,7 @@ class items {
         return key;
       }
     }
+    return 'unknown';
   }
 
   getStickerDetails(stickerID) {
