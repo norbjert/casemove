@@ -41,10 +41,10 @@ jobs:
           cd release/app && npm version ${{ github.event.inputs.version }} --no-git-tag-version
 
       - name: Install root dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Install app dependencies
-        run: cd release/app && npm install
+        run: cd release/app && npm install --legacy-peer-deps
 
       - name: Build
         run: npm run build
