@@ -7,6 +7,9 @@ on:
         description: 'Version to release (e.g. 2.3.4)'
         required: true
 
+permissions:
+  contents: write
+
 jobs:
   release:
     strategy:
@@ -41,10 +44,13 @@ jobs:
           cd release/app && npm version ${{ github.event.inputs.version }} --no-git-tag-version
 
       - name: Install root dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps --ignore-scripts
 
       - name: Install app dependencies
         run: cd release/app && npm install --legacy-peer-deps
+
+      - name: Install native deps
+        run: ./node_modules/.bin/electron-builder install-app-deps
 
       - name: Build
         run: npm run build
