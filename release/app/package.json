@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "globaloffensive": "^3.3.0",
-    "steam-user": "^4.28.1",
+    "steam-user": "^5.3.0",
     "steam-totp": "^2.1.1",
     "steam-session": "^1.1.1"
   },
