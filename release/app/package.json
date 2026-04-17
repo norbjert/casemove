@@ -19,5 +19,8 @@
     "steam-user": "^4.28.1",
     "steam-totp": "^2.1.1",
     "steam-session": "^1.1.1"
+  },
+  "overrides": {
+    "protobufjs": "^7.5.5"
   }
 }
