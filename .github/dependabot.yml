@@ -1,19 +1,25 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/" # Location of package.json (root of the project)
-    schedule:
-      interval: "weekly" # How often to check for updates: "daily", "weekly", "monthly"
-    commit-message:
-      prefix: "fix" # Prefix to use for commit messages like "fix", "chore", etc.
-    versioning-strategy: "auto" # "auto" automatically selects an appropriate version update strategy
-    # Optional: Allows you to ignore certain dependencies or version ranges
-    ignore:
-      - dependency-name: "typescript"
-        versions: ["<4.0.0"] # Ignores updates for TypeScript older than 4.x (optional)
-  - package-ecosystem: "npm"
-    directory: "/client" # If your project has a client folder with a separate package.json
+    directory: "/"
     schedule:
       interval: "weekly"
     commit-message:
-      prefix: "fix"
+      prefix: "chore"
+    ignore:
+      - dependency-name: "typescript"
+        versions: [">=5.0.0"]
+
+  - package-ecosystem: "npm"
+    directory: "/release/app"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
