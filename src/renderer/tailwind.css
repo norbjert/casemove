@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-dark-level-one: #121212;
+  --color-dark-level-two: #181818;
+  --color-dark-level-three: #282828;
+  --color-dark-level-four: #404040;
+  --color-dark-level-five: #2B303D;
+  --color-dark-white: #d6d3cd;
+  --color-regal-blue: #243c5a;
+}

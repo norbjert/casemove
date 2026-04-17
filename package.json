@@ -220,6 +220,7 @@
     "@node-steam/vdf": "^2.2.0",
     "@redux-beacon/google-analytics": "^1.2.3",
     "@reduxjs/toolkit": "^1.7.1",
+    "@tailwindcss/postcss": "^4.2.2",
     "@xmldom/xmldom": "^0.9.6",
     "axios": "^1.7.0",
     "bytebuffer": "^5.0.1",

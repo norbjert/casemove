@@ -25,7 +25,7 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
-import 'tailwindcss/tailwind.css';
+import './tailwind.css';
 import inventoryContent from './components/content/Inventory/inventory';
 import { itemCategories } from './components/content/shared/categories';
 import {
