@@ -41,8 +41,11 @@ jobs:
           npm version ${{ inputs.version }} --no-git-tag-version
           cd release/app && npm version ${{ inputs.version }} --no-git-tag-version
       - run: npm install --legacy-peer-deps --ignore-scripts
-      - run: cd release/app && npm install --legacy-peer-deps
-      - run: ./node_modules/.bin/electron-builder install-app-deps
+      - run: cd release/app && npm install --legacy-peer-deps --ignore-scripts
+      - name: Install native deps
+        env:
+          npm_config_ignore_scripts: true
+        run: ./node_modules/.bin/electron-builder install-app-deps
       - run: npm run build
       - name: Package and publish
         env:
@@ -68,8 +71,11 @@ jobs:
           npm version ${{ inputs.version }} --no-git-tag-version
           cd release/app && npm version ${{ inputs.version }} --no-git-tag-version
       - run: npm install --legacy-peer-deps --ignore-scripts
-      - run: cd release/app && npm install --legacy-peer-deps
-      - run: ./node_modules/.bin/electron-builder install-app-deps
+      - run: cd release/app && npm install --legacy-peer-deps --ignore-scripts
+      - name: Install native deps
+        env:
+          npm_config_ignore_scripts: true
+        run: ./node_modules/.bin/electron-builder install-app-deps
       - run: npm run build
       - name: Package and publish
         env:
@@ -95,8 +101,11 @@ jobs:
           npm version ${{ inputs.version }} --no-git-tag-version
           cd release/app && npm version ${{ inputs.version }} --no-git-tag-version
       - run: npm install --legacy-peer-deps --ignore-scripts
-      - run: cd release/app && npm install --legacy-peer-deps
-      - run: ./node_modules/.bin/electron-builder install-app-deps
+      - run: cd release/app && npm install --legacy-peer-deps --ignore-scripts
+      - name: Install native deps
+        env:
+          npm_config_ignore_scripts: true
+        run: ./node_modules/.bin/electron-builder install-app-deps
       - run: npm run build
       - name: Package and publish
         env:
