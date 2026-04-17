@@ -219,7 +219,6 @@
     "bytebuffer": "^5.0.1",
     "chart.js": "^3.8.0",
     "chartjs-plugin-datalabels": "^2.0.0",
-    "currency-converter-lt": "^2.0.1",
     "electron-debug": "^3.2.0",
     "electron-dl": "^3.3.0",
     "electron-log": "^4.4.8",
