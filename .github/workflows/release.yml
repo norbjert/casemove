@@ -22,30 +22,22 @@ on:
 permissions:
   contents: write
 
+env:
+  NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
+
 jobs:
   linux:
     if: ${{ inputs.linux }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            release/app/package-lock.json
       - name: Set version
-        shell: bash
-        run: |
-          npm version ${{ inputs.version }} --no-git-tag-version
-          cd release/app && npm version ${{ inputs.version }} --no-git-tag-version
-      - run: npm install --legacy-peer-deps --ignore-scripts
-      - run: cd release/app && npm install --legacy-peer-deps --ignore-scripts
-      - name: Install native deps
-        env:
-          npm_config_ignore_scripts: true
-        run: ./node_modules/.bin/electron-builder install-app-deps
+        run: npm version ${{ inputs.version }} --no-git-tag-version
+      - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
@@ -57,25 +49,14 @@ jobs:
     if: ${{ inputs.windows }}
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            release/app/package-lock.json
       - name: Set version
-        shell: bash
-        run: |
-          npm version ${{ inputs.version }} --no-git-tag-version
-          cd release/app && npm version ${{ inputs.version }} --no-git-tag-version
-      - run: npm install --legacy-peer-deps --ignore-scripts
-      - run: cd release/app && npm install --legacy-peer-deps --ignore-scripts
-      - name: Install native deps
-        env:
-          npm_config_ignore_scripts: true
-        run: ./node_modules/.bin/electron-builder install-app-deps
+        run: npm version ${{ inputs.version }} --no-git-tag-version
+      - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
@@ -87,25 +68,14 @@ jobs:
     if: ${{ inputs.mac }}
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            release/app/package-lock.json
       - name: Set version
-        shell: bash
-        run: |
-          npm version ${{ inputs.version }} --no-git-tag-version
-          cd release/app && npm version ${{ inputs.version }} --no-git-tag-version
-      - run: npm install --legacy-peer-deps --ignore-scripts
-      - run: cd release/app && npm install --legacy-peer-deps --ignore-scripts
-      - name: Install native deps
-        env:
-          npm_config_ignore_scripts: true
-        run: ./node_modules/.bin/electron-builder install-app-deps
+        run: npm version ${{ inputs.version }} --no-git-tag-version
+      - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:

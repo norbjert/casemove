@@ -1,4 +1,6 @@
-// Polyfill fetch for Jest (not available in jsdom by default)
+import '@testing-library/jest-dom';
+
+// Polyfill fetch for vitest/jsdom
 global.fetch = (() =>
   Promise.resolve({
     json: () => Promise.resolve({}),
@@ -7,7 +9,7 @@ global.fetch = (() =>
   })) as any;
 
 // Mock Electron's ipcRenderer bridge (not available in jsdom).
-// Uses a Proxy so any method access returns a jest.fn() automatically.
+// Uses a Proxy so any method access returns a vi.fn() automatically.
 Object.defineProperty(window, 'electron', {
   writable: true,
   value: {
@@ -16,9 +18,9 @@ Object.defineProperty(window, 'electron', {
       {
         get: (_target, prop) => {
           if (prop === 'on' || prop === 'once') {
-            return jest.fn((_channel: string, _callback: Function) => {});
+            return vi.fn((_channel: string, _callback: Function) => {});
           }
-          return jest.fn(() => Promise.resolve());
+          return vi.fn(() => Promise.resolve());
         },
       }
     ),

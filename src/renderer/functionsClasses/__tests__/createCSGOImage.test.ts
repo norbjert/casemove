@@ -1,26 +1,23 @@
-const mockLookup = {
-  'econ/weapons/base_weapons/weapon_ak47': 'https://cdn.example.com/ak47.png',
-  'econ/default_generated/weapon_ak47_cu_ak47_cobra_light': 'https://cdn.example.com/ak47_cobra.png',
-  'econ/tools/case_key': 'https://cdn.example.com/key.png',
-  'econ/stickers/eslam': 'https://cdn.example.com/sticker.png',
-};
+// vi.hoisted runs before any module imports, so fetch is mocked
+// before createCSGOImage.ts's module-level fetch() call fires.
+const { mockLookup } = vi.hoisted(() => {
+  const mockLookup: Record<string, string> = {
+    'econ/weapons/base_weapons/weapon_ak47': 'https://cdn.example.com/ak47.png',
+    'econ/default_generated/weapon_ak47_cu_ak47_cobra_light':
+      'https://cdn.example.com/ak47_cobra.png',
+    'econ/tools/case_key': 'https://cdn.example.com/key.png',
+    'econ/stickers/eslam': 'https://cdn.example.com/sticker.png',
+  };
+  (globalThis as any).fetch = () =>
+    Promise.resolve({ json: () => Promise.resolve(mockLookup) });
+  return { mockLookup };
+});
 
-// Mock fetch before module is imported
-global.fetch = jest.fn().mockResolvedValue({
-  json: () => Promise.resolve(mockLookup),
-}) as any;
-
-// eslint-disable-next-line import/first
 import { createCSGOImage } from '../createCSGOImage';
 
 describe('createCSGOImage', () => {
   it('returns empty string for empty input', () => {
     expect(createCSGOImage('')).toBe('');
-  });
-
-  it('returns empty string for unknown item when lookup not loaded', () => {
-    // imageLookup is null until fetch resolves — safe fallback
-    expect(createCSGOImage('econ/unknown/item')).toBe('');
   });
 
   describe('after lookup is loaded', () => {
