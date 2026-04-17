@@ -603,10 +603,10 @@ function AppContent() {
                     to={item.href}
                     className={classNames(
                       currentSideMenuOption.includes(item.href)
-                        ? 'bg-gray-100 text-gray-900 dark:bg-opacity-10 dark:text-opacity-60'
-                        : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 hover:bg-gray-50 dark:bg-opacity-10 dark:hover:text-opacity-60 ',
+                        ? 'bg-gray-100 text-gray-900 dark:bg-white/10 dark:text-dark-white'
+                        : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-dark-white hover:bg-gray-50 dark:hover:bg-white/5',
                       userDetails.isLoggedIn ? '' : 'pointer-events-none',
-                      'group flex items-center px-2 py-2 dark:text-dark-white text-base leading-5 font-medium rounded-md'
+                      'group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md'
                     )}
                     aria-current={item.current ? 'page' : undefined}
                     onClick={() => updateAutomation(item.href)}
@@ -614,9 +614,9 @@ function AppContent() {
                     <item.icon
                       className={classNames(
                         currentSideMenuOption.includes(item.href)
-                          ? 'text-gray-500 dark:text-opacity-60'
-                          : 'text-gray-400 group-hover:text-gray-500',
-                        'mr-3 flex-shrink-0 h-6 w-6  dark:text-dark-white'
+                          ? 'text-gray-500 dark:text-dark-white/60'
+                          : 'text-gray-400 group-hover:text-gray-500 dark:text-dark-white',
+                        'mr-3 flex-shrink-0 h-6 w-6'
                       )}
                       aria-hidden="true"
                     />
