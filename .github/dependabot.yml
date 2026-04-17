@@ -9,6 +9,8 @@ updates:
     ignore:
       - dependency-name: "typescript"
         versions: [">=5.0.0"]
+      - dependency-name: "chalk"
+        versions: [">=5.0.0"]
 
   - package-ecosystem: "npm"
     directory: "/release/app"
