@@ -11,6 +11,8 @@ updates:
         versions: [">=5.0.0"]
       - dependency-name: "chalk"
         versions: [">=5.0.0"]
+      - dependency-name: "react-chartjs-2"
+        versions: [">=5.0.0"]
 
   - package-ecosystem: "npm"
     directory: "/release/app"
