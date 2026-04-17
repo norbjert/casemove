@@ -127,13 +127,17 @@
     ],
     "moduleDirectories": [
       "node_modules",
-      "release/app/node_modules"
+      "release/app/node_modules",
+      "src"
     ],
     "testPathIgnorePatterns": [
       "release/app/dist"
     ],
     "setupFiles": [
       "./.erb/scripts/check-build-exists.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "./.erb/scripts/jest.setup.ts"
     ]
   },
   "devDependencies": {
