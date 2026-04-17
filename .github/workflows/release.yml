@@ -22,6 +22,9 @@ on:
 permissions:
   contents: write
 
+env:
+  NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
+
 jobs:
   linux:
     if: ${{ inputs.linux }}
@@ -34,7 +37,7 @@ jobs:
           cache: npm
       - name: Set version
         run: npm version ${{ inputs.version }} --no-git-tag-version
-      - run: npm install --legacy-peer-deps --ignore-scripts
+      - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
@@ -46,14 +49,14 @@ jobs:
     if: ${{ inputs.windows }}
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
       - name: Set version
         run: npm version ${{ inputs.version }} --no-git-tag-version
-      - run: npm install --legacy-peer-deps --ignore-scripts
+      - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
@@ -65,14 +68,14 @@ jobs:
     if: ${{ inputs.mac }}
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
       - name: Set version
         run: npm version ${{ inputs.version }} --no-git-tag-version
-      - run: npm install --legacy-peer-deps --ignore-scripts
+      - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
