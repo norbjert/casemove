@@ -1,5 +1,5 @@
 Forked from https://github.com/nombersDev/casemove, before the change to the more restrictive CC license.
-I will be developing this branch under a proper open source license going forward.
+This fork will continue to be developed under the proper GPLv3 Open-Source License.
 
 
 
@@ -9,19 +9,21 @@ I will be developing this branch under a proper open source license going forwar
 
 ----
 
-## Download Latest Version (Casemove 2.3.3)
+## Download Latest Version
 
-This is the latest stable version and can be downloaded from the [releases](https://github.com/nombersDev/casemove/releases) page, or directly from:
+Download the latest release from the [releases page](https://github.com/norbjert/casemove/releases/latest), or directly:
 
+- [Linux (AppImage)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.AppImage)
 
-- [Windows - (Casemove-2.3.3)](https://github.com/nombersDev/casemove/releases/download/v2.3.3/Casemove-Setup-2.3.3.exe)
-- [Mac - (Casemove-2.3.3)](https://github.com/nombersDev/casemove/releases/download/v2.3.3/Casemove-2.3.3.dmg)
-- [Mac ARM 64 (M1) - (Casemove-2.3.3)](https://github.com/nombersDev/casemove/releases/download/v2.3.3/Casemove-2.3.3-arm64.dmg)
-- [Linux Deb - (Casemove-2.3.3)](https://github.com/nombersDev/casemove/releases/download/v2.3.3/casemove_2.3.3_amd64.deb)
+(not yet supported:)
+- [Windows](https://github.com/norbjert/casemove/releases/latest/download/Casemove-Setup.exe)
+- [Mac (Intel)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.dmg)
+- [Mac (Apple Silicon / M1+)](https://github.com/norbjert/casemove/releases/latest/download/Casemove-arm64.dmg)
+
 
 ## Support
 
-Please join the Casemove discord for support: https://discord.gg/4dSBdt4uJ3
+-
 
 https://user-images.githubusercontent.com/98760010/181345579-e4fd11be-1af9-4b8b-a211-5747fdd414aa.mp4
 
@@ -49,22 +51,6 @@ Trade up features:
   * See an estimated EV of your trade up contract recipe
 
 
- 
- 
-----
-
-### How To Use
-
-Use this link to install [Casemove](https://github.com/nombersDev/casemove/releases) 
-
-To use:
-  * Download the latest stable version of Casemove
-  * Install the application
-  * Run the app
-  * Log in
-
-----
-
 ## COMMON QUESTIONS
 #### Can I be VAC banned?
 
@@ -91,27 +77,24 @@ Casemove is comparable to the software "Archi Steam Farm" and since Archi has ma
 
 As with anything, It's important to know that the using this software is distributed "as is" and without any warranty. 
 
-----
-## Built using
-- Node version 14.18.2
-- React Electron Boilerplate
-- Tailwind v2
-----
 
-## Author
+## Authors
 
-Casemove was created by Nombers.
-
+Casemove was originally created by Nombers:
 - Steam: https://steamcommunity.com/id/realNombers/
 - Reddit: https://www.reddit.com/user/nubbiners
 - Discord: Nombers#1046
+
+
+After Nombers abandonded the Open-Source project in favor of his subscription-based, closed sourced casemove replacement (skinledger)[https://skinledger.com/], this project has been taken over by @norbjert.
+- GH: https://github.com/norbjert
+- Steam: https://steamcommunity.com/id/norbjert/
+
 ----
 
 ## How to build
 
-The main instructions on how to build the application from source be found using the [Electron React Boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) and it's [docs](https://electron-react-boilerplate.js.org/docs/building). 
-I've built the app using [NVM](https://github.com/nvm-sh/nvm) with node version 14.18.2. 
-
+TODO: add updated build instructions here
 
 ----
 
@@ -124,5 +107,10 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License  along with this program.  If not, see http://www.gnu.org/licenses/.
 
 
-<!--- Frycus will never know this is here ---> 
+## Contributing
+
+Unlike the original casemove, this fork welcomes open-source contributions, provided you follow a few basic requirements:
+1. Only submit PRs with properly tested, clean code.
+2. No pure AI PRs: While I support the use of AI-tools to assist you in development, human authorship is a requirement for copyright, which in turn is implicitly required by the open-source GPL license.
+TLDR: If i can tell you just let claude spit out some random slop, your contribution will not be accepted.
 
