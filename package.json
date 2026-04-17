@@ -83,7 +83,7 @@
       "target": [
         "AppImage"
       ],
-      "category": "Game"
+      "category": "Development"
     },
     "directories": {
       "app": "release/app",
