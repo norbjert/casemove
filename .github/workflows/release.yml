@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to release (e.g. 2.3.4)'
+        description: 'Version to release (e.g. 1.2.3)'
         required: true
 
 permissions:
@@ -19,8 +19,8 @@ jobs:
             platform: linux
           - os: windows-latest
             platform: win
-          - os: macos-latest
-            platform: mac
+          #- os: macos-latest
+          #  platform: mac
 
     runs-on: ${{ matrix.os }}
 
