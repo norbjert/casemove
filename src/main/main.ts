@@ -177,7 +177,7 @@ const createWindow = async () => {
     frame: frameValue,
     icon: getAssetPath('icon.png'),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, '../preload/preload.js'),
       webSecurity: false,
       sandbox: false,
       enableBlinkFeatures: 'CSSColorSchemeUARendering',
@@ -192,7 +192,12 @@ const createWindow = async () => {
     shell.showItemInFolder(fileP);
   });
 
-  mainWindow.loadURL(resolveHtmlPath('index.html'));
+  const htmlPath = resolveHtmlPath('index.html');
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.loadURL(htmlPath);
+  } else {
+    mainWindow.loadFile(htmlPath);
+  }
 
   mainWindow.on('ready-to-show', () => {
     console.log(app.getVersion());
