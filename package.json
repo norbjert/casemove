@@ -58,6 +58,7 @@
       "gatekeeperAssess": false
     },
     "dmg": {
+      "artifactName": "Casemove${arch === 'arm64' ? '-arm64' : ''}.dmg",
       "contents": [
         {
           "x": 130,
@@ -72,6 +73,7 @@
       ]
     },
     "win": {
+      "artifactName": "Casemove-Setup.exe",
       "target": [
         "nsis"
       ],
@@ -80,6 +82,7 @@
       }
     },
     "linux": {
+      "artifactName": "Casemove.AppImage",
       "target": [
         "AppImage"
       ],
@@ -104,8 +107,10 @@
     "name": "norbjert"
   },
   "jest": {
-    "testURL": "http://localhost/",
     "testEnvironment": "jsdom",
+    "testEnvironmentOptions": {
+      "url": "http://localhost/"
+    },
     "transform": {
       "\\.(ts|tsx|js|jsx)$": "ts-jest"
     },
@@ -181,6 +186,7 @@
     "husky": "7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.3.0",
     "lint-staged": "^11.2.6",
     "mini-css-extract-plugin": "^2.4.3",
     "opencollective-postinstall": "^2.0.3",
