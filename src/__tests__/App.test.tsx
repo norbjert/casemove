@@ -1,8 +1,8 @@
-// Smoke test: verify the App module and its key dependencies can be imported
-// without errors. Full render testing requires a real Electron environment.
+// Smoke test: verify the App module can be imported without throwing.
+import App from 'renderer/App';
 
 describe('App module', () => {
-  it('imports without throwing', () => {
-    expect(() => require('../renderer/App')).not.toThrow();
+  it('is defined', () => {
+    expect(App).toBeDefined();
   });
 });
