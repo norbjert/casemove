@@ -24,14 +24,14 @@ export default function RenameModal() {
 
   const [inputState, setInputState] = useState('');
   return (
-    <Transition.Root show={modalData.renameOpen} as={Fragment}>
+    <Transition show={modalData.renameOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
         onClose={() => dispatch(closeRenameModal())}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
@@ -41,7 +41,7 @@ export default function RenameModal() {
             leaveTo="opacity-0"
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 dark:bg-opacity-85 transition-opacity" />
-          </Transition.Child>
+          </TransitionChild>
 
           {/* This element is to trick the browser into centering the modal contents. */}
           <span
@@ -50,7 +50,7 @@ export default function RenameModal() {
           >
             &#8203;
           </span>
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -116,9 +116,9 @@ export default function RenameModal() {
                 </button>
               </div>
             </div>
-          </Transition.Child>
+          </TransitionChild>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition>
   );
 }

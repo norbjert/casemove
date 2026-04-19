@@ -75,13 +75,13 @@ function Content() {
   return (
     <>
       <div className="h-screen bg-dark-level-one">
-        <Transition.Root show={sidebarOpen} as={Fragment}>
+        <Transition show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
             className="relative z-40 lg:hidden"
             onClose={setSidebarOpen}
           >
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -91,10 +91,10 @@ function Content() {
               leaveTo="opacity-0"
             >
               <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
-            </Transition.Child>
+            </TransitionChild>
 
             <div className="fixed inset-0 flex z-40">
-              <Transition.Child
+              <TransitionChild
                 as={Fragment}
                 enter="transition ease-in-out duration-300 transform"
                 enterFrom="-translate-x-full"
@@ -102,13 +102,13 @@ function Content() {
                 leave="transition ease-in-out duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
-              ></Transition.Child>
+              ></TransitionChild>
               <div className="flex-shrink-0 w-14" aria-hidden="true">
                 {/* Dummy element to force sidebar to shrink to fit close icon */}
               </div>
             </div>
           </Dialog>
-        </Transition.Root>
+        </Transition>
 
         <div className="">
           <main className="flex-1 pb-8 bg-dark-level-one">

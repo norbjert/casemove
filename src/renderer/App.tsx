@@ -254,13 +254,13 @@ function AppContent() {
           'min-h-full dark:bg-dark-level-one h-screen'
         )}
       >
-        <Transition.Root show={sidebarOpen} as={Fragment}>
+        <Transition show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
             className="fixed inset-0 flex z-40 dark:bg-dark-level-two lg:hidden"
             onClose={setSidebarOpen}
           >
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -270,8 +270,8 @@ function AppContent() {
               leaveTo="opacity-0"
             >
               <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
-            </Transition.Child>
-            <Transition.Child
+            </TransitionChild>
+            <TransitionChild
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
               enterFrom="-translate-x-full"
@@ -281,7 +281,7 @@ function AppContent() {
               leaveTo="-translate-x-full"
             >
               <div className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
-                <Transition.Child
+                <TransitionChild
                   as={Fragment}
                   enter="ease-in-out duration-300"
                   enterFrom="opacity-0"
@@ -303,7 +303,7 @@ function AppContent() {
                       />
                     </button>
                   </div>
-                </Transition.Child>
+                </TransitionChild>
                 <div
                   className={classNames(
                     settingsData.os == 'win32' ? 'pt-7' : '',
@@ -376,12 +376,12 @@ function AppContent() {
                   </nav>
                 </div>
               </div>
-            </Transition.Child>
+            </TransitionChild>
             <div className="flex-shrink-0 w-14" aria-hidden="true">
               {/* Dummy element to force sidebar to shrink to fit close icon */}
             </div>
           </Dialog>
-        </Transition.Root>
+        </Transition>
 
         {/* Static sidebar for desktop */}
         <div className="hidden lg:flex lg:flex-col dark:bg-dark-level-two dark:border-opacity-50 lg:w-64 lg:fixed lg:inset-y-0 lg:border-r lg:border-gray-200 lg:pt-5 lg:pb-4 lg:bg-gray-100">
