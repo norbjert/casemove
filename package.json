@@ -77,9 +77,10 @@
       }
     },
     "linux": {
-      "artifactName": "Casemove.AppImage",
+      "artifactName": "${productName}.${ext}",
       "target": [
-        "AppImage"
+        "AppImage",
+        "deb"
       ],
       "category": "Development"
     },
