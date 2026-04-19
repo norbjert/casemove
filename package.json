@@ -99,7 +99,8 @@
   },
   "homepage": "https://github.com/norbjert/casemove",
   "author": {
-    "name": "norbjert"
+    "name": "norbjert",
+    "email": "norbjert@users.noreply.github.com"
   },
   "devDependencies": {
     "@electron/notarize": "^3.1.1",
