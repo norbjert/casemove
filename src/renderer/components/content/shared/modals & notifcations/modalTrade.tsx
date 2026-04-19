@@ -10,7 +10,7 @@ const rarityShort = {
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BeakerIcon, XIcon } from '@heroicons/react/solid';
+import { BeakerIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { classNames } from '../filters/inventoryFunctions';
 import {
   setTradeConfirm,
@@ -168,7 +168,7 @@ export default function TradeModal() {
                                 className="w-full absolute justify-items-center h-full flex items-center justify-center z-10 "
                               >
                                 {' '}
-                                <XIcon className="h-4 w-4 text-gray-400" />{' '}
+                                <XMarkIcon className="h-4 w-4 text-gray-400" />{' '}
                               </button>
                             ) : (
                               <img

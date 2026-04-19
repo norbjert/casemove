@@ -8,7 +8,7 @@ import {
   sortDataFunction,
 } from '../../shared/filters/inventoryFunctions';
 import { useState } from 'react';
-import { BanIcon, FireIcon } from '@heroicons/react/solid';
+import { NoSymbolIcon, FireIcon } from '@heroicons/react/24/solid';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { State } from 'renderer/interfaces/states';
 import {
@@ -188,7 +188,7 @@ function StorageUnits() {
                           : 'text-gray-600 dark:text-gray-400'
                       )}
                     >
-                      <BanIcon
+                      <NoSymbolIcon
                         className={classNames(
                           ' h-4 w-4 text-current dark:text-current hover:text-red-400 dark:hover:text-red-400'
                         )}

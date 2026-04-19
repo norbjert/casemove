@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import {
-  ArchiveIcon,
-  FilterIcon,
-  SearchIcon,
-  SwitchHorizontalIcon,
-  UploadIcon,
-} from '@heroicons/react/solid';
+  ArchiveBoxIcon,
+  FunnelIcon,
+  MagnifyingGlassIcon,
+  ArrowsRightLeftIcon,
+  ArrowUpTrayIcon,
+} from '@heroicons/react/24/solid';
 // import MoveModal from '../../shared/modals & notifcations/modalMove';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../shared/filters/inventoryFunctions';
@@ -121,7 +121,7 @@ function content() {
           <div className="max-w-7xl flex items-center space-x-6 divide-x divide-gray-200 text-sm px-4 sm:px-6 lg:px-8">
             <div>
               <Disclosure.Button className="group text-gray-700 font-medium flex items-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">
-                <FilterIcon
+                <FunnelIcon
                   className="flex-none w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500"
                   aria-hidden="true"
                 />
@@ -150,7 +150,7 @@ function content() {
                 className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
                 aria-hidden="true"
               >
-                <SearchIcon
+                <MagnifyingGlassIcon
                   className="mr-3 h-4 w-4 text-gray-400"
                   aria-hidden="true"
                 />
@@ -180,7 +180,7 @@ function content() {
               </div>
               <div className="pl-3">
                 <span className="mr-3 flex items-center text-gray-500 text-xs font-medium uppercase tracking-wide">
-                  <ArchiveIcon
+                  <ArchiveBoxIcon
                     className="flex-none w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />{' '}
@@ -206,7 +206,7 @@ function content() {
               </div>
               <div className="pl-3">
                 <span className="mr-3 flex items-center text-gray-500 text-xs font-medium uppercase tracking-wide">
-                  <SwitchHorizontalIcon
+                  <ArrowsRightLeftIcon
                     className="flex-none w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />{' '}
@@ -232,7 +232,7 @@ function content() {
                   )}
                 >
                   Insert
-                  <UploadIcon
+                  <ArrowUpTrayIcon
                     className="ml-3 dark:text-dark-white h-4 w-4 text-gray-700"
                     aria-hidden="true"
                   />

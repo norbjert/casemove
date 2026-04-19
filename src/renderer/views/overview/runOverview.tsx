@@ -1,14 +1,14 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import {
-  ArchiveIcon,
-  CollectionIcon,
-  DatabaseIcon,
-  DownloadIcon,
+  ArchiveBoxIcon,
+  RectangleStackIcon,
+  CircleStackIcon,
+  ArrowDownTrayIcon,
   PresentationChartBarIcon,
   PresentationChartLineIcon,
   TagIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   HashRouter as Router,
@@ -169,7 +169,7 @@ function Content() {
                       className="inline-flex items-center px-4 py-2 shadow-sm text-sm font-medium rounded-md text-dark-white bg-dark-level-three hover:bg-dark-level-four"
                     >
                       {' '}
-                      <DownloadIcon
+                      <ArrowDownTrayIcon
                         className="flex-shrink-0 mr-1.5 h-5 w-5 text-dark-white"
                         aria-hidden="true"
                       />
@@ -193,7 +193,7 @@ function Content() {
                     <div className="p-5">
                       <div className="flex items-center">
                         <div className="flex-shrink-0">
-                          <DatabaseIcon
+                          <CircleStackIcon
                             className="h-6 w-6 text-gray-400"
                             aria-hidden="true"
                           />
@@ -231,7 +231,7 @@ function Content() {
                     <div className="p-5">
                       <div className="flex items-center">
                         <div className="flex-shrink-0">
-                          <CollectionIcon
+                          <RectangleStackIcon
                             className="h-6 w-6 text-gray-400"
                             aria-hidden="true"
                           />
@@ -270,7 +270,7 @@ function Content() {
                     <div className="p-5">
                       <div className="flex items-center">
                         <div className="flex-shrink-0">
-                          <ArchiveIcon
+                          <ArchiveBoxIcon
                             className="h-6 w-6 text-gray-400"
                             aria-hidden="true"
                           />

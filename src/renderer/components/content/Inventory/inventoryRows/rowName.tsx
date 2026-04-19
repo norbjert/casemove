@@ -1,4 +1,4 @@
-import { PencilIcon, TagIcon } from "@heroicons/react/solid";
+import { PencilIcon, TagIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";

@@ -1,9 +1,9 @@
-import { ArchiveIcon } from '@heroicons/react/solid';
+import { ArchiveBoxIcon } from '@heroicons/react/24/solid';
 
 export default function MoveLeft({totalAmount, textToWrite = "Left"}) {
   return (
     <span className="mr-3 flex items-center text-gray-500 text-xs font-medium uppercase tracking-wide">
-                  <ArchiveIcon
+                  <ArchiveBoxIcon
                     className="flex-none w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />{' '}

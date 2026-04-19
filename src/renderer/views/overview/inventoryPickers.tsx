@@ -1,4 +1,4 @@
-import { BeakerIcon, PencilIcon, SelectorIcon, TagIcon } from '@heroicons/react/solid';
+import { BeakerIcon, PencilIcon, ChevronUpDownIcon, TagIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -198,7 +198,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                 className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
               >
                 <span className="flex justify-between">
-                  Product <SelectorIcon className="h-2" />
+                  Product <ChevronUpDownIcon className="h-2" />
                 </span>
               </button>
             </th>
@@ -208,7 +208,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                 className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
               >
                 <span className="flex justify-between">
-                  Collection <SelectorIcon className="h-2" />
+                  Collection <ChevronUpDownIcon className="h-2" />
                 </span>
               </button>
             </th>
@@ -219,7 +219,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                 className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
               >
                 <span className="flex justify-between">
-                  Price <SelectorIcon className="h-2" />
+                  Price <ChevronUpDownIcon className="h-2" />
                 </span>
               </button>
             </th>
@@ -230,7 +230,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                 className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
               >
                 <span className="flex justify-between">
-                  Stickers/Patches <SelectorIcon className="h-2" />
+                  Stickers/Patches <ChevronUpDownIcon className="h-2" />
                 </span>
               </button>
             </th>
@@ -241,7 +241,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                 className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
               >
                 <span className="flex justify-between">
-                  Float <SelectorIcon className="h-2" />
+                  Float <ChevronUpDownIcon className="h-2" />
                 </span>
               </button>
             </th>

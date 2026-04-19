@@ -1,11 +1,11 @@
 import { Menu, Transition, Switch } from '@headlessui/react';
 import {
   CheckIcon,
-  DotsVerticalIcon,
-  RefreshIcon,
-  SearchIcon,
-  XIcon,
-} from '@heroicons/react/solid';
+  EllipsisVerticalIcon,
+  ArrowPathIcon,
+  MagnifyingGlassIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid';
 import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -137,7 +137,7 @@ function content() {
               className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
               aria-hidden="true"
             >
-              <SearchIcon
+              <MagnifyingGlassIcon
                 className="mr-3 h-4 w-4 text-gray-400"
                 aria-hidden="true"
               />
@@ -174,7 +174,7 @@ function content() {
             onClick={() => unMarkAllStorages()}
             className="focus:outline-none focus:bg-dark-level-four order-1 ml-3  order-1 inline-flex items-center px-4 py-2 hover:border hover:shadow-sm dark:hover:bg-dark-level-four  text-sm font-medium rounded-md text-gray-700  hover:bg-gray-50 sm:order-0 sm:ml-0"
           >
-            <XIcon
+            <XMarkIcon
               className="h-4 w-4 text-gray-700 dark:text-dark-white"
               aria-hidden="true"
             />
@@ -189,7 +189,7 @@ function content() {
             {getLoadingButton ? (
               <LoadingButton />
             ) : (
-              <RefreshIcon
+              <ArrowPathIcon
                 className="h-4 w-4 text-gray-500 dark:text-dark-white"
                 aria-hidden="true"
               />
@@ -411,7 +411,7 @@ function content() {
                   <Menu as="div" className="flex-shrink-0 pr-2">
                     <Menu.Button className="w-8 h-8 inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500">
                       <span className="sr-only">Open options</span>
-                      <DotsVerticalIcon
+                      <EllipsisVerticalIcon
                         className="w-5 h-5"
                         aria-hidden="true"
                       />

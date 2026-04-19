@@ -1,4 +1,4 @@
-import { LightningBoltIcon, XIcon } from '@heroicons/react/solid';
+import { BoltIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { RequestPrices } from 'renderer/functionsClasses/prices';
 import { State } from 'renderer/interfaces/states';
@@ -125,7 +125,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
                 : ''
             )}
           >
-            <LightningBoltIcon
+            <BoltIcon
               className={classNames(isEmpty ? "h-5 w-5" : 'h-4 w-4', "text-gray-400 dark:text-gray-500 hover:text-yellow-400 dark:hover:text-yellow-400")}
               aria-hidden="true"
             />
@@ -137,7 +137,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
             id={`removeX-${index}`}
             className={classNames(isEmpty ? 'pointer-events-none hidden' : '')}
           >
-            <XIcon
+            <XMarkIcon
               className={classNames(1000 -
                 toReducer.activeStoragesAmount -
                 toReducer.totalItemsToMove ==

@@ -1,8 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import {  XIcon } from '@heroicons/react/outline'
-import { LoginIcon } from '@heroicons/react/solid'
+import {  XMarkIcon } from '@heroicons/react/24/outline'
+import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 import { handleSuccess } from './HandleSuccess'
 import { LoginCommand, LoginCommandReturnPackage } from 'shared/Interfaces.tsx/store'
 import { useDispatch, useSelector } from 'react-redux'
@@ -60,12 +60,12 @@ export default function ConfirmModal({open, setOpen, setLoadingButton}) {
                     onClick={() => cancel()}
                   >
                     <span className="sr-only">Close</span>
-                    <XIcon className="h-6 w-6" aria-hidden="true" />
+                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-500 sm:mx-0 sm:h-10 sm:w-10">
-                    <LoginIcon className="h-6 w-6 text-green-700" aria-hidden="true" />
+                    <ArrowRightOnRectangleIcon className="h-6 w-6 text-green-700" aria-hidden="true" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-dark-white">

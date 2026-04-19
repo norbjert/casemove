@@ -3,7 +3,7 @@ import InventoryFilters from './filterHeader';
 import InventoryRowsComponent from './inventoryRows';
 import { useState } from 'react';
 import { LoadingButton } from '../shared/animations';
-import { RefreshIcon } from '@heroicons/react/solid';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
 
 function content() {
   const [getLoadingButton, setLoadingButton] = useState(false);
@@ -33,7 +33,7 @@ function content() {
             {getLoadingButton ? (
               <LoadingButton />
             ) : (
-              <RefreshIcon
+              <ArrowPathIcon
                 className="h-4 w-4 text-gray-500 dark:text-dark-white"
                 aria-hidden="true"
               />

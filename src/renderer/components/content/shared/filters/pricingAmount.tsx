@@ -1,7 +1,7 @@
-import { CashIcon } from '@heroicons/react/solid';
+import { BanknotesIcon } from '@heroicons/react/24/solid';
 import { classNames } from './inventoryFunctions';
 
-export default function PricingAmount({totalAmount, pricingAmount = 0, IconToUse = CashIcon, colorOf = "text-yellow-500"}) {
+export default function PricingAmount({totalAmount, pricingAmount = 0, IconToUse = BanknotesIcon, colorOf = "text-yellow-500"}) {
   return (
     <span className="mr-3 flex items-center text-gray-500 text-xs font-medium uppercase tracking-wide">
       <IconToUse

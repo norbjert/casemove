@@ -1,4 +1,4 @@
-import { LightningBoltIcon, XIcon } from '@heroicons/react/solid';
+import { BoltIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { moveFromAddRemove } from 'renderer/store/actions/moveFromActions';
 import { RowPrice } from '../../Inventory/inventoryRows/priceRow';
@@ -119,7 +119,7 @@ function content({ projectRow, index }) {
                 : `fireButton`
             )}
           >
-            <LightningBoltIcon
+            <BoltIcon
               className={classNames(
                 isEmpty ? 'h-5 w-5' : 'h-4 w-4',
                 'text-gray-400 dark:text-gray-500 hover:text-yellow-400 dark:hover:text-yellow-400'
@@ -136,7 +136,7 @@ function content({ projectRow, index }) {
             )}
             id={`removeX-${index}`}
           >
-            <XIcon
+            <XMarkIcon
               className={classNames(
                 1000 -
                   inventory.inventory.length -

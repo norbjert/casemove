@@ -1,11 +1,11 @@
 import {
-  ArrowCircleDownIcon,
-  ArrowCircleUpIcon,
+  ArrowDownCircleIcon,
+  ArrowUpCircleIcon,
   CheckCircleIcon,
-  CollectionIcon,
+  RectangleStackIcon,
   ScaleIcon,
   VariableIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PricingAmount from 'renderer/components/content/shared/filters/pricingAmount';
@@ -86,7 +86,7 @@ function settingsContent() {
                     style: 'currency',
                     currency: settingsData.currency,
                   }).format(totalPrice)}
-                  IconToUse={ArrowCircleUpIcon}
+                  IconToUse={ArrowUpCircleIcon}
                   colorOf={'text-red-500'}
                 />
 
@@ -96,7 +96,7 @@ function settingsContent() {
                     style: 'currency',
                     currency: settingsData.currency,
                   }).format(totalEV)}
-                  IconToUse={ArrowCircleDownIcon}
+                  IconToUse={ArrowDownCircleIcon}
                   colorOf={'text-green-500'}
                 />
                 <PricingAmount
@@ -135,7 +135,7 @@ function settingsContent() {
                           aria-hidden="true"
                         />
                       ) : (
-                        <CollectionIcon
+                        <RectangleStackIcon
                           className="ml-3 dark:text-dark-white h-4 w-4 text-gray-700"
                           aria-hidden="true"
                         />

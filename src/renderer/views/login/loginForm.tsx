@@ -1,9 +1,9 @@
 import {
-  ClipboardCheckIcon,
-  ClipboardCopyIcon,
-  ExternalLinkIcon,
+  ClipboardDocumentCheckIcon,
+  ClipboardDocumentIcon,
+  ArrowTopRightOnSquareIcon,
   LockClosedIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 import { useDispatch, useSelector } from 'react-redux';
@@ -453,7 +453,7 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <div className="relative flex items-stretch flex-grow focus-within:z-10">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <ClipboardCheckIcon
+                      <ClipboardDocumentCheckIcon
                         className="h-5 w-5 text-gray-400"
                         aria-hidden="true"
                       />
@@ -478,7 +478,7 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
                     type="button"
                     className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 border-opacity-50 text-sm font-medium text-gray-700 bg-dark-level-two hover:bg-dark-level-three focus:outline-none focus:border-green-500  "
                   >
-                    <ClipboardCopyIcon
+                    <ClipboardDocumentIcon
                       className="h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
@@ -490,7 +490,7 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
                     target="_blank"
                     className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 border-opacity-50 text-sm font-medium rounded-r-md text-gray-700 bg-dark-level-two hover:bg-dark-level-three focus:outline-none focus:border-green-500  "
                   >
-                    <ExternalLinkIcon
+                    <ArrowTopRightOnSquareIcon
                       className="h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />

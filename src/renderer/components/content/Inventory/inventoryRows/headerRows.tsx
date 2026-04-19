@@ -1,6 +1,6 @@
 import { onSortChange } from "./functions";
 import { useDispatch, useSelector } from "react-redux";
-import { SelectorIcon } from "@heroicons/react/solid";
+import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 
 // Row header with sort option
 export function RowHeader({ headerName, sortName }) {
@@ -16,7 +16,7 @@ export function RowHeader({ headerName, sortName }) {
                     className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                     <span className="flex justify-between">
-                        {headerName} <SelectorIcon className="h-2" />
+                        {headerName} <ChevronUpDownIcon className="h-2" />
                     </span>
                 </button>
             </th>
@@ -37,7 +37,7 @@ export function RowHeaderHiddenXL({ headerName, sortName }) {
                     className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                     <span className="flex justify-between">
-                        {headerName} <SelectorIcon className="h-2" />
+                        {headerName} <ChevronUpDownIcon className="h-2" />
                     </span>
                 </button>
             </th>
@@ -60,7 +60,7 @@ export function RowHeaderCondition({ headerName, sortName, condition,  }) {
                         className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
                     >
                         <span className="flex justify-between">
-                            {headerName} <SelectorIcon className="h-2" />
+                            {headerName} <ChevronUpDownIcon className="h-2" />
                         </span>
                     </button>
                 </th> : ''}

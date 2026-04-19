@@ -1,20 +1,19 @@
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
-  ArchiveIcon,
+  ArchiveBoxIcon,
   BeakerIcon,
-  DocumentDownloadIcon,
-  MenuAlt1Icon,
-  XIcon,
-} from '@heroicons/react/outline';
+  ArrowDownTrayIcon,
+  Bars3BottomLeftIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import {
   ChartBarIcon,
-  DownloadIcon,
-  InboxInIcon,
-  RefreshIcon,
-  SearchIcon,
-  SelectorIcon,
-  UploadIcon,
-} from '@heroicons/react/solid';
+  InboxArrowDownIcon,
+  ArrowPathIcon,
+  MagnifyingGlassIcon,
+  ChevronUpDownIcon,
+  ArrowUpTrayIcon,
+} from '@heroicons/react/24/solid';
 import { Fragment, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -59,29 +58,27 @@ import LoginPage from './views/login/login';
 import OverviewPage from './views/overview/overview';
 import settingsPage from './views/settings/settings';
 import TradeupPage from './views/tradeUp/tradeUp';
-DocumentDownloadIcon;
-
-//{ name: 'Reports', href: '/reports', icon: DocumentDownloadIcon, current: false }
+//{ name: 'Reports', href: '/reports', icon: ArrowDownTrayIcon, current: false }
 const navigation = [
   { name: 'Overview', href: '/stats', icon: ChartBarIcon, current: false },
   {
     name: 'Transfer | From',
     href: '/transferfrom',
-    icon: DownloadIcon,
+    icon: ArrowDownTrayIcon,
     current: false,
   },
   {
     name: 'Transfer | To',
     href: '/transferto',
-    icon: UploadIcon,
+    icon: ArrowUpTrayIcon,
     current: false,
   },
-  { name: 'Inventory', href: '/inventory', icon: ArchiveIcon, current: false },
+  { name: 'Inventory', href: '/inventory', icon: ArchiveBoxIcon, current: false },
   { name: 'Trade up', href: '/tradeup', icon: BeakerIcon, current: false },
 ];
 
 function AppContent() {
-  SearchIcon;
+  MagnifyingGlassIcon;
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isListening, setIsListening] = useState(false);
@@ -300,7 +297,7 @@ function AppContent() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon
+                      <XMarkIcon
                         className="h-6 w-6 text-white"
                         aria-hidden="true"
                       />
@@ -463,7 +460,7 @@ function AppContent() {
                         </span>
                       </span>
                     </span>
-                    <SelectorIcon
+                    <ChevronUpDownIcon
                       className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
@@ -527,7 +524,7 @@ function AppContent() {
                   onClick={() => retryConnection()}
                   className="inline-flex items-center bg-green-200 px-6 shadow-md py-3 text-left text-base w-full font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 hover:shadow-none focus:outline-none pl-9 sm:text-sm border-gray-300 rounded-md h-9 text-gray-400"
                 >
-                  <RefreshIcon
+                  <ArrowPathIcon
                     className="mr-3 h-4 w-4 text-green-900"
                     style={{ marginLeft: -25 }}
                     aria-hidden="true"
@@ -540,7 +537,7 @@ function AppContent() {
                   disabled={true}
                   className="inline-flex items-center my-4 bg-green-200 px-6 shadow-md py-3 text-left text-base w-full font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 hover:shadow-none focus:outline-none pl-9 sm:text-sm border-gray-300 rounded-md h-9 text-gray-400"
                 >
-                  <InboxInIcon
+                  <InboxArrowDownIcon
                     className="mr-3 h-4 w-4 text-gray-500"
                     style={{ marginLeft: -22 }}
                     aria-hidden="true"
@@ -769,7 +766,7 @@ function AppContent() {
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
-              <MenuAlt1Icon className="h-6 w-6" aria-hidden="true" />
+              <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
             </button>
             <div className="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
               <div className="flex-1 items-center justify-end flex">
@@ -781,7 +778,7 @@ function AppContent() {
                       onClick={() => retryConnection()}
                       className="inline-flex items-center bg-green-200 px-6 shadow-md py-3 text-left text-base w-full font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none pl-9 sm:text-sm border-gray-300 rounded-md h-9 text-gray-400"
                     >
-                      <RefreshIcon
+                      <ArrowPathIcon
                         className="mr-3 h-4 w-4 text-green-900 "
                         style={{ marginLeft: -25 }}
                         aria-hidden="true"
@@ -799,7 +796,7 @@ function AppContent() {
                         type="button"
                         className="inline-flex items-center px-6 py-3 border border-gray-200 text-left text-base w-full font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none pl-9 sm:text-sm border-gray-300 rounded-md h-9 text-gray-400"
                       >
-                        <InboxInIcon
+                        <InboxArrowDownIcon
                           className="mr-3 h-4 w-4 text-gray-500"
                           style={{ marginLeft: -22 }}
                           aria-hidden="true"

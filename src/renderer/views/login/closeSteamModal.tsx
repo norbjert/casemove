@@ -1,10 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useDispatch } from 'react-redux'
 import { setSteamLoginShow } from '../../store/actions/settings'
-// import { LoginIcon } from '@heroicons/react/solid'
+// import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 
 
 export default function SteamCloseModal({ open, setOpen, loginWithouClosingSteam, setLoadingButton }) {
@@ -70,7 +70,7 @@ export default function SteamCloseModal({ open, setOpen, loginWithouClosingSteam
                     onClick={() => cancel()}
                   >
                     <span className="sr-only">Close</span>
-                    <XIcon className="h-6 w-6" aria-hidden="true" />
+                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
                 <div className="sm:flex sm:items-start">

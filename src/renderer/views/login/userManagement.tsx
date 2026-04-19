@@ -1,4 +1,4 @@
-import { CheckIcon, TrashIcon } from '@heroicons/react/solid';
+import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';

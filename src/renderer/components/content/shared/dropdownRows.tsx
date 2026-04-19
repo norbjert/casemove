@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Menu, Transition, Popover } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { setColumns } from 'renderer/store/actions/settings';
 import { classNames } from './filters/inventoryFunctions';

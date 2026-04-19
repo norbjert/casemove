@@ -1,4 +1,4 @@
-import { LockClosedIcon, QrcodeIcon, WifiIcon } from '@heroicons/react/solid';
+import { LockClosedIcon, QrCodeIcon, WifiIcon } from '@heroicons/react/24/solid';
 import { LoginMethod } from '../types/LoginMethod';
 import { classNames } from '../../../components/content/shared/filters/inventoryFunctions';
 
@@ -9,7 +9,7 @@ interface TabProps {
 }
 
 const tabs: TabProps[] = [
-  { name: 'QR', icon: QrcodeIcon, key: 'QR' },
+  { name: 'QR', icon: QrCodeIcon, key: 'QR' },
   { name: 'Webtoken', icon: WifiIcon, key: 'WEBTOKEN' },
   { name: 'Regular', icon: LockClosedIcon, key: 'REGULAR' },
 ];

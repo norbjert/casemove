@@ -1,4 +1,4 @@
-import { ExternalLinkIcon } from "@heroicons/react/solid";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 export function RowLinkInventory({ itemRow, settingsData, userDetails }) {
@@ -17,7 +17,7 @@ export function RowLinkInventory({ itemRow, settingsData, userDetails }) {
               }}
               target="_blank"
             >
-              <ExternalLinkIcon
+              <ArrowTopRightOnSquareIcon
                 className="h-5 w-5 text-gray-500 dark:text-gray-400 group-hover:text-gray-100"
                 aria-hidden="true"
               />

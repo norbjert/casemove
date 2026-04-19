@@ -1,4 +1,4 @@
-import { CollectionIcon } from "@heroicons/react/solid";
+import { RectangleStackIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerManager } from "renderer/functionsClasses/reducerManager";
@@ -35,7 +35,7 @@ export function LoadButton() {
                         aria-hidden="true"
                     />
                 ) : (
-                    <CollectionIcon
+                    <RectangleStackIcon
                         className="flex-shrink-0 mr-1.5 h-5 w-5 text-dark-white"
                         aria-hidden="true"
                     />
