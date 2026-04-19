@@ -939,16 +939,16 @@ async function startEvents(csgo, user) {
   // Get storage unit contents
   ipcMain.on('getCasketContents', async (event, casketID, _casketName) => {
     await csgo.getCasketContents(casketID, async function (err, items) {
+      if (!items || typeof items !== 'object') {
+        event.reply('getCasketContent-reply', [0]);
+        return;
+      }
       fetchItemClass.convertStorageData(items).then((returnValue) => {
         tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
           event.reply('getCasketContent-reply', [1, newReturnValue]);
           console.log('Casket contains: ', newReturnValue.length);
         });
       });
-
-      if (err) {
-        event.reply('getCasketContent-reply', [0]);
-      }
     });
   });
   // Get commands from Renderer

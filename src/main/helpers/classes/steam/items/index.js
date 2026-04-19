@@ -411,7 +411,7 @@ class items {
       for (const [, value] of Object.entries(storageRow['attribute'])) {
         if (
           value['def_index'] == 140 &&
-          finalName.includes('Souvenir') == false
+          !finalName?.includes('Souvenir')
         ) {
           var finalName = 'Souvenir ' + finalName;
         }
@@ -428,7 +428,7 @@ class items {
       var finalName = finalName.replace('Swat', 'SWAT');
     }
 
-    return finalName;
+    return finalName || '';
   }
 
   itemProcessorImageUrl(storageRow) {
@@ -470,7 +470,7 @@ class items {
       var imageInventory = `econ/weapons/base_weapons/${defIndexresult['name']}`;
     }
 
-    return imageInventory;
+    return imageInventory || '';
   }
   itemProcessorCanBeMoved(returnDict, storageRow) {
     const defIndexresult = this.get_def_index(storageRow['def_index']);

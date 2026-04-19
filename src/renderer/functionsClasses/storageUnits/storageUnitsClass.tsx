@@ -21,8 +21,14 @@ export class HandleStorageData {
     // Adding the casket ID
     this.dispatch(moveFromAddCasketToStorages(storageRow.item_id));
 
-    // Fetch the storage unit data
-    let storageResult = await this._getStorageUnitData(storageRow);
+    // Fetch the storage unit data — undo the toggle if it fails
+    let storageResult: Awaited<ReturnType<typeof this._getStorageUnitData>>;
+    try {
+      storageResult = await this._getStorageUnitData(storageRow);
+    } catch (err) {
+      this.dispatch(moveFromAddCasketToStorages(storageRow.item_id)); // undo toggle
+      throw err;
+    }
     const ClassRequest = new RequestPrices(
       this.dispatch,
       this.state.settingsReducer,
@@ -62,6 +68,9 @@ export class HandleStorageData {
       storageRow.item_id,
       storageRow.item_customname
     );
+    if (!storageResult || storageResult[0] === 0) {
+      throw new Error('GC request failed for storage unit ' + storageRow.item_id);
+    }
     let returnData: Array<ItemRowStorage> = storageResult[1];
 
     let finalReturnData = (await combineInventory(

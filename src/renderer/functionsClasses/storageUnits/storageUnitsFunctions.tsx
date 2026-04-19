@@ -53,14 +53,20 @@ export async function getAllStorages(
 
   async function sendArrayAddStorage(returnValue: Array<any>) {
     let StorageClass = new HandleStorageData(dispatch, state)
+    let loadedIds: Array<string> = [...state.moveFromReducer.activeStorages]
     let addArray: Array<ItemRow> = []
     for (const [_key, project] of Object.entries(returnValue)) {
-      if (!state.moveFromReducer.activeStorages.includes(project.item_id)) {
-        addArray = [...addArray, ...await StorageClass.addStorage(
-          project as ItemRowStorage,
-          addArray
-
-        )]
+      if (!loadedIds.includes(project.item_id)) {
+        try {
+          const result = await StorageClass.addStorage(
+            project as ItemRowStorage,
+            addArray
+          )
+          addArray = [...addArray, ...result]
+          loadedIds.push(project.item_id)
+        } catch (_err) {
+          // GC request failed or timed out for this unit, skip and continue
+        }
       }
     }
     return

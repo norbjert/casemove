@@ -193,12 +193,18 @@ contextBridge.exposeInMainWorld('electron', {
 
     // Commands
     getStorageUnitData(itemID, storageName) {
-      return new Promise((resolve) => {
-        ipcRenderer.send('getCasketContents', itemID, storageName);
-
-        ipcRenderer.once('getCasketContent-reply', (event, arg) => {
+      return new Promise((resolve, reject) => {
+        const handler = (_event, arg) => {
+          clearTimeout(timeoutId);
+          ipcRenderer.removeListener('getCasketContent-reply', handler);
           resolve(arg);
-        });
+        };
+        const timeoutId = setTimeout(() => {
+          ipcRenderer.removeListener('getCasketContent-reply', handler);
+          reject(new Error('GC request timed out'));
+        }, 8000);
+        ipcRenderer.on('getCasketContent-reply', handler);
+        ipcRenderer.send('getCasketContents', itemID, storageName);
       });
     },
 
