@@ -55,8 +55,8 @@ jobs:
           node-version: 20
       - name: Set version
         run: npm version ${{ inputs.version }} --no-git-tag-version
+      - run: Remove-Item package-lock.json
       - run: npm install --ignore-scripts
-      - run: npm install @rolldown/binding-win32-x64-msvc --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
