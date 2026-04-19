@@ -1,0 +1,42 @@
+# Maintainer: norbjert <norbjert@users.noreply.github.com>
+pkgname=casemove-bin
+pkgver=0.0.4
+pkgrel=1
+pkgdesc="Counter-Strike 2 Storage unit manager that helps you move items in bulk"
+arch=('x86_64')
+url="https://github.com/norbjert/casemove"
+license=('MIT')
+depends=('fuse2' 'hicolor-icon-theme')
+options=('!strip')
+source_x86_64=(
+    "casemove-${pkgver}.AppImage::https://github.com/norbjert/casemove/releases/download/v${pkgver}/Casemove.AppImage"
+    "casemove.png::https://raw.githubusercontent.com/norbjert/casemove/v${pkgver}/assets/icon.png"
+)
+sha256sums_x86_64=(
+    'APPIMAGE_SHA256'
+    'ICON_SHA256'
+)
+
+package() {
+    install -Dm755 "${srcdir}/casemove-${pkgver}.AppImage" \
+        "${pkgdir}/opt/${pkgname}/casemove.AppImage"
+
+    install -Dm644 "${srcdir}/casemove.png" \
+        "${pkgdir}/usr/share/pixmaps/casemove.png"
+
+    install -Dm644 /dev/stdin \
+        "${pkgdir}/usr/share/applications/casemove.desktop" << EOF
+[Desktop Entry]
+Name=Casemove
+Comment=CS2 Storage unit manager
+Exec=/opt/${pkgname}/casemove.AppImage
+Icon=casemove
+Type=Application
+Categories=Game;Utility;
+StartupNotify=true
+EOF
+
+    install -dm755 "${pkgdir}/usr/bin"
+    ln -s "/opt/${pkgname}/casemove.AppImage" \
+        "${pkgdir}/usr/bin/casemove"
+}
