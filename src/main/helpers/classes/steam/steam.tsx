@@ -163,6 +163,13 @@ class login {
 
   // 1 - Login key
   _login_refreshToken() {
+    if (this.refreshToken) {
+      this.loginOptionsLegacy = {
+        refreshToken: this.refreshToken,
+      };
+      this._loginStartLegacy();
+      return;
+    }
     getRefreshToken(this.username).then((refreshToken) => {
       this.loginOptionsLegacy = {
         refreshToken: refreshToken,

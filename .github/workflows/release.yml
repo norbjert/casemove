@@ -7,13 +7,13 @@ on:
         description: 'Version to release (e.g. 1.2.3)'
         required: true
       linux:
-        description: 'Build Linux (AppImage)'
+        description: 'Build Linux (AppImage, .deb and AUR)'
         type: boolean
         default: true
       windows:
         description: 'Build Windows (NSIS)'
         type: boolean
-        default: false
+        default: true
       mac:
         description: 'Build macOS (DMG)'
         type: boolean

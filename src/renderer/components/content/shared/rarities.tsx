@@ -23,6 +23,11 @@ const itemRarities = [
     value: 'Classified',
     bgColorClass: 'bg-pink-500',
     href: '#',
+  },
+  {
+    value: 'Covert',
+    bgColorClass: 'bg-red-500',
+    href: '#',
   }
 ];
 

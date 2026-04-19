@@ -656,14 +656,14 @@ function AppContent() {
                           className={classNames(
                             userDetails.isLoggedIn == false
                               ? 'pointer-events-none'
-                              : '',
-                            'group flex items-center px-3 py-2 dark:text-dark-white text-sm font-medium text-gray-700 rounded-md'
+                              : 'cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-level-three',
+                            'group flex items-center px-3 py-2 dark:text-dark-white text-sm font-medium text-gray-700 rounded-md w-full'
                           )}
                         >
                           <span
                             className={classNames(
                               team.bgColorClass,
-                              'w-2.5 h-2.5 mr-4 rounded-full'
+                              'w-2.5 h-2.5 mr-4 rounded-full flex-shrink-0'
                             )}
                             aria-hidden="true"
                           />
@@ -708,14 +708,14 @@ function AppContent() {
                           className={classNames(
                             userDetails.isLoggedIn == false
                               ? 'pointer-events-none'
-                              : '',
-                            'group flex items-center px-3 py-2 dark:text-dark-white text-sm font-medium text-gray-700 rounded-md'
+                              : 'cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-level-three',
+                            'group flex items-center px-3 py-2 dark:text-dark-white text-sm font-medium text-gray-700 rounded-md w-full'
                           )}
                         >
                           <span
                             className={classNames(
                               rarity.bgColorClass,
-                              'w-2.5 h-2.5 mr-4 rounded-full'
+                              'w-2.5 h-2.5 mr-4 rounded-full flex-shrink-0'
                             )}
                             aria-hidden="true"
                           />
