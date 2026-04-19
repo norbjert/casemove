@@ -30,7 +30,7 @@ jobs:
     if: ${{ inputs.linux }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 20
@@ -49,7 +49,7 @@ jobs:
     if: ${{ inputs.windows }}
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 20
@@ -69,7 +69,7 @@ jobs:
     needs: linux
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Compute checksums and update PKGBUILD
         run: |
           APPIMAGE_SHA=$(curl -sL "https://github.com/norbjert/casemove/releases/download/v${{ inputs.version }}/Casemove.AppImage" | sha256sum | awk '{print $1}')
@@ -89,7 +89,7 @@ jobs:
     if: ${{ inputs.mac }}
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 20
