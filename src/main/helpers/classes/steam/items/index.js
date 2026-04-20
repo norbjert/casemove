@@ -246,7 +246,6 @@ class items {
       }
 
       if (
-        value?.rarity == 6 ||
         value?.quality == 3 ||
         returnDict['item_name'].includes('Souvenir') ||
         !returnDict['item_url'].includes('econ/default_generated')

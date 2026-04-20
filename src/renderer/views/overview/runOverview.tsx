@@ -81,7 +81,7 @@ function Content() {
             className="relative z-40 lg:hidden"
             onClose={setSidebarOpen}
           >
-            <TransitionChild
+            <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -91,10 +91,10 @@ function Content() {
               leaveTo="opacity-0"
             >
               <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
-            </TransitionChild>
+            </Transition.Child>
 
             <div className="fixed inset-0 flex z-40">
-              <TransitionChild
+              <Transition.Child
                 as={Fragment}
                 enter="transition ease-in-out duration-300 transform"
                 enterFrom="-translate-x-full"
@@ -102,7 +102,7 @@ function Content() {
                 leave="transition ease-in-out duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
-              ></TransitionChild>
+              ></Transition.Child>
               <div className="flex-shrink-0 w-14" aria-hidden="true">
                 {/* Dummy element to force sidebar to shrink to fit close icon */}
               </div>

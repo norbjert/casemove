@@ -108,10 +108,10 @@ You should have received a copy of the GNU General Public License  along with th
 
 ## Contributing
 
-Unlike the original casemove, this fork welcomes open-source contributions, provided you follow a few basic requirements:
-1. Only submit PRs with properly tested, clean code.
-2. No AI Slop: While I support the use of AI-tools to assist you in development, human authorship is a requirement for copyright, which in turn is implicitly required by the open-source GPL license.
-TLDR: If i can tell you just let claude spit out some random slop, your contribution will not be accepted.
+Unlike the original casemove, this fork welcomes open-source contributions, provided you follow some basic requirements:
+1. Only submit PRs with properly tested, clean code. Properly describe what bug youre fixing or what feature youre adding.
+2. No AI Slop: While I support the use of AI-tools to assist you in development, human authorship is a requirement for copyright, which in turn is implicitly required by the GPL license.
+TLDR: If I can tell you just let claude spit out some random code, your contribution will not be accepted.
 
 ## TODOs
 - Fix trade up calculations
@@ -130,3 +130,10 @@ TLDR: If i can tell you just let claude spit out some random slop, your contribu
 - fix QR code login
 - fix or set up session/cookie storing options
 - AUR publish
+- branch protection rules (no more pushing to main directly)
+- own pricing API
+
+
+### Braindead Shower-Thoughts
+- What about a casemove-cli?
+- casemove... as a skill

@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 import { PersistGate } from 'redux-persist/integration/react'
@@ -21,10 +21,11 @@ declare global {
   }
 }
 
-createRoot(document.getElementById("root")!).render(
+render(
   <Provider store={myVar.reduxStore}>
     <PersistGate loading={null} persistor={myVar.persistor}>
       <App />
     </PersistGate>
-  </Provider>
+  </Provider>,
+  document.getElementById("root")
 );
