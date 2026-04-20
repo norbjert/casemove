@@ -5,6 +5,7 @@ import {
   ArrowDownTrayIcon,
   Bars3BottomLeftIcon,
   XMarkIcon,
+  Cog6ToothIcon,
 } from '@heroicons/react/24/outline';
 import {
   ChartBarIcon,
@@ -404,7 +405,7 @@ function AppContent() {
               )}
             >
               <div>
-                <Menu.Button className="group w-full bg-gray-100 rounded-md px-3.5 py-2 text-sm text-left font-medium text-gray-700 dark:bg-dark-level-two hover:bg-gray-200 focus:outline-none focus:ring-offset-2 focus:ring-offset-gray-100">
+                <Menu.Button className="group w-full bg-gray-100 rounded-md px-3.5 py-2 text-sm text-left font-medium text-gray-700 dark:bg-dark-level-two hover:bg-gray-200 dark:hover:bg-dark-level-three focus:outline-none focus:ring-offset-2 focus:ring-offset-gray-100">
                   <span className="flex w-full justify-between items-center">
                     <span className="flex min-w-0 items-center justify-between space-x-3">
                       {userDetails.userProfilePicture == null ? (
@@ -481,23 +482,6 @@ function AppContent() {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
-                          to="/settings"
-                          className={classNames(
-                            active
-                              ? 'bg-gray-100 text-gray-900 dark:bg-dark-level-three dark:text-dark-white'
-                              : 'text-gray-700 dark:text-dark-white',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Settings
-                        </Link>
-                      )}
-                    </Menu.Item>
-                  </div>
-                  <div className="py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <Link
                           to=""
                           onClick={() => logOut()}
                           className={classNames(
@@ -549,7 +533,7 @@ function AppContent() {
                 </button>
               ) : (
                 <div className='flex flex-col gap-3'>
-                  <a href="https://discord.gg/n8QExYF7Qs" target="_blank">
+                  {/* <a href="https://discord.gg/n8QExYF7Qs" target="_blank">
                     <button
                       type="button"
                       className="flex  dark:text-dark-white items-center px-6 py-3 border border-gray-200 dark:bg-dark-level-three   dark:border-opacity-0  text-left text-base w-full font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none pl-9 sm:text-sm border-gray-300 rounded-md h-9 text-gray-400"
@@ -578,7 +562,7 @@ function AppContent() {
                       </div>
                       <span className="mr-3">Join the discord</span>
                     </button>
-                  </a>
+                  </a> */}
                   {/* <a href="https://skinledger.com" target="_blank">
                     <button
                       type="button"
@@ -754,6 +738,12 @@ function AppContent() {
               </svg>
               Support
             </a>
+            <Link
+              to="/settings"
+              className="flex items-center text-xs gap-2 text-dark-white hover:scale-110 transform duration-200"
+            >
+              <Cog6ToothIcon className="h-4 w-4" style={{ color: '#d6d3cd' }} />
+            </Link>
           </div>
         </div>
         {/* Main column */}
