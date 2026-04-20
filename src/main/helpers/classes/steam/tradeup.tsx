@@ -77,6 +77,11 @@ class tradeUps {
         if (collection != undefined) {
           let possible =
             this.collections?.[collection][itemName]?.trade_up;
+          // Covert→Gold trade-ups were added after the backup data was created,
+          // so covert items have trade_up=false in the backup. Override that here.
+          if (element.rarityName === 'Covert') {
+            possible = true;
+          }
           element['tradeUpConfirmed'] = possible;
           element['collection'] = collection
         }

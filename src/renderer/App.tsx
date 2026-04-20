@@ -712,8 +712,9 @@ function AppContent() {
               )}
             </nav>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs pl-4 text-gray-500">{getVersion}</span>
+          <div className="flex items-center justify-between px-4">
+            <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-500">{getVersion}</span>
             <a
               className="flex items-center text-xs gap-2 text-dark-white hover:scale-110 transform duration-200"
               href="https://discord.gg/n8QExYF7Qs"
@@ -738,11 +739,12 @@ function AppContent() {
               </svg>
               Support
             </a>
+            </div>
             <Link
               to="/settings"
               className="flex items-center text-xs gap-2 text-dark-white hover:scale-110 transform duration-200"
             >
-              <Cog6ToothIcon className="h-4 w-4" style={{ color: '#d6d3cd' }} />
+              <Cog6ToothIcon className="h-8 w-8" style={{ color: '#d6d3cd' }} />
             </Link>
           </div>
         </div>
