@@ -26,7 +26,7 @@ function content({ projectRow, index }) {
     fieldValue = parseInt(fieldValue);
     let totalToGo = 1000 - inventory.inventory.length;
     for (const [, value] of Object.entries(fromReducer.totalToMove)) {
-      let valued = value as any;
+      const valued = value as any;
       if (valued[0] != projectRow.item_id) {
         totalToGo -= valued[2].length;
       }

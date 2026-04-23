@@ -9,8 +9,8 @@ export default function UserGrid({ clickOnProfile, deleteUser,  runDeleteUser })
 
   // The brain
   async function updateFunction() {
-    let finalList = [] as any;
-    let seenValues = [] as any
+    const finalList = [] as any;
+    const seenValues = [] as any
 
     // Get the account details
     let doUpdate = await window.electron.ipcRenderer.getAccountDetails();
@@ -32,7 +32,7 @@ export default function UserGrid({ clickOnProfile, deleteUser,  runDeleteUser })
         }
       });
       for (const [key, value] of Object.entries(doUpdate)) {
-        let userObject = value as any;
+        const userObject = value as any;
         userObject['username'] = key;
         if (!seenValues.includes(userObject['username'])) {
           finalList.push(userObject);
@@ -41,7 +41,7 @@ export default function UserGrid({ clickOnProfile, deleteUser,  runDeleteUser })
       seenValues.reverse()
       seenValues.forEach(element => {
         if (doUpdate[element] != undefined) {
-          let userObject = doUpdate[element] as any;
+          const userObject = doUpdate[element] as any;
           userObject['username'] = element;
           finalList.splice(0, 0, userObject)
         }
@@ -49,7 +49,7 @@ export default function UserGrid({ clickOnProfile, deleteUser,  runDeleteUser })
       });
     } else {
       for (const [key, value] of Object.entries(doUpdate)) {
-        let userObject = value as any;
+        const userObject = value as any;
         userObject['username'] = key;
         finalList.push(userObject);
       }
@@ -89,7 +89,7 @@ export default function UserGrid({ clickOnProfile, deleteUser,  runDeleteUser })
     // Storex for next session
     const orderToStore = [] as any;
     items.forEach(element => {
-      let e = element as any
+      const e = element as any
       orderToStore.push(e.username)
 
     });

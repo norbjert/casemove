@@ -126,7 +126,7 @@ async function deleteUserData(username) {
   let statusCode = 0;
 
   // Get account details
-  let accountDetails = store.get('account');
+  const accountDetails = store.get('account');
   if (
     typeof accountDetails === 'object' &&
     Object.keys(accountDetails).includes(username)

@@ -18,10 +18,10 @@ export default function ListBoxOptions({optionsObject, keyToUse}: params) {
     const dispatch = useDispatch();
     const ReducerClass = new ReducerManager(useSelector);
     const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
-    let selected = settingsData.overview[keyToUse]
+    const selected = settingsData.overview[keyToUse]
 
     async function updateOverview(valueToset: any) {
-        let newOverviewValue: Overview = settingsData.overview
+        const newOverviewValue: Overview = settingsData.overview
         // @ts-ignore
         newOverviewValue[keyToUse] = valueToset
 

@@ -23,8 +23,8 @@ import { getAllStorages } from 'renderer/functionsClasses/storageUnits/storageUn
 import { LoadingButton } from 'renderer/components/content/shared/animations';
 
 function settingsContent() {
-  let ReducerClass = new ReducerManager(useSelector);
-  let currentState: State = ReducerClass.getStorage();
+  const ReducerClass = new ReducerManager(useSelector);
+  const currentState: State = ReducerClass.getStorage();
   const tradeUpData = currentState.tradeUpReducer
   const settingsData = currentState.settingsReducer
 
@@ -49,7 +49,7 @@ function settingsContent() {
   totalFloat = totalFloat / tradeUpData.tradeUpProducts.length;
   let totalEV = 0;
   tradeUpData.possibleOutcomes.forEach((element) => {
-    let individualPrice = PricingClass.getPrice(element);
+    const individualPrice = PricingClass.getPrice(element);
     totalEV += individualPrice * (element.percentage / 100);
   });
 

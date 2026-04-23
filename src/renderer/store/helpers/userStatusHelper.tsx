@@ -1,7 +1,7 @@
 import axios from "axios"
 import { createCSGOImage } from "../../functionsClasses/createCSGOImage";
 export async function getURL(steamID: string): Promise<string | void> {
-  let defaultReturnString = createCSGOImage("econ/characters/customplayer_tm_separatist")
+  const defaultReturnString = createCSGOImage("econ/characters/customplayer_tm_separatist")
     return new Promise<string>((resolve) => {
         axios
         .get(`http://steamcommunity.com/profiles/${steamID}/?xml=1`)

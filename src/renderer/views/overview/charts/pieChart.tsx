@@ -27,21 +27,21 @@ ChartJS.register(
 
 export default function PieChart({ data, headerName }) {
   const ReducerClass = new ReducerManager(useSelector);
-  let settingsData: Settings = ReducerClass.getStorage(
+  const settingsData: Settings = ReducerClass.getStorage(
     ReducerClass.names.settings
   );
-  let pricingData: Prices = ReducerClass.getStorage(ReducerClass.names.pricing);
+  const pricingData: Prices = ReducerClass.getStorage(ReducerClass.names.pricing);
   const converter = new ConvertPricesFormatted(settingsData, pricingData);
 
   const title = (tooltipItems) => {
-    let percentageData: Array<number> = [];
+    const percentageData: Array<number> = [];
     let sum = 0;
 
     tooltipItems.dataset.data.forEach((element) => {
       sum += element;
     });
     tooltipItems.dataset.data.forEach((element) => {
-      let percentage = (element * 100) / sum;
+      const percentage = (element * 100) / sum;
       percentageData.push(percentage);
     });
     if (settingsData.overview.by == 'price') {
@@ -74,23 +74,23 @@ export default function PieChart({ data, headerName }) {
       datalabels: {
         formatter: (value, ctx) => {
           let sum = 0;
-          let dataArr = ctx.chart.data.datasets[0].data;
+          const dataArr = ctx.chart.data.datasets[0].data;
           dataArr.map((data) => {
             sum += data;
           });
-          let percentage = ((value * 100) / sum).toFixed(2) + '%';
+          const percentage = ((value * 100) / sum).toFixed(2) + '%';
           return percentage;
         },
         color: '#fff',
         display: function (context) {
-          let percentageData: Array<number> = [];
+          const percentageData: Array<number> = [];
           let sum = 0;
 
           context.dataset.data.forEach((element) => {
             sum += element;
           });
           context.dataset.data.forEach((element) => {
-            let percentage = (element * 100) / sum;
+            const percentage = (element * 100) / sum;
             percentageData.push(percentage);
           });
 

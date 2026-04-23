@@ -31,8 +31,8 @@ function content() {
   // Sort function
 
   // Convert to dict for easier match
-  let finalList = {};
-  let inventoryToUse = [
+  const finalList = {};
+  const inventoryToUse = [
     ...inventory.inventory,
     ...inventory.storageInventoryRaw,
   ];
@@ -40,7 +40,7 @@ function content() {
     if (finalList[element.item_name] == undefined) {
       finalList[element.item_name] = [element];
     } else {
-      let listToUse = finalList[element.item_name];
+      const listToUse = finalList[element.item_name];
       listToUse.push(element);
       finalList[element.item_name] = listToUse;
     }
@@ -48,8 +48,8 @@ function content() {
 
   // Inventory to use
   let finalInventoryToUse = [] as any;
-  let seenNames = [] as any;
-  let inventoryFilter = [
+  const seenNames = [] as any;
+  const inventoryFilter = [
     ...inventoryFilters.inventoryFiltered,
     ...inventory.storageInventory,
   ];
@@ -98,8 +98,8 @@ function content() {
       }
     }
     if (tradeUpData.tradeUpProducts.length != 0) {
-      let restrictRarity = tradeUpData.tradeUpProducts[0].rarityName;
-      let restrictStattrak = tradeUpData.tradeUpProducts[0].stattrak;
+      const restrictRarity = tradeUpData.tradeUpProducts[0].rarityName;
+      const restrictStattrak = tradeUpData.tradeUpProducts[0].stattrak;
       if (item.rarityName != restrictRarity) {
         return false;
       }
@@ -114,7 +114,7 @@ function content() {
     return false;
   });
 
-  let itemR = {};
+  const itemR = {};
   itemRarities.forEach((element) => {
     itemR[element.value] = element.bgColorClass;
   });

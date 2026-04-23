@@ -34,7 +34,7 @@ async function getPrices(cas) {
     });
 }
 
-let currencyCodes = {
+const currencyCodes = {
   1: 'USD',
   2: 'GBP',
   3: 'EUR',
@@ -126,7 +126,7 @@ class runItems {
     }
 
     if (this.prices[itemNamePricing] !== undefined) {
-      let pricingDict = {
+      const pricingDict = {
         buff163: this.prices[itemNamePricing]?.buff163.starting_at?.price,
         steam_listing: this.prices[itemNamePricing]?.steam?.last_90d,
         skinport: this.prices[itemNamePricing]?.skinport?.starting_at,
@@ -154,7 +154,7 @@ class runItems {
       itemRow['pricing'] = pricingDict;
       return itemRow;
     } else {
-      let pricingDict = {
+      const pricingDict = {
         buff163: 0,
         steam_listing: 0,
         skinport: 0,
@@ -165,7 +165,7 @@ class runItems {
     }
   }
   async handleItem(itemRow) {
-    let returnRows = [] as any;
+    const returnRows = [] as any;
     itemRow.forEach((element) => {
       if (element.item_name !== undefined && element.item_moveable == true) {
         this.makeSinglerequest(element).then((returnValue) => {
@@ -177,7 +177,7 @@ class runItems {
   }
 
   async handleTradeUp(itemRow) {
-    let returnRows = [] as any;
+    const returnRows = [] as any;
     itemRow.forEach((element) => {
       this.makeSinglerequest(element).then((returnValue) => {
         returnRows.push(returnValue);

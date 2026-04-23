@@ -18,7 +18,7 @@ function runArray(
   PricingConverter
 ) {
   objectToUse = getObject(arrayToRun, objectToUse, by, PricingConverter);
-  var items = Object.keys(objectToUse).map(function (key) {
+  const items = Object.keys(objectToUse).map(function (key) {
     return [key, objectToUse[key]];
   });
 
@@ -71,43 +71,43 @@ function getObject(
 
 export default function OverallVolume() {
   // Go through inventory and find matching categories
-  let Reducer = new ReducerManager(useSelector);
-  let settingsData: Settings = Reducer.getStorage(Reducer.names.settings);
-  let pricingData: Prices = Reducer.getStorage(Reducer.names.pricing);
-  let PricingConverter = new ConvertPrices(settingsData, pricingData);
+  const Reducer = new ReducerManager(useSelector);
+  const settingsData: Settings = Reducer.getStorage(Reducer.names.settings);
+  const pricingData: Prices = Reducer.getStorage(Reducer.names.pricing);
+  const PricingConverter = new ConvertPrices(settingsData, pricingData);
   const inventory = Reducer.getStorage(Reducer.names.inventory);
 
   // Convert inventory to chart data
 
-  let seenNamesOverall: any = {};
-  let seenNamesInventory: any = {};
-  let seenNamesStorage: any = {};
+  const seenNamesOverall: any = {};
+  const seenNamesInventory: any = {};
+  const seenNamesStorage: any = {};
 
-  let inventoryFiltered = searchFilter(
+  const inventoryFiltered = searchFilter(
     inventory.combinedInventory,
     Reducer.getStorage(Reducer.names.inventoryFilters),
     undefined
   );
 
-  let storageFiltered = searchFilter(
+  const storageFiltered = searchFilter(
     inventory.storageInventory,
     Reducer.getStorage(Reducer.names.inventoryFilters),
     undefined
   );
 
-  let overallData = runArray(
+  const overallData = runArray(
     [...inventoryFiltered, ...storageFiltered],
     seenNamesOverall,
     settingsData.overview.by,
     PricingConverter
   );
-  let inventoryData = getObject(
+  const inventoryData = getObject(
     inventoryFiltered,
     seenNamesInventory,
     settingsData.overview.by,
     PricingConverter
   );
-  let storageData = getObject(
+  const storageData = getObject(
     storageFiltered,
     seenNamesStorage,
     settingsData.overview.by,

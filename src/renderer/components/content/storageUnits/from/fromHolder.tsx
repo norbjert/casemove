@@ -68,7 +68,7 @@ function StorageUnits() {
   }
 
 
-  let storageFiltered = searchFilter(storageToUse, inventoryFilters, fromReducer)
+  const storageFiltered = searchFilter(storageToUse, inventoryFilters, fromReducer)
 
   if (fromReducer.sortBack) {
     storageFiltered.reverse()

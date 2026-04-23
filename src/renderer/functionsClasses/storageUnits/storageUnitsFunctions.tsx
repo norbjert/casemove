@@ -52,8 +52,8 @@ export async function getAllStorages(
   });
 
   async function sendArrayAddStorage(returnValue: Array<any>) {
-    let StorageClass = new HandleStorageData(dispatch, state)
-    let loadedIds: Array<string> = [...state.moveFromReducer.activeStorages]
+    const StorageClass = new HandleStorageData(dispatch, state)
+    const loadedIds: Array<string> = [...state.moveFromReducer.activeStorages]
     let addArray: Array<ItemRow> = []
     for (const [_key, project] of Object.entries(returnValue)) {
       if (!loadedIds.includes(project.item_id)) {
@@ -73,7 +73,7 @@ export async function getAllStorages(
   }
 
   // Handle storage data
-  let SortingClass = new Sort(casketResults)
+  const SortingClass = new Sort(casketResults)
   return SortingClass.item_customname().then((returnValue) => {
     return sendArrayAddStorage(returnValue)
   })

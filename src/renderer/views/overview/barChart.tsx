@@ -7,9 +7,9 @@ Chart
 
 
 export default function BarApp() {
-  let categoriesFixed: Array<string> = [];
+  const categoriesFixed: Array<string> = [];
 
-  let resultingData = {} as any;
+  const resultingData = {} as any;
   itemCategories.forEach((element) => {
     categoriesFixed.push(element.name);
     resultingData[element.name] = {
@@ -69,8 +69,8 @@ export default function BarApp() {
   });
 
   // Convert inventory to chart data
-  let inventoryDataToUse: Array<number> = [];
-  let storageUnitDataToUse: Array<number> = [];
+  const inventoryDataToUse: Array<number> = [];
+  const storageUnitDataToUse: Array<number> = [];
 
   categoriesFixed.forEach(category => {
     inventoryDataToUse.push(resultingData[category].inventory)

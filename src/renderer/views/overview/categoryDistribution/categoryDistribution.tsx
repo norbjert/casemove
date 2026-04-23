@@ -28,10 +28,10 @@ ChartJS.register(
 );
 
 function getData(ReducerClass, by) {
-  let categoriesFixed: Array<string> = [];
-  let categoriesColors: any = {};
+  const categoriesFixed: Array<string> = [];
+  const categoriesColors: any = {};
 
-  let resultingData = {} as any;
+  const resultingData = {} as any;
   itemCategories.forEach((element) => {
     categoriesFixed.push(element.name);
     categoriesColors[element.name] = categoriesRGB[element.value]
@@ -41,7 +41,7 @@ function getData(ReducerClass, by) {
     }
   });
 
-  let PricingConverter = new ConvertPrices(ReducerClass.getStorage(ReducerClass.names.settings), ReducerClass.getStorage(ReducerClass.names.pricing))
+  const PricingConverter = new ConvertPrices(ReducerClass.getStorage(ReducerClass.names.settings), ReducerClass.getStorage(ReducerClass.names.pricing))
   // Go through inventory and find matching categories
   const inventory = ReducerClass.getStorage(ReducerClass.names.inventory)
   inventory.combinedInventory.forEach(element => {
@@ -71,9 +71,9 @@ function getData(ReducerClass, by) {
   });
 
   // Convert inventory to chart data
-  let finalDataToUse: Array<number> = [];
-  let rgbColorsToUse: Array<string> = [];
-  let rgbColorsToUseBorder: Array<string> = [];
+  const finalDataToUse: Array<number> = [];
+  const rgbColorsToUse: Array<string> = [];
+  const rgbColorsToUseBorder: Array<string> = [];
 
   categoriesFixed.forEach(category => {
     finalDataToUse.push(resultingData[category].inventory + resultingData[category].storageUnits)
@@ -91,7 +91,7 @@ function getData(ReducerClass, by) {
 }
 export default function ItemDistributionByVolume() {
   const ReducerClass = new ReducerManager(useSelector)
-  let settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings);
+  const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings);
 
   let returnObject: any = {
     labels: [],

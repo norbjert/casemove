@@ -3,9 +3,9 @@ import { Prices, Settings } from "renderer/interfaces/states";
 import { ConvertPricesFormatted } from "./prices";
 
 async function handleDownload(storageData) {
-    let csvContent =
+    const csvContent =
       'Item Name,Item Custom Name,Price,Price Combined,Item Moveable,Storage Name,Tradehold,Category,Combined QTY,Item Wear Name,Item Paint Wear,Item Has Stickers/Patches,Stickers\n';
-    var csv = storageData
+    let csv = storageData
       .map(function (d) {
         let storageName = d.storage_name;
         if (storageName == undefined) {
@@ -15,7 +15,7 @@ async function handleDownload(storageData) {
         let stickersData = d.stickers;
         // @ts-ignore
         if (stickersData != []) {
-          let newStickers = [] as any;
+          const newStickers = [] as any;
           stickersData.forEach((element) => {
             newStickers.push(element.sticker_name);
           });

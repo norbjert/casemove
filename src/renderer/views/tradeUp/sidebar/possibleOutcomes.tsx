@@ -33,7 +33,7 @@ export default function PossibleOutcomes() {
       (pricesResult?.prices[element.item_name + element.item_wear_name || '']?.['steam_listing'] * 100);
   });
   tradeUpData.possibleOutcomes.sort(function (a, b) {
-    var keyA = a.profit_cal,
+    const keyA = a.profit_cal,
       keyB = b.profit_cal;
     if (keyA < keyB) return 1;
     if (keyA > keyB) return -1;

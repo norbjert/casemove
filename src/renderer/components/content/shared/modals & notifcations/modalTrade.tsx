@@ -24,7 +24,7 @@ import { ConvertPricesFormatted } from 'renderer/functionsClasses/prices';
 import { createCSGOImage } from '../../../../functionsClasses/createCSGOImage';
 setTradeConfirm;
 export default function TradeModal() {
-  let currentState: State = new ReducerManager(useSelector).getStorage();
+  const currentState: State = new ReducerManager(useSelector).getStorage();
   const tradeUpData = currentState.tradeUpReducer;
   const settingsData = currentState.settingsReducer;
   const modalData = currentState.modalTradeReducer;
@@ -65,7 +65,7 @@ export default function TradeModal() {
       if (tradeUpData.tradeUpProducts[0]?.stattrak) {
         rarityToUse += 10;
       }
-      let idsToGet = [...tradeUpData.tradeUpProductsIDS] as any;
+      const idsToGet = [...tradeUpData.tradeUpProductsIDS] as any;
       inventory.inventory.forEach((element) => {
         idsToGet.push(element.item_id);
       });

@@ -17,7 +17,7 @@ const pricingReducer = (state = initialState, action) => {
         storageAmount: state.storageAmount + action.payload.storageAmount,
       };
     case 'PRICING_ADD_TO':
-      let currentPrices = state.prices;
+      const currentPrices = state.prices;
       action.payload.itemRows.forEach(element => {
         currentPrices[element.item_name + element.item_wear_name || ''] = element.pricing;
       });
@@ -28,9 +28,9 @@ const pricingReducer = (state = initialState, action) => {
       };
 
     case 'PRICING_ADD_TO_REQUESTED':
-      let currentRequested = state.productsRequested;
+      const currentRequested = state.productsRequested;
       action.payload.itemRows.forEach(element => {
-        let nameToPuse = element.item_name + element.item_wear_name || ''
+        const nameToPuse = element.item_name + element.item_wear_name || ''
         currentRequested.push(nameToPuse)
       });
       return {
@@ -38,7 +38,7 @@ const pricingReducer = (state = initialState, action) => {
         productsRequested: currentRequested,
       };
     case 'PRICING_REMOVE':
-      let removeCurrentPrices = state.prices;
+      const removeCurrentPrices = state.prices;
 
       if (removeCurrentPrices[action.payload.itemName] !== undefined) {
         delete removeCurrentPrices[action.payload.itemName];

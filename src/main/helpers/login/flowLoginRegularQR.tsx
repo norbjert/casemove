@@ -8,7 +8,7 @@ export async function flowLoginRegularQR(doStoreLogin: boolean): Promise<{
   session?: LoginSession;
 }> {
   return new Promise(async (resolve) => {
-    let session = new LoginSession(EAuthTokenPlatformType.SteamClient);
+    const session = new LoginSession(EAuthTokenPlatformType.SteamClient);
     console.log('Start with QR');
 
     session.on('authenticated', async () => {

@@ -37,10 +37,10 @@ const categoriesRGB = {
   tools: "rgba(255, 159, 64, 0.2)"
 };
 export default function RadarApp() {
-  let categoriesFixed: Array<string> = [];
-  let categoriesColors: any = {};
+  const categoriesFixed: Array<string> = [];
+  const categoriesColors: any = {};
 
-  let resultingData = {} as any;
+  const resultingData = {} as any;
   itemCategories.forEach((element) => {
     categoriesFixed.push(element.name);
     categoriesColors[element.name] = categoriesRGB[element.value]
@@ -68,11 +68,11 @@ export default function RadarApp() {
       datalabels: {
         formatter: (value, ctx) => {
             let sum = 0;
-            let dataArr = ctx.chart.data.datasets[0].data;
+            const dataArr = ctx.chart.data.datasets[0].data;
             dataArr.map(data => {
                 sum += data;
             });
-            let percentage = (value*100 / sum).toFixed(2)+"%";
+            const percentage = (value*100 / sum).toFixed(2)+"%";
             return percentage;
         },
         color: '#fff',
@@ -82,7 +82,7 @@ export default function RadarApp() {
   };
 
   const ReducerClass = new ReducerManager(useSelector)
-  let PricingConverter = new ConvertPrices(ReducerClass.getStorage(ReducerClass.names.settings), ReducerClass.getStorage(ReducerClass.names.pricing))
+  const PricingConverter = new ConvertPrices(ReducerClass.getStorage(ReducerClass.names.settings), ReducerClass.getStorage(ReducerClass.names.pricing))
   PricingConverter
   // Go through inventory and find matching categories
   const inventory = useSelector((state: any) => state.inventoryReducer);
@@ -100,11 +100,11 @@ export default function RadarApp() {
   });
 
   // Convert inventory to chart data
-  let inventoryDataToUse: Array<number> = [];
-  let finalDataToUse: Array<number> = [];
-  let storageUnitDataToUse: Array<number> = [];
-  let rgbColorsToUse: Array<string> = [];
-  let rgbColorsToUseBorder: Array<string> = [];
+  const inventoryDataToUse: Array<number> = [];
+  const finalDataToUse: Array<number> = [];
+  const storageUnitDataToUse: Array<number> = [];
+  const rgbColorsToUse: Array<string> = [];
+  const rgbColorsToUseBorder: Array<string> = [];
 
   categoriesFixed.forEach(category => {
     inventoryDataToUse.push(resultingData[category].inventory)

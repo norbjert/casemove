@@ -11,7 +11,7 @@ export async function flowLoginRegular(
   refreshToken?: string;
 }> {
   return new Promise(async (resolve) => {
-    let session = new LoginSession(EAuthTokenPlatformType.SteamClient);
+    const session = new LoginSession(EAuthTokenPlatformType.SteamClient);
     session.on('authenticated', async () => {
       console.log(
         `Logged into Steam as authenticated -  ${session.accountName}`

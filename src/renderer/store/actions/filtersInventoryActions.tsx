@@ -63,7 +63,7 @@ export const inventoryAddRarityFilter = (filterToAdd) => {
 }
 
 export async function storageInventoryAddOption(currentState: State, newFilter: Filter) {
-  let newFilterState = [] as Array<Filter>;
+  const newFilterState = [] as Array<Filter>;
   let wasSeen: boolean = false;
   currentState.inventoryFiltersReducer.storageFilter.forEach(element => {
       if (!_.isEqual(element, newFilter)) {
@@ -84,7 +84,7 @@ export async function storageInventoryAddOption(currentState: State, newFilter: 
 }
 
 export async function filterInventoryAddOption(currentState: State, newFilter: Filter) {
-    let newFilterState = [] as Array<Filter>;
+    const newFilterState = [] as Array<Filter>;
     let wasSeen: boolean = false;
     currentState.inventoryFiltersReducer.inventoryFilter.forEach(element => {
         if (!_.isEqual(element, newFilter)) {
@@ -104,6 +104,6 @@ export async function filterInventoryAddOption(currentState: State, newFilter: F
 }
 
 export async function filterInventorySetSort(currentState: State, newSort: string) {
-    let inventoryData = sortDataFunction(newSort, currentState.inventoryReducer.inventory, currentState.pricingReducer.prices, currentState.settingsReducer?.source?.title)
+    const inventoryData = sortDataFunction(newSort, currentState.inventoryReducer.inventory, currentState.pricingReducer.prices, currentState.settingsReducer?.source?.title)
     return allButClear(currentState.inventoryFiltersReducer.inventoryFilter, newSort, inventoryData)
 }

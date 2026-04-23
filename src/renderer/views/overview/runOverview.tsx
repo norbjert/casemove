@@ -28,12 +28,12 @@ import LeftGraph from './leftGraph';
 
 function Content() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  let ReducerClass = new ReducerManager(useSelector);
-  let currentState: State = ReducerClass.getStorage();
+  const ReducerClass = new ReducerManager(useSelector);
+  const currentState: State = ReducerClass.getStorage();
   const userDetails = currentState.authReducer
   const settingsData = currentState.settingsReducer
   const inventory = currentState.inventoryReducer
-  let hr = new Date().getHours();
+  const hr = new Date().getHours();
   let goodMessage: string = 'Good Evening';
 
   if (hr >= 4 && hr < 12) {
@@ -48,7 +48,7 @@ function Content() {
   const dispatch = useDispatch()
 
   
-  let PricingRequest = new RequestPrices(dispatch, settingsData, currentState.pricingReducer)
+  const PricingRequest = new RequestPrices(dispatch, settingsData, currentState.pricingReducer)
   PricingRequest.handleRequestArray(currentState.inventoryReducer.inventory)
 
 

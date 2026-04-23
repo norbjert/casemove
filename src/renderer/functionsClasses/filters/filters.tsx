@@ -14,13 +14,13 @@ export class FilterManager {
 
   addFilter(keyToAddUnder: string, filterObject: FilterRequirement, include: boolean): void {
 
-    let finalFilter: Filter = {
+    const finalFilter: Filter = {
       ...filterObject,
       include: include,
     };
     if (this.filters?.[keyToAddUnder] != undefined) {
 
-      let oldArray = this.filters[keyToAddUnder];
+      const oldArray = this.filters[keyToAddUnder];
       oldArray.push(finalFilter);
       this.filters[keyToAddUnder] = oldArray;
     } else {
@@ -33,10 +33,10 @@ export class FilterManager {
     filterObjects: Array<FilterRequirement>,
     includeFilter: boolean
   ): void {
-    let arrayToAdd: Array<Filter> = [];
+    const arrayToAdd: Array<Filter> = [];
     filterObjects.forEach((element) => {
       if (!_.some(this.filters?.[keyToAddUnder], element)) {
-        let finalFilter: Filter = {
+        const finalFilter: Filter = {
           ...element,
           include: includeFilter,
         };
@@ -70,7 +70,7 @@ export class FilterManager {
   }
 
   excludeFilter(keyToAddUnder: string, filterLabel: string) {
-    let filtered = this.filters?.[keyToAddUnder]?.filter(
+    const filtered = this.filters?.[keyToAddUnder]?.filter(
       (filter) => filter.label != filterLabel
     );
     if (filtered.length > 0) {
@@ -135,8 +135,8 @@ export const containers: ClassOptionFilter = {
 };
 
 export async function addMajorsFilters(itemArray: Array<ItemRow>) {
-  let returnArray: Array<Filter> = [];
-  let seenMajors: Array<string> = [];
+  const returnArray: Array<Filter> = [];
+  const seenMajors: Array<string> = [];
   itemArray.forEach((itemRow) => {
     seenMajors.push(itemRow.major);
   });

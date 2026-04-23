@@ -76,7 +76,7 @@ const settingsReducer = (state = initialState, action) => {
           overview: action.payload,
         };
       case 'SETTINGS_ADD_CURRENCYPRICE':
-        let currencyDict = state.currencyPrice
+        const currencyDict = state.currencyPrice
         currencyDict[action.payload.currency] = action.payload.rate
       return {
         ...state,

@@ -30,7 +30,7 @@ const initialState: MoveToReducer = {
       case 'MOVE_TO_ADD_TO':
         // Add to or remove from active storages
         console.log(action.payload.casketID)
-        let casketAlreadyExists = state.activeStorages.indexOf(action.payload.casketID) > -1;
+        const casketAlreadyExists = state.activeStorages.indexOf(action.payload.casketID) > -1;
         let chosenActiveCopy = state.activeStorages.slice();
         let storageAmount = 0
         if (casketAlreadyExists) {
@@ -47,7 +47,7 @@ const initialState: MoveToReducer = {
 
         }
        case 'MOVE_TO_TOTAL_TO_ADD':
-        let toMoveAlreadyExists = state.totalToMove.filter(row => row[0] != action.payload.itemID)
+        const toMoveAlreadyExists = state.totalToMove.filter(row => row[0] != action.payload.itemID)
 
         if (action.payload.toMove.length > 0) {
             toMoveAlreadyExists.push([action.payload.itemID, action.payload.casketID, action.payload.toMove, action.payload.itemName])

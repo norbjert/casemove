@@ -43,11 +43,11 @@ function content() {
   } else {
     inventoryToUse = inventoryFilters.inventoryFiltered;
   }
-  let PricingRequest = new RequestPrices(dispatch, settingsData, pricesResult)
+  const PricingRequest = new RequestPrices(dispatch, settingsData, pricesResult)
   PricingRequest.handleRequestArray(inventoryToUse)
 
   async function storageResult() {
-    let storageResult = await sortDataFunction(
+    const storageResult = await sortDataFunction(
       inventoryFilters.sortValue,
       inventoryToUse,
       pricesResult.prices,
@@ -62,7 +62,7 @@ function content() {
     getInventory.reverse();
   }
 
-  let finalToUse = searchFilter(getInventory, inventoryFilters, inventoryFilters)
+  const finalToUse = searchFilter(getInventory, inventoryFilters, inventoryFilters)
 
   return (
     <>

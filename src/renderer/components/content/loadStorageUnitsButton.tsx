@@ -8,8 +8,8 @@ import { LoadingButton } from "./shared/animations";
 import { classNames } from "./shared/filters/inventoryFunctions";
 
 export function LoadButton() {
-    let ReducerClass = new ReducerManager(useSelector);
-    let currentState: State = ReducerClass.getStorage();
+    const ReducerClass = new ReducerManager(useSelector);
+    const currentState: State = ReducerClass.getStorage();
     const dispatch = useDispatch();
     // Get all storage unit data
     async function getAllStor() {

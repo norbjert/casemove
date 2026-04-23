@@ -64,14 +64,14 @@ export class HandleStorageData {
   // Get storage unit
   async _getStorageUnitData(storageRow: ItemRow) {
     console.log(storageRow.item_id, storageRow.item_customname);
-    let storageResult = await window.electron.ipcRenderer.getStorageUnitData(
+    const storageResult = await window.electron.ipcRenderer.getStorageUnitData(
       storageRow.item_id,
       storageRow.item_customname
     );
     if (!storageResult || storageResult[0] === 0) {
       throw new Error('GC request failed for storage unit ' + storageRow.item_id);
     }
-    let returnData: Array<ItemRowStorage> = storageResult[1];
+    const returnData: Array<ItemRowStorage> = storageResult[1];
 
     let finalReturnData = (await combineInventory(
       returnData,

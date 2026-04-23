@@ -110,11 +110,11 @@ async function checkSteam(): Promise<{
 checkSteam();
 
 // Define helpers
-var ByteBuffer = require('bytebuffer');
+const ByteBuffer = require('bytebuffer');
 const Protos = require('globaloffensive/protobufs/generated/_load.js');
 const Language = require('globaloffensive/language.js');
 const currencyClass = new currency();
-let tradeUpClass = new tradeUps();
+const tradeUpClass = new tradeUps();
 const ClassLoginResponse = new LoginGenerator();
 
 // Electron stuff
@@ -186,7 +186,7 @@ const createWindow = async () => {
   mainWindow.webContents.session.clearStorageData();
 
   ipcMain.on('download', (_event, info) => {
-    let fileP = path.join(os.homedir(), '/Downloads/casemove.csv');
+    const fileP = path.join(os.homedir(), '/Downloads/casemove.csv');
 
     fs.writeFileSync(fileP, info, 'utf-8');
     shell.showItemInFolder(fileP);
@@ -261,7 +261,7 @@ app.on('window-all-closed', () => {
   }
 });
 
-let myWindow = null as any;
+const myWindow = null as any;
 const gotTheLock = app.requestSingleInstanceLock();
 const reactNombers = false;
 
@@ -323,7 +323,7 @@ if (!gotTheLock) {
  * IPC...
  */
 
-var fetchItemClass = new fetchItems();
+const fetchItemClass = new fetchItems();
 
 // Version manager
 
@@ -338,12 +338,7 @@ ipcMain.on('needUpdate', async (event: any) => {
         );
 
         // Check success status
-        let successStatus: boolean = false;
-        if (returnValue.version > version) {
-          successStatus = true;
-        } else {
-          successStatus = false;
-        }
+        const successStatus: boolean = returnValue.version > version;
 
         // Send the event back back
         event.reply('needUpdate-reply', {
@@ -423,7 +418,7 @@ emitterAccount.on(
                 tradeUpClass
                   .getTradeUp(returnValue)
                   .then((newReturnValue: any) => {
-                    let walletToSend = user.wallet;
+                    const walletToSend = user.wallet;
                     if (walletToSend) {
                       walletToSend.currency =
                         currencyCodes?.[walletToSend?.currency];
@@ -457,7 +452,7 @@ emitterAccount.on(
       // // Create a timeout race to catch an infinite loading error in case the Steam account hasnt added the CSGO license
       // Run the normal version
 
-      let GCResponse = new Promise((resolve) => {
+      const GCResponse = new Promise((resolve) => {
         user.once('playingState', function (blocked, _playingApp) {
           if (!blocked) {
             startGameCoordinator();
@@ -472,12 +467,12 @@ emitterAccount.on(
       });
 
       // Run the timeout
-      let timeout = new Promise((resolve, _reject) => {
+      const timeout = new Promise((resolve, _reject) => {
         setTimeout(resolve, 10000, 'time');
       });
 
       // Run the timeout
-      let error = new Promise((resolve, _reject) => {
+      const error = new Promise((resolve, _reject) => {
         user.once('error', (error) => {
           if (error == 'Error: LoggedInElsewhere') {
             resolve('error');
@@ -570,8 +565,8 @@ ipcMain.on(
     secretKey = null,
     clientjstoken = null
   ) => {
-    let user = new SteamUser();
-    let csgo = new GlobalOffensive(user);
+    const user = new SteamUser();
+    const csgo = new GlobalOffensive(user);
     emitterAccount.emit(
       'login',
       event,
@@ -581,7 +576,7 @@ ipcMain.on(
       shouldRemember,
       secretKey
     );
-    let loginClass = new login();
+    const loginClass = new login();
     loginClass
       .mainLogin(
         user,
@@ -603,9 +598,9 @@ emitterAccount.on('qrLogin:show', async (qrChallengeLogin) => {
   mainWindow?.webContents.send('qrLogin:show', qrChallengeLogin);
 });
 ipcMain.on('startQRLogin', async (event, shouldRemember) => {
-  let user = new SteamUser();
-  let csgo = new GlobalOffensive(user);
-  let loginClass = new login();
+  const user = new SteamUser();
+  const csgo = new GlobalOffensive(user);
+  const loginClass = new login();
   emitterAccount.emit('qrLogin:cancel')
   flowLoginRegularQR(shouldRemember).then((returnValue) => {
     if (!returnValue.session) {
@@ -686,16 +681,16 @@ async function startEvents(csgo, user) {
       13: '0d000a00',
       14: '0e000a00',
     };
-    let idsToUse = [] as any;
+    const idsToUse = [] as any;
     idsToProcess.forEach((element) => {
       idsToUse.push(parseInt(element));
     });
-    let tradeupPayLoad = new ByteBuffer(
+    const tradeupPayLoad = new ByteBuffer(
       1 + 2 + idsToUse.length * 8,
       ByteBuffer.LITTLE_ENDIAN
     );
     tradeupPayLoad.append(rarObject[rarityToUse], 'hex');
-    for (let id of idsToUse) {
+    for (const id of idsToUse) {
       tradeupPayLoad.writeUint64(id);
     }
     await csgo._send(Language.Craft, null, tradeupPayLoad);
@@ -703,9 +698,9 @@ async function startEvents(csgo, user) {
 
   // Open container
   ipcMain.on('openContainer', async (_event, itemsToOpen) => {
-    let containerPayload = new ByteBuffer(16, ByteBuffer.LITTLE_ENDIAN);
+    const containerPayload = new ByteBuffer(16, ByteBuffer.LITTLE_ENDIAN);
     containerPayload.append('0000000000000000', 'hex');
-    for (let id of itemsToOpen) {
+    for (const id of itemsToOpen) {
       containerPayload.writeUint64(parseInt(id));
     }
     await csgo._send(Language.UnlockCrate, null, containerPayload);
@@ -813,7 +808,7 @@ async function startEvents(csgo, user) {
     mainWindow?.webContents.send('userEvents', [2, 'reconnected']);
   });
   user.on('wallet', (hasWallet, currency, balance) => {
-    let walletToSend = { hasWallet, currency, balance };
+    const walletToSend = { hasWallet, currency, balance };
     walletToSend.currency = currencyCodes?.[walletToSend?.currency];
     console.log('Wallet update: ', balance);
     mainWindow?.webContents.send('userEvents', [4, walletToSend]);
@@ -984,7 +979,7 @@ async function startEvents(csgo, user) {
 ipcMain.on('getCurrency', async (event) => {
   getValue('pricing.currency').then((returnValue) => {
     currencyClass.getRate(returnValue).then((response) => {
-      let returnObject: CurrencyReturnValue = {
+      const returnObject: CurrencyReturnValue = {
         currency: returnValue,
         rate: response as number,
       };
