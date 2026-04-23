@@ -33,7 +33,7 @@ export async function handleSuccess(returnSuccessPackage: LoginCommandReturnPack
 
 
   // Create a store object
-  let signInPackage: SignInActionPackage = {
+  const signInPackage: SignInActionPackage = {
     userProfilePicture: await getProfilePicture(returnSuccessPackage.steamID),
     displayName: returnSuccessPackage.displayName,
     CSGOConnection: returnSuccessPackage.haveGCSession,
@@ -46,7 +46,7 @@ export async function handleSuccess(returnSuccessPackage: LoginCommandReturnPack
   dispatch(signIn(signInPackage))
 
   // Inventory
-  let combinedInventory = await combineInventory(
+  const combinedInventory = await combineInventory(
     returnSuccessPackage.csgoInventory,
     currentState.settingsReducer
   )

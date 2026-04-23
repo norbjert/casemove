@@ -3,7 +3,7 @@ import {  Popover, Transition } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux';
 import { tradeUpOptionsAddRemove } from 'renderer/store/actions/tradeUpActions';
 
-let optionsAvailable = ['Hide equipped']
+const optionsAvailable = ['Hide equipped']
 
 export default function TradeUpOptionsDropDown() {
   

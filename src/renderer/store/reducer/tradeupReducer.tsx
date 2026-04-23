@@ -14,12 +14,12 @@ const initialState: TradeUpActions = {
   const tradeUpReducer = (state = initialState, action) => {
     switch (action.type) {
       case 'TRADEUP_ADD_REMOVE':
-          let toMoveAlreadyExists = state.tradeUpProducts.filter(row => row.item_id != action.payload.item_id)
+          const toMoveAlreadyExists = state.tradeUpProducts.filter(row => row.item_id != action.payload.item_id)
           console.log(action.payload.item_id, toMoveAlreadyExists)
           if (toMoveAlreadyExists.length == state.tradeUpProducts.length) {
             toMoveAlreadyExists.push(action.payload)
           }
-          let newTradeUpIDS = [] as any
+          const newTradeUpIDS = [] as any
           toMoveAlreadyExists.forEach(element => {
             newTradeUpIDS.push(element.item_id)
 
@@ -40,7 +40,7 @@ const initialState: TradeUpActions = {
           }
 
       case 'TRADEUP_ADDREMOVE_COLLECTION':
-          let collectionAlreadyExists = state.collections.filter(row => row != action.payload)
+          const collectionAlreadyExists = state.collections.filter(row => row != action.payload)
           if (collectionAlreadyExists.length == state.collections.length) {
             collectionAlreadyExists.push(action.payload)
           }
@@ -50,7 +50,7 @@ const initialState: TradeUpActions = {
           }
 
       case 'TRADEUP_ADDREMOVE_OPTION':
-          let optionAlready = state.options.filter(row => row != action.payload)
+          const optionAlready = state.options.filter(row => row != action.payload)
           if (optionAlready.length == state.options.length) {
             optionAlready.push(action.payload)
           }

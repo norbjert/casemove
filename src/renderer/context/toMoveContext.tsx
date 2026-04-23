@@ -11,7 +11,7 @@ export const toMoveContext = createContext<toMoveContext>({
 export const useToMoveContext = () => useContext(toMoveContext);
 
 export async function updateToMove(getToMoveContext, options) {
-  let fromStorage = options.hasOwnProperty('fromStorage')
+  const fromStorage = options.hasOwnProperty('fromStorage')
     ? options.fromStorage
     : getToMoveContext['fromStorage'];
   console.log(fromStorage);

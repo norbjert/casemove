@@ -40,11 +40,11 @@ function content() {
   );
 
   async function moveItems() {
-    let key = (Math.random() + 1).toString(36).substring(7);
+    const key = (Math.random() + 1).toString(36).substring(7);
     let totalCount = 0;
-    let queryNew = [] as any;
+    const queryNew = [] as any;
     for (const [, element] of Object.entries(fromReducer.totalToMove)) {
-      let elemental = element as any;
+      const elemental = element as any;
       for (const [, itemID] of Object.entries(elemental[2])) {
         queryNew.push({
           payload: {
@@ -71,7 +71,7 @@ function content() {
   ) {
     storageDataToUse = inventory.storageInventory;
   }
-  let inventoryFilter = searchFilter(
+  const inventoryFilter = searchFilter(
     storageDataToUse,
     inventoryFilters,
     fromReducer
@@ -80,7 +80,7 @@ function content() {
   let totalHighlighted = 0 as any;
 
   inventoryFilter.forEach((projectRow) => {
-    let filtered = fromReducer.totalToMove.filter(
+    const filtered = fromReducer.totalToMove.filter(
       (row) => row[0] == projectRow.item_id
     );
     if (filtered.length > 0) {

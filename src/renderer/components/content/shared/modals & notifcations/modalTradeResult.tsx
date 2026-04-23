@@ -9,7 +9,7 @@ export default function TradeResultModal() {
   const dispatch = useDispatch();
   const modalData = useSelector((state: any) => state.modalTradeReducer);
 
-  let devMode = false;
+  const devMode = false;
 
   async function setDone() {
     dispatch(setTradeMoveResult())

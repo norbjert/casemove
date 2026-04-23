@@ -17,7 +17,7 @@ const initialState: ModalMove = {
   const modalMoveReducer = (state = initialState, action) => {
     switch (action.type) {
       case 'MOVE_MODAL_QUERY_SET':
-          let queryData = [...action.payload.query]
+          const queryData = [...action.payload.query]
           queryData.shift()
           return {
               ...state,
@@ -34,7 +34,7 @@ const initialState: ModalMove = {
             moveOpen: false
           }
         }
-          let initialStoragesToClear = state.storageIdsToClearFrom
+          const initialStoragesToClear = state.storageIdsToClearFrom
            if (!initialStoragesToClear.includes(state.query[0].payload.storageID)) {
             initialStoragesToClear.push(state.query[0].payload.storageID)
            }
@@ -43,7 +43,7 @@ const initialState: ModalMove = {
                ...state
              }
            }
-          let newQuery = [...state.query]
+          const newQuery = [...state.query]
           newQuery.shift()
           return {
               ...state,

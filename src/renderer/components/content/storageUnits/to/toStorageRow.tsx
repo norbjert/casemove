@@ -26,7 +26,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
     fieldValue = parseInt(fieldValue);
     let totalToGo = 1000 - toReducer.activeStoragesAmount;
     for (const [, value] of Object.entries(toReducer.totalToMove)) {
-      let valued = value as any;
+      const valued = value as any;
       console.log(valued);
       if (valued[0] != projectRow.item_id) {
         totalToGo -= valued[2].length;
@@ -65,7 +65,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
     );
   }
 
-  let PricingClass = new RequestPrices(dispatch, settingsData, pricesResult)
+  const PricingClass = new RequestPrices(dispatch, settingsData, pricesResult)
   PricingClass.handleRequested(projectRow)
 
   const isEmpty =

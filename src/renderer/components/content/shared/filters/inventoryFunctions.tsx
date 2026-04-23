@@ -7,14 +7,14 @@ import {itemCategories, itemSubCategories} from '../categories';
 
 // Will get the categories
 async function getCategory(toLoopThrough: Array<ItemRow | ItemRowStorage>, additionalObjectToAdd: any = {}) {
-  let returnArray: Array<ItemRow | ItemRowStorage> = [];
-  let itemIdsFiltered: Array<string> = [];
+  const returnArray: Array<ItemRow | ItemRowStorage> = [];
+  const itemIdsFiltered: Array<string> = [];
 
   for (const [_, value] of Object.entries(itemCategories)) {
     let result = toLoopThrough.filter(itemRow => itemRow.item_url.includes(value.value));
     result = result.map(function(el) {
       itemIdsFiltered.push(el.item_id)
-      let o = Object.assign({}, el);
+      const o = Object.assign({}, el);
       o.category = value.name
       o.bgColorClass = value.bgColorClass
 
@@ -52,10 +52,10 @@ export default function combineInventory(thisInventory: Array<ItemRow | ItemRowS
   const newInventory = [] as any;
 
   for (const [, value] of Object.entries(thisInventory)) {
-    let valued = value;
+    const valued = value;
 
     // Create a string that matches the conditions
-    let wearName = valued['item_wear_name']  || 0
+    const wearName = valued['item_wear_name']  || 0
     let valueConditions =
       valued['item_name'] +
       valued['item_customname'] +
@@ -72,8 +72,8 @@ export default function combineInventory(thisInventory: Array<ItemRow | ItemRowS
 
     // Filter the inventory
     if (seenProducts.includes(valueConditions) == false) {
-      let length = thisInventory.filter(function (item) {
-        let wearName = item['item_wear_name']  || 0
+      const length = thisInventory.filter(function (item) {
+        const wearName = item['item_wear_name']  || 0
         let itemConditions =
           item['item_name'] +
           item['item_customname'] +
@@ -91,14 +91,14 @@ export default function combineInventory(thisInventory: Array<ItemRow | ItemRowS
       });
 
       // Get all ids
-      let valuedList = [] as any;
+      const valuedList = [] as any;
       for (const [, filteredValue] of Object.entries(length)) {
-        let filteredValued = filteredValue
+        const filteredValued = filteredValue
 
         valuedList.push(filteredValued['item_id']);
       }
 
-      let newDict = length[0];
+      const newDict = length[0];
       newDict['combined_ids'] = valuedList;
       newDict['combined_QTY'] = valuedList.length;
       newInventory.push(newDict);
@@ -124,8 +124,8 @@ export async function filterInventoryd(
   let totalTwo = 0;
   console.log(filtersData);
   for (const [, value] of Object.entries(filtersData)) {
-    let valued = value as String;
-    let command = valued.substring(0, 1);
+    let valued = value as string;
+    const command = valued.substring(0, 1);
     valued = valued.substring(1);
 
     // Second filter
@@ -148,10 +148,10 @@ export async function filterInventoryd(
   // First and third check
 
   for (const [, value] of Object.entries(filtersData)) {
-    let valued = value as String;
-    let command = valued.substring(0, 1);
+    let valued = value as string;
+    const command = valued.substring(0, 1);
     valued = valued.substring(1);
-    let secondValued = valued.slice(0, -1);
+    const secondValued = valued.slice(0, -1);
 
     // First filter
     if (command == '1') {
@@ -315,8 +315,8 @@ export async function sortDataFunction(
 
     case 'Rarity':
       inventory.sort(function (a, b) {
-        var valueAToTest = a.rarity;
-        var valueBToTest = b.rarity;
+        let valueAToTest = a.rarity;
+        let valueBToTest = b.rarity;
         if (valueAToTest == undefined) {
           valueAToTest = 99;
         }
@@ -458,8 +458,8 @@ export function sortDataFunctionTwo(
 
     case 'Rarity':
       inventory.sort(function (a, b) {
-        var valueAToTest = a.rarity;
-        var valueBToTest = b.rarity;
+        let valueAToTest = a.rarity;
+        let valueBToTest = b.rarity;
         if (valueAToTest == undefined) {
           valueAToTest = 99;
         }

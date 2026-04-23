@@ -30,8 +30,8 @@ export default function BarAppMajor() {
   const inventory = useSelector((state: any) => state.inventoryReducer);
 
   // Convert inventory to chart data
-  let inventoryDataToUse: Array<number> = [];
-  let storageUnitDataToUse: Array<number> = [];
+  const inventoryDataToUse: Array<number> = [];
+  const storageUnitDataToUse: Array<number> = [];
 
   Object.keys(itemSubCategories.majors).forEach(category => {
     const inventoryResult = inventory.combinedInventory.filter(itemRow => itemRow.major == category);

@@ -5,13 +5,13 @@ import EmptyField from "./EmptyField";
 import OverallVolume from "./leftGraph/barChartOverall";
 
 export default function LeftGraph() {
-    let ReducerClass = new ReducerManager(useSelector);
-    let settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
+    const ReducerClass = new ReducerManager(useSelector);
+    const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
 
-    let by = settingsData.overview.by
-    let left = settingsData.overview.chartleft
+    const by = settingsData.overview.by
+    const left = settingsData.overview.chartleft
 
-    let returnObject = {
+    const returnObject = {
         overall: {
             volume: OverallVolume,
             price: OverallVolume

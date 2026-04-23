@@ -216,7 +216,7 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
         return;
       }
     }
-    let clientjstokenToSend = await validateWebToken();
+    const clientjstokenToSend = await validateWebToken();
     let usernameToSend = username as any;
     let passwordToSend = password as any;
     let storePasswordToSend = storeRefreshToken as any;

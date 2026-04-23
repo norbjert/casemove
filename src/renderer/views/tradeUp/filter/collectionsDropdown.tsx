@@ -14,7 +14,7 @@ export default function CollectionsDropDown() {
   const dispatch = useDispatch();
 
   let inventoryToUse = [...inventory.inventory, ...inventory.storageInventoryRaw] as any;
-  let collections = [...tradeUpData.collections] as any;
+  const collections = [...tradeUpData.collections] as any;
 
 
   inventoryToUse = inventoryToUse.filter(function (item) {
@@ -36,8 +36,8 @@ export default function CollectionsDropDown() {
       }
     }
     if (tradeUpData.tradeUpProducts.length != 0) {
-      let restrictRarity = tradeUpData.tradeUpProducts[0].rarityName
-      let restrictStattrak = tradeUpData.tradeUpProducts[0].stattrak
+      const restrictRarity = tradeUpData.tradeUpProducts[0].rarityName
+      const restrictStattrak = tradeUpData.tradeUpProducts[0].stattrak
       if (item.rarityName != restrictRarity) {
         return false
       }

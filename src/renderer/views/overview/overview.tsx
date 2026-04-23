@@ -18,7 +18,7 @@ function overviewContent() {
   totalFloat = totalFloat / tradeUpData.tradeUpProducts.length;
   let totalEV = 0;
   tradeUpData.possibleOutcomes.forEach((element) => {
-    let individualPrice =
+    const individualPrice =
       pricesResult?.prices[element.item_name + element.item_wear_name || '']?.['steam_listing'] * settingsData.currencyPrice[settingsData.currency];
     totalEV += individualPrice * (element.percentage / 100);
     console.log(

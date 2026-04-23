@@ -28,7 +28,7 @@ const ClassFilters = toGetFilterManager()
 
 function content() {
   const dispatch = useDispatch();
-  let ReducerClass = new ReducerManager(useSelector);
+  const ReducerClass = new ReducerManager(useSelector);
   const pricesResult = ReducerClass.getStorage(ReducerClass.names.pricing);
   const toReducer = ReducerClass.getStorage(ReducerClass.names.moveTo);
   const inventory = ReducerClass.getStorage(ReducerClass.names.inventory);
@@ -39,12 +39,12 @@ function content() {
   );
 
   async function moveItems() {
-    let key = (Math.random() + 1).toString(36).substring(7);
+    const key = (Math.random() + 1).toString(36).substring(7);
     key;
     let totalCount = 0;
-    let queryNew = [] as any;
+    const queryNew = [] as any;
     for (const [, element] of Object.entries(toReducer.totalToMove)) {
-      let elemental = element as any;
+      const elemental = element as any;
       for (const [, itemID] of Object.entries(elemental[2])) {
         queryNew.push({
           payload: {
@@ -79,17 +79,17 @@ function content() {
   ) {
     dispatch(moveToSetStorageAmount(storageRow[0].item_storage_total));
   }
-  let inventoryFilter = searchFilter(
+  const inventoryFilter = searchFilter(
     inventory.inventory,
     inventoryFilters,
     toReducer
   );
   let totalAmount = 0 as any;
   let totalHighlighted = 0 as any;
-  let classConvert = new ConvertPrices(settingsData, pricesResult);
+  const classConvert = new ConvertPrices(settingsData, pricesResult);
   inventoryFilter.forEach((projectRow) => {
     // Get total highlighted
-    let filtered = toReducer.totalToMove.filter(
+    const filtered = toReducer.totalToMove.filter(
       (row) => row[0] == projectRow.item_id
     );
     if (filtered.length > 0) {

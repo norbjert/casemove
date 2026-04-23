@@ -16,7 +16,7 @@ export class ConvertPrices {
   }
 
   getPrice(itemRow:ItemRow, nanToZero=false) {
-    let itemPrice =
+    const itemPrice =
       this.prices.prices[this._getName(itemRow)]?.[
         this.settingsData.source.title
       ] * this.settingsData.currencyPrice[this.settingsData.currency];
@@ -45,7 +45,7 @@ export class ConvertPricesFormatted extends ConvertPrices {
     return this.formatPrice(this.getPrice(itemRow));
   }
   getFormattedPriceCombined(itemRow: ItemRow) {
-    let comQty = itemRow?.combined_QTY as number;
+    const comQty = itemRow?.combined_QTY as number;
     return new Intl.NumberFormat(this.settingsData.locale, {
       style: 'currency',
       currency: this.settingsData.currency,
@@ -79,14 +79,14 @@ export class RequestPrices extends ConvertPrices {
 
   handleRequested(itemRow: ItemRow): void {
     if (isNaN(this.getPrice(itemRow)) == true && this._checkRequested(itemRow)) {
-      let rowsToSend = [itemRow];
+      const rowsToSend = [itemRow];
       requestPrice(rowsToSend);
       dispatchRequested(this.dispatch, rowsToSend);
     }
   }
 
   handleRequestArray(itemRows: Array<ItemRow>): void {
-    let rowsToSend = [] as Array<ItemRow>
+    const rowsToSend = [] as Array<ItemRow>
     itemRows.forEach((itemRow) => {
       if (isNaN(this.getPrice(itemRow)) == true && this._checkRequested(itemRow)) {
         rowsToSend.push(itemRow)

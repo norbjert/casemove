@@ -52,7 +52,7 @@ function content() {
     return 0;
   }
 
-  let inventoryToUse = inventory.inventory;
+  const inventoryToUse = inventory.inventory;
 
 
 

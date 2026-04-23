@@ -5,13 +5,13 @@ import EmptyField from "./EmptyField";
 import ItemDistributionByVolume from "./categoryDistribution/categoryDistribution";
 
 export default function RightGraph() {
-    let ReducerClass = new ReducerManager(useSelector);
-    let settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
+    const ReducerClass = new ReducerManager(useSelector);
+    const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
 
-    let by = settingsData.overview.by
-    let right = settingsData.overview.chartRight
+    const by = settingsData.overview.by
+    const right = settingsData.overview.chartRight
 
-    let returnObject = {
+    const returnObject = {
         itemDistribution: ItemDistributionByVolume
     }
 

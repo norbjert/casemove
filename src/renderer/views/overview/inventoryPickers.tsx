@@ -29,13 +29,13 @@ function content() {
 
 
   // Convert to dict for easier match
-    let finalList = {};
+    const finalList = {};
     inventory.inventory.forEach(element => {
       if (finalList[element.item_name] == undefined) {
         finalList[element.item_name] = [element]
       }
       else {
-        let listToUse = finalList[element.item_name];
+        const listToUse = finalList[element.item_name];
         listToUse.push(element)
         finalList[element.item_name] = listToUse
 
@@ -44,7 +44,7 @@ function content() {
 
     // Inventory to use
     let finalInventoryToUse = [] as any;
-    let seenNames = [] as any;
+    const seenNames = [] as any;
     inventoryFilters.inventoryFiltered.forEach((projectRow) => {
       if (finalList[projectRow.item_name] != undefined && seenNames.includes(projectRow.item_name) == false) {
         finalInventoryToUse = [...finalInventoryToUse, ...finalList[projectRow.item_name]]
@@ -72,8 +72,8 @@ function content() {
       }
     }
     if (tradeUpData.tradeUpProducts.length != 0) {
-      let restrictRarity = tradeUpData.tradeUpProducts[0].rarityName
-      let restrictStattrak = tradeUpData.tradeUpProducts[0].stattrak
+      const restrictRarity = tradeUpData.tradeUpProducts[0].rarityName
+      const restrictStattrak = tradeUpData.tradeUpProducts[0].stattrak
       if (item.rarityName != restrictRarity) {
         return false
       }
@@ -88,7 +88,7 @@ function content() {
     return false;
   });
 
-  let itemR = {}
+  const itemR = {}
   itemRarities.forEach(element => {
     itemR[element.value] = element.bgColorClass
   });
@@ -99,7 +99,7 @@ function content() {
 
 
   // Prices
-  let pricesToGet = [] as any;
+  const pricesToGet = [] as any;
   finalInventoryToUse.forEach((projectRow) => {
     if (
       pricesResult.prices[projectRow.item_name + projectRow.item_wear_name || ''] == undefined &&
