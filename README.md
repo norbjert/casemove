@@ -114,6 +114,7 @@ Unlike the original casemove, this fork welcomes open-source contributions, prov
 TLDR: If I can tell you just let claude spit out some random code, your contribution will not be accepted.
 
 ## TODOs
+- Trade locked items can't be moved to units ‍(but appear is if they could)
 - Fix trade up calculations
 - settings button bottom left corner
 - replace cringe skinledger discord server with something else
