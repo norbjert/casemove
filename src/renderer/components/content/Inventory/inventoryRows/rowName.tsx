@@ -28,11 +28,9 @@ export function RowProduct({ itemRow }) {
             )}
             aria-hidden="true"
           />
-          <Link
-            to={{
-              pathname: `https://steamcommunity.com/market/listings/730/${marketHashName.replaceAll('Holo/Foil', 'Holo-Foil')}`,
-            }}
-            target="_blank"
+          <a
+            href={`https://steamcommunity.com/market/listings/730/${marketHashName.replaceAll('Holo/Foil', 'Holo-Foil')}`}
+            target="_blank" rel="noreferrer"
           >
             <div className="flex flex-shrink-0 -space-x-1">
               <img
@@ -49,7 +47,7 @@ export function RowProduct({ itemRow }) {
                 }
               />
             </div>
-          </Link>
+          </a>
 
           <span>
             <span className="flex">

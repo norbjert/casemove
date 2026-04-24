@@ -18,7 +18,5 @@ function StorageUnits() {
 }
 
 export default function StorageUnitsComponent() {
-  return (
-    <StorageUnits />
-  );
+  return <StorageUnits />;
 }

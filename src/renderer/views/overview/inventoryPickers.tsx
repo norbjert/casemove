@@ -336,7 +336,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                             }
                           />
                         </div>
-                      </Link>
+                      </a>
                     )}
                   </div>
                   <span>
@@ -477,11 +477,9 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                 <div className="flex items-center space-x-2 justify-center rounded-full drop-shadow-lg">
                   <div className="flex flex-shrink-0 -space-x-1">
                     {projectRow.stickers?.map((sticker, index) => (
-                      <Link
-                        to={{
-                          pathname: `https://steamcommunity.com/market/listings/730/${sticker.sticker_type} | ${sticker.sticker_name}`,
-                        }}
-                        target="_blank"
+                      <a
+                        href={`https://steamcommunity.com/market/listings/730/${sticker.sticker_type} | ${sticker.sticker_name}`}
+                        target="_blank" rel="noreferrer"
                       >
                         <img
                           key={index}
@@ -501,7 +499,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                           alt={sticker.sticker_name}
                           title={sticker.sticker_name}
                         />
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>

@@ -168,7 +168,5 @@ function StorageUnits() {
 }
 
 export default function FromMainComponent() {
-  return (
-    <StorageUnits />
-  );
+  return <StorageUnits />;
 }

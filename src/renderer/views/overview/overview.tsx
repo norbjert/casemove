@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import RunOverview from './runOverview';
 
-function overviewContent() {
+function OverviewContent() {
   const tradeUpData = useSelector((state: any) => state.tradeUpReducer);
   const pricesResult = useSelector((state: any) => state.pricingReducer);
   const settingsData = useSelector((state: any) => state.settingsReducer);
@@ -46,7 +46,5 @@ function overviewContent() {
   );
 }
 export default function OverviewPage() {
-  return (
-    <>{overviewContent()}</>
-  );
+  return <OverviewContent />;
 }

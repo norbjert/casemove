@@ -22,7 +22,7 @@ import { useState } from 'react';
 import { getAllStorages } from 'renderer/functionsClasses/storageUnits/storageUnitsFunctions';
 import { LoadingButton } from 'renderer/components/content/shared/animations';
 
-function settingsContent() {
+function SettingsContent() {
   const ReducerClass = new ReducerManager(useSelector);
   const currentState: State = ReducerClass.getStorage();
   const tradeUpData = currentState.tradeUpReducer
@@ -199,7 +199,5 @@ function settingsContent() {
   );
 }
 export default function TradeupPage() {
-  return (
-    <>{settingsContent()}</>
-  );
+  return <SettingsContent />;
 }

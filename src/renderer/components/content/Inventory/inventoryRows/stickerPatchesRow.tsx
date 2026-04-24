@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { createCSGOImage } from "../../../../functionsClasses/createCSGOImage";
 import { classNames } from "../../shared/filters/inventoryFunctions";
 
@@ -14,11 +13,9 @@ export function RowStickersPatches({itemRow, settingsData}) {
           <div className="flex items-center space-x-2 justify-center rounded-full drop-shadow-lg">
             <div className="flex flex-shrink-0 -space-x-1">
               {itemRow.stickers?.map((sticker, index) => (
-                <Link
-                  to={{
-                    pathname: `https://steamcommunity.com/market/listings/730/${sticker.sticker_type} | ${sticker.sticker_name}`,
-                  }}
-                  target="_blank"
+                <a
+                  href={`https://steamcommunity.com/market/listings/730/${sticker.sticker_type} | ${sticker.sticker_name}`}
+                  target="_blank" rel="noreferrer"
                 >
                   <img
                     key={index}
@@ -38,7 +35,7 @@ export function RowStickersPatches({itemRow, settingsData}) {
                     alt={sticker.sticker_name}
                     title={sticker.sticker_name}
                   />
-                </Link>
+                </a>
               ))}
             </div>
           </div>

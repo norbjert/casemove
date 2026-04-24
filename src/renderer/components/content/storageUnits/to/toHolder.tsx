@@ -221,7 +221,5 @@ function StorageUnits() {
 }
 
 export default function ToContent() {
-  return (
-    <StorageUnits />
-  );
+  return <StorageUnits />;
 }

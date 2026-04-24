@@ -1,7 +1,6 @@
 import { BanknotesIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import { tradeUpSetPossible } from 'renderer/store/actions/tradeUpActions';
 
@@ -67,16 +66,16 @@ export default function PossibleOutcomes() {
         <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:gap-6 ">
           {tradeUpData.possibleOutcomes.map((project, index) => (
             <li key={index} className="col-span-1 flex shadow-sm rounded-md">
-              <Link
-                to={{
-                  pathname:
+              <a
+                href={
                     'https://steamcommunity.com/market/listings/730/' +
                     project.item_name +
                     ' (' +
                     project.item_wear_name +
-                    ')',
-                }}
+                    ')'
+                }
                 target="_blank"
+                rel="noreferrer"
               >
                 <div className=" from-gray-100 to-gray-300 dark:from-gray-300 dark:to-gray-400 flex-shrink-0 h-full  flex items-center justify-center w-16 dark:border-opacity-50 text-white border-t border-l border-b border-gray-200 rounded-l-md dark:bg-dark-level-two bg-gradient-to-t">
                   <img
@@ -84,7 +83,7 @@ export default function PossibleOutcomes() {
                     src={project.image}
                   />
                 </div>
-              </Link>
+              </a>
               <div className="flex-1 dark:bg-dark-level-two dark:border-opacity-50 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
                 <div className="flex-1 px-4 py-2 text-sm truncate">
                   <div className="flex justify-between">

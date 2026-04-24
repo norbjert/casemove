@@ -323,7 +323,5 @@ function Content() {
   );
 }
 export default function App() {
-  return (
-    <Content />
-  );
+  return <Content />;
 }

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { LoadingButton } from '../shared/animations';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 
-function content() {
+function Content() {
   const [getLoadingButton, setLoadingButton] = useState(false);
   setLoadingButton;
 
@@ -62,8 +62,6 @@ function content() {
     </>
   );
 }
-export default function inventoryContent() {
-  return (
-    <>{content()}</>
-  );
+export default function InventoryView() {
+  return <Content />;
 }
