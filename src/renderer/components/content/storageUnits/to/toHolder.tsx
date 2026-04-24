@@ -1,7 +1,7 @@
 import StorageFilter from './toFilters';
 import StorageRow from './toStorageRow';
 import StorageSelectorContent from './toSelector';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
 import {
   classNames,
@@ -221,9 +221,5 @@ function StorageUnits() {
 }
 
 export default function ToContent() {
-  return (
-    <Router>
-      <Route path="/" component={StorageUnits} />
-    </Router>
-  );
+  return <StorageUnits />;
 }

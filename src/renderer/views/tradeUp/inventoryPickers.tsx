@@ -198,18 +198,16 @@ function content() {
                         />
                       </div>
                     ) : (
-                      <Link
-                        to={{
-                          pathname: `https://steamcommunity.com/market/listings/730/${
+                      <a
+                        href={`https://steamcommunity.com/market/listings/730/${
                             projectRow.item_paint_wear == undefined
                               ? projectRow.item_name
                               : projectRow.item_name +
                                 ' (' +
                                 projectRow.item_wear_name +
                                 ')'
-                          }`,
-                        }}
-                        target="_blank"
+                          }`}
+                        target="_blank" rel="noreferrer"
                       >
                         <div className="flex flex-shrink-0 -space-x-1">
                           <img
@@ -228,7 +226,7 @@ function content() {
                             }
                           />
                         </div>
-                      </Link>
+                      </a>
                     )}
                   </div>
                   <span>
@@ -371,11 +369,9 @@ function content() {
                 <div className="flex items-center space-x-2 justify-center rounded-full drop-shadow-lg">
                   <div className="flex flex-shrink-0 -space-x-1">
                     {projectRow.stickers?.map((sticker, index) => (
-                      <Link
-                        to={{
-                          pathname: `https://steamcommunity.com/market/listings/730/${sticker.sticker_type} | ${sticker.sticker_name}`,
-                        }}
-                        target="_blank"
+                      <a
+                        href={`https://steamcommunity.com/market/listings/730/${sticker.sticker_type} | ${sticker.sticker_name}`}
+                        target="_blank" rel="noreferrer"
                       >
                         <img
                           key={index}
@@ -395,7 +391,7 @@ function content() {
                           alt={sticker.sticker_name}
                           title={sticker.sticker_name}
                         />
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>

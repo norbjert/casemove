@@ -7,7 +7,6 @@ import {
 import { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { LoadingButton } from 'renderer/components/content/shared/animations';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import NotificationElement from 'renderer/components/content/shared/modals & notifcations/notification';
@@ -483,18 +482,16 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
                       aria-hidden="true"
                     />
                   </button>
-                  <Link
-                    to={{
-                      pathname: `https://steamcommunity.com/chat/clientjstoken`,
-                    }}
-                    target="_blank"
+                  <a
+                    href={`https://steamcommunity.com/chat/clientjstoken`}
+                    target="_blank" rel="noreferrer"
                     className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 border-opacity-50 text-sm font-medium rounded-r-md text-gray-700 bg-dark-level-two hover:bg-dark-level-three focus:outline-none focus:border-green-500  "
                   >
                     <ArrowTopRightOnSquareIcon
                       className="h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                  </Link>
+                  </a>
                 </div>
               </div>
             ) : (

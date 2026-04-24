@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import InventoryFilters from './filterHeader';
 import InventoryRowsComponent from './inventoryRows';
 import { useState } from 'react';
 import { LoadingButton } from '../shared/animations';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 
-function content() {
+function Content() {
   const [getLoadingButton, setLoadingButton] = useState(false);
   setLoadingButton;
 
@@ -62,10 +62,6 @@ function content() {
     </>
   );
 }
-export default function inventoryContent() {
-  return (
-    <Router>
-      <Route path="/" component={content} />
-    </Router>
-  );
+export default function InventoryView() {
+  return <Content />;
 }

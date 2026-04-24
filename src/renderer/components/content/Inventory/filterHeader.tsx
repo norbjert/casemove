@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import {
   ArrowDownTrayIcon,
@@ -27,7 +27,7 @@ const ClassFilters = InventoryGetFilterManager()
 // ClassFilters.loadFilter(CharacteristicsFilter, true)
 // ClassFilters.loadFilter(ContainerFilter, true)
 
-function content() {
+function Content() {
   const dispatch = useDispatch();
   const ReducerClass = new ReducerManager(useSelector)
   const inventoryFilters = ReducerClass.getStorage(ReducerClass.names.inventoryFilters)
@@ -172,9 +172,5 @@ function content() {
 }
 
 export default function InventoryFilters() {
-  return (
-    <Router>
-      <Route path="/" component={content} />
-    </Router>
-  );
+  return <Content />;
 }

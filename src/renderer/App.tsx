@@ -19,14 +19,14 @@ import { Fragment, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Link,
-  Redirect,
+  Navigate,
   Route,
+  Routes,
   HashRouter as Router,
-  Switch,
   useLocation,
 } from 'react-router-dom';
 import './tailwind.css';
-import inventoryContent from './components/content/Inventory/inventory';
+import InventoryContent from './components/content/Inventory/inventory';
 import { itemCategories } from './components/content/shared/categories';
 import {
   classNames,
@@ -57,7 +57,7 @@ import { signOut } from './store/actions/userStatsActions';
 import { handleUserEvent } from './store/handleMessage';
 import LoginPage from './views/login/login';
 import OverviewPage from './views/overview/overview';
-import settingsPage from './views/settings/settings';
+import SettingsPage from './views/settings/settings';
 import TradeupPage from './views/tradeUp/tradeUp';
 //{ name: 'Reports', href: '/reports', icon: ArrowDownTrayIcon, current: false }
 const navigation = [
@@ -270,7 +270,7 @@ function AppContent() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true" />
             </Transition.Child>
             <Transition.Child
               as={Fragment}
@@ -468,16 +468,7 @@ function AppContent() {
                   </span>
                 </Menu.Button>
               </div>
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-md shadow-lg bg-white dark:bg-dark-level-four ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 dark:divide-opacity-50 focus:outline-none">
+              <Menu.Items className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-md shadow-lg bg-white dark:bg-dark-level-four ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 dark:divide-opacity-50 focus:outline-none">
                   <div className="py-1">
                     <Menu.Item>
                       {({ active }) => (
@@ -497,7 +488,6 @@ function AppContent() {
                     </Menu.Item>
                   </div>
                 </Menu.Items>
-              </Transition>
             </Menu>
 
             <div className={shouldUpdate ? 'px-3 mt-5' : 'px-3 mt-5 '}>
@@ -835,16 +825,7 @@ function AppContent() {
                       )}
                     </Menu.Button>
                   </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+                  <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
                       <div className="py-1">
                         <Menu.Item>
                           {({ active }) => (
@@ -864,38 +845,24 @@ function AppContent() {
                         </Menu.Item>
                       </div>
                     </Menu.Items>
-                  </Transition>
                 </Menu>
               </div>
             </div>
           </div>
           <main className="flex-1 dark:bg-dark-level-one">
-            <Router>
-              <Switch>
-                <toMoveContext.Provider value={toMoveValue}>
-                  {userDetails.isLoggedIn ? (
-                    <Redirect exact from="/" to="/stats" />
-                  ) : (
-                    <Redirect from="*" to="/signin" />
-                  )}
-                  {userDetails.isLoggedIn ? (
-                    <Redirect exact from="/signin" to="/stats" />
-                  ) : (
-                    ''
-                  )}
-                  <Route
-                    path="/transferfrom"
-                    component={StorageUnitsComponent}
-                  />
-                  <Route exact path="/transferto" component={ToContent} />
-                  <Route path="/signin" component={LoginPage} />
-                  <Route exact path="/inventory" component={inventoryContent} />
-                  <Route exact path="/tradeup" component={TradeupPage} />
-                  <Route exact path="/settings" component={settingsPage} />
-                  <Route exact path="/stats" component={OverviewPage} />
-                </toMoveContext.Provider>
-              </Switch>
-            </Router>
+            <toMoveContext.Provider value={toMoveValue}>
+              <Routes>
+                <Route path="/" element={<Navigate to={userDetails.isLoggedIn ? '/stats' : '/signin'} replace />} />
+                <Route path="/signin" element={userDetails.isLoggedIn ? <Navigate to="/stats" replace /> : <LoginPage />} />
+                <Route path="/transferfrom" element={<StorageUnitsComponent />} />
+                <Route path="/transferto" element={<ToContent />} />
+                <Route path="/inventory" element={<InventoryContent />} />
+                <Route path="/tradeup" element={<TradeupPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/stats" element={<OverviewPage />} />
+                {!userDetails.isLoggedIn && <Route path="*" element={<Navigate to="/signin" replace />} />}
+              </Routes>
+            </toMoveContext.Provider>
           </main>
         </div>
       </div>
@@ -906,7 +873,7 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
-      <Route path="/" component={AppContent} />
+      <AppContent />
     </Router>
   );
 }
