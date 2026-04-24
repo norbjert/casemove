@@ -1,9 +1,6 @@
-const Store = require('electron-store');
-const { safeStorage } = require('electron');
-const axios = require('axios');
-// import {Store} from 'electron-store'
-// import { safeStorage } from 'electron';
-// import { Axios } from 'axios';
+import Store from 'electron-store';
+import { safeStorage } from 'electron';
+import axios from 'axios';
 
 import { DOMParser } from '@xmldom/xmldom';
 async function getURL(steamID) {
@@ -166,17 +163,6 @@ async function getValue(stringToGet) {
   return store.get(stringToGet);
 }
 
-module.exports = {
-  storeUserAccount,
-  getLoginDetails,
-  getAllAccountDetails,
-  deleteUserData,
-  setAccountPosition,
-  storeRefreshToken,
-  getRefreshToken,
-  setValue,
-  getValue,
-};
 export {
   storeUserAccount,
   getLoginDetails,

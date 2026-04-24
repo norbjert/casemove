@@ -1,5 +1,6 @@
+import collections from './backup/collections.json';
+
 async function setCollections(currencyClass) {
-  const collections = require('./backup/collections.json');
 
   const directory = {};
   for (const [key, value] of Object.entries(collections)) {
@@ -163,7 +164,4 @@ class tradeUps {
   }
 }
 
-module.exports = {
-  tradeUps,
-};
 export { tradeUps };

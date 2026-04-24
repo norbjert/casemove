@@ -19,7 +19,4 @@ class LoginGenerator {
 
 }
 
-module.exports = {
-  LoginGenerator
-};
 export { LoginGenerator };

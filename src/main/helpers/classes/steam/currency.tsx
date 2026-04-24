@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+import currencyBackup from './backup/currency.json';
 
 async function loadLiveRates(currencyClass) {
   axios.get('https://api.frankfurter.app/latest?from=USD')
@@ -17,8 +18,7 @@ class currency {
   rates = {};
 
   constructor() {
-    const backup = require('./backup/currency.json');
-    this.rates = { ...backup.rates, USD: 1 };
+    this.rates = { ...currencyBackup.rates, USD: 1 };
     loadLiveRates(this);
   }
 
@@ -30,7 +30,4 @@ class currency {
   }
 }
 
-module.exports = {
-  currency
-};
 export { currency };

@@ -1,4 +1,4 @@
-const { getUsername, setUsername } = require('../settings');
+import { getUsername, setUsername } from '../settings';
 
 async function isLoggedInElsewhere(userSession) {
   return new Promise((resolve) => {
@@ -20,6 +20,4 @@ async function isLoggedInElsewhere(userSession) {
   });
 }
 
-module.exports = {
-  isLoggedInElsewhere
-};
+export { isLoggedInElsewhere };
