@@ -68,6 +68,8 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
   const PricingClass = new RequestPrices(dispatch, settingsData, pricesResult)
   PricingClass.handleRequested(projectRow)
 
+  const isTradelocked = projectRow.trade_unlock != null;
+
   const isEmpty =
     toReducer.totalToMove.filter((row) => row[0] == projectRow.item_id)
       .length == 0;
@@ -106,7 +108,8 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
               }
               placeholder="0"
               onChange={(e) => returnField(e.target.value)}
-              className=" block w-full border rounded sm:text-sm text-gray-500 text-center border-gray-400 border-gray-400 dark:bg-dark-level-two dark:text-dark-white"
+              disabled={isTradelocked}
+              className=" block w-full border rounded sm:text-sm text-gray-500 text-center border-gray-400 border-gray-400 dark:bg-dark-level-two dark:text-dark-white disabled:opacity-40 disabled:cursor-not-allowed"
             />
           </div>
         </div>
@@ -117,6 +120,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
             onClick={() => returnField(1000)}
             id={`fire-${index}`}
             className={classNames(
+              isTradelocked ||
               1000 -
                 toReducer.activeStoragesAmount -
                 toReducer.totalItemsToMove ==
