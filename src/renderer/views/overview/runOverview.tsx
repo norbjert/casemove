@@ -10,10 +10,7 @@ import {
   TagIcon,
 } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  HashRouter as Router,
-  Route
-} from 'react-router-dom';
+
 import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { State } from 'renderer/interfaces/states';
 import { ConvertPrices, RequestPrices } from 'renderer/functionsClasses/prices';
@@ -327,8 +324,6 @@ function Content() {
 }
 export default function App() {
   return (
-    <Router>
-      <Route path="/stats" component={Content} />
-    </Router>
+    <Content />
   );
 }

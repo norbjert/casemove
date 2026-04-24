@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import InventoryFilters from './filterHeader';
 import InventoryRowsComponent from './inventoryRows';
 import { useState } from 'react';
@@ -64,8 +64,6 @@ function content() {
 }
 export default function inventoryContent() {
   return (
-    <Router>
-      <Route path="/" component={content} />
-    </Router>
+    <>{content()}</>
   );
 }

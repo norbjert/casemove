@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import {
   ArrowDownTrayIcon,
@@ -173,8 +173,6 @@ function content() {
 
 export default function InventoryFilters() {
   return (
-    <Router>
-      <Route path="/" component={content} />
-    </Router>
+    <>{content()}</>
   );
 }

@@ -1,6 +1,6 @@
 
 import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import RunOverview from './runOverview';
 
 function overviewContent() {
@@ -47,8 +47,6 @@ function overviewContent() {
 }
 export default function OverviewPage() {
   return (
-    <Router>
-      <Route path="/" component={overviewContent} />
-    </Router>
+    <>{overviewContent()}</>
   );
 }

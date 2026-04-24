@@ -19,10 +19,10 @@ import { Fragment, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Link,
-  Redirect,
+  Navigate,
   Route,
+  Routes,
   HashRouter as Router,
-  Switch,
   useLocation,
 } from 'react-router-dom';
 import './tailwind.css';
@@ -870,32 +870,25 @@ function AppContent() {
             </div>
           </div>
           <main className="flex-1 dark:bg-dark-level-one">
-            <Router>
-              <Switch>
-                <toMoveContext.Provider value={toMoveValue}>
-                  {userDetails.isLoggedIn ? (
-                    <Redirect exact from="/" to="/stats" />
-                  ) : (
-                    <Redirect from="*" to="/signin" />
-                  )}
-                  {userDetails.isLoggedIn ? (
-                    <Redirect exact from="/signin" to="/stats" />
-                  ) : (
-                    ''
-                  )}
-                  <Route
-                    path="/transferfrom"
-                    component={StorageUnitsComponent}
-                  />
-                  <Route exact path="/transferto" component={ToContent} />
-                  <Route path="/signin" component={LoginPage} />
-                  <Route exact path="/inventory" component={inventoryContent} />
-                  <Route exact path="/tradeup" component={TradeupPage} />
-                  <Route exact path="/settings" component={settingsPage} />
-                  <Route exact path="/stats" component={OverviewPage} />
-                </toMoveContext.Provider>
-              </Switch>
-            </Router>
+            <toMoveContext.Provider value={toMoveValue}>
+              <Routes>
+                {userDetails.isLoggedIn ? (
+                  <Route path="/" element={<Navigate to="/stats" replace />} />
+                ) : (
+                  <Route path="*" element={<Navigate to="/signin" replace />} />
+                )}
+                {userDetails.isLoggedIn && (
+                  <Route path="/signin" element={<Navigate to="/stats" replace />} />
+                )}
+                <Route path="/transferfrom" element={<StorageUnitsComponent />} />
+                <Route path="/transferto" element={<ToContent />} />
+                <Route path="/signin" element={<LoginPage />} />
+                <Route path="/inventory" element={<inventoryContent />} />
+                <Route path="/tradeup" element={<TradeupPage />} />
+                <Route path="/settings" element={<settingsPage />} />
+                <Route path="/stats" element={<OverviewPage />} />
+              </Routes>
+            </toMoveContext.Provider>
           </main>
         </div>
       </div>
@@ -906,7 +899,9 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
-      <Route path="/" component={AppContent} />
+      <Routes>
+        <Route path="/*" element={<AppContent />} />
+      </Routes>
     </Router>
   );
 }

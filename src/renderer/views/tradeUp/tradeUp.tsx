@@ -7,7 +7,7 @@ import {
   VariableIcon,
 } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import PricingAmount from 'renderer/components/content/shared/filters/pricingAmount';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import TradeModal from 'renderer/components/content/shared/modals & notifcations/modalTrade';
@@ -200,8 +200,6 @@ function settingsContent() {
 }
 export default function TradeupPage() {
   return (
-    <Router>
-      <Route path="/" component={settingsContent} />
-    </Router>
+    <>{settingsContent()}</>
   );
 }
