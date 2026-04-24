@@ -1,5 +1,5 @@
-const { contextBridge, ipcRenderer } = require('electron');
-var ByteBuffer = require('bytebuffer');
+import { contextBridge, ipcRenderer } from 'electron';
+import ByteBuffer from 'bytebuffer';
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {

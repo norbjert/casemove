@@ -214,7 +214,4 @@ class login {
   }
 }
 
-module.exports = {
-  login,
-};
 export { login };

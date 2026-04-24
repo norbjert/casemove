@@ -1,15 +1,15 @@
 import { getValue, setValue } from './settings';
-
-const axios = require('axios');
-require('dotenv').config();
-const EventEmitter = require('events');
+import axios from 'axios';
+import dotenv from 'dotenv';
+import { EventEmitter } from 'events';
+import pricesBackup from './backup/prices.json';
+dotenv.config();
 class MyEmitter extends EventEmitter {}
 const pricingEmitter = new MyEmitter();
 
 // Get latest prices, if fail use backup
 
 async function getPricesBackup(cas) {
-  const pricesBackup = require('./backup/prices.json');
   cas.setPricing(pricesBackup);
 }
 async function getPrices(cas) {
@@ -186,9 +186,4 @@ class runItems {
     pricingEmitter.emit('result', itemRow);
   }
 }
-module.exports = {
-  runItems,
-  pricingEmitter,
-  currencyCodes,
-};
 export { runItems, pricingEmitter, currencyCodes };

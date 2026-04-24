@@ -1,6 +1,8 @@
-const fs = require('fs');
-const VDF = require('@node-steam/vdf');
-const axios = require('axios');
+import fs from 'fs';
+import VDF from '@node-steam/vdf';
+import axios from 'axios';
+import csgoEnglishBackup from './itemsBackupFiles/csgo_english.json';
+import itemsGameBackup from './itemsBackupFiles/items_game.json';
 
 const itemsLink =
   'https://raw.githubusercontent.com/SteamTracking/GameTracking-CS2/master/game/csgo/pak01_dir/scripts/items/items_game.txt';
@@ -12,10 +14,8 @@ function fileCatcher(endNote) {
 }
 
 async function fileGetError(items) {
-  let csgoEnglish = require('./itemsBackupFiles/csgo_english.json');
-  items.setTranslations(csgoEnglish, 'Error');
-  let itemsGame = require('./itemsBackupFiles/items_game.json');
-  items.setCSGOItems(itemsGame);
+  items.setTranslations(csgoEnglishBackup, 'Error');
+  items.setCSGOItems(itemsGameBackup);
 }
 
 async function getTranslations(items) {
@@ -613,4 +613,4 @@ function capitalizeWords(string) {
     return a.toUpperCase();
   });
 }
-module.exports = items;
+export default items;

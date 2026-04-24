@@ -1,4 +1,5 @@
 import 'core-js/stable';
+import { createRequire } from 'module';
 import { BrowserWindow, app, ipcMain, session, shell } from 'electron';
 import * as fs from 'fs';
 import GlobalOffensive from 'globaloffensive';
@@ -43,7 +44,8 @@ app.on('ready', function () {
   autoUpdater.checkForUpdatesAndNotify();
 });
 
-const find = require('find-process');
+const _require = createRequire(import.meta.url);
+const find = _require('find-process');
 
 autoUpdater.on('checking-for-update', () => {
   sendUpdaterStatusToWindow('Checking for update...');
@@ -110,9 +112,9 @@ async function checkSteam(): Promise<{
 checkSteam();
 
 // Define helpers
-const ByteBuffer = require('bytebuffer');
-const Protos = require('globaloffensive/protobufs/generated/_load.js');
-const Language = require('globaloffensive/language.js');
+const ByteBuffer = _require('bytebuffer');
+const Protos = _require('globaloffensive/protobufs/generated/_load.js');
+const Language = _require('globaloffensive/language.js');
 const currencyClass = new currency();
 const tradeUpClass = new tradeUps();
 const ClassLoginResponse = new LoginGenerator();
@@ -126,7 +128,7 @@ ipcMain.on('ipc-example', async (event, arg) => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
+  const sourceMapSupport = _require('source-map-support');
   sourceMapSupport.install();
 }
 
@@ -134,11 +136,11 @@ const isDevelopment =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDevelopment) {
-  require('electron-debug')();
+  _require('electron-debug')();
 }
 
 const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
+  const installer = _require('electron-devtools-installer');
   const forceDownload = !process.env.UPGRADE_EXTENSIONS;
   const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
 

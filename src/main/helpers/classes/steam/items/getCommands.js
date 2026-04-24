@@ -1,5 +1,5 @@
-var axios = require('axios');
-var items = require('./index');
+import axios from 'axios';
+import items from './index';
 
 // RUN PROGRAMS
 class fetchItems {
@@ -23,6 +23,4 @@ class fetchItems {
     return responseFiltered;
   }
 }
-module.exports = {
-  fetchItems,
-};
+export { fetchItems };
