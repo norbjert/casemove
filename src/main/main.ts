@@ -127,10 +127,6 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
-if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = _require('source-map-support');
-  sourceMapSupport.install();
-}
 
 const isDevelopment =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
@@ -598,6 +594,9 @@ ipcMain.on(
 
 emitterAccount.on('qrLogin:show', async (qrChallengeLogin) => {
   mainWindow?.webContents.send('qrLogin:show', qrChallengeLogin);
+});
+emitterAccount.on('qrLogin:scanned', () => {
+  mainWindow?.webContents.send('qrLogin:scanned');
 });
 ipcMain.on('startQRLogin', async (event, shouldRemember) => {
   const user = new SteamUser();
