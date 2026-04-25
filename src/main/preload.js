@@ -291,6 +291,7 @@ contextBridge.exposeInMainWorld('electron', {
         'startQRLogin',
         'cancelQRLogin',
         'qrLogin:show',
+        'qrLogin:scanned',
       ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
@@ -327,6 +328,7 @@ contextBridge.exposeInMainWorld('electron', {
         'startQRLogin',
         'cancelQRLogin',
         'qrLogin:show',
+        'qrLogin:scanned',
       ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`

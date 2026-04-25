@@ -11,7 +11,7 @@ interface TabProps {
 const tabs: TabProps[] = [
   { name: 'QR', icon: QrCodeIcon, key: 'QR' },
   { name: 'Webtoken', icon: WifiIcon, key: 'WEBTOKEN' },
-  { name: 'Regular', icon: LockClosedIcon, key: 'REGULAR' },
+  { name: 'Credentials', icon: LockClosedIcon, key: 'REGULAR' },
 ];
 
 type LoginTabsProps = {
@@ -23,7 +23,7 @@ export default function LoginTabs({
   selectedTab,
   setSelectedTab,
 }: LoginTabsProps) {
-  const defaultValue: LoginMethod = 'REGULAR';
+  const defaultValue: LoginMethod = 'QR';
   return (
     <div className="bg-dark-level-one px-4 pt-6 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">

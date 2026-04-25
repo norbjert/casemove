@@ -9,7 +9,10 @@ export async function flowLoginRegularQR(doStoreLogin: boolean): Promise<{
 }> {
   return new Promise(async (resolve) => {
     const session = new LoginSession(EAuthTokenPlatformType.SteamClient);
-    console.log('Start with QR');
+
+    session.on('remoteInteraction', () => {
+      emitterAccount.emit('qrLogin:scanned');
+    });
 
     session.on('authenticated', async () => {
       console.log(`Logged into Steam as ${session.accountName}`);

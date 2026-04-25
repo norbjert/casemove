@@ -2,6 +2,7 @@ import {
   ClipboardDocumentCheckIcon,
   ClipboardDocumentIcon,
   ArrowTopRightOnSquareIcon,
+  CheckCircleIcon,
   LockClosedIcon,
 } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
@@ -261,9 +262,10 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
   }
 
   const [seenOnce, setOnce] = useState(false);
-  const [loginMethod, setLoginMethod] = useState<LoginMethod>('REGULAR');
+  const [loginMethod, setLoginMethod] = useState<LoginMethod>('QR');
   const [sendSubmit, shouldSubmit] = useState(false);
   const [qrURL, setQrURL] = useState('');
+  const [qrScanned, setQrScanned] = useState(false);
   if (seenOnce == false) {
     document.addEventListener('keyup', ({ key }) => {
       if (key == 'Enter') {
@@ -302,6 +304,10 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
       setQrURL(pack);
     });
 
+    window.electron.ipcRenderer.on('qrLogin:scanned', () => {
+      setQrScanned(true);
+    });
+
     window.electron.ipcRenderer
       .startQRLogin(storeRefreshToken)
       .then((responseStatus) => {
@@ -322,6 +328,7 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
 
     return () => {
       window.electron.ipcRenderer.cancelQRLogin();
+      setQrScanned(false);
     };
   }, [loginMethod, storeRefreshToken]);
 
@@ -496,8 +503,19 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
               </div>
             ) : (
               <>
-                <div className="flex justify-center bg-white py-4">
-                  <QRCode size={235} value={qrURL} viewBox={`0 0 235 235`} />
+                <div className="relative flex justify-center bg-white py-4">
+                  <QRCode
+                    size={235}
+                    value={qrURL}
+                    viewBox={`0 0 235 235`}
+                    className={qrScanned ? 'opacity-30' : ''}
+                  />
+                  {qrScanned && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                      <CheckCircleIcon className="h-16 w-16 text-green-500 drop-shadow" />
+                      <span className="text-sm font-medium text-gray-700">Logging in…</span>
+                    </div>
+                  )}
                 </div>
                 <div className="flex pt-2 items-center">
                   <input
