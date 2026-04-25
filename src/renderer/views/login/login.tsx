@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { useState } from 'react'
 import LoginForm from './loginForm'
 import UserGrid from './userManagement'
-Disclosure
+
 function LoginPageContent() {
   const [getLock, setLock] = useState([''])
   const [deleteUser, setdeleteUser] = useState('')

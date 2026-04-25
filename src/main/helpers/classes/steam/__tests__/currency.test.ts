@@ -7,7 +7,7 @@ vi.mock('axios', () => ({
 }));
 
 vi.mock('../backup/currency.json', () => ({
-  rates: { EUR: 0.95, GBP: 0.80, DKK: 7.07 },
+  default: { rates: { EUR: 0.95, GBP: 0.80, DKK: 7.07 } },
 }));
 
 import { currency } from '../currency';
