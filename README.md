@@ -122,7 +122,6 @@ TLDR: If I can tell you just let claude spit out some random code, your contribu
 - fix broken items (mp5 lab rat, shattered web graffitis)
  
 ### Improvements/Refactoring
-- electron-store 8->11 (ESM needed)
 - fix or set up session/cookie storing options
 - rename project to something else, different logo.
 - Improve fastmove (maybe make it 3 options: pure fastmove, fastmove with fallback to re-querry failed moves, and regular slowmove for when steam is ratelimiting hard)
