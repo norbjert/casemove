@@ -1,24 +1,23 @@
-Forked from https://github.com/nombersDev/casemove, before the change to the more restrictive CC license.
-This fork will continue to be developed under the proper GPLv3 Open-Source License.
-
-
-
 # CASEMOVE
 
-*Casemove is an open-source desktop application that helps you easily move items in and out of Storage Units in Counter-Strike 2. The app utilizes the [Steam-user](https://github.com/DoctorMcKay/node-steam-user) & [Global Offensive](https://github.com/DoctorMcKay/node-globaloffensive) libraries to establish a connection with Steam and interact with the CS2 game coordinator.*
+Casemove is an open-source desktop application that helps you easily move items in and out of Storage Units in Counter-Strike 2. 
+This project was initially developed as [Casemove](https://github.com/nombersDev/casemove) by nombers, before he changed the license, abandonded the open-source project and replaced it with the subscription-based, closed-sourced app [Skinledger](https://skinledger.com/).
 
+This fork of the original project will remain open source and up-to-date.
 ----
 
 ## Download Latest Version
 
 Download the latest release from the [releases page](https://github.com/norbjert/casemove/releases/latest), or directly:
 
-- [Linux (portable AppImage)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.AppImage)
 - [Windows](https://github.com/norbjert/casemove/releases/latest/download/Casemove-Setup.exe)
+- [Linux (Debian/Ubuntu/Mint/etc)] (https://github.com/norbjert/casemove/releases/latest/download/Casemove.deb)
+- [Linux (portable AppImage)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.AppImage)
 
-(not yet supported:)
-- [Mac (Intel)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.dmg)
-- [Mac (Apple Silicon / M1+)](https://github.com/norbjert/casemove/releases/latest/download/Casemove-arm64.dmg)
+
+Work-in-progress/not yet supported:
+- [Mac (Intel)]
+- [Mac (Apple Silicon / M1+)]
 
 
 ## Support
@@ -31,7 +30,7 @@ https://user-images.githubusercontent.com/98760010/181345579-e4fd11be-1af9-4b8b-
 
 
 Features include:
-  * An overview page of your storage contents
+  * An overview page of your storage unit contents
   * Log in without entering your password / Steam Guard
   * View your inventory
   * View your storage units contents
@@ -59,9 +58,10 @@ The app doesn’t interact with your CS2 game client. It doesn’t inject any co
 
 Furthermore, the libraries [Steam-user](https://github.com/DoctorMcKay/node-steam-user) & [Global Offensive](https://github.com/DoctorMcKay/node-globaloffensive) have been used by thousands of people, and this app is merely a cosmetic rendition of these libraries.
 
-#### Does Casemove store any of my information?
+#### Does Casemove collect any of my information?
 
-No, Casemove doesn’t store any information on your computer, except for when you ask it to remember your refresh token. As of Casemove 2.3.3, Casemove no longer stores your password when you login. The refresh token is stored safely using [safeStore](https://www.electronjs.org/docs/latest/api/safe-storage). Casemove doesn’t send any information to anyone outside of Steam.
+No, Casemove doesn’t collect any information by default. Since the app is open-source, you can vet the code yourself (or ask someone who you know and trust) and build it yourself from source.
+Additionally, all releases are built using a [github action](https://github.com/norbjert/casemove/actions/workflows/release.yml) for a fully transpartent build.
 
 #### Why can't I just log in using the Steam Web authentication?
 
@@ -86,7 +86,7 @@ Casemove was originally created by Nombers:
 - Discord: Nombers#1046
 
 
-After Nombers abandonded the Open-Source project in favor of his subscription-based, closed source casemove replacement (skinledger)[https://skinledger.com/], this project was been taken over by @norbjert.
+After Nombers abandonded the Open-Source project in favor of his subscription-based, closed source casemove replacement (skinledger)[https://skinledger.com/], this project was been taken over by [norbjert](https://github.com/norbjert).
 - (Steam)[https://steamcommunity.com/id/norbjert/]
 
 ----
@@ -108,10 +108,8 @@ You should have received a copy of the GNU General Public License  along with th
 
 ## Contributing
 
-Unlike the original casemove, this fork welcomes open-source contributions, provided you follow some basic requirements:
-1. Only submit PRs with properly tested, clean code. Properly describe what bug youre fixing or what feature youre adding.
-2. No AI Slop: While I support the use of AI-tools to assist you in development, human authorship is a requirement for copyright, which in turn is implicitly required by the GPL license.
-TLDR: If I can tell you just let claude spit out some random code, your contribution will not be accepted.
+Unlike the original casemove, this fork welcomes open-source contributions.
+Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/CONTRIBUTING.md]
 
 ## TODOs
 ### Bugs
@@ -143,3 +141,4 @@ TLDR: If I can tell you just let claude spit out some random code, your contribu
 ### Braindead Shower-Thoughts
 - What about a casemove-cli?
 - casemove... as a skill
+
