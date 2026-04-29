@@ -41,7 +41,9 @@ autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 
 app.on('ready', function () {
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify().catch(() => {
+    // No releases published yet — silently ignore
+  });
 });
 
 const _require = createRequire(import.meta.url);

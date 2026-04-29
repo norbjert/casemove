@@ -12,7 +12,7 @@ export class ConvertPrices {
   }
 
   _getName(itemRow: ItemRow) {
-    return itemRow.item_name + itemRow.item_wear_name || '';
+    return itemRow.item_name + (itemRow.item_wear_name ?? '');
   }
 
   getPrice(itemRow:ItemRow, nanToZero=false) {
