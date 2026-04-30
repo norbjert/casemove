@@ -19,7 +19,7 @@ const pricingReducer = (state = initialState, action) => {
     case 'PRICING_ADD_TO':
       const currentPrices = state.prices;
       action.payload.itemRows.forEach(element => {
-        currentPrices[element.item_name + element.item_wear_name || ''] = element.pricing;
+        currentPrices[element.item_name + (element.item_wear_name ?? '')] = element.pricing;
       });
       console.log(currentPrices)
       return {
@@ -30,7 +30,7 @@ const pricingReducer = (state = initialState, action) => {
     case 'PRICING_ADD_TO_REQUESTED':
       const currentRequested = state.productsRequested;
       action.payload.itemRows.forEach(element => {
-        const nameToPuse = element.item_name + element.item_wear_name || ''
+        const nameToPuse = element.item_name + (element.item_wear_name ?? '')
         currentRequested.push(nameToPuse)
       });
       return {

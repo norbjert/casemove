@@ -22,14 +22,14 @@ export default function PossibleOutcomes() {
 
   let totalPrice = 0;
   tradeUpData.tradeUpProducts.forEach((element) => {
-    totalPrice += pricesResult.prices[element.item_name + element.item_wear_name || '']?.['steam_listing'];
+    totalPrice += pricesResult.prices[element.item_name + (element.item_wear_name ?? '')]?.['steam_listing'];
   });
   totalPrice;
 
   tradeUpData.possibleOutcomes.forEach((element) => {
     element['profit_cal'] =
       (100 / (totalPrice * 100)) *
-      (pricesResult?.prices[element.item_name + element.item_wear_name || '']?.['steam_listing'] * 100);
+      (pricesResult?.prices[element.item_name + (element.item_wear_name ?? '')]?.['steam_listing'] * 100);
   });
   tradeUpData.possibleOutcomes.sort(function (a, b) {
     const keyA = a.profit_cal,

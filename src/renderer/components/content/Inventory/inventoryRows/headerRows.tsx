@@ -13,7 +13,7 @@ export function RowHeader({ headerName, sortName }) {
             <th className="table-cell px-6 py-2 border-b border-gray-200 bg-gray-50 dark:border-opacity-50 dark:bg-dark-level-two text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 <button
                     onClick={() => onSortChange(dispatch, sortName, states)}
-                    className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
+                    className="cursor-pointer text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                     <span className="flex justify-between">
                         {headerName} <ChevronUpDownIcon className="h-2" />
@@ -34,7 +34,7 @@ export function RowHeaderHiddenXL({ headerName, sortName }) {
             <th className="hidden 2xl:table-cell px-6 py-2 border-b border-gray-200 bg-gray-50 dark:border-opacity-50 dark:bg-dark-level-two text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 <button
                     onClick={() => onSortChange(dispatch, sortName, states)}
-                    className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
+                    className="cursor-pointer text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                     <span className="flex justify-between">
                         {headerName} <ChevronUpDownIcon className="h-2" />
@@ -57,7 +57,7 @@ export function RowHeaderCondition({ headerName, sortName, condition,  }) {
                 <th className="table-cell px-6 py-2 border-b border-gray-200 bg-gray-50 dark:border-opacity-50 dark:bg-dark-level-two text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     <button
                         onClick={() => onSortChange(dispatch, sortName, states)}
-                        className="text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
+                        className="cursor-pointer text-gray-500 dark:text-gray-400 tracking-wider uppercase text-center text-xs font-medium text-gray-500 dark:text-gray-400"
                     >
                         <span className="flex justify-between">
                             {headerName} <ChevronUpDownIcon className="h-2" />

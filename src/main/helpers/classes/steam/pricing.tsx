@@ -124,32 +124,37 @@ class runItems {
         itemNamePricing = itemRow.item_name;
       }
     }
+    // Graffiti: if tinted key not found, fall back to untinted key
+    if (itemNamePricing.startsWith('Sealed Graffiti | ') && !this.prices[itemNamePricing]) {
+      const parenIdx = itemNamePricing.lastIndexOf(' (');
+      if (parenIdx !== -1) {
+        const untinted = itemNamePricing.slice(0, parenIdx);
+        if (this.prices[untinted]) {
+          itemNamePricing = untinted;
+        }
+      }
+    }
 
     if (this.prices[itemNamePricing] !== undefined) {
+      const p = this.prices[itemNamePricing];
       const pricingDict = {
-        buff163: this.prices[itemNamePricing]?.buff163.starting_at?.price,
-        steam_listing: this.prices[itemNamePricing]?.steam?.last_90d,
-        skinport: this.prices[itemNamePricing]?.skinport?.starting_at,
+        buff163: p?.buff163?.starting_at?.price ?? 0,
+        steam_listing: p?.steam?.last_90d ?? 0,
+        skinport: p?.skinport?.starting_at ?? 0,
         bitskins: 0,
       };
-      if (this.prices[itemNamePricing]?.steam?.last_30d) {
-        pricingDict.steam_listing =
-          this.prices[itemNamePricing]?.steam?.last_30d;
+      if (p?.steam?.last_30d) {
+        pricingDict.steam_listing = p.steam.last_30d;
       }
-      if (this.prices[itemNamePricing]?.steam?.last_7d) {
-        pricingDict.steam_listing =
-          this.prices[itemNamePricing]?.steam?.last_7d;
+      if (p?.steam?.last_7d) {
+        pricingDict.steam_listing = p.steam.last_7d;
       }
-
-      if (this.prices[itemNamePricing]?.steam?.last_24h) {
-        pricingDict.steam_listing =
-          this.prices[itemNamePricing]?.steam?.last_24h;
+      if (p?.steam?.last_24h) {
+        pricingDict.steam_listing = p.steam.last_24h;
       }
-      if (
-        this.prices[itemNamePricing]?.steam?.last_7d == 0 &&
-        this.prices[itemNamePricing]?.buff163.starting_at?.price > 2000
-      ) {
-        pricingDict.steam_listing = this.prices[itemNamePricing]?.buff163.starting_at?.price * 0.8;
+      // Fallback to buff163 estimate when all steam prices are absent
+      if (!pricingDict.steam_listing && p?.buff163?.starting_at?.price) {
+        pricingDict.steam_listing = p.buff163.starting_at.price * 0.8;
       }
       itemRow['pricing'] = pricingDict;
       return itemRow;

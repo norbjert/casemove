@@ -86,7 +86,7 @@ function content() {
     if (filtered.length > 0) {
       totalHighlighted +=
         pricesResult.prices[
-          projectRow.item_name + projectRow.item_wear_name || ''
+          projectRow.item_name + (projectRow.item_wear_name ?? '')
         ]?.[settingsData.source.title] *
         settingsData.currencyPrice[settingsData.currency] *
         filtered[0][2].length;
@@ -94,7 +94,7 @@ function content() {
     let individualPrice =
       projectRow.combined_QTY *
       pricesResult.prices[
-        projectRow.item_name + projectRow.item_wear_name || ''
+        projectRow.item_name + (projectRow.item_wear_name ?? '')
       ]?.[settingsData.source.title] *
       settingsData.currencyPrice[settingsData.currency];
     totalAmount += individualPrice = individualPrice ? individualPrice : 0;
