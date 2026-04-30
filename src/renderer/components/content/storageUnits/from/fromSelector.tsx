@@ -98,7 +98,7 @@ function content() {
     pricingAmount +=
       projectRow.combined_QTY *
       pricesResult.prices[
-        projectRow.item_name + projectRow.item_wear_name || ''
+        projectRow.item_name + (projectRow.item_wear_name ?? '')
       ]?.[settingsData.source.title] *
       settingsData.currencyPrice[settingsData.currency];
     totalDict[projectRow.storage_id] = pricingAmount;

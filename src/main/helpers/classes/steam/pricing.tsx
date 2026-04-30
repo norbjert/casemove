@@ -124,6 +124,16 @@ class runItems {
         itemNamePricing = itemRow.item_name;
       }
     }
+    // Graffiti: if tinted key not found, fall back to untinted key
+    if (itemNamePricing.startsWith('Sealed Graffiti | ') && !this.prices[itemNamePricing]) {
+      const parenIdx = itemNamePricing.lastIndexOf(' (');
+      if (parenIdx !== -1) {
+        const untinted = itemNamePricing.slice(0, parenIdx);
+        if (this.prices[untinted]) {
+          itemNamePricing = untinted;
+        }
+      }
+    }
 
     if (this.prices[itemNamePricing] !== undefined) {
       const p = this.prices[itemNamePricing];
@@ -143,10 +153,7 @@ class runItems {
         pricingDict.steam_listing = p.steam.last_24h;
       }
       // Fallback to buff163 estimate when all steam prices are absent
-      if (
-        !pricingDict.steam_listing &&
-        p?.buff163?.starting_at?.price
-      ) {
+      if (!pricingDict.steam_listing && p?.buff163?.starting_at?.price) {
         pricingDict.steam_listing = p.buff163.starting_at.price * 0.8;
       }
       itemRow['pricing'] = pricingDict;

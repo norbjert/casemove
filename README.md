@@ -129,6 +129,7 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 - AUR publish
 - casemove browser app?
 - android mobile app?
+- portable exe for windows
 
 # Spikes
 - Spike: price and asset development tracking

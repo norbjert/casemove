@@ -286,8 +286,8 @@ export async function sortDataFunction(
     case 'Price':
       inventory.sort(function (a, b) {
         return sortRunAlt(
-          prices[a.item_name  + a.item_wear_name || '']?.[pricingSource] * a.combined_QTY,
-          prices[b.item_name  + b.item_wear_name || '']?.[pricingSource] * b.combined_QTY
+          prices[a.item_name + (a.item_wear_name ?? '')]?.[pricingSource] * a.combined_QTY,
+          prices[b.item_name + (b.item_wear_name ?? '')]?.[pricingSource] * b.combined_QTY
         );
       });
       return inventory;
@@ -429,8 +429,8 @@ export function sortDataFunctionTwo(
     case 'Price':
       inventory.sort(function (a, b) {
         return sortRunAlt(
-          prices[a.item_name  + a.item_wear_name || '']?.[pricingSource] * a.combined_QTY || 1,
-          prices[b.item_name  + b.item_wear_name || '']?.[pricingSource] * b.combined_QTY || 1
+          prices[a.item_name + (a.item_wear_name ?? '')]?.[pricingSource] * a.combined_QTY || 1,
+          prices[b.item_name + (b.item_wear_name ?? '')]?.[pricingSource] * b.combined_QTY || 1
         );
       });
       return inventory;

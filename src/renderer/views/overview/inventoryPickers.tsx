@@ -102,8 +102,8 @@ function content() {
   const pricesToGet = [] as any;
   finalInventoryToUse.forEach((projectRow) => {
     if (
-      pricesResult.prices[projectRow.item_name + projectRow.item_wear_name || ''] == undefined &&
-      pricesResult.productsRequested.includes(projectRow.item_name + projectRow.item_wear_name || '') == false
+      pricesResult.prices[projectRow.item_name + (projectRow.item_wear_name ?? '')] == undefined &&
+      pricesResult.productsRequested.includes(projectRow.item_name + (projectRow.item_wear_name ?? '')) == false
     ) {
       pricesToGet.push(projectRow);
     }
@@ -158,8 +158,8 @@ function content() {
     if (inventoryFilters.sortValue == 'Price'){
       finalInventoryToUse.sort(function (a, b) {
         return sortRunAlt(
-          pricesResult.prices[a.item_name  + a.item_wear_name || '']?.[settingsData?.source?.title],
-          pricesResult.prices[b.item_name  + b.item_wear_name || '']?.[settingsData?.source?.title]
+          pricesResult.prices[a.item_name  + (a.item_wear_name ?? '')]?.[settingsData?.source?.title],
+          pricesResult.prices[b.item_name  + (b.item_wear_name ?? '')]?.[settingsData?.source?.title]
         );
       });
   }
@@ -455,13 +455,13 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                 <td className="hidden xl:table-cell px-6 py-3 text-sm text-gray-500 font-medium">
                   <div className="flex items-center space-x-2 justify-center rounded-full drop-shadow-lg">
                     <div className="flex flex-shrink-0 -space-x-1 text-gray-500 dark:text-gray-400 font-normal">
-                    {pricesResult.prices[projectRow.item_name + projectRow.item_wear_name || ''] == undefined
+                    {pricesResult.prices[projectRow.item_name + (projectRow.item_wear_name ?? '')] == undefined
                         ? ''
                         : new Intl.NumberFormat(settingsData.locale, {
                             style: 'currency',
                             currency: settingsData.currency,
                           }).format(
-                            pricesResult.prices[projectRow.item_name + projectRow.item_wear_name || '']?.[
+                            pricesResult.prices[projectRow.item_name + (projectRow.item_wear_name ?? '')]?.[
                               settingsData?.source?.title
                             ] *
                               settingsData.currencyPrice[settingsData.currency]

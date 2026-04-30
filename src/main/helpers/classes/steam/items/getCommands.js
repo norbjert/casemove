@@ -9,14 +9,14 @@ class fetchItems {
   }
 
   async convertInventory(inventory) {
-    const responseFiltered = this.itemsClass.inventoryConverter(
+    const responseFiltered = await this.itemsClass.inventoryConverter(
       inventory,
       false
     );
     return responseFiltered;
   }
   async convertStorageData(inventory) {
-    const responseFiltered = this.itemsClass.inventoryConverter(
+    const responseFiltered = await this.itemsClass.inventoryConverter(
       inventory,
       true
     );

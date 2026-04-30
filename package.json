@@ -6,6 +6,7 @@
   "description": "Counter-Strike 2 Storage unit manager that helps you move items in bulk without the clicking. ",
   "scripts": {
     "build": "electron-vite build",
+    "package": "npm run build && electron-builder",
     "dev": "electron-vite dev",
     "preview": "electron-vite preview",
     "lint": "eslint . --cache",

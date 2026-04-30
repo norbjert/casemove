@@ -354,7 +354,7 @@ function content() {
                 <div className="flex items-center space-x-2 justify-center rounded-full drop-shadow-lg">
                   <div className="flex flex-shrink-0 -space-x-1 text-gray-500 dark:text-gray-400 font-normal">
                     {pricesResult.prices[
-                      projectRow.item_name + projectRow.item_wear_name || ''
+                      projectRow.item_name + (projectRow.item_wear_name ?? '')
                     ] == undefined
                       ? ''
                       : new ConvertPricesFormatted(
