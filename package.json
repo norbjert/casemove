@@ -160,7 +160,7 @@
     "electron-log": "^5.4.3",
     "electron-store": "^11.0.2",
     "electron-updater": "^6.8.3",
-    "find-process": "^1.4.11",
+    "find-process": "^2.1.1",
     "globaloffensive": "^3.3.0",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
