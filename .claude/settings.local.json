@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /home/norbjert/WebstormProjects/casemove/src -type f \\\\\\(-name *.ts -o -name *.tsx \\\\\\))",
+      "Bash(cat '/home/norbjert/WebstormProjects/casemove/src/renderer/components/content/shared/modals & notifcations/modalMove.tsx')",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(npx electron-builder:*)"
+    ]
+  }
+}
