@@ -150,7 +150,7 @@ function SettingsContent() {
                         tradeUpData.tradeUpProducts.length == 0
                           ? ' border-gray-100 dark:bg-dark-level-two pointer-events-none '
                           : 'shadow-sm border-gray-200 dark:bg-dark-level-three dark:border-none',
-                        'order-1 ml-3 inline-flex items-center px-4 py-2 border dark:border-opacity-0 dark:text-dark-white text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:bg-gray-100 sm:order-0 sm:ml-0'
+                        'order-1 ml-3 inline-flex items-center px-4 py-2 border dark:border-opacity-0 dark:text-dark-white text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:hover:bg-dark-level-four focus:outline-none sm:order-0 sm:ml-0'
                       )}
                     >
                       {'Edit & review'}

@@ -18,12 +18,21 @@ async function getURL(steamID) {
       });
   }).catch((error) => console.log(error.message));
 }
-// Define store
-const store = new Store({
-  name: 'casemoveEnc',
-  watch: true,
-  encryptionKey: 'this_only_obfuscates',
-});
+// Define store — wrapped in try/catch to handle corrupt config files (e.g. from
+// a version migration where the on-disk format changed). If the file can't be
+// parsed we delete it and start fresh; the user will need to log in again.
+const storeOptions = { name: 'casemoveEnc', watch: true, encryptionKey: 'this_only_obfuscates' };
+let store: any;
+try {
+  store = new Store(storeOptions);
+} catch (_e) {
+  const { join } = require('path');
+  const { unlinkSync, existsSync } = require('fs');
+  const { app } = require('electron');
+  const configPath = join(app.getPath('userData'), 'casemoveEnc.json');
+  if (existsSync(configPath)) unlinkSync(configPath);
+  store = new Store(storeOptions);
+}
 
 // Store user data
 async function storeRefreshToken(username: string, loginKey?: string) {

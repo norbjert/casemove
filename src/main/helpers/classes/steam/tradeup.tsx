@@ -97,8 +97,7 @@ class tradeUps {
       //   resolve(false);
       // }
       const finalResult = [];
-      let average = 0;
-      const possibleSkins = [];
+      let avgNormalized = 0;
       const seenSkins = [];
       let isStattrak = false;
       // Check if stattrak
@@ -111,38 +110,40 @@ class tradeUps {
           element.item_name = element.item_name.replace('StatTrak™ ', '');
         }
         const collection = this.directory[element.item_name];
+        const skinData = this.collections[collection][element.item_name];
         const possible = this.getPossible(
           collection,
-          parseInt(this.collections[collection][element.item_name].best_quality)
+          parseInt(skinData.best_quality)
         );
         possible.forEach((element) => {
           if (!seenSkins.includes(element)) {
             seenSkins.push(element);
           }
         });
-        possibleSkins.push(...possible);
-        average += element.item_paint_wear;
+
+        // New formula (Re-Retakes Update, Oct 2025): normalize each input float
+        // to its own wear range before averaging, so narrow-range skins contribute
+        // their relative position rather than their raw float value.
+        const minWear = parseFloat(skinData['min-wear']);
+        const maxWear = parseFloat(skinData['max-wear']);
+        avgNormalized += (element.item_paint_wear - minWear) / (maxWear - minWear);
       });
 
-      average = average / arrayOfItems.length;
+      avgNormalized = avgNormalized / arrayOfItems.length;
 
       seenSkins.forEach((element) => {
         const relevantObject = this.collections[this.directory[element]][element];
         let skinRarity = this.getRarity(
           relevantObject['min-wear'],
           relevantObject['max-wear'],
-          average
+          avgNormalized
         );
         const floatChance = skinRarity[1]
         // @ts-ignore
         skinRarity = skinRarity[0]
-        // @ts-ignore
-        const percentageChance =
-          100 /
-          (possibleSkins.length /
-            possibleSkins.filter(function (item) {
-              return item == element;
-            }).length);
+        // New formula: each unique possible output has equal probability.
+        // Input collection distribution no longer affects odds.
+        const percentageChance = 100 / seenSkins.length;
 
         let item_name = element as any;
         if (isStattrak) {

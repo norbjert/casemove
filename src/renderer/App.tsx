@@ -523,7 +523,7 @@ function AppContent() {
                 </button>
               ) : (
                 <div className='flex flex-col gap-3'>
-                  {/* <a href="https://discord.gg/n8QExYF7Qs" target="_blank">
+                  {/* <a href="https://discord.gg/MGGnusPjSV" target="_blank">
                     <button
                       type="button"
                       className="flex  dark:text-dark-white items-center px-6 py-3 border border-gray-200 dark:bg-dark-level-three   dark:border-opacity-0  text-left text-base w-full font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none pl-9 sm:text-sm border-gray-300 rounded-md h-9 text-gray-400"
@@ -707,7 +707,7 @@ function AppContent() {
             <span className="text-xs text-gray-500">{getVersion}</span>
             <a
               className="flex items-center text-xs gap-2 text-dark-white hover:scale-110 transform duration-200"
-              href="https://discord.gg/n8QExYF7Qs"
+              href="https://discord.gg/MGGnusPjSV"
               target="_blank"
             >
               <svg

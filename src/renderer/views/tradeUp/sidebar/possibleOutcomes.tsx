@@ -1,5 +1,5 @@
 import { BanknotesIcon } from '@heroicons/react/24/solid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import { tradeUpSetPossible } from 'renderer/store/actions/tradeUpActions';
@@ -39,11 +39,13 @@ export default function PossibleOutcomes() {
     return 0;
   });
 
-  // Get outcomes
-  if (
-    tradeUpData.tradeUpProducts.length > 0
-  ) {
-    if (outcomesRequested != tradeUpData.tradeUpProducts.length) {
+  // Get outcomes — run as an effect to avoid calling setState during render,
+  // which was causing the headlessui Transition to replay its enter animation.
+  useEffect(() => {
+    if (
+      tradeUpData.tradeUpProducts.length > 0 &&
+      outcomesRequested !== tradeUpData.tradeUpProducts.length
+    ) {
       setOutcomesRequested(tradeUpData.tradeUpProducts.length);
       window.electron.ipcRenderer
         .getPossibleOutcomes(tradeUpData.tradeUpProducts)
@@ -51,11 +53,7 @@ export default function PossibleOutcomes() {
           dispatch(tradeUpSetPossible(messageValue));
         });
     }
-  }
-
-  if (outcomesRequested != tradeUpData.tradeUpProducts.length) {
-    setOutcomesRequested(tradeUpData.tradeUpProducts.length)
-  }
+  }, [tradeUpData.tradeUpProducts.length]);
 
   return (
     <div>

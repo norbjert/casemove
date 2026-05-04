@@ -116,7 +116,6 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 - fix the paste button on the login screen
 - Fix trade up calculations
 - replace cringe skinledger discord server with something else
-- fix broken items (mp5 lab rat, shattered web graffitis)
  
 ### Improvements/Refactoring
 - fix or set up session/cookie storing options
