@@ -18,7 +18,7 @@ class tradeUps {
   collections = {};
   seenRates = {};
   directory = {};
-  knifeCollections = knifeCollections as Record<string, Array<{ name: string; imageURL: string; 'min-wear': string; 'max-wear': string }>>;
+  knifeCollections = knifeCollections as Record<string, Array<{ name: string; imageURL: string; 'min-wear': string | null; 'max-wear': string | null; vanilla?: boolean; weight?: number }>>;
   rarityLevels = {
     'Factory New': 0.07,
     'Minimal Wear': 0.15,
@@ -105,9 +105,12 @@ class tradeUps {
         isStattrak = true;
       }
 
-      // For covert trade-ups: collect the knife pool from each input collection
-      const seenKnifeNames = new Set<string>();
-      const knifePool: Array<{ name: string; imageURL: string; 'min-wear': string; 'max-wear': string }> = [];
+      type KnifeEntry = { name: string; imageURL: string; 'min-wear': string | null; 'max-wear': string | null; vanilla?: boolean; weight?: number };
+
+      // For covert trade-ups: track how many inputs came from each collection
+      // so probability can be split proportionally (e.g. 4 from A + 1 from B = 80%/20%)
+      const collectionContributions: Record<string, number> = {};
+      const collectionPools: Record<string, KnifeEntry[]> = {};
 
       // For normal trade-ups: collect possible output skins
       const seenSkins: string[] = [];
@@ -120,28 +123,25 @@ class tradeUps {
         const skinData = this.collections[collection][element.item_name];
 
         if (parseInt(skinData.best_quality) === 10) {
-          // Covert trade-up: look up knife pool for this collection
           isCovert = true;
-          const collectionKnives = this.knifeCollections[collection] || [];
-          collectionKnives.forEach((knife) => {
-            if (!seenKnifeNames.has(knife.name)) {
-              seenKnifeNames.add(knife.name);
-              knifePool.push(knife);
-            }
-          });
+          collectionContributions[collection] = (collectionContributions[collection] || 0) + 1;
+          // Build per-collection pool once (deduplicated within the collection)
+          if (!collectionPools[collection]) {
+            const seen = new Set<string>();
+            collectionPools[collection] = (this.knifeCollections[collection] || []).filter(k => {
+              if (seen.has(k.name)) return false;
+              seen.add(k.name);
+              return true;
+            });
+          }
         } else {
           // Normal trade-up: find next-tier skins in same collection
           const possible = this.getPossible(collection, parseInt(skinData.best_quality));
           possible.forEach((skin) => {
-            if (!seenSkins.includes(skin)) {
-              seenSkins.push(skin);
-            }
+            if (!seenSkins.includes(skin)) seenSkins.push(skin);
           });
         }
 
-        // New formula (Re-Retakes Update, Oct 2025): normalize each input float
-        // to its own wear range before averaging, so narrow-range skins contribute
-        // their relative position rather than their raw float value.
         const minWear = parseFloat(skinData['min-wear']);
         const maxWear = parseFloat(skinData['max-wear']);
         avgNormalized += (element.item_paint_wear - minWear) / (maxWear - minWear);
@@ -150,25 +150,46 @@ class tradeUps {
       avgNormalized = avgNormalized / arrayOfItems.length;
 
       if (isCovert) {
-        // Covert → knife: each knife type in the pool has equal probability
-        const percentageChance = 100 / knifePool.length;
-        knifePool.forEach((knife) => {
-          const skinRarity = this.getRarity(knife['min-wear'], knife['max-wear'], avgNormalized);
-          const floatChance = skinRarity[1];
-          const wearName = skinRarity[0];
-          let item_name = knife.name;
-          if (isStattrak) {
-            item_name = 'StatTrak™ ' + item_name;
+        const totalInputs = arrayOfItems.length;
+        // Accumulate probabilities per skin name (same skin can appear in multiple collection pools)
+        const outcomeMap = new Map<string, { knife: KnifeEntry; probability: number }>();
+
+        for (const [collection, count] of Object.entries(collectionContributions)) {
+          const collectionShare = count / totalInputs; // e.g. 4/5 = 0.8
+          const pool = collectionPools[collection] || [];
+          const totalWeight = pool.reduce((sum, k) => sum + (k.weight ?? 1), 0);
+          if (totalWeight === 0) continue;
+
+          pool.forEach((knife) => {
+            const prob = collectionShare * ((knife.weight ?? 1) / totalWeight) * 100;
+            const existing = outcomeMap.get(knife.name);
+            if (existing) {
+              existing.probability += prob;
+            } else {
+              outcomeMap.set(knife.name, { knife, probability: prob });
+            }
+          });
+        }
+
+        for (const { knife, probability } of outcomeMap.values()) {
+          let item_wear_name: string | null = null;
+          let float_chance: number | null = null;
+          if (!knife.vanilla && knife['min-wear'] !== null && knife['max-wear'] !== null) {
+            const skinRarity = this.getRarity(knife['min-wear'], knife['max-wear'], avgNormalized);
+            item_wear_name = skinRarity[0] as string;
+            float_chance = skinRarity[1] as number;
           }
+          let item_name = knife.name;
+          if (isStattrak) item_name = 'StatTrak™ ' + item_name;
           // @ts-ignore
           finalResult.push({
             item_name,
-            item_wear_name: wearName,
-            percentage: percentageChance.toFixed(2),
+            item_wear_name,
+            percentage: probability.toFixed(2),
             image: knife.imageURL,
-            float_chance: floatChance,
+            float_chance,
           });
-        });
+        }
       } else {
         seenSkins.forEach((element) => {
           const relevantObject = this.collections[this.directory[element]][element];
