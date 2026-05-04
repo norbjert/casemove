@@ -24,7 +24,10 @@ const initialState: TradeUpActions = {
             newTradeUpIDS.push(element.item_id)
 
           });
-          if (toMoveAlreadyExists.length != 10) {
+          const isCovert = action.payload.rarityName === 'Covert' ||
+            (state.tradeUpProducts.length > 0 && state.tradeUpProducts[0].rarityName === 'Covert');
+          const maxItems = isCovert ? 5 : 10;
+          if (toMoveAlreadyExists.length != maxItems) {
             return {
               ...state,
               tradeUpProducts: toMoveAlreadyExists,

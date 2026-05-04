@@ -122,7 +122,8 @@ function content() {
     element['rarityColor'] = itemR[element.rarityName];
   });
 
-  const isFull = tradeUpData.tradeUpProducts.length == 10;
+  const isCovert = tradeUpData.tradeUpProducts.length > 0 && tradeUpData.tradeUpProducts[0].rarityName === 'Covert';
+  const isFull = tradeUpData.tradeUpProducts.length == (isCovert ? 5 : 10);
   if (inventoryFilters.sortBack) {
     finalInventoryToUse.reverse();
   }

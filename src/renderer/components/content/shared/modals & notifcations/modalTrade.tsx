@@ -6,9 +6,8 @@ const rarityShort = {
   'Battle-Scarred': 'BS',
 };
 
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import { useState } from 'react';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BeakerIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { classNames } from '../filters/inventoryFunctions';
@@ -17,26 +16,28 @@ import {
   setTradeMove,
 } from 'renderer/store/actions/modalTrade';
 import { tradeUpAddRemove } from 'renderer/store/actions/tradeUpActions';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
 import { moveFromReset } from 'renderer/store/actions/moveFromActions';
 import { ConvertPricesFormatted } from 'renderer/functionsClasses/prices';
 import { createCSGOImage } from '../../../../functionsClasses/createCSGOImage';
 setTradeConfirm;
 export default function TradeModal() {
-  const currentState: State = new ReducerManager(useSelector).getStorage();
-  const tradeUpData = currentState.tradeUpReducer;
-  const settingsData = currentState.settingsReducer;
-  const modalData = currentState.modalTradeReducer;
-  const pricesResult = currentState.pricingReducer;
-  const inventory = currentState.inventoryReducer;
+  // Use granular selectors so this component only re-renders when the specific
+  // state it actually uses changes. Reading via ReducerManager.getStorage() was
+  // subscribing to the entire Redux state, causing a re-render whenever
+  // possibleOutcomes updated — which raced with the headlessui enter animation.
+  const tradeUpProducts = useSelector((state: any) => state.tradeUpReducer.tradeUpProducts);
+  const tradeUpProductsIDS = useSelector((state: any) => state.tradeUpReducer.tradeUpProductsIDS);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const modalData = useSelector((state: any) => state.modalTradeReducer);
+  const pricesResult = useSelector((state: any) => state.pricingReducer);
+  const inventory = useSelector((state: any) => state.inventoryReducer);
 
   const pricesFormat = new ConvertPricesFormatted(settingsData, pricesResult);
 
   const dispatch = useDispatch();
   async function moveItems() {
     let hasRun = false;
-    tradeUpData.tradeUpProducts.forEach((element) => {
+    tradeUpProducts.forEach((element) => {
       if (element.storage_id) {
         hasRun = true;
         window.electron.ipcRenderer.moveFromStorageUnit(
@@ -53,7 +54,7 @@ export default function TradeModal() {
   }
 
   let doTransferFirst = false;
-  tradeUpData.tradeUpProducts.forEach((element) => {
+  tradeUpProducts.forEach((element) => {
     if (element.storage_id) {
       doTransferFirst = true;
     }
@@ -61,18 +62,18 @@ export default function TradeModal() {
 
   async function confirmContract() {
     moveItems().then(() => {
-      let rarityToUse = (tradeUpData.tradeUpProducts[0]?.rarity as any) - 1;
-      if (tradeUpData.tradeUpProducts[0]?.stattrak) {
+      let rarityToUse = (tradeUpProducts[0]?.rarity as any) - 1;
+      if (tradeUpProducts[0]?.stattrak) {
         rarityToUse += 10;
       }
-      const idsToGet = [...tradeUpData.tradeUpProductsIDS] as any;
+      const idsToGet = [...tradeUpProductsIDS] as any;
       inventory.inventory.forEach((element) => {
         idsToGet.push(element.item_id);
       });
       dispatch(setTradeConfirm(idsToGet));
       rarityToUse;
       window.electron.ipcRenderer.tradeOrder(
-        tradeUpData.tradeUpProductsIDS,
+        tradeUpProductsIDS,
         rarityToUse
       );
       window.electron.ipcRenderer.refreshInventory();
@@ -88,25 +89,21 @@ export default function TradeModal() {
   }
 
   return (
-    <Transition show={modalData.moveOpen} as={Fragment}>
-      <Dialog
-        as="div"
-        className="fixed z-10 inset-0 overflow-y-auto"
-        onClose={() => dispatch(setTradeMove())}
-      >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 dark:bg-opacity-85 transition-opacity" aria-hidden="true" />
-          </Transition.Child>
+    <Dialog
+      open={modalData.moveOpen}
+      as="div"
+      className="relative z-10"
+      onClose={() => dispatch(setTradeMove())}
+    >
+      {/* Backdrop */}
+      <DialogBackdrop
+        transition
+        className="fixed inset-0 bg-gray-500 bg-opacity-75 dark:bg-opacity-85 transition-opacity ease-out duration-300 data-[closed]:opacity-0 data-[leave]:ease-in data-[leave]:duration-200"
+      />
 
+      {/* Modal container */}
+      <div className="fixed inset-0 z-10 overflow-y-auto">
+        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className="hidden sm:inline-block sm:align-middle sm:h-screen"
@@ -114,16 +111,11 @@ export default function TradeModal() {
           >
             &#8203;
           </span>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+
+          <DialogPanel
+            transition
+            className="inline-block align-bottom dark:bg-dark-level-two bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 ease-out duration-300 data-[closed]:opacity-0 data-[closed]:translate-y-4 sm:data-[closed]:translate-y-0 sm:data-[closed]:scale-95 data-[leave]:ease-in data-[leave]:duration-200"
           >
-            <div className="inline-block align-bottom dark:bg-dark-level-two bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div>
                 <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-600">
                   <BeakerIcon
@@ -148,7 +140,7 @@ export default function TradeModal() {
                     </p>
                   </div>
                   <ul role="list" className="mt-3 grid grid-cols-2 gap-2 ">
-                    {tradeUpData.tradeUpProducts.map((project, index) => (
+                    {tradeUpProducts.map((project, index) => (
                       <li
                         key={index}
                         className="col-span-1 flex shadow-sm rounded-md"
@@ -223,7 +215,7 @@ export default function TradeModal() {
                   <button
                     type="button"
                     className={classNames(
-                      tradeUpData.tradeUpProducts.length != 10
+                      tradeUpProducts.length != 10
                         ? 'pointer-events-none	bg-indigo-300 dark:bg-dark-level-three'
                         : 'bg-indigo-600',
                       'bg-indigo-600 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium text-white hover:bg-indigo-700 sm:col-start-2 sm:text-sm'
@@ -236,7 +228,7 @@ export default function TradeModal() {
                   <button
                     type="button"
                     className={classNames(
-                      tradeUpData.tradeUpProducts.length != 10
+                      tradeUpProducts.length != 10
                         ? 'pointer-events-none	bg-indigo-300 dark:bg-dark-level-three'
                         : 'bg-indigo-600',
                       'bg-indigo-600 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium text-white hover:bg-indigo-700 sm:col-start-2 sm:text-sm'
@@ -257,10 +249,9 @@ export default function TradeModal() {
                   Cancel
                 </button>
               </div>
-            </div>
-          </Transition.Child>
+          </DialogPanel>
         </div>
-      </Dialog>
-    </Transition>
+      </div>
+    </Dialog>
   );
 }

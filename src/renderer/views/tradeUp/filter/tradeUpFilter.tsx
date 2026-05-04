@@ -14,12 +14,11 @@ export default function TradeUpFilters() {
   totalFloat = totalFloat / tradeUpData.tradeUpProducts.length;
 
   const productsToUse = [...tradeUpData.tradeUpProducts];
-  while (true) {
-    if (productsToUse.length != 10) {
-      productsToUse.push({ item_name: 'EMPTY' });
-    } else {
-      break;
-    }
+  const isCovert = productsToUse.length > 0 && productsToUse[0].rarityName === 'Covert';
+  const maxSlots = isCovert ? 5 : 10;
+
+  while (productsToUse.length < maxSlots) {
+    productsToUse.push({ item_name: 'EMPTY' });
   }
   async function updateMin(valueToSet) {
     if (valueToSet < tradeUpData.MaxFloat) {

@@ -1,8 +1,14 @@
 import { BanknotesIcon } from '@heroicons/react/24/solid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import { tradeUpSetPossible } from 'renderer/store/actions/tradeUpActions';
+
+// Doppler Phase 1-4 share one Steam market listing (no phase in the name).
+// Ruby, Sapphire, Black Pearl, Emerald are separate listings and keep their names.
+function marketName(item_name: string): string {
+  return item_name.replace(/ \(Phase [1-4]\)$/, '');
+}
 
 const rarityShort = {
   'Factory New': 'FN',
@@ -27,9 +33,10 @@ export default function PossibleOutcomes() {
   totalPrice;
 
   tradeUpData.possibleOutcomes.forEach((element) => {
+    const priceKey = marketName(element.item_name) + (element.item_wear_name ?? '');
     element['profit_cal'] =
       (100 / (totalPrice * 100)) *
-      (pricesResult?.prices[element.item_name + (element.item_wear_name ?? '')]?.['steam_listing'] * 100);
+      (pricesResult?.prices[priceKey]?.['steam_listing'] * 100);
   });
   tradeUpData.possibleOutcomes.sort(function (a, b) {
     const keyA = a.profit_cal,
@@ -39,11 +46,13 @@ export default function PossibleOutcomes() {
     return 0;
   });
 
-  // Get outcomes
-  if (
-    tradeUpData.tradeUpProducts.length > 0
-  ) {
-    if (outcomesRequested != tradeUpData.tradeUpProducts.length) {
+  // Get outcomes — run as an effect to avoid calling setState during render,
+  // which was causing the headlessui Transition to replay its enter animation.
+  useEffect(() => {
+    if (
+      tradeUpData.tradeUpProducts.length > 0 &&
+      outcomesRequested !== tradeUpData.tradeUpProducts.length
+    ) {
       setOutcomesRequested(tradeUpData.tradeUpProducts.length);
       window.electron.ipcRenderer
         .getPossibleOutcomes(tradeUpData.tradeUpProducts)
@@ -51,11 +60,7 @@ export default function PossibleOutcomes() {
           dispatch(tradeUpSetPossible(messageValue));
         });
     }
-  }
-
-  if (outcomesRequested != tradeUpData.tradeUpProducts.length) {
-    setOutcomesRequested(tradeUpData.tradeUpProducts.length)
-  }
+  }, [tradeUpData.tradeUpProducts.length]);
 
   return (
     <div>
@@ -69,10 +74,8 @@ export default function PossibleOutcomes() {
               <a
                 href={
                     'https://steamcommunity.com/market/listings/730/' +
-                    project.item_name +
-                    ' (' +
-                    project.item_wear_name +
-                    ')'
+                    marketName(project.item_name) +
+                    (project.item_wear_name ? ' (' + project.item_wear_name + ')' : '')
                 }
                 target="_blank"
                 rel="noreferrer"
@@ -103,9 +106,7 @@ export default function PossibleOutcomes() {
                   </div>
                   <div className="flex justify-between">
                     <p className="text-gray-500">
-                      {project.percentage} % |{' '}
-                      {rarityShort[project.item_wear_name]} |{' '}
-                      {project.float_chance.toString()?.substr(1, 8)}
+                      {project.percentage} %{project.item_wear_name ? ' | ' + rarityShort[project.item_wear_name] : ''}{project.float_chance !== null ? ' | ' + project.float_chance?.toString()?.substr(1, 8) : ''}
                     </p>
                     <div className="flex items-center">
                       <p className="text-gray-500">
