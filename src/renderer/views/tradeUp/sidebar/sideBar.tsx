@@ -18,13 +18,11 @@ export default function TradeUpSideBar() {
 
 
   const productsToUse = [...tradeUpData.tradeUpProducts];
+  const isCovert = productsToUse.length > 0 && productsToUse[0].rarityName === 'Covert';
+  const maxSlots = isCovert ? 5 : 10;
 
-  while (true) {
-    if (productsToUse.length != 10) {
-      productsToUse.push({ item_name: 'EMPTY' });
-    } else {
-      break;
-    }
+  while (productsToUse.length < maxSlots) {
+    productsToUse.push({ item_name: 'EMPTY' });
   }
 
   return (

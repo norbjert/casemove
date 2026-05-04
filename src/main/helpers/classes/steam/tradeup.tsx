@@ -1,4 +1,5 @@
 import collections from './backup/collections.json';
+import knifeCollections from './backup/knifeCollections.json';
 
 async function setCollections(currencyClass) {
 
@@ -17,6 +18,7 @@ class tradeUps {
   collections = {};
   seenRates = {};
   directory = {};
+  knifeCollections = knifeCollections as Record<string, Array<{ name: string; imageURL: string; 'min-wear': string; 'max-wear': string }>>;
   rarityLevels = {
     'Factory New': 0.07,
     'Minimal Wear': 0.15,
@@ -93,17 +95,22 @@ class tradeUps {
   // Generate outcome
   getPotentitalOutcome(arrayOfItems) {
     return new Promise((resolve) => {
-      // if (arrayOfItems.length != 10) {
-      //   resolve(false);
-      // }
       const finalResult = [];
       let avgNormalized = 0;
-      const seenSkins = [];
       let isStattrak = false;
+      let isCovert = false;
+
       // Check if stattrak
       if (arrayOfItems[0].item_name.includes('StatTrak™')) {
         isStattrak = true;
       }
+
+      // For covert trade-ups: collect the knife pool from each input collection
+      const seenKnifeNames = new Set<string>();
+      const knifePool: Array<{ name: string; imageURL: string; 'min-wear': string; 'max-wear': string }> = [];
+
+      // For normal trade-ups: collect possible output skins
+      const seenSkins: string[] = [];
 
       arrayOfItems.forEach((element) => {
         if (isStattrak) {
@@ -111,15 +118,26 @@ class tradeUps {
         }
         const collection = this.directory[element.item_name];
         const skinData = this.collections[collection][element.item_name];
-        const possible = this.getPossible(
-          collection,
-          parseInt(skinData.best_quality)
-        );
-        possible.forEach((element) => {
-          if (!seenSkins.includes(element)) {
-            seenSkins.push(element);
-          }
-        });
+
+        if (parseInt(skinData.best_quality) === 10) {
+          // Covert trade-up: look up knife pool for this collection
+          isCovert = true;
+          const collectionKnives = this.knifeCollections[collection] || [];
+          collectionKnives.forEach((knife) => {
+            if (!seenKnifeNames.has(knife.name)) {
+              seenKnifeNames.add(knife.name);
+              knifePool.push(knife);
+            }
+          });
+        } else {
+          // Normal trade-up: find next-tier skins in same collection
+          const possible = this.getPossible(collection, parseInt(skinData.best_quality));
+          possible.forEach((skin) => {
+            if (!seenSkins.includes(skin)) {
+              seenSkins.push(skin);
+            }
+          });
+        }
 
         // New formula (Re-Retakes Update, Oct 2025): normalize each input float
         // to its own wear range before averaging, so narrow-range skins contribute
@@ -131,34 +149,55 @@ class tradeUps {
 
       avgNormalized = avgNormalized / arrayOfItems.length;
 
-      seenSkins.forEach((element) => {
-        const relevantObject = this.collections[this.directory[element]][element];
-        let skinRarity = this.getRarity(
-          relevantObject['min-wear'],
-          relevantObject['max-wear'],
-          avgNormalized
-        );
-        const floatChance = skinRarity[1]
-        // @ts-ignore
-        skinRarity = skinRarity[0]
-        // New formula: each unique possible output has equal probability.
-        // Input collection distribution no longer affects odds.
-        const percentageChance = 100 / seenSkins.length;
+      if (isCovert) {
+        // Covert → knife: each knife type in the pool has equal probability
+        const percentageChance = 100 / knifePool.length;
+        knifePool.forEach((knife) => {
+          const skinRarity = this.getRarity(knife['min-wear'], knife['max-wear'], avgNormalized);
+          const floatChance = skinRarity[1];
+          const wearName = skinRarity[0];
+          let item_name = knife.name;
+          if (isStattrak) {
+            item_name = 'StatTrak™ ' + item_name;
+          }
+          // @ts-ignore
+          finalResult.push({
+            item_name,
+            item_wear_name: wearName,
+            percentage: percentageChance.toFixed(2),
+            image: knife.imageURL,
+            float_chance: floatChance,
+          });
+        });
+      } else {
+        seenSkins.forEach((element) => {
+          const relevantObject = this.collections[this.directory[element]][element];
+          let skinRarity = this.getRarity(
+            relevantObject['min-wear'],
+            relevantObject['max-wear'],
+            avgNormalized
+          );
+          const floatChance = skinRarity[1];
+          // @ts-ignore
+          skinRarity = skinRarity[0];
+          // Each unique possible output has equal probability.
+          const percentageChance = 100 / seenSkins.length;
 
-        let item_name = element as any;
-        if (isStattrak) {
-          item_name = 'StatTrak™ ' + item_name;
-        }
-        const objectToWrite = {
-          item_name: item_name,
-          item_wear_name: skinRarity,
-          percentage: percentageChance.toFixed(2),
-          image: relevantObject['imageURL'],
-          float_chance: floatChance
-        };
-        // @ts-ignore
-        finalResult.push(objectToWrite);
-      });
+          let item_name = element as any;
+          if (isStattrak) {
+            item_name = 'StatTrak™ ' + item_name;
+          }
+          const objectToWrite = {
+            item_name: item_name,
+            item_wear_name: skinRarity,
+            percentage: percentageChance.toFixed(2),
+            image: relevantObject['imageURL'],
+            float_chance: floatChance
+          };
+          // @ts-ignore
+          finalResult.push(objectToWrite);
+        });
+      }
 
       resolve(finalResult);
     });

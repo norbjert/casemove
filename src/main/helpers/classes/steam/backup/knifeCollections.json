@@ -1,0 +1,2898 @@
+{
+  "The Winter Offensive Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Phoenix Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Huntsman Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Breakout Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Vanguard Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Chroma Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Chroma 2 Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Falchion Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Shadow Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Revolver Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Wildfire Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Chroma 3 Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Gamma Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Spectrum Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Operation Hydra Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Spectrum 2 Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Clutch Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Horizon Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Danger Zone Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Prisma Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Shattered Web Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The CS20 Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Prisma 2 Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Fracture Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Operation Broken Fang Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Snakebite Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Operation Riptide Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Dreams & Nightmares Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Recoil Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Revolution Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Kilowatt Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Kukri Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_kukri.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Gallery Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Kukri Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_kukri.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Fever Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Kukri Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_kukri.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Genesis Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Kukri Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_kukri.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ],
+  "The Dead Hand Collection": [
+    {
+      "name": "\u2605 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Flip Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_flip.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Gut Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gut.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Karambit",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_karambit.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 M9 Bayonet",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_m9_bayonet.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Huntsman Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_tactical.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Butterfly Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_butterfly.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Falchion Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_falchion.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Shadow Daggers",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_push.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Bowie Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_survival_bowie.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Navaja Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_gypsy_jackknife.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Stiletto Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_stiletto.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Talon Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_widowmaker.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Ursus Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_ursus.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Nomad Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_outdoor.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Paracord Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_cord.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Skeleton Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_skeleton.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Survival Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_canis.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Classic Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_css.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    },
+    {
+      "name": "\u2605 Kukri Knife",
+      "imageURL": "http://media.steampowered.com/apps/730/icons/econ/weapons/base_weapons/weapon_knife_kukri.png",
+      "min-wear": "0.00",
+      "max-wear": "1.00"
+    }
+  ]
+}
