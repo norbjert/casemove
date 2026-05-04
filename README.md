@@ -114,7 +114,6 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 ## TODOs
 ### Bugs
 - fix the paste button on the login screen
-- replace cringe skinledger discord server with something else
  
 ### Improvements/Refactoring
 - fix or set up session/cookie storing options
