@@ -5,25 +5,13 @@ on:
   push:
     branches: [main, master]
 
-env:
-  NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
-
 jobs:
-  ci:
-    runs-on: ubuntu-latest
+  build:
+    uses: ./.github/workflows/build.yml
 
-    steps:
-      - uses: actions/checkout@v6
+  test:
+    uses: ./.github/workflows/test.yml
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 20
-          cache: npm
-
-      - run: npm install --ignore-scripts
-
-      - name: Build
-        run: npm run build
-
-      - name: Test
-        run: npm test
+  e2e:
+    needs: build
+    uses: ./.github/workflows/e2e.yml
