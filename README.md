@@ -138,4 +138,3 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 ### Braindead Shower-Thoughts
 - What about a casemove-cli?
 - casemove... as a skill
-
