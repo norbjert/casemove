@@ -72,7 +72,8 @@
     "win": {
       "artifactName": "Casemove-Setup.exe",
       "target": [
-        "nsis"
+        "nsis",
+        "portable"
       ],
       "signtoolOptions": {
         "sign": "./sign.js"

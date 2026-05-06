@@ -130,7 +130,6 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 
 # Spikes
 - Spike: price and asset development tracking
-- Spike: Can we dynamically add new items without waiting on the csgo items dependency? (maybe by scanning scm etc) -> Would allow the app to stay up-to-date without updating for every cs2 patch with new items
 - Spike: more test coverage (mocking steam?, automated UI tests to catch random version bumps white screening etc)
 - own pricing API
 
