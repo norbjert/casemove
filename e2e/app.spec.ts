@@ -49,19 +49,18 @@ test('login page shows QR code tab by default', async () => {
 test('login page has login method tabs', async () => {
   const { app, window } = await launchApp();
 
-  // LoginTabs renders tab buttons for QR / Regular / WebToken
-  // They appear as buttons or role="tab" elements
-  const tabButtons = window.getByRole('button').filter({ hasText: /QR|Regular|Token/i });
-  await expect(tabButtons.first()).toBeVisible();
+  // LoginTabs renders buttons: QR, Webtoken, Credentials
+  for (const label of ['QR', 'Webtoken', 'Credentials']) {
+    await expect(window.getByRole('button', { name: label })).toBeVisible();
+  }
 
   await app.close();
 });
 
-test('switching to Regular login shows username and password fields', async () => {
+test('switching to Credentials login shows username and password fields', async () => {
   const { app, window } = await launchApp();
 
-  // Click the "Regular" tab
-  await window.getByRole('button', { name: /Regular/i }).click();
+  await window.getByRole('button', { name: 'Credentials' }).click();
 
   await expect(window.locator('#username')).toBeVisible();
   await expect(window.locator('#password')).toBeVisible();
@@ -72,7 +71,7 @@ test('switching to Regular login shows username and password fields', async () =
 test('username field accepts text input', async () => {
   const { app, window } = await launchApp();
 
-  await window.getByRole('button', { name: /Regular/i }).click();
+  await window.getByRole('button', { name: 'Credentials' }).click();
   await window.locator('#username').fill('testuser');
   const value = await window.locator('#username').inputValue();
   expect(value).toBe('testuser');
