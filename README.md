@@ -137,3 +137,8 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 ### Braindead Shower-Thoughts
 - What about a casemove-cli?
 - casemove... as a skill
+
+### Bugs and known issues
+- parts of the UI sometimes freeze up, in particular during storage unit loading and lots of clicks on various parts of the UI.
+Hard to diagnose the exact issue, ill fix it if i ever find out what the exact problem is.
+- Graffitis dont have pricing.
