@@ -128,7 +128,7 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 - android mobile app?
 - portable exe for windows
 
-# Spikes
+### Spikes
 - Spike: price and asset development tracking
 - Spike: more test coverage (mocking steam?, automated UI tests to catch random version bumps white screening etc)
 - own pricing API
@@ -142,3 +142,4 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 - parts of the UI sometimes freeze up, in particular during storage unit loading and lots of clicks on various parts of the UI.
 Hard to diagnose the exact issue, ill fix it if i ever find out what the exact problem is.
 - Graffitis dont have pricing.
+- souvenir charms
