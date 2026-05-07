@@ -70,7 +70,6 @@
       ]
     },
     "win": {
-      "artifactName": "Casemove-Setup.exe",
       "target": [
         "nsis",
         "portable"
@@ -98,6 +97,12 @@
       "provider": "github",
       "owner": "norbjert",
       "repo": "casemove"
+    },
+    "nsis": {
+      "artifactName": "Casemove-Setup.exe"
+    },
+    "portable": {
+      "artifactName": "Casemove-Portable.exe"
     }
   },
   "homepage": "https://github.com/norbjert/casemove",

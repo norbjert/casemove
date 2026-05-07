@@ -11,7 +11,7 @@ on:
         type: boolean
         default: true
       windows:
-        description: 'Build Windows (NSIS)'
+        description: 'Build Windows (NSIS + Portable)'
         type: boolean
         default: true
       mac:
@@ -58,11 +58,17 @@ jobs:
       - run: Remove-Item package-lock.json
       - run: npm install --ignore-scripts
       - run: npm run build
-      - name: Package and publish
+      - name: Package and publish (installer)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
-        run: ./node_modules/.bin/electron-builder build --win --publish always
+        run: ./node_modules/.bin/electron-builder build --win nsis --publish always
+
+      - name: Package and publish (portable)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+        run: ./node_modules/.bin/electron-builder build --win portable --publish always
 
   aur:
     if: ${{ inputs.linux }}
