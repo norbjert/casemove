@@ -11,7 +11,7 @@ This fork of the original project will remain open source and up-to-date.
 Download the latest release from the [releases page](https://github.com/norbjert/casemove/releases/latest), or directly:
 
 - [Windows](https://github.com/norbjert/casemove/releases/latest/download/Casemove-Setup.exe)
-- [Linux (Debian/Ubuntu/Mint/etc)] (https://github.com/norbjert/casemove/releases/latest/download/Casemove.deb)
+- [Linux (.deb)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.deb)
 - [Linux (portable AppImage)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.AppImage)
 
 
@@ -93,7 +93,73 @@ After Nombers abandonded the Open-Source project in favor of his subscription-ba
 
 ## How to build
 
-TODO: add updated build instructions here
+### Prerequisites
+
+- [Node.js 22+](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+### Clone and install
+
+```bash
+git clone https://github.com/norbjert/casemove.git
+cd casemove
+npm install --ignore-scripts
+```
+
+> **Note:** `--ignore-scripts` skips Electron's postinstall download. If you need the Electron binary for running or E2E tests, run this after install:
+> ```bash
+> node node_modules/electron/install.js
+> ```
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Run unit tests
+
+```bash
+npm test
+```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Package for your current platform
+
+```bash
+npm run package
+```
+
+This will produce an installer/package in the `dist/` folder.
+
+### Package for a specific platform
+
+```bash
+# Windows — NSIS installer + portable exe
+./node_modules/.bin/electron-builder build --win nsis
+./node_modules/.bin/electron-builder build --win portable
+
+# Linux
+./node_modules/.bin/electron-builder build --linux
+
+# macOS
+./node_modules/.bin/electron-builder build --mac
+```
+
+### Run E2E tests
+
+E2E tests require a production build and the Electron binary to be installed first:
+
+```bash
+npm run build
+node node_modules/electron/install.js
+npm run test:e2e
+```
 
 ----
 
