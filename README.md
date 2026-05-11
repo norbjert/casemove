@@ -11,7 +11,7 @@ This fork of the original project will remain open source and up-to-date.
 Download the latest release from the [releases page](https://github.com/norbjert/casemove/releases/latest), or directly:
 
 - [Windows](https://github.com/norbjert/casemove/releases/latest/download/Casemove-Setup.exe)
-- [Linux (Debian/Ubuntu/Mint/etc)] (https://github.com/norbjert/casemove/releases/latest/download/Casemove.deb)
+- [Linux (Debian/Ubuntu/Mint/etc)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.deb)
 - [Linux (portable AppImage)](https://github.com/norbjert/casemove/releases/latest/download/Casemove.AppImage)
 
 Work-in-progress/not yet supported:
