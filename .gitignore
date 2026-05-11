@@ -39,3 +39,4 @@ src/renderer/components/content/shared/modals & notifcations/modalPurchase.tsx
 src/renderer/store/actions/modalPurchase Actions.tsx
 src/renderer/store/actions/purchaseActions.tsx
 .stfolder
+.claude
