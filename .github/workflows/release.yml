@@ -124,37 +124,42 @@ jobs:
           sudo apt install gh jq -y
       - name: Authenticate GitHub CLI
         run: gh auth setup-git
-  - name: Generate Release Notes
-    id: release_notes
-    run: |
-      VERSION=${{ github.event.inputs.version }}
-      echo "Generating release notes for version $VERSION..."
+      - name: Generate Release Notes
+        id: release_notes
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          echo "Generating release notes for version $VERSION..."
 
-      LAST_TAG=$(git describe --tags --abbrev=0 v$VERSION^ || echo "")
-      echo "Last tag: $LAST_TAG"
+          # Get the last tag before this release
+          LAST_TAG=$(git describe --tags --abbrev=0 v$VERSION^ || echo "")
+          echo "Last tag: $LAST_TAG"
 
-      if [ -z "$LAST_TAG" ]; then
-        PRS=$(gh pr list --state merged --json number,title,labels,url)
-      else
-        PRS=$(gh pr list --state merged --json number,title,labels,url --search "merged:>$LAST_TAG")
-      fi
+          # Fetch PRs merged since last tag
+          if [ -z "$LAST_TAG" ]; then
+            PRS=$(gh pr list --state merged --json number,title,labels,url)
+          else
+            PRS=$(gh pr list --state merged --json number,title,labels,url --search "merged:>$LAST_TAG")
+          fi
 
-      NEW_FEATURES=""
-      BUG_FIXES=""
-      echo "$PRS" | jq -c '.[]' | while read pr; do
-        TITLE=$(echo $pr | jq -r '.title')
-        URL=$(echo $pr | jq -r '.url')
-        LABELS=$(echo $pr | jq -r '.labels[].name' 2>/dev/null || "")
+          NEW_FEATURES=""
+          BUG_FIXES=""
+          echo "$PRS" | jq -c '.[]' | while read pr; do
+            NUMBER=$(echo $pr | jq -r '.number')
+            TITLE=$(echo $pr | jq -r '.title')
+            URL=$(echo $pr | jq -r '.url')
+            LABELS=$(echo $pr | jq -r '.labels[].name' 2>/dev/null || "")
 
-        # Default to feature if no labels
-        if [ -z "$LABELS" ] || echo "$LABELS" | grep -Eiq 'feature|enhancement'; then
-          NEW_FEATURES="$NEW_FEATURES- [$TITLE]($URL)\n"
-        else
-          BUG_FIXES="$BUG_FIXES- [$TITLE]($URL)\n"
-        fi
-      done
+            # Default to feature if no labels
+            if [ -z "$LABELS" ] || echo "$LABELS" | grep -Eiq 'feature|enhancement'; then
+              NEW_FEATURES="$NEW_FEATURES- [#$NUMBER] $TITLE ($URL)\n"
+            else
+              BUG_FIXES="$BUG_FIXES- [#$NUMBER] $TITLE ($URL)\n"
+            fi
+          done
 
-      NOTES="## New Features\n\n$NEW_FEATURES\n## Bug Fixes and Version Bumps\n\n$BUG_FIXES"
-      echo -e "$NOTES" > release_notes.md
+          # Generate release notes markdown
+          NOTES="## New Features\n\n$NEW_FEATURES\n## Bug Fixes and Version Bumps\n\n$BUG_FIXES"
+          echo -e "$NOTES" > release_notes.md
 
-      gh release create v$VERSION --title "Casemove $VERSION" --notes-file release_notes.md
+          # Create GitHub release
+          gh release create v$VERSION --title "Casemove $VERSION" --notes-file release_notes.md
