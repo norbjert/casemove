@@ -24,10 +24,43 @@ permissions:
 
 env:
   NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
+  set_version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set_version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Set version in package.json
+        id: set_version
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          echo "Setting version to $VERSION in package.json..."
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Update package.json
+          npm version $VERSION --no-git-tag-version
+
+          # Commit updated package.json
+          git add package.json
+          git commit -m "chore: bump version to $VERSION"
+          git push origin HEAD
+
+          # Create Git tag
+          git tag v$VERSION
+          git push origin v$VERSION
+
+          echo "::set-output name=version::$VERSION"
+
   linux:
-    if: ${{ inputs.linux }}
+    if: ${{ github.event.inputs.linux }}
+    needs: set_version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -35,64 +68,37 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Set version
-        run: npm version ${{ inputs.version }} --no-git-tag-version
       - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
         run: ./node_modules/.bin/electron-builder build --linux --publish always
 
   windows:
-    if: ${{ inputs.windows }}
+    if: ${{ github.event.inputs.windows }}
+    needs: set_version
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-      - name: Set version
-        run: npm version ${{ inputs.version }} --no-git-tag-version
       - run: Remove-Item package-lock.json
       - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish (installer)
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
         run: ./node_modules/.bin/electron-builder build --win nsis --publish always
-
       - name: Package and publish (portable)
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
         run: ./node_modules/.bin/electron-builder build --win portable --publish always
 
-#  aur:
-#    if: ${{ inputs.linux }}
-#    needs: linux
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v6
-#      - name: Compute checksums and update PKGBUILD
-#        run: |
-#          APPIMAGE_SHA=$(curl -sL "https://github.com/norbjert/casemove/releases/download/v${{ inputs.version }}/Casemove.AppImage" | sha256sum | awk '{print $1}')
-#          ICON_SHA=$(curl -sL "https://raw.githubusercontent.com/norbjert/casemove/v${{ inputs.version }}/assets/icon.png" | sha256sum | awk '{print $1}')
-#          sed -i "s/pkgver=.*/pkgver=${{ inputs.version }}/" aur/PKGBUILD
-#          sed -i "s/APPIMAGE_SHA256/${APPIMAGE_SHA}/" aur/PKGBUILD
-#          sed -i "s/ICON_SHA256/${ICON_SHA}/" aur/PKGBUILD
-#      - uses: KSXGitHub/github-actions-deploy-aur@master
-#        with:
-#          pkgname: casemove-bin
-#          pkgbuild: ./aur/PKGBUILD
-#          commit_username: norbjert
-#          commit_email: norbjert@users.noreply.github.com
-#          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-
   mac:
-    if: ${{ inputs.mac }}
+    if: ${{ github.event.inputs.mac }}
+    needs: set_version
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v6
@@ -100,12 +106,58 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Set version
-        run: npm version ${{ inputs.version }} --no-git-tag-version
       - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
         run: ./node_modules/.bin/electron-builder build --mac --publish always
+
+  release_notes:
+    needs: [linux, windows, mac]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install gh jq -y
+      - name: Authenticate GitHub CLI
+        run: gh auth setup-git
+      - name: Generate Release Notes
+        id: release_notes
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          echo "Generating release notes for version $VERSION..."
+
+          # Get last tag before this one
+          LAST_TAG=$(git describe --tags --abbrev=0 v$VERSION^ || echo "")
+          echo "Last tag: $LAST_TAG"
+
+          # Fetch PRs merged since last tag
+          if [ -z "$LAST_TAG" ]; then
+            PRS=$(gh pr list --state merged --json number,title,labels,url)
+          else
+            PRS=$(gh pr list --state merged --json number,title,labels,url --search "merged:>$LAST_TAG")
+          fi
+
+          # Parse PRs into sections
+          NEW_FEATURES=""
+          BUG_FIXES=""
+          echo "$PRS" | jq -c '.[]' | while read pr; do
+            TITLE=$(echo $pr | jq -r '.title')
+            URL=$(echo $pr | jq -r '.url')
+            LABELS=$(echo $pr | jq -r '.labels[].name' 2>/dev/null || "")
+
+            if echo "$LABELS" | grep -Eiq 'feature|enhancement'; then
+              NEW_FEATURES="$NEW_FEATURES- [$TITLE]($URL)\n"
+            else
+              BUG_FIXES="$BUG_FIXES- [$TITLE]($URL)\n"
+            fi
+          done
+
+          NOTES="## New Features\n\n$NEW_FEATURES\n## Bug Fixes and Version Bumps\n\n$BUG_FIXES"
+          echo -e "$NOTES" > release_notes.md
+
+          # Create GitHub release
+          gh release create v$VERSION --title "Casemove $VERSION" --notes-file release_notes.md
