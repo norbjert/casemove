@@ -1,6 +1,6 @@
 {
   "name": "casemove",
-  "version": "1.0.0",
+  "version": "3.0.0-testing-new-release-workflow",
   "productName": "Casemove",
   "main": "out/main/main.js",
   "description": "Counter-Strike 2 Storage unit manager that helps you move items in bulk without the clicking. ",
