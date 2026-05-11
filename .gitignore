@@ -29,8 +29,6 @@ npm-debug.log.*
 *.css.d.ts
 *.sass.d.ts
 *.scss.d.ts
-.DS_Store
-.DS_Store
 src/main/helpers/classes/dev/*
 src/renderer/views/purchase/*
 src/renderer/store/reducer/modalPurchase.tsx

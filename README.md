@@ -74,7 +74,6 @@ Casemove is comparable to the software "Archi Steam Farm" and since Archi has ma
 
 As with anything, It's important to know that the using this software is distributed "as is" and without any warranty. 
 
-
 ## Authors
 
 Casemove was originally created by Nombers:
