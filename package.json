@@ -120,7 +120,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/lodash": "^4.17.24",
-    "@types/node": "^22.0.0",
+    "@types/node": "^25.6.2",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
     "@types/react-test-renderer": "^19.1.0",
