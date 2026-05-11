@@ -153,13 +153,13 @@
     "vite": "^7.3.2",
     "vitest": "^4.1.4",
     "@playwright/test": "^1.50.0",
-    "@tailwindcss/postcss": "^4.2.4"
+    "@tailwindcss/postcss": "^4.3.0"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
     "@node-steam/vdf": "^2.2.0",
     "@reduxjs/toolkit": "^2.11.2",
-    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.3.0",
     "@xmldom/xmldom": "^0.9.10",
     "axios": "^1.15.2",
     "bytebuffer": "^5.0.1",
