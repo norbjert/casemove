@@ -40,3 +40,4 @@ src/renderer/store/actions/modalPurchase Actions.tsx
 src/renderer/store/actions/purchaseActions.tsx
 .stfolder
 .claude
+ToDos.md
