@@ -18,7 +18,7 @@ export async function flowLoginRegularQR(doStoreLogin: boolean): Promise<{
       console.log(`Logged into Steam as ${session.accountName}`);
 
       if (doStoreLogin) {
-        storeRefreshToken(session.accountName, session.refreshToken);
+        await storeRefreshToken(session.accountName, session.refreshToken);
       }
 
       resolve({

@@ -18,7 +18,7 @@ export async function flowLoginRegular(
       );
 
       if (doStoreLogin) {
-        storeRefreshToken(session.accountName, session.refreshToken);
+        await storeRefreshToken(session.accountName, session.refreshToken);
       }
 
       resolve({

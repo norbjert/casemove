@@ -22,7 +22,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": "release/app/dist",
-    "noImplicitAny": false
+    "noImplicitAny": false,
   },
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
 }
