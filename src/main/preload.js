@@ -1,5 +1,4 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import ByteBuffer from 'bytebuffer';
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
@@ -116,7 +115,7 @@ contextBridge.exposeInMainWorld('electron', {
     startQRLogin(shouldRemember) {
       return new Promise((resolve) => {
         ipcRenderer.removeAllListeners('login-reply');
-        
+
         ipcRenderer.send('startQRLogin', shouldRemember);
         ipcRenderer.once('login-reply', (event, arg) => {
           resolve(arg);
@@ -139,13 +138,13 @@ contextBridge.exposeInMainWorld('electron', {
     ) {
       console.log(clientjstoken);
 
-      if (authcode == '') {
+      if (authcode === '') {
         authcode = null;
       }
-      if (sharedSecret == '') {
+      if (sharedSecret === '') {
         sharedSecret = null;
       }
-      if (clientjstoken == '') {
+      if (clientjstoken === '') {
         clientjstoken = null;
       }
       return new Promise((resolve) => {
@@ -340,11 +339,11 @@ contextBridge.exposeInMainWorld('electron', {
     // Commands
     get(val) {
       const key =
-        Math.random().toString(36).substr(2, 3) +
+        Math.random().toString(36).slice(2, 3) +
         '-' +
-        Math.random().toString(36).substr(2, 3) +
+        Math.random().toString(36).slice(2, 3) +
         '-' +
-        Math.random().toString(36).substr(2, 4);
+        Math.random().toString(36).slice(2, 4);
       return new Promise((resolve) => {
         ipcRenderer.send('electron-store-get', val, key);
 

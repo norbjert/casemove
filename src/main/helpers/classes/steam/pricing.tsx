@@ -3,6 +3,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import { EventEmitter } from 'events';
 import pricesBackup from './backup/prices.json';
+
 dotenv.config();
 class MyEmitter extends EventEmitter {}
 const pricingEmitter = new MyEmitter();
@@ -159,13 +160,13 @@ class runItems {
       itemRow['pricing'] = pricingDict;
       return itemRow;
     } else {
-      const pricingDict = {
+      
+      itemRow['pricing'] = {
         buff163: 0,
         steam_listing: 0,
         skinport: 0,
         bitskins: 0,
       };
-      itemRow['pricing'] = pricingDict;
       return itemRow;
     }
   }

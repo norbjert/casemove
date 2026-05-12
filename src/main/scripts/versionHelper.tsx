@@ -18,19 +18,29 @@ async function getGithubVersion(platform: string): Promise<GithubResponse> {
             // Find the relevant download link
             switch (platform) {
               case 'win32':
-                value.assets.forEach((element) => {
-                  if (element.name.includes('.exe') && !element.name?.toLowerCase()?.includes('blockmap')) {
-                    downloadLink = element.browser_download_url;
-                  }
-                });
+                value.assets.forEach(
+                  (element: { name: string; browser_download_url: string }) => {
+                    if (
+                      element.name.includes('.exe') &&
+                      !element.name?.toLowerCase()?.includes('blockmap')
+                    ) {
+                      downloadLink = element.browser_download_url;
+                    }
+                  },
+                );
                 break;
 
               case 'linux':
-                value.assets.forEach((element) => {
-                  if (element.name.includes('.AppImage')) {
-                    downloadLink = element.browser_download_url;
-                  }
-                });
+                value.assets.forEach(
+                  (element: {
+                    name: string | string[];
+                    browser_download_url: string;
+                  }) => {
+                    if (element.name.includes('.AppImage')) {
+                      downloadLink = element.browser_download_url;
+                    }
+                  },
+                );
                 break;
 
               default:

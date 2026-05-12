@@ -1,6 +1,6 @@
 import 'core-js/stable';
 import { createRequire } from 'module';
-import { BrowserWindow, app, ipcMain, session, shell } from 'electron';
+import { BrowserWindow, app, ipcMain, shell } from 'electron';
 import * as fs from 'fs';
 import GlobalOffensive from 'globaloffensive';
 import os from 'os';
@@ -81,7 +81,7 @@ async function checkSteam(): Promise<{
   pid?: number;
   status: boolean;
 }> {
-  let steamName = 'steam.exe';
+  const steamName = 'steam.exe';
   if (process.platform == 'linux') {
     return {
       status: false,
@@ -91,10 +91,9 @@ async function checkSteam(): Promise<{
     return {
       status: false,
     };
-    steamName = 'steam_osx';
   }
   return await find('name', steamName, true)
-    .then(function (list) {
+    .then(function (list: string | any[]) {
       if (list.length > 0) {
         return {
           pid: list[0].pid,
@@ -105,7 +104,7 @@ async function checkSteam(): Promise<{
         status: false,
       };
     })
-    .catch(function (_err) {
+    .catch(function (_err: any) {
       return {
         status: false,
       };
@@ -183,7 +182,7 @@ const createWindow = async () => {
       enableBlinkFeatures: 'CSSColorSchemeUARendering',
     },
   });
-  mainWindow.webContents.session.clearStorageData();
+  await mainWindow.webContents.session.clearStorageData();
 
   ipcMain.on('download', (_event, info) => {
     const fileP = path.join(os.homedir(), '/Downloads/casemove.csv');
@@ -194,9 +193,9 @@ const createWindow = async () => {
 
   const htmlPath = resolveHtmlPath('index.html');
   if (process.env.NODE_ENV === 'development') {
-    mainWindow.loadURL(htmlPath);
+    await mainWindow.loadURL(htmlPath);
   } else {
-    mainWindow.loadFile(htmlPath);
+    await mainWindow.loadFile(htmlPath);
   }
 
   mainWindow.on('ready-to-show', () => {
@@ -263,7 +262,6 @@ app.on('window-all-closed', () => {
 
 const myWindow = null as any;
 const gotTheLock = app.requestSingleInstanceLock();
-const reactNombers = false;
 
 if (!gotTheLock) {
   app.quit();
@@ -281,35 +279,8 @@ if (!gotTheLock) {
       currentLocale = app.getLocale();
       console.log('Currentlocal', currentLocale);
 
-      if (process.env.NODE_ENV === 'development' && reactNombers) {
-        let reactDevToolsPath = '';
-        // on windows
-        console.log(process.platform);
-        if (process.platform == 'win32') {
-          reactDevToolsPath = path.join(
-            os.homedir(),
-            '/AppData/Local/Google/Chrome/User Data/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.9_0'
-          );
-        }
 
-        // On linux
-        if (process.platform == 'linux') {
-          reactDevToolsPath = path.join(
-            os.homedir(),
-            '/.config/google-chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.9_0'
-          );
-        }
-        // on macOS
-        if (process.platform == 'darwin') {
-          reactDevToolsPath = path.join(
-            os.homedir(),
-            '/Library/Application Support/Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.9_0'
-          );
-        }
-
-        await session.defaultSession.loadExtension(reactDevToolsPath);
-      }
-      createWindow();
+      await createWindow();
       app.on('activate', () => {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
@@ -366,10 +337,8 @@ async function sendLoginReply(event: any) {
 
 ipcMain.handle('check-steam', async () => {
   const pid = await checkSteam();
-  if (pid.status) {
-    return true;
-  }
-  return false;
+  return pid.status;
+
 });
 
 ipcMain.handle('close-steam', async () => {
@@ -392,13 +361,13 @@ emitterAccount.on(
     secretKey: string | null
   ) => {
     // Success
-    user.once('accountInfo', (displayName) => {
+    user.once('accountInfo', (displayName: string) => {
       console.log('Logged into Steam as main ' + displayName);
       getValue('pricing.currency').then((returnValue) => {
         if (returnValue == undefined) {
           setValue(
             'pricing.currency',
-            currencyCodes?.[user?.wallet?.currency] || 'USD'
+            currencyCodes?.[user?.wallet?.currency] || 'USD',
           );
         }
       });
@@ -437,7 +406,7 @@ emitterAccount.on(
                         username,
                         displayName,
                         user.logOnResult.client_supplied_steamid,
-                        secretKey
+                        secretKey,
                       );
                     }
                     ClassLoginResponse.setResponseStatus('loggedIn');
@@ -504,7 +473,7 @@ emitterAccount.on(
         }
         if (value == 'time') {
           console.log(
-            'GC didnt start in time, adding CSGO to the library and retrying.'
+            'GC didnt start in time, adding CSGO to the library and retrying.',
           );
           user.requestFreeLicense([730], function (err, packageIds, appIds) {
             if (err) {
@@ -639,7 +608,9 @@ ipcMain.on('qrLogin:cancel', async () => {
   emitterAccount.emit('qrLogin:cancel');
 });
 
-async function cancelLogin(user) {
+async function cancelLogin(user: {
+  removeAllListeners: (arg0: string) => void;
+}) {
   console.log('Cancel login');
   user.removeAllListeners('loggedOn');
   user.removeAllListeners('loginKey');
@@ -647,7 +618,7 @@ async function cancelLogin(user) {
   user.removeAllListeners('error');
 }
 
-function sendUpdaterStatusToWindow(text) {
+function sendUpdaterStatusToWindow(text: string) {
   log.info(text);
   mainWindow?.webContents.send('updater', [text]);
 }
@@ -661,7 +632,7 @@ async function startEvents(csgo, user) {
     mainWindow?.webContents.send('pricing', [message]);
   });
   ipcMain.on('getPrice', async (_event, info) => {
-    pricing.handleItem(info);
+    await pricing.handleItem(info);
   });
 
   // Trade up handlers
@@ -685,7 +656,7 @@ async function startEvents(csgo, user) {
       14: '0e000a00',
     };
     const idsToUse = [] as any;
-    idsToProcess.forEach((element) => {
+    idsToProcess.forEach((element: string) => {
       idsToUse.push(parseInt(element));
     });
     const tradeupPayLoad = new ByteBuffer(
@@ -713,7 +684,7 @@ async function startEvents(csgo, user) {
   // Inventory events
   async function startChangeEvents() {
     console.log('Start events');
-    csgo.on('itemRemoved', (item) => {
+    csgo.on('itemRemoved', (item: { id?: any }) => {
       if (
         !Object.keys(item).includes('casket_id') &&
         !Object.keys(item).includes('casket_contained_item_count')
@@ -743,7 +714,7 @@ async function startEvents(csgo, user) {
       });
     });
 
-    csgo.on('itemAcquired', (item) => {
+    csgo.on('itemAcquired', (item: { id?: any }) => {
       if (
         !Object.keys(item).includes('casket_id') &&
         !Object.keys(item).includes('casket_contained_item_count')
@@ -798,19 +769,19 @@ async function startEvents(csgo, user) {
 
   // User listeners
   // Steam Connection
-  user.on('error', (eresult, msg) => {
-    console.log('main', eresult, msg);
+  user.on('error', (result: any, msg: any) => {
+    console.log('main', result, msg);
     mainWindow?.webContents.send('userEvents', [2, 'fatalError']);
     clearForNewSession();
   });
-  user.on('disconnected', (eresult, msg) => {
-    console.log(eresult, msg);
+  user.on('disconnected', (result: any, msg: any) => {
+    console.log(result, msg);
     mainWindow?.webContents.send('userEvents', [2, 'disconnected']);
   });
   user.on('loggedOn', () => {
     mainWindow?.webContents.send('userEvents', [2, 'reconnected']);
   });
-  user.on('wallet', (hasWallet, currency, balance) => {
+  user.on('wallet', (hasWallet: any, currency: any, balance: any) => {
     const walletToSend = { hasWallet, currency, balance };
     walletToSend.currency = currencyCodes?.[walletToSend?.currency];
     console.log('Wallet update: ', balance);
@@ -825,8 +796,8 @@ async function startEvents(csgo, user) {
     csgo.removeAllListeners('itemAcquired');
   }
   ipcMain.on('refreshInventory', async () => {
-    removeInventoryListeners();
-    startChangeEvents();
+    await removeInventoryListeners();
+    await startChangeEvents();
 
     fetchItemClass.convertInventory(csgo.inventory).then((returnValue) => {
       tradeUpClass.getTradeUp(returnValue).then((newReturnValue) => {
@@ -847,14 +818,17 @@ async function startEvents(csgo, user) {
   // Rename Storage units
   ipcMain.on('renameStorageUnit', async (event, itemID, newName) => {
     csgo.nameItem(0, itemID, newName);
-    csgo.once('itemCustomizationNotification', (itemIds, notificationType) => {
-      if (
-        notificationType ==
-        GlobalOffensive.ItemCustomizationNotification.NameItem
-      ) {
-        event.reply('renameStorageUnit-reply', [1, itemIds[0]]);
-      }
-    });
+    csgo.once(
+      'itemCustomizationNotification',
+      (itemIds: any[], notificationType: any) => {
+        if (
+          notificationType ==
+          GlobalOffensive.ItemCustomizationNotification.NameItem
+        ) {
+          event.reply('renameStorageUnit-reply', [1, itemIds[0]]);
+        }
+      },
+    );
   });
 
   // Set item positions
@@ -869,8 +843,7 @@ async function startEvents(csgo, user) {
   // Set item positions
   ipcMain.on(
     'setItemEquipped',
-    async (_event, item_id, item_name, itemClass) => {
-      item_name;
+    async (_event, item_id, itemClass) => {
 
       await csgo._send(
         Language.k_EMsgGCAdjustItemEquippedState,
@@ -889,13 +862,13 @@ async function startEvents(csgo, user) {
   ipcMain.on(
     'removeFromStorageUnit',
     async (event, casketID, itemID, fastMode) => {
-      removeInventoryListeners();
+      await removeInventoryListeners();
       csgo.removeFromCasket(casketID, itemID);
 
       if (fastMode == false) {
         csgo.once(
           'itemCustomizationNotification',
-          (itemIds, notificationType) => {
+          (itemIds: string | any[], notificationType: any) => {
             if (
               notificationType ==
               GlobalOffensive.ItemCustomizationNotification.CasketRemoved
@@ -903,7 +876,7 @@ async function startEvents(csgo, user) {
               console.log(itemIds + ' got an item removed from it');
               event.reply('removeFromStorageUnit-reply', [1, itemIds[0]]);
             }
-          }
+          },
         );
       }
     }
@@ -936,28 +909,31 @@ async function startEvents(csgo, user) {
 
   // Get storage unit contents
   ipcMain.on('getCasketContents', async (event, casketID, _casketName) => {
-    await csgo.getCasketContents(casketID, async function (err, items) {
-      if (!items || typeof items !== 'object') {
-        event.reply('getCasketContent-reply', [0]);
-        return;
-      }
-      fetchItemClass.convertStorageData(items).then((returnValue) => {
-        tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
-          event.reply('getCasketContent-reply', [1, newReturnValue]);
-          console.log('Casket contains: ', newReturnValue.length);
+    await csgo.getCasketContents(
+      casketID,
+      async function (_err: any, items: any) {
+        if (!items || typeof items !== 'object') {
+          event.reply('getCasketContent-reply', [0]);
+          return;
+        }
+        fetchItemClass.convertStorageData(items).then((returnValue) => {
+          tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
+            event.reply('getCasketContent-reply', [1, newReturnValue]);
+            console.log('Casket contains: ', newReturnValue.length);
+          });
         });
-      });
-    });
+      },
+    );
   });
   // Get commands from Renderer
   ipcMain.on('signOut', async () => {
-    clearForNewSession();
+    await clearForNewSession();
   });
 
   async function clearForNewSession() {
     console.log('Signout');
     // Remove for CSGO
-    removeInventoryListeners();
+    await removeInventoryListeners();
     csgo.removeAllListeners('connectedToGC');
     csgo.removeAllListeners('disconnectedFromGC');
 
@@ -1019,10 +995,7 @@ setValue('os', process.platform);
 // Kinda store
 ipcMain.on('electron-store-getAccountDetails', async (event) => {
   const accountDetails = await getValue('account');
-  event.returnValue = event.reply(
-    'electron-store-getAccountDetails-reply',
-    accountDetails
-  );
+  event.returnValue = event.reply('electron-store-getAccountDetails-reply', accountDetails);
 });
 
 ipcMain.on('electron-store-deleteAccountDetails', async (_event, username) => {
