@@ -87,12 +87,6 @@ After Nombers abandonded the Open-Source project in favor of his subscription-ba
 
 ----
 
-## How to build
-
-TODO: add updated build instructions here
-
-----
-
 ## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -112,3 +106,50 @@ Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/
 Hard to diagnose the exact issue, ill fix it if i ever find out what the exact problem is.
 - Graffitis dont have pricing.
 - souvenir charms
+
+----
+
+## How to build
+
+### Prerequisites
+
+- [Node.js 22+](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+### Clone and install
+
+```bash
+git clone https://github.com/norbjert/casemove.git
+cd casemove
+npm install
+```
+
+### Development
+
+Run a live dev environment:
+
+```bash
+npm run dev
+```
+
+Build and Package for your current platform
+
+```bash
+npm run package
+```
+
+This will produce an installer/package in the `dist/` folder.
+
+### Package for a specific platform
+
+```bash
+# Windows — NSIS installer + portable exe
+./node_modules/.bin/electron-builder build --win nsis
+./node_modules/.bin/electron-builder build --win portable
+
+# Linux
+./node_modules/.bin/electron-builder build --linux
+
+# macOS
+./node_modules/.bin/electron-builder build --mac
+```
