@@ -6,7 +6,7 @@
   "main": "./dist/main/main.js",
   "author": {
     "name": "Norbjert",
-    "email": "norbjert1@gmail.com",
+    "email": "norbjert@users.noreply.github.com",
     "url": "https://github.com/norbjert/casemove"
   },
   "scripts": {
@@ -21,6 +21,6 @@
     "steam-session": "^1.9.4"
   },
   "overrides": {
-    "protobufjs": "^7.5.5"
+    "protobufjs": "^7.5.6"
   }
 }
