@@ -21,8 +21,8 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "outDir": "release/app/dist",
-    "noImplicitAny": false,
+    "outDir": "release/build",
+    "noImplicitAny": false
   },
-  "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
+  "exclude": ["test", "release/build", ".erb/dll"]
 }
