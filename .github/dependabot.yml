@@ -30,13 +30,6 @@ updates:
       - dependency-name: "vite"
         versions: [">=8.0.0"]
 
-  - package-ecosystem: "npm"
-    directory: "/release/app"
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "chore"
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
