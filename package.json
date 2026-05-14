@@ -215,7 +215,7 @@
     "form-data": "^4.0.0",
     "tough-cookie": "^4.1.3",
     "qs": "^6.14.1",
-    "protobufjs": "^7.5.5",
+    "protobufjs": "^7.5.6",
     "chalk": "^4.1.2",
     "rimraf": "^3.0.2",
     "minimatch": "^9.0.7",
