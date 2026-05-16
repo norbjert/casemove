@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import { useState } from 'react';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 import {
   ArchiveBoxIcon,
   RectangleStackIcon,
@@ -72,40 +72,27 @@ function Content() {
   return (
     <>
       <div className="h-screen bg-dark-level-one">
-        <Transition show={sidebarOpen} as={Fragment}>
-          <Dialog
-            as="div"
-            className="relative z-40 lg:hidden"
-            onClose={setSidebarOpen}
-          >
-            <Transition.Child
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
-            </Transition.Child>
+        <Dialog
+          open={sidebarOpen}
+          as="div"
+          className="relative z-40 lg:hidden"
+          onClose={setSidebarOpen}
+        >
+          <DialogBackdrop
+            transition
+            className="fixed inset-0 bg-gray-600 bg-opacity-50 transition-opacity ease-linear duration-300 data-[closed]:opacity-0"
+          />
 
-            <div className="fixed inset-0 flex z-40">
-              <Transition.Child
-                as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-              ></Transition.Child>
-              <div className="flex-shrink-0 w-14" aria-hidden="true">
-                {/* Dummy element to force sidebar to shrink to fit close icon */}
-              </div>
+          <div className="fixed inset-0 flex z-40">
+            <DialogPanel
+              transition
+              className="ease-in-out duration-300 data-[closed]:-translate-x-full"
+            />
+            <div className="flex-shrink-0 w-14" aria-hidden="true">
+              {/* Dummy element to force sidebar to shrink to fit close icon */}
             </div>
-          </Dialog>
-        </Transition>
+          </div>
+        </Dialog>
 
         <div className="">
           <main className="flex-1 pb-8 bg-dark-level-one">

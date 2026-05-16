@@ -13,7 +13,6 @@ import {
   moveFromClearAll,
   moveFromsetSearchField,
 } from 'renderer/store/actions/moveFromActions';
-import MoveModal from '../../shared/modals & notifcations/modalMove';
 import { moveModalQuerySet } from 'renderer/store/actions/modalMove actions';
 import PricingAmount from '../../shared/filters/pricingAmount';
 import { downloadReport } from 'renderer/functionsClasses/downloadReport';
@@ -108,8 +107,6 @@ function content() {
   return (
     <div className="bg-white mt-8">
       {/* Filters */}
-
-      <MoveModal />
 
       <Disclosure
         as="section"

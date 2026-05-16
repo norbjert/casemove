@@ -7,10 +7,8 @@ import {
   ArrowsRightLeftIcon,
   ArrowUpTrayIcon,
 } from '@heroicons/react/24/solid';
-// import MoveModal from '../../shared/modals & notifcations/modalMove';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../shared/filters/inventoryFunctions';
-import MoveModal from '../../shared/modals & notifcations/modalMove';
 import { moveModalQuerySet } from 'renderer/store/actions/modalMove actions';
 import {
   moveToClearAll,
@@ -109,8 +107,6 @@ function content() {
   return (
     <div className="bg-white mt-8 dark:bg-dark-level-one">
       {/* Filters */}
-
-      <MoveModal />
 
       <Disclosure
         as="section"
