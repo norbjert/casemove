@@ -129,8 +129,6 @@ export default function OverallMajor() {
   );
   const storageData = getObject(storageFiltered, seenNamesStorage, settingsdata.overview.by, PricingConverter);
 
-  console.log(overallData, inventoryData, storageData);
-
   const data = {
     labels: overallData.slice(0, 20).map((itemRow) => itemRow[0]?.slice(0, 40)),
 

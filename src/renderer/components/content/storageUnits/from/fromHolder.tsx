@@ -48,11 +48,9 @@ function StorageUnits() {
     let i = 0;
     const htmlElements = document.getElementsByClassName('removeXButton');
     Array.from(htmlElements).forEach(function (element) {
-      console.log(element);
     });
     while (true) {
       const htmlElement = document.getElementById(`removeX-${i}`);
-      console.log(htmlElement);
       if (htmlElement != undefined) {
         htmlElement.click();
       } else {

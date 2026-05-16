@@ -19,9 +19,6 @@ export default function RightGraph() {
     if (Fitting == undefined) {
         Fitting = EmptyField
       }
-    console.log(by)
-
-   
   
  
   

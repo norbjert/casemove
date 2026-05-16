@@ -6,7 +6,6 @@ import { classNames, onSortChange } from 'renderer/components/content/shared/fil
 import itemRarities from 'renderer/components/content/shared/rarities';
 import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { State } from 'renderer/interfaces/states';
-//import { sortDataFunction } from 'renderer/context/inventoryFiltersContext';
 import { setRenameModal } from 'renderer/store/actions/modalMove actions';
 import { pricing_add_to_requested } from 'renderer/store/actions/pricingActions';
 import { tradeUpAddRemove } from 'renderer/store/actions/tradeUpActions';
@@ -430,10 +429,6 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                       {projectRow.item_paint_wear !== undefined
                         ? projectRow.item_wear_name
                         : ''}
-                      {/*
-                      {isShown == project.item_id  && project.item_paint_wear !== undefined?
-                        <div>{project.item_paint_wear}</div>
-                       : ''} */}
                     </span>
                   </span>
                 </div>

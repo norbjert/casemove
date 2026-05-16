@@ -63,7 +63,6 @@ export class HandleStorageData {
 
   // Get storage unit
   async _getStorageUnitData(storageRow: ItemRow) {
-    console.log(storageRow.item_id, storageRow.item_customname);
     const storageResult = await window.electron.ipcRenderer.getStorageUnitData(
       storageRow.item_id,
       storageRow.item_customname

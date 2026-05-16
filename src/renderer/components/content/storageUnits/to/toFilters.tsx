@@ -20,9 +20,9 @@ import InventoryFiltersDisclosure from '../../Inventory/filtersDisclosure';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
-import { toGetFilterManager } from './toFilterSetup';
+import { getStorageFilterManager } from '../shared/storageFilterSetup';
 import { addMajorsFilters } from 'renderer/functionsClasses/filters/filters';
-const ClassFilters = toGetFilterManager()
+const ClassFilters = getStorageFilterManager()
 
 function content() {
   const dispatch = useDispatch();

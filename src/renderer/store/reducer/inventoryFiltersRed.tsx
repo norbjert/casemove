@@ -104,7 +104,6 @@ const inventoryFiltersReducer = (state = initialState, action) => {
         categoryFilter: newFilters,
       };
     case 'INVENTORY_ADD_RARITY_FILTER':
-      console.log(action.payload);
       let newRarity = state.rarityFilter;
       if (newRarity.includes(action.payload)) {
         newRarity.splice(newRarity.indexOf(action.payload), 1);

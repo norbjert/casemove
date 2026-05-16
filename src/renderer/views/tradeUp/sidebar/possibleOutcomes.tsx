@@ -24,7 +24,6 @@ export default function PossibleOutcomes() {
   const settingsData = useSelector((state: any) => state.settingsReducer);
   const [outcomesRequested, setOutcomesRequested] = useState(0);
   const dispatch = useDispatch();
-  console.log(tradeUpData.possibleOutcomes.length, tradeUpData.tradeUpProducts.length)
 
   let totalPrice = 0;
   tradeUpData.tradeUpProducts.forEach((element) => {

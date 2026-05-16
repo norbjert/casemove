@@ -210,7 +210,6 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
     if (!hasAskedCloseSteam && currentState.settingsReducer.steamLoginShow) {
       setHasAskedCloseSteam(true);
       const steamRunning = await window.electron.ipcRenderer.checkSteam();
-      console.log('steam running', steamRunning);
       if (steamRunning) {
         setCloseSteamOpen(true);
         return;
@@ -312,7 +311,6 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
       .startQRLogin(storeRefreshToken)
       .then((responseStatus) => {
         // Notification and react
-        console.log('response status', responseStatus);
         const HandleClass = new HandleLogin(responseStatus.responseStatus);
         HandleClass.relevantFunction();
         if (responseStatus.responseStatus == 'loggedIn') {

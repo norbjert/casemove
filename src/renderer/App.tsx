@@ -176,7 +176,6 @@ function AppContent() {
 
   async function handleSubMessage(messageValue, settingsData) {
     if (settingsData.fastMove && modalData.query.length > 0) {
-      console.log('Command blocked', modalData.moveOpen, settingsData.fastMove);
       setIsListening(false);
       return;
     }
@@ -210,7 +209,6 @@ function AppContent() {
   const [getVersion, setVersion] = useState('');
   async function getUpdate() {
     const doUpdate = await window.electron.ipcRenderer.needUpdate();
-    console.log(doUpdate);
     setVersion('v' + doUpdate.currentVersion);
     setShouldUpdate(doUpdate.requireUpdate);
   }
@@ -225,12 +223,10 @@ function AppContent() {
   if (firstRun == false) {
     setFirstRun(true);
     window.electron.ipcRenderer.on('pricing', (message) => {
-      console.log(message);
       dispatch(pricing_addPrice(message[0]));
     });
 
-    window.electron.ipcRenderer.on('updater', (message) => {
-      console.log(message);
+    window.electron.ipcRenderer.on('updater', (_message) => {
     });
   }
 

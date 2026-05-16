@@ -27,7 +27,6 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
     let totalToGo = 1000 - toReducer.activeStoragesAmount;
     for (const [, value] of Object.entries(toReducer.totalToMove)) {
       const valued = value as any;
-      console.log(valued);
       if (valued[0] != projectRow.item_id) {
         totalToGo -= valued[2].length;
       }

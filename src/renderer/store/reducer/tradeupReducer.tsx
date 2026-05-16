@@ -15,7 +15,6 @@ const initialState: TradeUpActions = {
     switch (action.type) {
       case 'TRADEUP_ADD_REMOVE':
           const toMoveAlreadyExists = state.tradeUpProducts.filter(row => row.item_id != action.payload.item_id)
-          console.log(action.payload.item_id, toMoveAlreadyExists)
           if (toMoveAlreadyExists.length == state.tradeUpProducts.length) {
             toMoveAlreadyExists.push(action.payload)
           }

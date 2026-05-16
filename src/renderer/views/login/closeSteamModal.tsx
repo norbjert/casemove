@@ -9,7 +9,6 @@ import { setSteamLoginShow } from '../../store/actions/settings'
 
 export default function SteamCloseModal({ open, setOpen, loginWithouClosingSteam, setLoadingButton }) {
   const [isCheck, setIsCheck] = useState(false)
-  console.log('isCheck', isCheck)
   const dispatch = useDispatch()
 
   async function setSetting() {
@@ -32,8 +31,6 @@ export default function SteamCloseModal({ open, setOpen, loginWithouClosingSteam
     setLoadingButton(false)
     setOpen(false)
   }
-
-  console.log('open', open)
 
   return (
     <Dialog open={open} as="div" className="relative z-10" onClose={() => cancel()}>

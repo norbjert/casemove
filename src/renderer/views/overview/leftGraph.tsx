@@ -22,9 +22,6 @@ export default function LeftGraph() {
     if (Fitting == undefined) {
       Fitting = EmptyField
     }
-    console.log(Fitting)
-
-   
   
  
   

@@ -29,7 +29,6 @@ const inventoryReducer = (state = initialState, action) => {
         totalAccountItems: storageTotal
       }
     case 'INVENTORY_STORAGES_ADD_TO':
-      console.log(state)
       const add_to_filtered = state.storageInventory?.filter(id => id.storage_id != action.payload.casketID) || []
       const add_to_filtered_raw = state.storageInventoryRaw?.filter(id => id.storage_id != action.pay) || []
       action.payload.storageData.forEach(storageRow => add_to_filtered.push(storageRow))

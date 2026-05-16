@@ -141,12 +141,12 @@ export async function addMajorsFilters(itemArray: Array<ItemRow>) {
     seenMajors.push(itemRow.major);
   });
 
-  Object.values(itemSubCategories.majors).forEach((major) => {
-    if (seenMajors.includes(major.name)) {
+  itemSubCategories.majors.forEach((major) => {
+    if (seenMajors.includes(major)) {
       returnArray.push({
         include: true,
-        label: major.name,
-        valueToCheck: major.key,
+        label: major,
+        valueToCheck: major,
         commandType: 'checkMajor',
       });
     }
