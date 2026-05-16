@@ -7,7 +7,6 @@ import {
   classNames,
   sortDataFunction,
 } from '../../shared/filters/inventoryFunctions';
-import { useState } from 'react';
 import { NoSymbolIcon, FireIcon } from '@heroicons/react/24/solid';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { State } from 'renderer/interfaces/states';
@@ -79,16 +78,6 @@ function StorageUnits() {
     }
   }
 
-
-  async function storageResult() {
-    const storageResult = await sortDataFunction(
-      toReducer.sortValue,
-      inventoryTouse,
-      pricesResult.prices,
-      settingsData?.source?.title
-    );
-    setStorage(storageResult);
-  }
   useEffect(() => {
     async function run() {
       const storageResultData = await sortDataFunction(
@@ -108,13 +97,12 @@ function StorageUnits() {
     pricesResult.prices,
     settingsData?.source?.title,
   ]);
-  if (toReducer.sortBack == true) {
-      const storageData =
-        toReducer.sortBack ? [...getStorage].reverse() : getStorage;
+  if (toReducer.sortBack) {
+    toReducer.sortBack ? [...getStorage].reverse() : getStorage;
   }
   let inventoryMoveable = searchFilter(getStorage, inventoryFilter, toReducer);
   inventoryMoveable = inventoryMoveable.filter(function (item) {
-    return item.item_moveable == true;
+    return item.item_moveable;
   });
 
   return (

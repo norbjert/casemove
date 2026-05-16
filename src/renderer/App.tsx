@@ -164,9 +164,9 @@ function AppContent() {
   }
 
   // Forward user event to Store
-  if (isListening == false) {
+  if (!isListening) {
     setFirstTimeSettings();
-    window.electron.ipcRenderer.userEvents().then((messageValue) => {
+    window.Electron.ipcRenderer.userEvents().then((messageValue) => {
       handleSubMessage(messageValue, settingsData);
     });
 
@@ -194,12 +194,12 @@ function AppContent() {
   }
 
   async function logOut() {
-    window.electron.ipcRenderer.logUserOut();
+    window.ElectronAPI.ipcRenderer.logUserOut();
     dispatch(signOut());
   }
 
   async function retryConnection() {
-    window.electron.ipcRenderer.retryConnection();
+    window.Electron.ipcRenderer.retryConnection();
   }
 
   // Should update status
@@ -208,7 +208,7 @@ function AppContent() {
 
   const [getVersion, setVersion] = useState('');
   async function getUpdate() {
-    const doUpdate = await window.electron.ipcRenderer.needUpdate();
+    const doUpdate = await window.Electron.ipcRenderer.needUpdate();
     console.log(doUpdate);
     setVersion('v' + doUpdate.currentVersion);
     setShouldUpdate(doUpdate.requireUpdate);
@@ -223,12 +223,12 @@ function AppContent() {
 
   if (firstRun == false) {
     setFirstRun(true);
-    window.electron.ipcRenderer.on('pricing', (message) => {
+    window.Electron.ipcRenderer.on('pricing', (message) => {
       console.log(message);
       dispatch(pricing_addPrice(message[0]));
     });
 
-    window.electron.ipcRenderer.on('updater', (message) => {
+    window.Electron.ipcRenderer.on('updater', (message) => {
       console.log(message);
     });
   }
