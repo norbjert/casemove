@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import {
@@ -62,9 +63,12 @@ function Content() {
     }
   });
   totalAmount = totalAmount.toFixed(0);
-  addMajorsFilters(inventory.combinedInventory).then((returnValue) => {
-    ClassFilters.loadFilter(returnValue, true)
-  })
+  useEffect(() => {
+    addMajorsFilters(inventory.combinedInventory).then((returnValue) => {
+      ClassFilters.loadFilter(returnValue, true)
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inventory.combinedInventory]);
 
 
 

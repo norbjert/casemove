@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -69,17 +70,25 @@ export default function InventoryFiltersDisclosure({ClassFilters}) {
       }
     });
   });
-  const categoriesToRemove: Array<Filter> = []
-  if (inventoryFilters.inventoryFilter.length > totalSeen) {
-    inventoryFilters.inventoryFilter.forEach(element => {
-      if (!_.some(ignoreCategories, element) && element.label != 'Storage moveable') {
-        categoriesToRemove.push(element)
-      }
+  useEffect(() => {
+    const seen: Array<Filter> = [];
+    Object.entries(ClassFilters.filters as Filters).forEach(([_key, filterObject]) => {
+      filterObject.forEach((filter) => {
+        if (inventoryFilters.inventoryFilter.some(filt => _.isEqual(filt, filter))) {
+          seen.push(filter);
+        }
+      });
     });
-  }
-  categoriesToRemove.forEach(element => {
-    addRemoveFilter(element)
-  });
+
+    if (inventoryFilters.inventoryFilter.length > seen.length) {
+      inventoryFilters.inventoryFilter.forEach(element => {
+        if (!_.some(seen, element) && element.label != 'Storage moveable') {
+          addRemoveFilter(element);
+        }
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inventoryFilters.inventoryFilter]);
 
 
 

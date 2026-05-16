@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { RequestPrices } from 'renderer/functionsClasses/prices';
@@ -43,21 +43,22 @@ function content() {
   } else {
     inventoryToUse = inventoryFilters.inventoryFiltered;
   }
-  const PricingRequest = new RequestPrices(dispatch, settingsData, pricesResult)
-  PricingRequest.handleRequestArray(inventoryToUse)
+  useEffect(() => {
+    const PricingRequest = new RequestPrices(dispatch, settingsData, pricesResult)
+    PricingRequest.handleRequestArray(inventoryToUse)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inventoryToUse]);
 
-  async function storageResult() {
-    const storageResult = await sortDataFunction(
+  useEffect(() => {
+    sortDataFunction(
       inventoryFilters.sortValue,
       inventoryToUse,
       pricesResult.prices,
       settingsData?.source?.title
-    );
+    ).then(result => setInventory(result));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inventoryToUse, inventoryFilters.sortValue, inventoryFilters.sortBack]);
 
-    setInventory(storageResult);
-  }
-
-  storageResult();
   if (inventoryFilters.sortBack == true) {
     getInventory.reverse();
   }
