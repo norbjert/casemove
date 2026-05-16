@@ -1,4 +1,4 @@
-import { Dialog, Menu, Transition } from '@headlessui/react';
+import { Dialog, DialogBackdrop, DialogPanel, Menu } from '@headlessui/react';
 import {
   ArchiveBoxIcon,
   BeakerIcon,
@@ -15,7 +15,7 @@ import {
   ChevronUpDownIcon,
   ArrowUpTrayIcon,
 } from '@heroicons/react/24/solid';
-import { Fragment, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Link,
@@ -34,6 +34,7 @@ import {
 } from './components/content/shared/filters/inventoryFunctions';
 import Logo from './components/content/shared/iconsLogo/logo 2';
 import TradeResultModal from './components/content/shared/modals & notifcations/modalTradeResult';
+import MoveModal from './components/content/shared/modals & notifcations/modalMove';
 import itemRarities from './components/content/shared/rarities';
 import TitleBarWindows from './components/content/shared/titleBarWindows';
 import StorageUnitsComponent from './components/content/storageUnits/from/Content';
@@ -166,7 +167,7 @@ function AppContent() {
   // Forward user event to Store
   if (!isListening) {
     setFirstTimeSettings();
-    window.Electron.ipcRenderer.userEvents().then((messageValue) => {
+    window.electron.ipcRenderer.userEvents().then((messageValue) => {
       handleSubMessage(messageValue, settingsData);
     });
 
@@ -194,12 +195,12 @@ function AppContent() {
   }
 
   async function logOut() {
-    window.ElectronAPI.ipcRenderer.logUserOut();
+    window.electron.ipcRenderer.logUserOut();
     dispatch(signOut());
   }
 
   async function retryConnection() {
-    window.Electron.ipcRenderer.retryConnection();
+    window.electron.ipcRenderer.retryConnection();
   }
 
   // Should update status
@@ -208,7 +209,7 @@ function AppContent() {
 
   const [getVersion, setVersion] = useState('');
   async function getUpdate() {
-    const doUpdate = await window.Electron.ipcRenderer.needUpdate();
+    const doUpdate = await window.electron.ipcRenderer.needUpdate();
     console.log(doUpdate);
     setVersion('v' + doUpdate.currentVersion);
     setShouldUpdate(doUpdate.requireUpdate);
@@ -223,12 +224,12 @@ function AppContent() {
 
   if (firstRun == false) {
     setFirstRun(true);
-    window.Electron.ipcRenderer.on('pricing', (message) => {
+    window.electron.ipcRenderer.on('pricing', (message) => {
       console.log(message);
       dispatch(pricing_addPrice(message[0]));
     });
 
-    window.Electron.ipcRenderer.on('updater', (message) => {
+    window.electron.ipcRenderer.on('updater', (message) => {
       console.log(message);
     });
   }
@@ -255,56 +256,33 @@ function AppContent() {
           'min-h-full dark:bg-dark-level-one h-screen'
         )}
       >
-        <Transition show={sidebarOpen} as={Fragment}>
-          <Dialog
-            as="div"
-            className="fixed inset-0 flex z-40 dark:bg-dark-level-two lg:hidden"
-            onClose={setSidebarOpen}
+        <Dialog
+          open={sidebarOpen}
+          as="div"
+          className="fixed inset-0 flex z-40 dark:bg-dark-level-two lg:hidden"
+          onClose={setSidebarOpen}
+        >
+          <DialogBackdrop
+            transition
+            className="fixed inset-0 bg-gray-600 bg-opacity-50 transition-opacity ease-linear duration-300 data-[closed]:opacity-0"
+          />
+          <DialogPanel
+            transition
+            className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white transition ease-in-out duration-300 data-[closed]:-translate-x-full"
           >
-            <Transition.Child
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true" />
-            </Transition.Child>
-            <Transition.Child
-              as={Fragment}
-              enter="transition ease-in-out duration-300 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
-            >
-              <div className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-in-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in-out duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="absolute top-0 right-0 -mr-12 pt-2">
-                    <button
-                      type="button"
-                      className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                      onClick={() => setSidebarOpen(false)}
-                    >
-                      <span className="sr-only">Close sidebar</span>
-                      <XMarkIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                </Transition.Child>
+                <div className="absolute top-0 right-0 -mr-12 pt-2">
+                  <button
+                    type="button"
+                    className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <span className="sr-only">Close sidebar</span>
+                    <XMarkIcon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
                 <div
                   className={classNames(
                     settingsData.os == 'win32' ? 'pt-7' : '',
@@ -376,13 +354,11 @@ function AppContent() {
                     </div>
                   </nav>
                 </div>
-              </div>
-            </Transition.Child>
-            <div className="flex-shrink-0 w-14" aria-hidden="true">
-              {/* Dummy element to force sidebar to shrink to fit close icon */}
-            </div>
-          </Dialog>
-        </Transition>
+          </DialogPanel>
+          <div className="flex-shrink-0 w-14" aria-hidden="true">
+            {/* Dummy element to force sidebar to shrink to fit close icon */}
+          </div>
+        </Dialog>
 
         {/* Static sidebar for desktop */}
         <div className="hidden lg:flex lg:flex-col dark:bg-dark-level-two dark:border-opacity-50 lg:w-64 lg:fixed lg:inset-y-0 lg:border-r lg:border-gray-200 lg:pt-5 lg:pb-4 lg:bg-gray-100">
@@ -873,6 +849,7 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
+      <MoveModal />
       <AppContent />
     </Router>
   );
