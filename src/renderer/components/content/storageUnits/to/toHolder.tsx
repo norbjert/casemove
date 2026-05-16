@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { NoSymbolIcon, FireIcon } from '@heroicons/react/24/solid';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { State } from 'renderer/interfaces/states';
+import { useState, useEffect } from 'react';
 import {
   RowHeader,
   RowHeaderCondition,
@@ -88,9 +89,28 @@ function StorageUnits() {
     );
     setStorage(storageResult);
   }
-  storageResult();
+  useEffect(() => {
+    async function run() {
+      const storageResultData = await sortDataFunction(
+        toReducer.sortValue,
+        inventoryTouse,
+        pricesResult.prices,
+        settingsData?.source?.title
+      );
+
+      setStorage(storageResultData);
+    }
+
+    run();
+  }, [
+    toReducer.sortValue,
+    inventoryTouse,
+    pricesResult.prices,
+    settingsData?.source?.title,
+  ]);
   if (toReducer.sortBack == true) {
-    getStorage.reverse();
+      const storageData =
+        toReducer.sortBack ? [...getStorage].reverse() : getStorage;
   }
   let inventoryMoveable = searchFilter(getStorage, inventoryFilter, toReducer);
   inventoryMoveable = inventoryMoveable.filter(function (item) {
