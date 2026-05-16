@@ -63,7 +63,7 @@ function content({ projectRow, index }) {
       )
     );
   }
-  
+
 
   const isTradelocked = projectRow.trade_unlock != null;
 
@@ -72,7 +72,7 @@ function content({ projectRow, index }) {
       .length == 0;
 
   let totalFieldValue = 0;
-  if (isEmpty == false) {
+  if (!isEmpty) {
     totalFieldValue = fromReducer.totalToMove.filter(
       (row) => row[0] == projectRow.item_id
     )[0][2].length;

@@ -26,7 +26,7 @@ import { LoadingButton } from '../../shared/animations';
 import EmptyComponent from '../../shared/emptyState';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 import RenameModal from '../../shared/modals & notifcations/modalRename';
-import { createCSGOImage } from '../../../../functionsClasses/createCSGOImage';
+import { createCSGOImage } from 'renderer/functionsClasses/createCSGOImage';
 
 function content() {
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ function content() {
 
   // This will return and convert a specific units data
   async function getStorageData(storageRow: ItemRowStorage) {
-    if (storageLoading == true) {
+    if (storageLoading) {
       return;
     }
     setLoadingSetStorage(true);
@@ -132,7 +132,7 @@ function content() {
           <label htmlFor="search" className="sr-only">
             Search storages
           </label>
-          <div className="relative rounded-md dark:border-opacity-50 border-gray-200 border-l-2 focus:outline-none focus:outline-none">
+          <div className="relative rounded-md dark:border-opacity-50 border-gray-200 border-l-2 focus:outline-none">
             <div
               className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
               aria-hidden="true"
@@ -147,7 +147,7 @@ function content() {
               name="search"
               id="search"
               value={fromSelector.searchInputStorage}
-              className="block w-full pb-0.5  focus:outline-none dark:text-dark-white pl-9 sm:text-sm border-gray-300 h-7 dark:bg-dark-level-one dark:rounded-none dark:bg-dark-level-one dark:rounded-none"
+              className="block w-full pb-0.5  focus:outline-none dark:text-dark-white pl-9 sm:text-sm border-gray-300 h-7 dark:bg-dark-level-one dark:rounded-none"
               placeholder="Search storages"
               spellCheck="false"
               onChange={(e) =>
@@ -161,7 +161,7 @@ function content() {
             to=""
             type="button"
             onClick={() => getAllStor()}
-            className="focus:outline-none focus:bg-dark-level-four order-1 ml-3  order-1 inline-flex items-center px-4 py-2 hover:border hover:shadow-sm dark:hover:bg-dark-level-four  text-sm font-medium rounded-md text-gray-700  hover:bg-gray-50 sm:order-0 sm:ml-0"
+            className="focus:outline-none focus:bg-dark-level-four order-1 ml-3 inline-flex items-center px-4 py-2 hover:border hover:shadow-sm dark:hover:bg-dark-level-four  text-sm font-medium rounded-md text-gray-700  hover:bg-gray-50 sm:order-0 sm:ml-0"
           >
             <CheckIcon
               className=" h-4 w-4 text-gray-700 dark:text-dark-white "
@@ -172,7 +172,7 @@ function content() {
             to=""
             type="button"
             onClick={() => unMarkAllStorages()}
-            className="focus:outline-none focus:bg-dark-level-four order-1 ml-3  order-1 inline-flex items-center px-4 py-2 hover:border hover:shadow-sm dark:hover:bg-dark-level-four  text-sm font-medium rounded-md text-gray-700  hover:bg-gray-50 sm:order-0 sm:ml-0"
+            className="focus:outline-none focus:bg-dark-level-four order-1 ml-3 inline-flex items-center px-4 py-2 hover:border hover:shadow-sm dark:hover:bg-dark-level-four  text-sm font-medium rounded-md text-gray-700  hover:bg-gray-50 sm:order-0 sm:ml-0"
           >
             <XMarkIcon
               className="h-4 w-4 text-gray-700 dark:text-dark-white"
@@ -205,7 +205,7 @@ function content() {
               fromReducer.hideFull
                 ? 'bg-indigo-600 dark:bg-indigo-700'
                 : 'bg-gray-200',
-              'relative inline-flex mr-3 flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none'
+              'relative inline-flex mr-3 shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none'
             )}
           >
             <span
@@ -273,10 +273,8 @@ function content() {
         ) {
           return false; // skip
         }
-        if (row.item_storage_total == 1000 && fromReducer.hideFull) {
-          return false; // skip
-        }
-        return true;
+        return !(row.item_storage_total == 1000 && fromReducer.hideFull);
+
       }).length != 0 ? (
         <ul
           role="list"
@@ -298,10 +296,8 @@ function content() {
               ) {
                 return false; // skip
               }
-              if (row.item_storage_total == 1000 && fromReducer.hideFull) {
-                return false; // skip
-              }
-              return true;
+              return !(row.item_storage_total == 1000 && fromReducer.hideFull);
+
             })
             .sort(function (a, b) {
               let a_customName = a.item_customname;
@@ -337,7 +333,7 @@ function content() {
                       fromSelector.activeStorages.includes(project.item_id)
                         ? 'border-green-300 '
                         : 'border-gray-200 ',
-                      'flex-shrink-0 h-full  flex items-center justify-center w-16 dark:border-opacity-50 text-white border-t border-l border-b rounded-l-md dark:bg-dark-level-two'
+                      'shrink-0 h-full  flex items-center justify-center w-16 dark:border-opacity-50 text-white border-t border-l border-b rounded-l-md dark:bg-dark-level-two'
                     )}
                   >
                     <img
@@ -408,7 +404,7 @@ function content() {
                       </p>
                     </div>
                   </Link>
-                  <Menu as="div" className="flex-shrink-0 pr-2">
+                  <Menu as="div" className="shrink-0 pr-2">
                     <Menu.Button className="w-8 h-8 inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500">
                       <span className="sr-only">Open options</span>
                       <EllipsisVerticalIcon

@@ -102,12 +102,10 @@ export default function StorageFilterDisclosure({ClassFilters}) {
                         id={`${filter.label + filter.include}-${optionIdx}`}
                         name="price[]"
                         type="checkbox"
-                        className="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                        className="shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                         onClick={() => addRemoveFilter(filter)}
                         checked={
                           filterToUse.filter(filt => _.isEqual(filt, filter)).length > 0
-                            ? true
-                            : false
                         }
                         onChange={(e) => {
                           e;

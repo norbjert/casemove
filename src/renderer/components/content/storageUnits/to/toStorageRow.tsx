@@ -33,7 +33,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
       }
     }
 
-    let returnValue = 0;
+    let returnValue: number;
     let totalMax = projectRow.combined_QTY;
     if (projectRow.combined_QTY > totalToGo) {
       totalMax = totalToGo;
@@ -75,7 +75,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
       .length == 0;
 
   let totalFieldValue = 0
-  if (isEmpty == false) {
+  if (!isEmpty) {
     totalFieldValue = toReducer.totalToMove.filter(
       (row) => row[0] == projectRow.item_id
     )[0][2].length
@@ -109,7 +109,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
               placeholder="0"
               onChange={(e) => returnField(e.target.value)}
               disabled={isTradelocked}
-              className=" block w-full border rounded sm:text-sm text-gray-500 text-center border-gray-400 border-gray-400 dark:bg-dark-level-two dark:text-dark-white disabled:opacity-40 disabled:cursor-not-allowed"
+              className=" block w-full border rounded sm:text-sm text-gray-500 text-center border-gray-400 dark:bg-dark-level-two dark:text-dark-white disabled:opacity-40 disabled:cursor-not-allowed"
             />
           </div>
         </div>
