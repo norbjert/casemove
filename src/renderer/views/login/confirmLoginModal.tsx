@@ -16,7 +16,7 @@ export default function ConfirmModal({open, setOpen, setLoadingButton}) {
     setOpen(false)
     window.electron.ipcRenderer.forceLogin()
     const responseStatus: LoginCommand = await window.electron.ipcRenderer.forceLoginReply()
-    handleSuccess(responseStatus.returnPackage as LoginCommandReturnPackage, dispatch, currentState)
+    handleSuccess(responseStatus.returnPackage as LoginCommandReturnPackage, dispatch, settingsReducer, inventoryFiltersReducer, pricingReducer)
   }
 
   async function cancel() {

@@ -5,7 +5,6 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid'
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions'
 import { Overview, Settings } from 'renderer/interfaces/states'
 import { useDispatch, useSelector } from 'react-redux'
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager'
 import { setOverview } from 'renderer/store/actions/settings'
 
 interface params {
@@ -16,14 +15,12 @@ interface params {
 export default function ListBoxOptions({optionsObject, keyToUse}: params) {
 
     const dispatch = useDispatch();
-    const ReducerClass = new ReducerManager(useSelector);
-    const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
+    const settingsData: Settings = useSelector((state: any) => state.settingsReducer);
     const selected = settingsData.overview[keyToUse]
 
     async function updateOverview(valueToset: any) {
         const newOverviewValue: Overview = settingsData.overview
-        // @ts-ignore
-        newOverviewValue[keyToUse] = valueToset
+        newOverviewValue[keyToUse] = valueToset as Overview[keyof Overview];
 
         dispatch(setOverview(newOverviewValue));
         window.electron.store.set('overview', newOverviewValue);

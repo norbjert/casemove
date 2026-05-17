@@ -35,7 +35,7 @@ export default function StorageFilter() {
   );
 
   async function moveItems() {
-    const key = (Math.random() + 1).toString(36).substring(7);
+    const key = crypto.randomUUID();
     let totalCount = 0;
     const queryNew = [] as any;
     for (const [, element] of Object.entries(fromReducer.totalToMove)) {

@@ -241,7 +241,9 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
       handleSuccess(
         responseStatus.returnPackage as LoginCommandReturnPackage,
         dispatch,
-        currentState
+        currentState.settingsReducer,
+        currentState.inventoryFiltersReducer,
+        currentState.pricingReducer
       );
     } else {
       handleError();

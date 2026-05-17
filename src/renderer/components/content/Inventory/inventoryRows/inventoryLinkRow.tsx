@@ -6,7 +6,6 @@ export function RowLinkInventory({ itemRow, settingsData, userDetails }) {
     <>
       {settingsData.columns.includes('Inventory link') ? (
         <td
-          key={Math.random().toString(36).substr(2, 9)}
           className="table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 hover:text-gray-200 text-right"
         >
           <div className="flex justify-center rounded-full drop-shadow-lg">

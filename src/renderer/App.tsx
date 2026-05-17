@@ -114,7 +114,10 @@ function AppContent() {
     pricingPricesRef.current = pricingPrices;
   });
 
-  document.documentElement.classList.add('dark');
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+  }, []);
+
   function updateAutomation(itemHref) {
     setSideMenuOption(itemHref);
     setSidebarOpen(false);
