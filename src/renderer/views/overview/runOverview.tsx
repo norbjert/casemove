@@ -11,8 +11,6 @@ import {
 } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
 import { ConvertPrices, RequestPrices } from 'renderer/functionsClasses/prices';
 import { downloadReport } from 'renderer/functionsClasses/downloadReport';
 import { LoadButton } from 'renderer/components/content/loadStorageUnitsButton';
@@ -25,11 +23,10 @@ import LeftGraph from './leftGraph';
 
 function Content() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const ReducerClass = new ReducerManager(useSelector);
-  const currentState: State = ReducerClass.getStorage();
-  const userDetails = currentState.authReducer
-  const settingsData = currentState.settingsReducer
-  const inventory = currentState.inventoryReducer
+  const userDetails = useSelector((state: any) => state.authReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const pricingReducer = useSelector((state: any) => state.pricingReducer);
   const hr = new Date().getHours();
   let goodMessage: string = 'Good Evening';
 
@@ -45,13 +42,13 @@ function Content() {
   const dispatch = useDispatch()
 
   
-  const PricingRequest = new RequestPrices(dispatch, settingsData, currentState.pricingReducer)
-  PricingRequest.handleRequestArray(currentState.inventoryReducer.inventory)
+  const PricingRequest = new RequestPrices(dispatch, settingsData, pricingReducer)
+  PricingRequest.handleRequestArray(inventory.inventory)
 
 
 
   // Inventory prices
-  const PricingClass = new ConvertPrices(settingsData, currentState.pricingReducer)
+  const PricingClass = new ConvertPrices(settingsData, pricingReducer)
   let inventoryValue = 0
   inventory.combinedInventory.forEach(element => {
     const itemPrice = PricingClass.getPrice(element)
@@ -149,7 +146,7 @@ function Content() {
                   </div>
                   <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                     <button
-                      onClick={() => downloadReport(settingsData, currentState.pricingReducer, [...inventory.combinedInventory, ...inventory.storageInventory])}
+                      onClick={() => downloadReport(settingsData, pricingReducer, [...inventory.combinedInventory, ...inventory.storageInventory])}
                       className="inline-flex items-center px-4 py-2 shadow-sm text-sm font-medium rounded-md text-dark-white bg-dark-level-three hover:bg-dark-level-four"
                     >
                       {' '}

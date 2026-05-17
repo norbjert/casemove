@@ -5,12 +5,12 @@ import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 import { handleSuccess } from './HandleSuccess'
 import { LoginCommand, LoginCommandReturnPackage } from 'shared/Interfaces.tsx/store'
 import { useDispatch, useSelector } from 'react-redux'
-import { State } from 'renderer/interfaces/states'
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager'
-
 export default function ConfirmModal({open, setOpen, setLoadingButton}) {
   const dispatch = useDispatch();
-  const currentState: State = new ReducerManager(useSelector).getStorage();
+  const settingsReducer = useSelector((state: any) => state.settingsReducer);
+  const inventoryFiltersReducer = useSelector((state: any) => state.inventoryFiltersReducer);
+  const pricingReducer = useSelector((state: any) => state.pricingReducer);
+  const currentState = { settingsReducer, inventoryFiltersReducer, pricingReducer };
   async function confirm() {
     setLoadingButton(true)
     setOpen(false)

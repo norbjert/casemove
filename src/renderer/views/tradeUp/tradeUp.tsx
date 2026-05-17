@@ -15,21 +15,22 @@ import { setTradeMove } from 'renderer/store/actions/modalTrade';
 import TradeUpPicker from './inventoryPickers';
 import TradeUpSideBar from './sidebar/sideBar';
 import TradeUpFilters from './filter/tradeUpFilter';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
 import { useState } from 'react';
 import { getAllStorages } from 'renderer/functionsClasses/storageUnits/storageUnitsFunctions';
 import { LoadingButton } from 'renderer/components/content/shared/animations';
 
 function SettingsContent() {
-  const ReducerClass = new ReducerManager(useSelector);
-  const currentState: State = ReducerClass.getStorage();
-  const tradeUpData = currentState.tradeUpReducer
-  const settingsData = currentState.settingsReducer
+  const tradeUpData = useSelector((state: any) => state.tradeUpReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const pricingReducer = useSelector((state: any) => state.pricingReducer);
+  const moveFromReducer = useSelector((state: any) => state.moveFromReducer);
+  const inventoryReducer = useSelector((state: any) => state.inventoryReducer);
+  const inventoryFiltersReducer = useSelector((state: any) => state.inventoryFiltersReducer);
+  const currentState = { tradeUpReducer: tradeUpData, settingsReducer: settingsData, pricingReducer, moveFromReducer, inventoryReducer, inventoryFiltersReducer };
 
   const dispatch = useDispatch();
-  const PricingClass = new ConvertPrices(settingsData, currentState.pricingReducer)
+  const PricingClass = new ConvertPrices(settingsData, pricingReducer)
   const [getLoadingButton, setLoadingButton] = useState(false);
   async function getAllStor() {
     setLoadingButton(true)
@@ -123,12 +124,12 @@ function SettingsContent() {
                     <button
                       type="button"
                       onClick={() => getAllStor()}
-                      className={classNames(currentState.moveFromReducer.activeStorages.length == 0 || getLoadingButton ? 'bg-green-700' : 'bg-dark-level-three',
+                      className={classNames(moveFromReducer.activeStorages.length == 0 || getLoadingButton ? 'bg-green-700' : 'bg-dark-level-three',
 
                         'order-1 ml-3 inline-flex items-center px-4 py-2 border dark:border-opacity-0 dark:text-dark-white text-sm font-medium hover:bg-dark-level-four rounded-md text-gray-700 focus:outline-none sm:order-0 sm:ml-0'
                       )}
                     >
-                      {currentState.moveFromReducer.activeStorages.length != 0 ? currentState.moveFromReducer.activeStorages.length + " Storage units loaded" : "Load storage units"}
+                      {moveFromReducer.activeStorages.length != 0 ? moveFromReducer.activeStorages.length + " Storage units loaded" : "Load storage units"}
                       {getLoadingButton ? (
                         <LoadingButton
                           className="ml-3 dark:text-dark-white h-4 w-4 text-gray-700"

@@ -3,24 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { Filter, Filters } from 'renderer/interfaces/filters';
 import _ from 'lodash';
-import { State } from 'renderer/interfaces/states';
 import { storageInventoryAddOption } from 'renderer/store/actions/filtersInventoryActions';
 
 
 
 export default function StorageFilterDisclosure({ClassFilters}) {
   const dispatch = useDispatch();
-  const ReducerClass = new ReducerManager(useSelector)
-  const currentState: State = ReducerClass.getStorage()
-
-
-  const inventoryFilters = currentState.inventoryFiltersReducer
-  const inventory = currentState.inventoryReducer
-  const pricesResult = currentState.pricingReducer
-  const settingsData = currentState.settingsReducer
+  const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const pricesResult = useSelector((state: any) => state.pricingReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const moveFromReducer = useSelector((state: any) => state.moveFromReducer);
+  const currentState = { inventoryFiltersReducer: inventoryFilters, inventoryReducer: inventory, pricingReducer: pricesResult, settingsReducer: settingsData, moveFromReducer };
 
 
   // Update selected filter

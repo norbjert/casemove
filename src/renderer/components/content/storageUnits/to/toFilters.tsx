@@ -24,7 +24,7 @@ import { getStorageFilterManager } from '../shared/storageFilterSetup';
 import { addMajorsFilters } from 'renderer/functionsClasses/filters/filters';
 const ClassFilters = getStorageFilterManager()
 
-function content() {
+export default function StorageFilter() {
   const dispatch = useDispatch();
   const ReducerClass = new ReducerManager(useSelector);
   const pricesResult = ReducerClass.getStorage(ReducerClass.names.pricing);
@@ -241,8 +241,4 @@ function content() {
       </Disclosure>
     </div>
   );
-}
-
-export default function StorageFilter() {
-  return content();
 }

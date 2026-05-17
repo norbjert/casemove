@@ -24,7 +24,7 @@ import { classNames } from '../../shared/filters/inventoryFunctions';
 import RenameModal from '../../shared/modals & notifcations/modalRename';
 moveToClearAll;
 
-function content() {
+export default function StorageSelectorContent() {
   const dispatch = useDispatch();
 
   const inventory = useSelector((state: any) => state.inventoryReducer);
@@ -467,8 +467,4 @@ function content() {
       )}
     </div>
   );
-}
-
-export default function StorageSelectorContent() {
-  return content();
 }

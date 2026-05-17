@@ -3,14 +3,11 @@ import {  Popover, Transition } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux';
 import { tradeUpCollectionsAddRemove } from 'renderer/store/actions/tradeUpActions';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
 
 export default function CollectionsDropDown() {
-  const currentState: State = new ReducerManager(useSelector).getStorage()
-  const tradeUpData = currentState.tradeUpReducer;
-  const inventory = currentState.inventoryReducer
-  const inventoryFilters = currentState.inventoryFiltersReducer;
+  const tradeUpData = useSelector((state: any) => state.tradeUpReducer);
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
   const dispatch = useDispatch();
 
   let inventoryToUse = [...inventory.inventory, ...inventory.storageInventoryRaw] as any;

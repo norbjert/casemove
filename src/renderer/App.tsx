@@ -15,7 +15,7 @@ import {
   ChevronUpDownIcon,
   ArrowUpTrayIcon,
 } from '@heroicons/react/24/solid';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Link,
@@ -41,12 +41,10 @@ import StorageUnitsComponent from './components/content/storageUnits/from/Conten
 import ToContent from './components/content/storageUnits/to/toHolder';
 import { toMoveContext } from './context/toMoveContext';
 import { filterItemRows } from './functionsClasses/filters/custom';
-import { ReducerManager } from './functionsClasses/reducerManager';
 import {
   DispatchIPC,
   DispatchStore,
 } from './functionsClasses/rendererCommands/admin';
-import { State } from './interfaces/states';
 import {
   inventoryAddCategoryFilter,
   inventoryAddRarityFilter,
@@ -83,7 +81,6 @@ function AppContent() {
   MagnifyingGlassIcon;
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isListening, setIsListening] = useState(false);
   const [currentSideMenuOption, setSideMenuOption] = useState(
     location.pathname
   );
@@ -97,15 +94,25 @@ function AppContent() {
   );
 
   // Redux user details
+  const userDetails = useSelector((state: any) => state.authReducer);
+  const modalData = useSelector((state: any) => state.modalMoveReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const tradeUpData = useSelector((state: any) => state.modalTradeReducer);
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const filterDetails = useSelector((state: any) => state.inventoryFiltersReducer);
+  const pricingPrices = useSelector((state: any) => state.pricingReducer.prices);
 
-  const ReducerClass = new ReducerManager(useSelector);
-  const currentState: State = ReducerClass.getStorage();
-  const userDetails = currentState.authReducer;
-  const modalData = currentState.modalMoveReducer;
-  const settingsData = currentState.settingsReducer;
-  const tradeUpData = currentState.modalTradeReducer;
-  const inventory = currentState.inventoryReducer;
-  const filterDetails = currentState.inventoryFiltersReducer;
+  // Refs so async callbacks always see the latest values without stale closures
+  const settingsDataRef = useRef(settingsData);
+  const modalDataRef = useRef(modalData);
+  const filterDetailsRef = useRef(filterDetails);
+  const pricingPricesRef = useRef(pricingPrices);
+  useEffect(() => {
+    settingsDataRef.current = settingsData;
+    modalDataRef.current = modalData;
+    filterDetailsRef.current = filterDetails;
+    pricingPricesRef.current = pricingPrices;
+  });
 
   document.documentElement.classList.add('dark');
   function updateAutomation(itemHref) {
@@ -123,37 +130,26 @@ function AppContent() {
   const IPCClass = new DispatchIPC(dispatch);
 
   async function handleFilterData(combinedInventory) {
+    const fd = filterDetailsRef.current;
+    const pp = pricingPricesRef.current;
+    const sd = settingsDataRef.current;
     if (
-      filterDetails.inventoryFilter.length > 0 ||
-      filterDetails.sortValue != 'Default'
+      fd.inventoryFilter.length > 0 ||
+      fd.sortValue != 'Default'
     ) {
-      let filteredInv = await filterItemRows(
-        combinedInventory,
-        currentState.inventoryFiltersReducer.inventoryFilter
-      );
-      filteredInv = await sortDataFunction(
-        currentState.inventoryFiltersReducer.sortValue,
-        filteredInv,
-        currentState.pricingReducer.prices,
-        currentState.settingsReducer?.source?.title
-      );
-
-      dispatch(
-        inventorySetFilter(
-          currentState.inventoryFiltersReducer.inventoryFilter,
-          currentState.inventoryFiltersReducer.sortValue,
-          filteredInv
-        )
-      );
+      let filteredInv = await filterItemRows(combinedInventory, fd.inventoryFilter);
+      filteredInv = await sortDataFunction(fd.sortValue, filteredInv, pp, sd?.source?.title);
+      dispatch(inventorySetFilter(fd.inventoryFilter, fd.sortValue, filteredInv));
     }
   }
 
-  // First time setup
-  async function setFirstTimeSettings() {
-    if (settingsData.currencyPrice[settingsData.currency] == undefined) {
+  // Forward user event to Store — runs once on mount, loops until unmounted
+  useEffect(() => {
+    const sd = settingsDataRef.current;
+    if (sd.currencyPrice[sd.currency] == undefined) {
       IPCClass.run(IPCClass.buildingObject.currency);
     }
-    if (settingsData.os == '') {
+    if (sd.os == '') {
       StoreClass.run(StoreClass.buildingObject.os);
       StoreClass.run(StoreClass.buildingObject.columns);
       StoreClass.run(StoreClass.buildingObject.devmode);
@@ -162,36 +158,31 @@ function AppContent() {
       StoreClass.run(StoreClass.buildingObject.locale);
       StoreClass.run(StoreClass.buildingObject.steamLoginShow);
     }
-  }
 
-  // Forward user event to Store
-  if (!isListening) {
-    setFirstTimeSettings();
-    window.electron.ipcRenderer.userEvents().then((messageValue) => {
-      handleSubMessage(messageValue, settingsData);
-    });
-
-    setIsListening(true);
-  }
-
-  async function handleSubMessage(messageValue, settingsData) {
-    if (settingsData.fastMove && modalData.query.length > 0) {
-      setIsListening(false);
-      return;
-    }
-    if (messageValue.command == undefined) {
-      const actionToTake = (await handleUserEvent(
-        messageValue,
-        settingsData
-      )) as any;
-      dispatch(actionToTake);
-      if (messageValue[0] == 1) {
-        await handleFilterData(actionToTake.payload.combinedInventory);
+    let cancelled = false;
+    async function poll() {
+      while (!cancelled) {
+        const messageValue = await window.electron.ipcRenderer.userEvents();
+        if (cancelled) break;
+        if (settingsDataRef.current.fastMove && modalDataRef.current.query.length > 0) {
+          continue;
+        }
+        if (messageValue.command == undefined) {
+          const actionToTake = (await handleUserEvent(
+            messageValue,
+            settingsDataRef.current
+          )) as any;
+          dispatch(actionToTake);
+          if (messageValue[0] == 1) {
+            await handleFilterData(actionToTake.payload.combinedInventory);
+          }
+        }
       }
     }
-
-    setIsListening(false);
-  }
+    poll();
+    return () => { cancelled = true; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function logOut() {
     window.electron.ipcRenderer.logUserOut();
@@ -204,43 +195,38 @@ function AppContent() {
 
   // Should update status
   const [shouldUpdate, setShouldUpdate] = useState(false);
-  const [shouldCheckUpdate, setShouldCheckUpdate] = useState(true);
-
   const [getVersion, setVersion] = useState('');
-  async function getUpdate() {
-    const doUpdate = await window.electron.ipcRenderer.needUpdate();
-    setVersion('v' + doUpdate.currentVersion);
-    setShouldUpdate(doUpdate.requireUpdate);
-  }
-  if (shouldCheckUpdate == true) {
-    setShouldCheckUpdate(false);
-    getUpdate();
-  }
+  useEffect(() => {
+    window.electron.ipcRenderer.needUpdate().then((doUpdate) => {
+      setVersion('v' + doUpdate.currentVersion);
+      setShouldUpdate(doUpdate.requireUpdate);
+    });
+  }, []);
 
-  // Pricing
-  const [firstRun, setFirstRun] = useState(false);
-
-  if (firstRun == false) {
-    setFirstRun(true);
-    window.electron.ipcRenderer.on('pricing', (message) => {
+  // Pricing — register IPC listeners once, clean up on unmount
+  useEffect(() => {
+    const handlePricing = (message: any) => {
       dispatch(pricing_addPrice(message[0]));
-    });
+    };
+    window.electron.ipcRenderer.on('pricing', handlePricing);
+    window.electron.ipcRenderer.on('updater', (_message: any) => {});
+    return () => {
+      (window.electron.ipcRenderer as any).removeAllListeners?.('pricing');
+      (window.electron.ipcRenderer as any).removeAllListeners?.('updater');
+    };
+  }, [dispatch]);
 
-    window.electron.ipcRenderer.on('updater', (_message) => {
-    });
-  }
-
-  // Trade up
-  async function handleTradeUp() {
-    inventory.inventory.forEach((element) => {
-      if (!tradeUpData.inventoryFirst.includes(element.item_id)) {
-        dispatch(setTradeFoundMatch(element));
-      }
-    });
-  }
-  if (tradeUpData.inventoryFirst.length != 0) {
-    handleTradeUp();
-  }
+  // Trade up — run when inventoryFirst changes
+  useEffect(() => {
+    if (tradeUpData.inventoryFirst.length !== 0) {
+      inventory.inventory.forEach((element) => {
+        if (!tradeUpData.inventoryFirst.includes(element.item_id)) {
+          dispatch(setTradeFoundMatch(element));
+        }
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tradeUpData.inventoryFirst]);
 
   return (
     <>

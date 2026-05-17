@@ -39,7 +39,6 @@
       "out/**",
       "!out/**/*.map"
     ],
-    "afterSign": ".erb/scripts/notarize.js",
     "mac": {
       "target": {
         "target": "default",

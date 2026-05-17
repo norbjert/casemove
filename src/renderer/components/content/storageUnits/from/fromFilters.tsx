@@ -24,7 +24,7 @@ import { addMajorsFilters } from 'renderer/functionsClasses/filters/filters';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 const ClassFilters = getStorageFilterManager();
 
-function content() {
+export default function StorageFilter() {
   const dispatch = useDispatch();
   const fromReducer = useSelector((state: any) => state.moveFromReducer);
   const inventory = useSelector((state: any) => state.inventoryReducer);
@@ -242,8 +242,4 @@ function content() {
       </Disclosure>
     </div>
   );
-}
-
-export default function StorageFilter() {
-  return content();
 }
