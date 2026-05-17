@@ -145,7 +145,6 @@ export default function InventoryRowsComponent() {
               <RowMoveable itemRow={projectRow} settingsData={settingsData} />
               <RowLinkInventory itemRow={projectRow} settingsData={settingsData} userDetails={authReducer}/>
               <td
-                key={Math.random().toString(36).substr(2, 9)}
                 className="hidden md:px-6 py-3 whitespace-nowrap text-right text-sm font-medium"
               ></td>
             </tr>

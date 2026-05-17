@@ -95,13 +95,13 @@ function StorageUnits() {
     pricesResult.prices,
     settingsData?.source?.title,
   ]);
-  if (toReducer.sortBack) {
-    toReducer.sortBack ? [...getStorage].reverse() : getStorage;
-  }
   let inventoryMoveable = searchFilter(getStorage, inventoryFilter, toReducer);
   inventoryMoveable = inventoryMoveable.filter(function (item) {
     return item.item_moveable;
   });
+  if (toReducer.sortBack) {
+    inventoryMoveable = [...inventoryMoveable].reverse();
+  }
 
   return (
     <>

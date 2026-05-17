@@ -17,8 +17,7 @@ export default () => {
   let reduxStore = createStore(persistedReducer)
   if (process.env.NODE_ENV === 'development') {
     reduxStore = createStore(persistedReducer,
-      // @ts-ignore
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__?.())
   }
   
   const persistor = persistStore(reduxStore)

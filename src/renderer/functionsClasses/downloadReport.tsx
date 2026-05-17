@@ -13,8 +13,7 @@ async function handleDownload(storageData) {
         }
 
         let stickersData = d.stickers;
-        // @ts-ignore
-        if (stickersData != []) {
+        if (Array.isArray(stickersData) && stickersData.length > 0) {
           const newStickers = [] as any;
           stickersData.forEach((element) => {
             newStickers.push(element.sticker_name);

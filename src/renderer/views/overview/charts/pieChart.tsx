@@ -110,9 +110,7 @@ export default function PieChart({ data, headerName }) {
   return (
     <>
 
-      <Pie data={data} plugins={
-         // @ts-ignore
-         [ChartDataLabels]} options={options} />
+      <Pie data={data} plugins={[ChartDataLabels as any]} options={options} />
     </>
   );
 }

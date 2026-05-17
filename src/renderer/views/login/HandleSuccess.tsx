@@ -1,7 +1,7 @@
 import combineInventory, { sortDataFunctionTwo } from "renderer/components/content/shared/filters/inventoryFunctions";
 import { filterItemRows } from "renderer/functionsClasses/filters/custom";
 import { DispatchIPC, DispatchStore } from "renderer/functionsClasses/rendererCommands/admin"
-import { State } from "renderer/interfaces/states";
+import { Settings, InventoryFilters, Prices } from "renderer/interfaces/states";
 import { SignInActionPackage } from "renderer/interfaces/store/authReducerActionsInterfaces"
 import { inventorySetFilter } from "renderer/store/actions/filtersInventoryActions";
 import { setInventoryAction } from "renderer/store/inventory/inventoryActions";
@@ -9,7 +9,8 @@ import { signIn } from "renderer/store/actions/userStatsActions";
 import { getURL } from "renderer/store/helpers/userStatusHelper";
 import { LoginCommandReturnPackage } from "shared/Interfaces.tsx/store"
 import { createCSGOImage } from "../../functionsClasses/createCSGOImage";
-async function getProfilePicture(steamID: string): Promise<string> {
+
+async function getProfilePicture(steamID: string): Promise<string> {
   try {
     const profilePicture = await getURL(steamID);
     return profilePicture as string;
@@ -17,8 +18,14 @@ async function getProfilePicture(steamID: string): Promise<string> {
     return createCSGOImage("econ/characters/customplayer_tm_separatist");
   }
 }
-export async function handleSuccess(returnSuccessPackage: LoginCommandReturnPackage, dispatch: Function, currentState: State) {
-  // Get Redux values
+
+export async function handleSuccess(
+  returnSuccessPackage: LoginCommandReturnPackage,
+  dispatch: Function,
+  settingsState: Settings,
+  filtersState: InventoryFilters,
+  pricingState: Prices,
+) {
   const StoreClass = new DispatchStore(dispatch)
   const IPCClass = new DispatchIPC(dispatch)
 
@@ -26,13 +33,10 @@ export async function handleSuccess(returnSuccessPackage: LoginCommandReturnPack
   StoreClass.run(StoreClass.buildingObject.source)
   // Locale
   StoreClass.run(StoreClass.buildingObject.locale)
-
   // Currency
   IPCClass.run(IPCClass.buildingObject.currency)
   await new Promise((r) => setTimeout(r, 2500));
 
-
-  // Create a store object
   const signInPackage: SignInActionPackage = {
     userProfilePicture: await getProfilePicture(returnSuccessPackage.steamID),
     displayName: returnSuccessPackage.displayName,
@@ -41,14 +45,12 @@ export async function handleSuccess(returnSuccessPackage: LoginCommandReturnPack
     wallet: returnSuccessPackage.walletToSend
   }
 
-  // Get the profile picture
-
   dispatch(signIn(signInPackage))
 
   // Inventory
   const combinedInventory = await combineInventory(
     returnSuccessPackage.csgoInventory,
-    currentState.settingsReducer
+    settingsState
   )
   dispatch(
     setInventoryAction({
@@ -60,19 +62,19 @@ export async function handleSuccess(returnSuccessPackage: LoginCommandReturnPack
   // Filtered inventory
   let filteredInv = await filterItemRows(
     combinedInventory,
-    currentState.inventoryFiltersReducer.inventoryFilter
+    filtersState.inventoryFilter
   );
   filteredInv = await sortDataFunctionTwo(
-    currentState.inventoryFiltersReducer.sortValue,
+    filtersState.sortValue,
     filteredInv,
-    currentState.pricingReducer.prices,
-    currentState.settingsReducer?.source?.title
+    pricingState.prices,
+    settingsState?.source?.title
   );
 
   dispatch(
     inventorySetFilter(
-      currentState.inventoryFiltersReducer.inventoryFilter,
-      currentState.inventoryFiltersReducer.sortValue,
+      filtersState.inventoryFilter,
+      filtersState.sortValue,
       filteredInv
     )
   );

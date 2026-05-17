@@ -187,7 +187,6 @@ export default function OverallVolume() {
       },
     ],
   };
-  // @ts-ignore
   return (
     <>
       <Bar data={data} width="518" height="400" options={options} />

@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
-import { ReducerManager } from "renderer/functionsClasses/reducerManager";
 import { Settings } from "renderer/interfaces/states";
 import EmptyField from "./EmptyField";
 import OverallVolume from "./leftGraph/barChartOverall";
 
 export default function LeftGraph() {
-    const ReducerClass = new ReducerManager(useSelector);
-    const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
+    const settingsData: Settings = useSelector((state: any) => state.settingsReducer);
 
     const by = settingsData.overview.by
     const left = settingsData.overview.chartleft
