@@ -21,6 +21,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: read
 
 env:
   NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
@@ -113,46 +114,89 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Install GitHub CLI
-        run: |
-          sudo apt update
-          sudo apt install gh jq -y
-      - name: Authenticate GitHub CLI
-        run: gh auth setup-git
-      - name: Generate Release Notes
-        id: release_notes
-        run: |
-          VERSION=${{ github.event.inputs.version }}
-          echo "Generating release notes for version $VERSION..."
 
-          # Get last tag before this one
-          LAST_TAG=$(git describe --tags --abbrev=0 v$VERSION^ || echo "")
-          echo "Last tag: $LAST_TAG"
+      - name: Generate and publish release notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
 
-          # Fetch PRs merged since last tag
-          if [ -z "$LAST_TAG" ]; then
-            PRS=$(gh pr list --state merged --json number,title,labels,url)
+          # Find the previous release (excluding the one we just published)
+          PREV_TAG=$(gh release list \
+            --repo "$REPO" \
+            --limit 20 \
+            --json tagName,isPrerelease \
+            --jq --arg cur "v$VERSION" \
+            '[.[] | select(.tagName != $cur and .isPrerelease == false)] | .[0].tagName // ""')
+
+          if [ -n "$PREV_TAG" ]; then
+            echo "Previous release: $PREV_TAG"
+            SINCE=$(gh release view "$PREV_TAG" \
+              --repo "$REPO" \
+              --json publishedAt \
+              --jq '.publishedAt')
           else
-            PRS=$(gh pr list --state merged --json number,title,labels,url --search "merged:>$LAST_TAG")
+            echo "No previous release found — including all merged PRs"
+            SINCE="2000-01-01T00:00:00Z"
           fi
 
-          # Parse PRs into sections
-          NEW_FEATURES=""
-          BUG_FIXES=""
-          echo "$PRS" | jq -c '.[]' | while read pr; do
-            TITLE=$(echo $pr | jq -r '.title')
-            URL=$(echo $pr | jq -r '.url')
-            LABELS=$(echo $pr | jq -r '.labels[].name' 2>/dev/null || "")
+          echo "Collecting PRs merged after: $SINCE"
 
-            if echo "$LABELS" | grep -Eiq 'feature|enhancement'; then
-              NEW_FEATURES="$NEW_FEATURES- [$TITLE]($URL)\n"
+          # Fetch all merged PRs since the previous release
+          PRS=$(gh pr list \
+            --repo "$REPO" \
+            --state merged \
+            --search "merged:>${SINCE}" \
+            --json number,title,labels \
+            --limit 200)
+
+          FEATURES=""
+          BUGFIXES=""
+          DEPS=""
+
+          while IFS= read -r pr; do
+            NUMBER=$(echo "$pr" | jq -r '.number')
+            TITLE=$(echo "$pr"  | jq -r '.title')
+            LABELS=$(echo "$pr" | jq -r '[.labels[].name] | join(" ")')
+
+            LINE="- $TITLE (#$NUMBER)"
+
+            if echo "$LABELS" | grep -qiE "(^| )dependencies( |$)"; then
+              DEPS="${DEPS}"$'\n'"${LINE}"
+            elif echo "$LABELS" | grep -qiE "(^| )(bug|fix|refactor)"; then
+              BUGFIXES="${BUGFIXES}"$'\n'"${LINE}"
             else
-              BUG_FIXES="$BUG_FIXES- [$TITLE]($URL)\n"
+              FEATURES="${FEATURES}"$'\n'"${LINE}"
             fi
-          done
+          done < <(echo "$PRS" | jq -c '.[]')
 
-          NOTES="## New Features\n\n$NEW_FEATURES\n## Bug Fixes and Version Bumps\n\n$BUG_FIXES"
-          echo -e "$NOTES" > release_notes.md
+          # Build the release notes body
+          BODY="## What's new in v${VERSION}"$'\n'
 
-          # Create GitHub release
-          gh release create v$VERSION --title "Casemove $VERSION" --notes-file release_notes.md
+          if [ -n "$FEATURES" ]; then
+            BODY="${BODY}"$'\n'"### Features"$'\n'"${FEATURES}"$'\n'
+          fi
+
+          if [ -n "$BUGFIXES" ]; then
+            BODY="${BODY}"$'\n'"### Bug fixes & refactoring"$'\n'"${BUGFIXES}"$'\n'
+          fi
+
+          if [ -n "$DEPS" ]; then
+            BODY="${BODY}"$'\n'"### Dependency updates"$'\n'"${DEPS}"$'\n'
+          fi
+
+          if [ -z "$FEATURES" ] && [ -z "$BUGFIXES" ] && [ -z "$DEPS" ]; then
+            BODY="${BODY}"$'\n'"No merged pull requests found since the previous release."$'\n'
+          fi
+
+          echo "--- Release notes ---"
+          echo "$BODY"
+
+          # Update the release (created by electron-builder) with the generated notes
+          gh release edit "v${VERSION}" \
+            --repo "$REPO" \
+            --notes "$BODY"
+
+          echo "Release notes published for v${VERSION}"
