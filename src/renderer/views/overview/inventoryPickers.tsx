@@ -332,7 +332,7 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                             }
                           />
                         </div>
-                      </a>
+                      </Link>
                     )}
                   </div>
                   <span>

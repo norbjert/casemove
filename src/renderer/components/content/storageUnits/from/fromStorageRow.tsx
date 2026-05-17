@@ -1,3 +1,4 @@
+import React from 'react';
 import { BoltIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { moveFromAddRemove } from 'renderer/store/actions/moveFromActions';
@@ -12,7 +13,7 @@ import { RowQTY } from '../../Inventory/inventoryRows/QTYRow';
 import { RowCollections } from '../../Inventory/inventoryRows/collectionsRow';
 import { RowProduct } from '../../Inventory/inventoryRows/rowName';
 
-function content({ projectRow, index }) {
+const StorageRow = React.memo(function StorageRow({ projectRow, index }: { projectRow: any; index: number }) {
   const dispatch = useDispatch();
   const fromReducer = useSelector((state: any) => state.moveFromReducer);
   const inventory = useSelector((state: any) => state.inventoryReducer);
@@ -156,7 +157,6 @@ function content({ projectRow, index }) {
       <td className="hidden md:px-6 py-3 whitespace-nowrap text-right text-sm font-medium"></td>
     </>
   );
-}
-export default function StorageRow(projects) {
-  return content(projects);
-}
+});
+
+export default StorageRow;
