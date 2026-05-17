@@ -128,7 +128,7 @@ jobs:
             --repo "$REPO" \
             --limit 20 \
             --json tagName,isPrerelease \
-            --jq --arg cur "v$VERSION" \
+            | jq -r --arg cur "v$VERSION" \
             '[.[] | select(.tagName != $cur and .isPrerelease == false)] | .[0].tagName // ""')
 
           if [ -n "$PREV_TAG" ]; then
