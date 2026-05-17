@@ -44,94 +44,34 @@ export const itemCategories = [
   { value: 'tools', name: 'Tools', bgColorClass: 'bg-yellow-800', href: '#' },
 ];
 
-
-
+// List of CS major event names as they appear in item names.
+// Add new entries here when a new major is released.
 export const itemSubCategories = {
-  majors: {
-    "Antwerp 2022": {
-      name: "Antwerp 2022",
-      key: "Antwerp 2022",
-      year: 2021
-    },
-    "Stockholm 2021": {
-      name: "Stockholm 2021",
-      key: "Stockholm 2021",
-      year: 2021
-    },
-    "2020 RMR": {
-      name: "2020 RMR",
-      key: "2020 RMR",
-      year: 2020
-    },
-    "Berlin 2019": {
-      name: "Berlin 2019",
-      key: "Berlin 2019",
-      year: 2019
-    },
-    "Katowice 2019": {
-      name: "Katowice 2019",
-      key: "Katowice 2019",
-      year: 2019
-    },
-    "London 2018": {
-      name: "London 2018",
-      key: "London 2018",
-      year: 2018
-    },
-    "Boston 2018": {
-      name: "Boston 2018",
-      key: "Boston 2018",
-      year: 2018
-    },
-    "Krakow 2017": {
-      name: "Krakow 2017",
-      key: "Krakow 2017",
-      year: 2017
-    },
-    "Atlanta 2017": {
-      name: "Atlanta 2017",
-      key: "Atlanta 2017",
-      year: 2018
-    },
-    "Cologne 2016": {
-      name: "Cologne 2016",
-      key: "Cologne 2016",
-      year: 2016
-    },
-    "Columbus 2016": {
-      name: "Columbus 2016",
-      key: "Columbus 2016",
-      year: 2016
-    },
-    "Cluj-Napoca 2015": {
-      name: "Cluj-Napoca 2015",
-      key: "Cluj-Napoca 2015",
-      year: 2015
-    },
-    "Cologne 2015": {
-      name: "Cologne 2015",
-      key: "Cologne 2015",
-      year: 2015
-    },
-    "Katowice 2015": {
-      name: "Katowice 2015",
-      key: "Katowice 2015",
-      year: 2015
-    },
-    "DreamHack 2014": {
-      name: "DreamHack 2014",
-      key: "DreamHack 2014",
-      year: 2014
-    },
-    "Cologne 2014": {
-      name: "Cologne 2014",
-      key: "Cologne 2014",
-      year: 2014
-    },
-    "Katowice 2014": {
-      name: "Katowice 2014",
-      key: "Katowice 2014",
-      year: 2014
-    }
-  }
+  majors: [
+    "Buenos Aires 2027",
+    "Shanghai 2026",
+    "Cologne 2026",
+    "Budapest 2025",
+    "Austin 2025",
+    "Shanghai 2024",
+    "Copenhagen 2024",
+    "Paris 2023",
+    "Antwerp 2022",
+    "Stockholm 2021",
+    "2020 RMR",
+    "Berlin 2019",
+    "Katowice 2019",
+    "London 2018",
+    "Boston 2018",
+    "Krakow 2017",
+    "Atlanta 2017",
+    "Cologne 2016",
+    "Columbus 2016",
+    "Cluj-Napoca 2015",
+    "Cologne 2015",
+    "Katowice 2015",
+    "DreamHack 2014",
+    "Cologne 2014",
+    "Katowice 2014",
+  ]
 }

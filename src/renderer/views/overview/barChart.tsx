@@ -62,7 +62,6 @@ export default function BarApp() {
 
   // Go through Storage Units
   inventory.storageInventory.forEach(element => {
-    console.log(element)
     if (resultingData[element.category]) {
       resultingData[element.category].storageUnits = resultingData?.[element.category]?.storageUnits + element.combined_QTY
     }
@@ -76,8 +75,6 @@ export default function BarApp() {
     inventoryDataToUse.push(resultingData[category].inventory)
     storageUnitDataToUse.push(resultingData[category].storageUnits)
   });
-  console.log(storageUnitDataToUse)
-
 
   const data = {
     labels: categoriesFixed,

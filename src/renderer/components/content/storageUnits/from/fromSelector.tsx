@@ -9,7 +9,6 @@ import {
 import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { HandleStorageData } from 'renderer/functionsClasses/storageUnits/storageUnitsClass';
 import { getAllStorages } from 'renderer/functionsClasses/storageUnits/storageUnitsFunctions';
 import { ItemRowStorage } from 'renderer/interfaces/items';
@@ -28,19 +27,17 @@ import { classNames } from '../../shared/filters/inventoryFunctions';
 import RenameModal from '../../shared/modals & notifcations/modalRename';
 import { createCSGOImage } from 'renderer/functionsClasses/createCSGOImage';
 
-function content() {
+export default function StorageSelectorContent() {
   const dispatch = useDispatch();
   const fromReducer = useSelector((state: any) => state.moveFromReducer);
-  const ReducerClass = new ReducerManager(useSelector);
-
-  const currentState = ReducerClass.getStorage();
-
   const [getLoadingButton, setLoadingButton] = useState(false);
   const [storageLoading, setStorageLoading] = useState(false);
   const inventory = useSelector((state: any) => state.inventoryReducer);
   const fromSelector = useSelector((state: any) => state.moveFromReducer);
   const pricesResult = useSelector((state: any) => state.pricingReducer);
   const settingsData = useSelector((state: any) => state.settingsReducer);
+  const inventoryFiltersReducer = useSelector((state: any) => state.inventoryFiltersReducer);
+  const currentState = { inventoryReducer: inventory, moveFromReducer: fromReducer, pricingReducer: pricesResult, settingsReducer: settingsData, inventoryFiltersReducer };
 
   // Clear all filters
 
@@ -462,8 +459,4 @@ function content() {
       )}
     </div>
   );
-}
-
-export default function StorageSelectorContent() {
-  return content();
 }

@@ -9,22 +9,18 @@ import {
 } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import itemRarities from 'renderer/components/content/shared/rarities';
 import { ConvertPricesFormatted } from 'renderer/functionsClasses/prices';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
 import { setRenameModal } from 'renderer/store/actions/modalMove actions';
 import { tradeUpAddRemove } from 'renderer/store/actions/tradeUpActions';
 import { createCSGOImage } from '../../functionsClasses/createCSGOImage';
 
-function content() {
+export default function TradeUpPicker() {
   const [stickerHover, setStickerHover] = useState('');
   const [itemHover, setItemHover] = useState('');
-  const currentState: State = new ReducerManager(useSelector).getStorage();
-
-  const inventory = currentState.inventoryReducer;
-  const inventoryFilters = currentState.inventoryFiltersReducer;
-  const pricesResult = currentState.pricingReducer;
-  const settingsData = currentState.settingsReducer;
-  const tradeUpData = currentState.tradeUpReducer;
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
+  const pricesResult = useSelector((state: any) => state.pricingReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const tradeUpData = useSelector((state: any) => state.tradeUpReducer);
 
   const dispatch = useDispatch();
 
@@ -428,8 +424,4 @@ function content() {
       </table>
     </>
   );
-}
-
-export default function TradeUpPicker() {
-  return content();
 }

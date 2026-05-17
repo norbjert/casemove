@@ -19,7 +19,7 @@ async function getCategory(toLoopThrough: Array<ItemRow | ItemRowStorage>, addit
       o.bgColorClass = value.bgColorClass
 
       // Major
-      const majorRegex = new RegExp('(?:' + Object.keys(itemSubCategories.majors).join('|') + ')', 'g')
+      const majorRegex = new RegExp('(?:' + itemSubCategories.majors.join('|') + ')', 'g')
       const majorMatch = el.item_name.match(majorRegex);
       if (majorMatch) {
         o.major = majorMatch[0]
@@ -122,7 +122,6 @@ export async function filterInventoryd(
   const thisInventory = [] as any;
   // First Categories
   let totalTwo = 0;
-  console.log(filtersData);
   for (const [, value] of Object.entries(filtersData)) {
     let valued = value as string;
     const command = valued.substring(0, 1);

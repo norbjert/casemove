@@ -4,25 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { classNames, onSortChange } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import itemRarities from 'renderer/components/content/shared/rarities';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
-//import { sortDataFunction } from 'renderer/context/inventoryFiltersContext';
 import { setRenameModal } from 'renderer/store/actions/modalMove actions';
 import { pricing_add_to_requested } from 'renderer/store/actions/pricingActions';
 import { tradeUpAddRemove } from 'renderer/store/actions/tradeUpActions';
 import { createCSGOImage } from '../../functionsClasses/createCSGOImage';
 
 
-function content() {
+export default function TradeUpPicker() {
   const [stickerHover, setStickerHover] = useState('');
   const [itemHover, setItemHover] = useState('');
-  const ReducerClass = new ReducerManager(useSelector)
-  const currentState: State = ReducerClass.getStorage()
-  const inventory = currentState.inventoryReducer;
-  const inventoryFilters = currentState.inventoryFiltersReducer;
-  const pricesResult = currentState.pricingReducer;
-  const settingsData = currentState.settingsReducer;
-  const tradeUpData = currentState.tradeUpReducer;
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
+  const pricesResult = useSelector((state: any) => state.pricingReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const tradeUpData = useSelector((state: any) => state.tradeUpReducer);
+  const currentState = { inventoryReducer: inventory, inventoryFiltersReducer: inventoryFilters, pricingReducer: pricesResult, settingsReducer: settingsData };
 
   const dispatch = useDispatch();
 
@@ -430,10 +426,6 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
                       {projectRow.item_paint_wear !== undefined
                         ? projectRow.item_wear_name
                         : ''}
-                      {/*
-                      {isShown == project.item_id  && project.item_paint_wear !== undefined?
-                        <div>{project.item_paint_wear}</div>
-                       : ''} */}
                     </span>
                   </span>
                 </div>
@@ -531,8 +523,4 @@ const isFull = tradeUpData.tradeUpProducts.length == 10
       </table>
     </>
   );
-}
-
-export default function TradeUpPicker() {
-  return content();
 }

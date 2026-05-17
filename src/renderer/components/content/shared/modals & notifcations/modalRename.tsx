@@ -12,7 +12,6 @@ export default function RenameModal() {
   const modalData = useSelector((state: any) => state.modalRenameReducer);
 
   async function renameStorageUnit(newName) {
-    console.log(modalData.modalPayload.casketID, newName);
     await window.electron.ipcRenderer.renameStorageUnit(
       modalData.modalPayload.itemID,
       newName

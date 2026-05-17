@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./.erb/scripts/vitest.setup.ts'],
+    setupFiles: ['./scripts/vitest.setup.ts'],
     exclude: ['e2e/**', 'node_modules/**'],
   },
   resolve: {

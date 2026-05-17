@@ -11,7 +11,6 @@ const pricingReducer = (state = initialState, action) => {
 
 
     case 'PRICING_ADD_STORAGE_TOTAL':
-      console.log(action.payload.storageAmount)
       return {
         ...state,
         storageAmount: state.storageAmount + action.payload.storageAmount,
@@ -21,7 +20,6 @@ const pricingReducer = (state = initialState, action) => {
       action.payload.itemRows.forEach(element => {
         currentPrices[element.item_name + (element.item_wear_name ?? '')] = element.pricing;
       });
-      console.log(currentPrices)
       return {
         ...state,
         prices: currentPrices,

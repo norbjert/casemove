@@ -19,16 +19,12 @@ import { downloadReport } from 'renderer/functionsClasses/downloadReport';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 
 import StorageFilterDisclosure from './storageFilterDisclosure';
-import { fromGetFilterManager } from './fromFilterSetup';
+import { getStorageFilterManager } from '../shared/storageFilterSetup';
 import { addMajorsFilters } from 'renderer/functionsClasses/filters/filters';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
-const ClassFilters = fromGetFilterManager();
+const ClassFilters = getStorageFilterManager();
 
-// ClassFilters.loadFilter(CharacteristicsFilter, true, 'Include');
-// ClassFilters.loadFilter(CharacteristicsFilter, false, 'Exclude');
-// ClassFilters.loadFilter(ContainerFilter, true);
-
-function content() {
+export default function StorageFilter() {
   const dispatch = useDispatch();
   const fromReducer = useSelector((state: any) => state.moveFromReducer);
   const inventory = useSelector((state: any) => state.inventoryReducer);
@@ -246,8 +242,4 @@ function content() {
       </Disclosure>
     </div>
   );
-}
-
-export default function StorageFilter() {
-  return content();
 }

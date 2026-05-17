@@ -111,10 +111,8 @@ export default function RadarApp() {
     finalDataToUse.push(resultingData[category].inventory + resultingData[category].storageUnits)
     storageUnitDataToUse.push(resultingData[category].storageUnits)
     rgbColorsToUse.push(categoriesColors[category])
-    console.log(category, categoriesColors[category])
     rgbColorsToUseBorder.push(categoriesColors[category]?.replace('0.2', '1'))
   });
-  console.log(rgbColorsToUse)
 
 
   const data = {

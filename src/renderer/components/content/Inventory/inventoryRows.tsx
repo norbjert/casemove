@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { RequestPrices } from 'renderer/functionsClasses/prices';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
 import { classNames, sortDataFunction } from '../shared/filters/inventoryFunctions';
 import RenameModal from '../shared/modals & notifcations/modalRename';
 import { RowCollections } from './inventoryRows/collectionsRow';
@@ -21,14 +19,13 @@ import { RowStorage } from './inventoryRows/storageRow';
 import { RowTradehold } from './inventoryRows/tradeholdRow';
 
 
-function content() {
+export default function InventoryRowsComponent() {
   const [getInventory, setInventory] = useState([] as any);
-  const ReducerClass = new ReducerManager(useSelector)
-  const currentState: State = ReducerClass.getStorage()
-  const inventory = currentState.inventoryReducer
-  const inventoryFilters = currentState.inventoryFiltersReducer
-  const pricesResult = currentState.pricingReducer
-  const settingsData = currentState.settingsReducer
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
+  const pricesResult = useSelector((state: any) => state.pricingReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const authReducer = useSelector((state: any) => state.authReducer);
 
   const dispatch = useDispatch();
 
@@ -146,7 +143,7 @@ function content() {
               <RowTradehold itemRow={projectRow} settingsData={settingsData} />
               <RowQTY itemRow={projectRow} />
               <RowMoveable itemRow={projectRow} settingsData={settingsData} />
-              <RowLinkInventory itemRow={projectRow} settingsData={settingsData} userDetails={currentState.authReducer}/>
+              <RowLinkInventory itemRow={projectRow} settingsData={settingsData} userDetails={authReducer}/>
               <td
                 key={Math.random().toString(36).substr(2, 9)}
                 className="hidden md:px-6 py-3 whitespace-nowrap text-right text-sm font-medium"
@@ -157,8 +154,4 @@ function content() {
       </table>
     </>
   );
-}
-
-export default function InventoryRowsComponent() {
-  return content();
 }

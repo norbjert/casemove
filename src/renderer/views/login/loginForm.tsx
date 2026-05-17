@@ -12,8 +12,6 @@ import { LoadingButton } from 'renderer/components/content/shared/animations';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import NotificationElement from 'renderer/components/content/shared/modals & notifcations/notification';
 import SteamLogo from 'renderer/components/content/shared/steamLogo';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
-import { State } from 'renderer/interfaces/states';
 import {
   HandleLoginObjectClass,
   LoginCommand,
@@ -88,8 +86,10 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
   const [getLoadingButton, setLoadingButton] = useState(false);
   const [secretEnabled, setSecretEnabled] = useState(false);
 
-  const ReducerClass = new ReducerManager(useSelector);
-  const currentState: State = ReducerClass.getStorage();
+  const settingsReducer = useSelector((state: any) => state.settingsReducer);
+  const inventoryFiltersReducer = useSelector((state: any) => state.inventoryFiltersReducer);
+  const pricingReducer = useSelector((state: any) => state.pricingReducer);
+  const currentState = { settingsReducer, inventoryFiltersReducer, pricingReducer };
   // Handle login
   const dispatch = useDispatch();
 
@@ -210,7 +210,6 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
     if (!hasAskedCloseSteam && currentState.settingsReducer.steamLoginShow) {
       setHasAskedCloseSteam(true);
       const steamRunning = await window.electron.ipcRenderer.checkSteam();
-      console.log('steam running', steamRunning);
       if (steamRunning) {
         setCloseSteamOpen(true);
         return;
@@ -312,7 +311,6 @@ export default function LoginForm({ isLock, replaceLock, runDeleteUser }) {
       .startQRLogin(storeRefreshToken)
       .then((responseStatus) => {
         // Notification and react
-        console.log('response status', responseStatus);
         const HandleClass = new HandleLogin(responseStatus.responseStatus);
         HandleClass.relevantFunction();
         if (responseStatus.responseStatus == 'loggedIn') {

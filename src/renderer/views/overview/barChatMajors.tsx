@@ -33,7 +33,7 @@ export default function BarAppMajor() {
   const inventoryDataToUse: Array<number> = [];
   const storageUnitDataToUse: Array<number> = [];
 
-  Object.keys(itemSubCategories.majors).forEach(category => {
+  itemSubCategories.majors.forEach(category => {
     const inventoryResult = inventory.combinedInventory.filter(itemRow => itemRow.major == category);
     const storageResult = inventory.storageInventory.filter(itemRow => itemRow.major == category);
     let categoryCounter = 0
@@ -48,11 +48,9 @@ export default function BarAppMajor() {
     inventoryDataToUse.push(categoryCounter)
     storageUnitDataToUse.push(storageCounter)
   });
-  console.log(storageUnitDataToUse)
-
 
   const data = {
-    labels: Object.keys(itemSubCategories.majors),
+    labels: itemSubCategories.majors,
 
 
     datasets: [

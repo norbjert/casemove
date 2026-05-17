@@ -6,23 +6,18 @@ import {
 } from 'renderer/store/actions/filtersInventoryActions';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { Filter, Filters } from 'renderer/interfaces/filters';
 import _ from 'lodash';
-import { State } from 'renderer/interfaces/states';
 
 
 
 export default function InventoryFiltersDisclosure({ClassFilters}) {
   const dispatch = useDispatch();
-  const ReducerClass = new ReducerManager(useSelector)
-  const currentState: State = ReducerClass.getStorage()
-
-
-  const inventoryFilters = currentState.inventoryFiltersReducer
-  const inventory = currentState.inventoryReducer
-  const pricesResult = currentState.pricingReducer
-  const settingsData = currentState.settingsReducer
+  const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const pricesResult = useSelector((state: any) => state.pricingReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+  const currentState = { inventoryFiltersReducer: inventoryFilters, inventoryReducer: inventory, pricingReducer: pricesResult, settingsReducer: settingsData };
 
 
   // Update selected filter

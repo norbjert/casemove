@@ -36,8 +36,6 @@ export default function ColumnsDropDown() {
 
     window.electron.ipcRenderer.refreshInventory();
     dispatch(moveFromReset());
-
-    console.log('Here');
   }
   return (
     <Menu as="div" className="relative inline-block text-left">

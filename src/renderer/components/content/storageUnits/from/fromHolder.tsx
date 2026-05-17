@@ -7,16 +7,12 @@ import { classNames } from '../../shared/filters/inventoryFunctions';
 import { NoSymbolIcon, FireIcon } from '@heroicons/react/24/solid';
 import { RowHeader, RowHeaderCondition, RowHeaderPlain } from '../../Inventory/inventoryRows/headerRows';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
-import { State } from 'renderer/interfaces/states';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 
 function StorageUnits() {
-  const ReducerClass = new ReducerManager(useSelector);
-  const currentState: State = ReducerClass.getStorage()
-  const inventory = currentState.inventoryReducer
-  const inventoryFilters = currentState.inventoryFiltersReducer
-  const fromReducer = currentState.moveFromReducer
-  const settingsData = currentState.settingsReducer
+  const inventory = useSelector((state: any) => state.inventoryReducer);
+  const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
+  const fromReducer = useSelector((state: any) => state.moveFromReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
   function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
@@ -48,11 +44,9 @@ function StorageUnits() {
     let i = 0;
     const htmlElements = document.getElementsByClassName('removeXButton');
     Array.from(htmlElements).forEach(function (element) {
-      console.log(element);
     });
     while (true) {
       const htmlElement = document.getElementById(`removeX-${i}`);
-      console.log(htmlElement);
       if (htmlElement != undefined) {
         htmlElement.click();
       } else {

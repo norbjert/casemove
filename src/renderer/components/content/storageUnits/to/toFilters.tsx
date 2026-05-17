@@ -20,11 +20,11 @@ import InventoryFiltersDisclosure from '../../Inventory/filtersDisclosure';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
-import { toGetFilterManager } from './toFilterSetup';
+import { getStorageFilterManager } from '../shared/storageFilterSetup';
 import { addMajorsFilters } from 'renderer/functionsClasses/filters/filters';
-const ClassFilters = toGetFilterManager()
+const ClassFilters = getStorageFilterManager()
 
-function content() {
+export default function StorageFilter() {
   const dispatch = useDispatch();
   const ReducerClass = new ReducerManager(useSelector);
   const pricesResult = ReducerClass.getStorage(ReducerClass.names.pricing);
@@ -241,8 +241,4 @@ function content() {
       </Disclosure>
     </div>
   );
-}
-
-export default function StorageFilter() {
-  return content();
 }

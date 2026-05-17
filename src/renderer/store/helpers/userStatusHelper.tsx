@@ -10,5 +10,5 @@ export async function getURL(steamID: string): Promise<string | void> {
         resolve(parser?.parseFromString(response.data,"text/xml")?.getElementsByTagName("profile")[0]?.getElementsByTagName("avatarMedium")[0]?.childNodes[0]?.nodeValue || defaultReturnString
 		)
 	    })
-    }).catch(error => console.log(error));
+    }).catch(() => {});
 }
