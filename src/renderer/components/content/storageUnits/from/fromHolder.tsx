@@ -2,70 +2,84 @@ import StorageFilter from './fromFilters';
 import StorageRow from './fromStorageRow';
 import StorageSelectorContent from './fromSelector';
 
-import {  useSelector } from 'react-redux';
+import { useRef, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 import { NoSymbolIcon, FireIcon } from '@heroicons/react/24/solid';
 import { RowHeader, RowHeaderCondition, RowHeaderPlain } from '../../Inventory/inventoryRows/headerRows';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
+import { moveFromAddRemove } from 'renderer/store/actions/moveFromActions';
 
 function StorageUnits() {
+  const dispatch = useDispatch();
   const inventory = useSelector((state: any) => state.inventoryReducer);
   const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
   const fromReducer = useSelector((state: any) => state.moveFromReducer);
   const settingsData = useSelector((state: any) => state.settingsReducer);
-  function sleep(time) {
+
+  const parentRef = useRef<HTMLDivElement>(null);
+
+  function sleep(time: number) {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
 
+  const storageFiltered = useMemo(() => {
+    let base = inventoryFilters.storageFiltered;
+    if (base.length === 0 && inventoryFilters.storageFilter.length === 0) {
+      base = inventory.storageInventory;
+    }
+    let list = searchFilter(base, inventoryFilters, fromReducer);
+    if (fromReducer.sortBack) list = [...list].reverse();
+    return list;
+  }, [
+    inventory.storageInventory,
+    inventoryFilters,
+    fromReducer,
+  ]);
+
+  const rowVirtualizer = useVirtualizer({
+    count: storageFiltered.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 57,
+    overscan: 8,
+  });
+
+  const virtualRows = rowVirtualizer.getVirtualItems();
+  const paddingTop = virtualRows.length > 0 ? virtualRows[0].start : 0;
+  const paddingBottom =
+    virtualRows.length > 0
+      ? rowVirtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end
+      : 0;
+
   async function ultimateFire() {
-    const runIndex = [] as any
-    const relevantRows = document.getElementsByClassName(`findRow`);
-    Array.from(relevantRows).forEach(function (element, index) {
-      if (!element.classList.contains('hidden')) {
-        runIndex.push(index)
-      }
-    });
+    let totalUsed = fromReducer.totalItemsToMove;
+    const maxCapacity = 1000 - inventory.inventory.length;
 
-    for (let index = 0; index < runIndex.length; index++) {
-      const indexToRun = runIndex[index];
+    for (const item of storageFiltered) {
+      if (item.trade_unlock != null) continue;
 
-      // Actual run
-      const htmlElement = document.getElementById(`fire-${indexToRun}`);
-      if (htmlElement != undefined) {
-        if (!htmlElement.classList.contains('hidden')) {
-          htmlElement.click();
-          await sleep(25);
-        }
-      }
+      const existing = fromReducer.totalToMove.find((row: any) => row[0] === item.item_id);
+      const currentQty = existing ? existing[2].length : 0;
+      if (currentQty >= item.combined_QTY) continue;
+
+      // Capacity for this item = max minus everything else already allocated
+      const capacityForItem = maxCapacity - (totalUsed - currentQty);
+      if (capacityForItem <= 0) continue;
+
+      const newQty = Math.min(item.combined_QTY, capacityForItem);
+      if (newQty <= currentQty) continue;
+
+      dispatch(moveFromAddRemove(item.storage_id, item.item_id, item.combined_ids.slice(0, newQty), item.item_name));
+      totalUsed += newQty - currentQty;
+      await sleep(25);
     }
   }
 
-  async function removeFire() {
-    let i = 0;
-    const htmlElements = document.getElementsByClassName('removeXButton');
-    Array.from(htmlElements).forEach(function (element) {
+  function removeFire() {
+    storageFiltered.forEach((item: any) => {
+      dispatch(moveFromAddRemove(item.storage_id, item.item_id, [], item.item_name));
     });
-    while (true) {
-      const htmlElement = document.getElementById(`removeX-${i}`);
-      if (htmlElement != undefined) {
-        htmlElement.click();
-      } else {
-        break;
-      }
-      i++;
-    }
-  }
-
-  let storageToUse = inventoryFilters.storageFiltered
-  if (storageToUse.length == 0 && inventoryFilters.storageFilter.length == 0 ) {
-    storageToUse = inventory.storageInventory
-  }
-
-
-  const storageFiltered = searchFilter(storageToUse, inventoryFilters, fromReducer)
-
-  if (fromReducer.sortBack) {
-    storageFiltered.reverse()
   }
 
   return (
@@ -76,17 +90,17 @@ function StorageUnits() {
       <StorageFilter />
 
       {/* Projects table (small breakpoint and up) */}
-
       <div className="hidden sm:block">
-        <div className="align-middle inline-block min-w-full border-b border-gray-200 dark:border-opacity-50">
+        <div
+          ref={parentRef}
+          className={classNames(
+            settingsData.os === 'win32' ? 'h-screen-from-windows' : 'h-screen-from',
+            'overflow-y-auto'
+          )}
+        >
           <table className="min-w-full">
-            <thead className="dark:bg-dark-level-two bg-gray-50">
-              <tr
-                className={classNames(
-                  settingsData.os == 'win32' ? 'top-7' : 'top-0',
-                  'border-gray-200 sticky'
-                )}
-              >
+            <thead className="dark:bg-dark-level-two bg-gray-50 sticky top-0 z-10">
+              <tr className="border-gray-200">
                 <RowHeader headerName='Product' sortName='Product name'/>
                 <RowHeaderCondition headerName='Collection' sortName='Collection' condition='Collections'/>
                 <RowHeaderCondition headerName='Price' sortName='Price' condition='Price'/>
@@ -145,14 +159,29 @@ function StorageUnits() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-500 dark:text-gray-400 dark:bg-dark-level-one">
-              {storageFiltered.map((project, index) => (
-                <tr
-                  key={project.item_id}
-                  className="hover:shadow-inner findRow"
-                >
-                  <StorageRow projectRow={project} index={index} />
+              {paddingTop > 0 && (
+                <tr>
+                  <td style={{ height: paddingTop }} colSpan={12} />
                 </tr>
-              ))}
+              )}
+              {virtualRows.map((virtualRow) => {
+                const project = storageFiltered[virtualRow.index];
+                return (
+                  <tr
+                    key={project.item_id}
+                    data-index={virtualRow.index}
+                    ref={rowVirtualizer.measureElement}
+                    className="hover:shadow-inner"
+                  >
+                    <StorageRow projectRow={project} index={virtualRow.index} />
+                  </tr>
+                );
+              })}
+              {paddingBottom > 0 && (
+                <tr>
+                  <td style={{ height: paddingBottom }} colSpan={12} />
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

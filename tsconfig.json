@@ -26,7 +26,8 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": "release/build",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["test", "release/build", ".erb/dll"]
 }
