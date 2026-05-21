@@ -142,6 +142,7 @@ export interface Overview {
 }
 export interface Settings {
   fastMove: boolean,
+  fastConsistentMove: boolean,
   currency: string,
   locale: string,
   steamLoginShow: boolean,

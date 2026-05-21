@@ -7,6 +7,12 @@ export const setFastMove = (valueToSet) => {
         payload: valueToSet
     }
 }
+export const setFastConsistentMove = (valueToSet) => {
+    return {
+        type: 'SETTINGS_SET_FASTCONSISTENTMOVE',
+        payload: valueToSet
+    }
+}
 export const setColumns = (valueToSet) => {
   return {
       type: 'SETTINGS_SET_COLUMNS',

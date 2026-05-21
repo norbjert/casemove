@@ -13,7 +13,7 @@ import {
   moveFromClearAll,
 } from 'renderer/store/actions/moveFromActions';
 
-// Number of concurrent workers used when fastMove is enabled.
+// Number of concurrent workers used in fast-consistent mode.
 const FAST_WORKERS = 5;
 
 export default function MoveModal() {
@@ -46,86 +46,128 @@ export default function MoveModal() {
     dispatch(moveModalResetPayload());
   }
 
-  // ── Worker pool ──────────────────────────────────────────────────────────────
+  // ── Move driver ──────────────────────────────────────────────────────────────
   // Triggered once when the modal opens with a non-empty queue.
   useEffect(() => {
     if (!modalData.moveOpen || modalData.query.length === 0) return;
 
     const queue: any[] = [...modalData.query];
-    const concurrency = settingsData.fastMove ? FAST_WORKERS : 1;
     setProgress({ done: 0, total: queue.length });
 
-    // Shared index — safe because JS is single-threaded.
-    let nextIndex = 0;
-    const firstPassFailed: any[] = [];
+    const fastConsistentMove: boolean = settingsData.fastConsistentMove;
+    const fastMove: boolean = settingsData.fastMove;
 
-    async function executeMove(item: any): Promise<void> {
-      if (item.type === 'to') {
-        await window.electron.ipcRenderer.moveToStorageUnit(
-          item.storageID,
-          item.itemID,
-          false
-        );
-      } else {
-        await window.electron.ipcRenderer.moveFromStorageUnit(
-          item.storageID,
-          item.itemID,
-          false
-        );
-      }
-    }
-
-    async function runWorker(): Promise<void> {
-      while (nextIndex < queue.length) {
-        const item = queue[nextIndex++];
-
-        // Skip items whose batch was cancelled.
-        if (doCancelRef.current.includes(item.key)) {
-          setProgress((p) => ({ ...p, done: p.done + 1 }));
-          continue;
-        }
-
-        try {
-          await executeMove(item);
-        } catch {
-          // Don't count as a failure yet — retry happens in the second pass.
-          firstPassFailed.push(item);
-        }
-
-        setProgress((p) => ({ ...p, done: p.done + 1 }));
-      }
-    }
-
-    // Launch N workers concurrently, then handle retries and cleanup.
-    Promise.all(Array.from({ length: concurrency }, runWorker)).then(async () => {
-      // ── Retry pass: sequential, one attempt each ───────────────────────────
-      for (const item of firstPassFailed) {
-        if (doCancelRef.current.includes(item.key)) continue;
-        try {
-          await executeMove(item);
-        } catch {
-          // Still failing after retry — count as a confirmed failure.
-          dispatch(moveModalAddToFail());
-        }
-      }
-
-      // ── Cleanup ───────────────────────────────────────────────────────────
+    function doCleanup() {
       window.electron.ipcRenderer.refreshInventory();
-
       const hasTo = queue.some((i: any) => i.type === 'to');
       const hasFrom = queue.some((i: any) => i.type === 'from');
       if (hasTo) dispatch(moveToClearAll());
       if (hasFrom) dispatch(moveFromClearAll());
-
       dispatch(modalResetStorageIdsToClearFrom());
       dispatch(moveModalResetPayload());
       dispatch(closeMoveModal());
-    });
+    }
+
+    async function executeMove(item: any): Promise<void> {
+      if (item.type === 'to') {
+        await window.electron.ipcRenderer.moveToStorageUnit(item.storageID, item.itemID, false);
+      } else {
+        await window.electron.ipcRenderer.moveFromStorageUnit(item.storageID, item.itemID, false);
+      }
+    }
+
+    if (fastConsistentMove) {
+      // ── Mode 3: N concurrent workers, each awaiting its own GC ack ──────────
+      let nextIndex = 0;
+      const firstPassFailed: any[] = [];
+
+      const runWorker = async (): Promise<void> => {
+        while (nextIndex < queue.length) {
+          const item = queue[nextIndex++];
+          if (doCancelRef.current.includes(item.key)) {
+            setProgress((p) => ({ ...p, done: p.done + 1 }));
+            continue;
+          }
+          try {
+            await executeMove(item);
+          } catch {
+            firstPassFailed.push(item);
+          }
+          setProgress((p) => ({ ...p, done: p.done + 1 }));
+        }
+      };
+
+      Promise.all(Array.from({ length: FAST_WORKERS }, runWorker)).then(async () => {
+        for (const item of firstPassFailed) {
+          if (doCancelRef.current.includes(item.key)) continue;
+          try {
+            await executeMove(item);
+          } catch {
+            dispatch(moveModalAddToFail());
+          }
+        }
+        doCleanup();
+      });
+
+    } else if (fastMove) {
+      // ── Mode 2: original fast move — fire-and-forget with 100ms spacing ─────
+      (async () => {
+        for (const item of queue) {
+          if (doCancelRef.current.includes(item.key)) {
+            setProgress((p) => ({ ...p, done: p.done + 1 }));
+            continue;
+          }
+          if (item.type === 'to') {
+            window.electron.ipcRenderer.moveToStorageUnit(item.storageID, item.itemID, true);
+          } else {
+            window.electron.ipcRenderer.moveFromStorageUnit(item.storageID, item.itemID, true);
+          }
+          setProgress((p) => ({ ...p, done: p.done + 1 }));
+          await new Promise((r) => setTimeout(r, 100));
+        }
+        doCleanup();
+      })();
+
+    } else {
+      // ── Mode 1: default slow — sequential, each awaiting GC ack ─────────────
+      let nextIndex = 0;
+      const firstPassFailed: any[] = [];
+
+      const runSingle = async (): Promise<void> => {
+        while (nextIndex < queue.length) {
+          const item = queue[nextIndex++];
+          if (doCancelRef.current.includes(item.key)) {
+            setProgress((p) => ({ ...p, done: p.done + 1 }));
+            continue;
+          }
+          try {
+            await executeMove(item);
+          } catch {
+            firstPassFailed.push(item);
+          }
+          setProgress((p) => ({ ...p, done: p.done + 1 }));
+        }
+      };
+
+      runSingle().then(async () => {
+        for (const item of firstPassFailed) {
+          if (doCancelRef.current.includes(item.key)) continue;
+          try {
+            await executeMove(item);
+          } catch {
+            dispatch(moveModalAddToFail());
+          }
+        }
+        doCleanup();
+      });
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalData.moveOpen]);
 
   // ── Display ──────────────────────────────────────────────────────────────────
   const fastMode = settingsData.fastMove;
+  const fastConsistentMode = settingsData.fastConsistentMove;
   const open = modalData.doCancel.includes(modalData.modalPayload?.['key'])
     ? false
     : modalData.moveOpen;
@@ -174,8 +216,10 @@ export default function MoveModal() {
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
                     Please wait while the app moves your items.
-                    {fastMode
+                    {fastConsistentMode
                       ? ` Running ${FAST_WORKERS} workers in parallel.`
+                      : fastMode
+                      ? ' Fast move enabled.'
                       : ' Enable fastmove in settings to speed this up.'}
                   </p>
                   {modalData.totalFailed > 0 && (
