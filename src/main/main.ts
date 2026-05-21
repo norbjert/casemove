@@ -795,6 +795,32 @@ async function startEvents(csgo, user) {
     csgo.removeAllListeners('itemChanged');
     csgo.removeAllListeners('itemAcquired');
   }
+
+  // ── Concurrent casket operation tracking ────────────────────────────────────
+  // FIFO queues: each entry waits for one CasketAdded / CasketRemoved GC event.
+  // Using separate queues per type prevents add/remove cross-contamination.
+  const pendingAddOps: Array<{ event: any; requestId: number; timeout: ReturnType<typeof setTimeout> }> = [];
+  const pendingRemoveOps: Array<{ event: any; requestId: number; timeout: ReturnType<typeof setTimeout> }> = [];
+
+  csgo.on(
+    'itemCustomizationNotification',
+    (itemIds: any[], notificationType: any) => {
+      if (notificationType === GlobalOffensive.ItemCustomizationNotification.CasketAdded) {
+        const op = pendingAddOps.shift();
+        if (op) {
+          clearTimeout(op.timeout);
+          op.event.reply(`moveToStorageUnit-reply-${op.requestId}`, [1, itemIds[0]]);
+        }
+      } else if (notificationType === GlobalOffensive.ItemCustomizationNotification.CasketRemoved) {
+        const op = pendingRemoveOps.shift();
+        if (op) {
+          clearTimeout(op.timeout);
+          op.event.reply(`removeFromStorageUnit-reply-${op.requestId}`, [1, itemIds[0]]);
+        }
+      }
+      // Other types (NameItem etc.) are handled by their own csgo.once listeners
+    }
+  );
   ipcMain.on('refreshInventory', async () => {
     await removeInventoryListeners();
     await startChangeEvents();
@@ -861,49 +887,39 @@ async function startEvents(csgo, user) {
   // Remove items from storage unit
   ipcMain.on(
     'removeFromStorageUnit',
-    async (event, casketID, itemID, fastMode) => {
-      await removeInventoryListeners();
+    async (event, casketID, itemID, fastMode, requestId) => {
+      removeInventoryListeners();
       csgo.removeFromCasket(casketID, itemID);
 
-      if (fastMode == false) {
-        csgo.once(
-          'itemCustomizationNotification',
-          (itemIds: string | any[], notificationType: any) => {
-            if (
-              notificationType ==
-              GlobalOffensive.ItemCustomizationNotification.CasketRemoved
-            ) {
-              console.log(itemIds + ' got an item removed from it');
-              event.reply('removeFromStorageUnit-reply', [1, itemIds[0]]);
-            }
-          },
-        );
+      if (!fastMode && requestId != null) {
+        const timeout = setTimeout(() => {
+          const idx = pendingRemoveOps.findIndex((op) => op.requestId === requestId);
+          if (idx !== -1) {
+            pendingRemoveOps.splice(idx, 1);
+            event.reply(`removeFromStorageUnit-reply-${requestId}`, [0]);
+          }
+        }, 12000);
+        pendingRemoveOps.push({ event, requestId, timeout });
+        console.log(`removeFromStorageUnit queued requestId=${requestId}`);
       }
     }
   );
 
   // Move to Storage Unit
-  ipcMain.on('moveToStorageUnit', async (event, casketID, itemID, fastMode) => {
+  ipcMain.on('moveToStorageUnit', async (event, casketID, itemID, fastMode, requestId) => {
     csgo.addToCasket(casketID, itemID);
-    //if (fastMode) {
-
     removeInventoryListeners();
 
-    // }
-
-    if (fastMode == false) {
-      csgo.once(
-        'itemCustomizationNotification',
-        (itemIds, notificationType) => {
-          if (
-            notificationType ==
-            GlobalOffensive.ItemCustomizationNotification.CasketAdded
-          ) {
-            console.log(itemIds[0] + ' got an item added to it');
-            event.reply('moveToStorageUnit-reply', [1, itemIds[0]]);
-          }
+    if (!fastMode && requestId != null) {
+      const timeout = setTimeout(() => {
+        const idx = pendingAddOps.findIndex((op) => op.requestId === requestId);
+        if (idx !== -1) {
+          pendingAddOps.splice(idx, 1);
+          event.reply(`moveToStorageUnit-reply-${requestId}`, [0]);
         }
-      );
+      }, 12000);
+      pendingAddOps.push({ event, requestId, timeout });
+      console.log(`moveToStorageUnit queued requestId=${requestId}`);
     }
   });
 

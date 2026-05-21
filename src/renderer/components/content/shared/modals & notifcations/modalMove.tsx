@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,22 +7,30 @@ import {
   modalResetStorageIdsToClearFrom,
   moveModalAddToFail,
   moveModalResetPayload,
-  moveModalUpdate,
 } from 'renderer/store/actions/modalMove actions';
 import { moveToClearAll } from 'renderer/store/actions/moveToActions';
 import {
   moveFromClearAll,
-  moveFromReset,
 } from 'renderer/store/actions/moveFromActions';
 
+// Number of concurrent workers used when fastMove is enabled.
+const FAST_WORKERS = 5;
+
 export default function MoveModal() {
-  const waitTime = 100;
-  const [seenID, setID] = useState('');
-  const [seenStorage, setStorage] = useState('');
   const dispatch = useDispatch();
   const modalData = useSelector((state: any) => state.modalMoveReducer);
   const settingsData = useSelector((state: any) => state.settingsReducer);
 
+  // Keep a ref so async workers always read the latest cancel list.
+  const doCancelRef = useRef<string[]>(modalData.doCancel);
+  useEffect(() => {
+    doCancelRef.current = modalData.doCancel;
+  }, [modalData.doCancel]);
+
+  // Local progress state updated by workers — avoids Redux overhead per item.
+  const [progress, setProgress] = useState({ done: 0, total: 0 });
+
+  // ── Cancel handler ───────────────────────────────────────────────────────────
   async function cancelMe() {
     window.electron.ipcRenderer.refreshInventory();
     dispatch(closeMoveModal());
@@ -38,81 +46,88 @@ export default function MoveModal() {
     dispatch(moveModalResetPayload());
   }
 
-  const fastMode = settingsData.fastMove;
-
-  async function runModal() {
-    if (modalData.moveOpen) {
-      if (modalData.doCancel.includes(modalData.modalPayload['key']) == false) {
-        if (modalData.modalPayload['type'] == 'to') {
-          if (fastMode && modalData.query.length > 1) {
-            window.electron.ipcRenderer.moveToStorageUnit(
-              modalData.modalPayload['storageID'],
-              modalData.modalPayload['itemID'],
-              true
-            );
-            await new Promise(r => setTimeout(r, waitTime));
-          } else {
-            try {
-              await window.electron.ipcRenderer.moveToStorageUnit(
-                modalData.modalPayload['storageID'],
-                modalData.modalPayload['itemID'],
-                false
-              );
-            } catch {
-              dispatch(moveModalAddToFail());
-            }
-          }
-          dispatch(moveModalUpdate());
-          if (modalData.modalPayload['isLast']) {
-            dispatch(moveToClearAll());
-          }
-        }
-        if (modalData.modalPayload['type'] == 'from') {
-          if (fastMode) {
-            window.electron.ipcRenderer.moveFromStorageUnit(
-              modalData.modalPayload['storageID'],
-              modalData.modalPayload['itemID'],
-              true
-            );
-            await new Promise(r => setTimeout(r, waitTime));
-          } else {
-            try {
-              await window.electron.ipcRenderer.moveFromStorageUnit(
-                modalData.modalPayload['storageID'],
-                modalData.modalPayload['itemID'],
-                false
-              );
-            } catch {
-              dispatch(moveModalAddToFail());
-            }
-          }
-          dispatch(moveModalUpdate());
-        }
-        if (modalData.modalPayload['isLast']) {
-          window.electron.ipcRenderer.refreshInventory();
-        }
-      }
-    }
-  }
-
+  // ── Worker pool ──────────────────────────────────────────────────────────────
+  // Triggered once when the modal opens with a non-empty queue.
   useEffect(() => {
-    if (
-      Object.keys(modalData.modalPayload).length !== 0 &&
-      seenID != modalData.modalPayload.itemID
-    ) {
-      if (modalData.modalPayload.storageID != seenStorage) {
-        dispatch(moveFromReset());
-      }
-      setID(modalData.modalPayload.itemID);
-      runModal();
-    }
-  }, [modalData.modalPayload.itemID]);
+    if (!modalData.moveOpen || modalData.query.length === 0) return;
 
-  const devMode = false;
-  const open = modalData.doCancel.includes(modalData.modalPayload['key'])
+    const queue: any[] = [...modalData.query];
+    const concurrency = settingsData.fastMove ? FAST_WORKERS : 1;
+    setProgress({ done: 0, total: queue.length });
+
+    // Shared index — safe because JS is single-threaded.
+    let nextIndex = 0;
+    const firstPassFailed: any[] = [];
+
+    async function executeMove(item: any): Promise<void> {
+      if (item.type === 'to') {
+        await window.electron.ipcRenderer.moveToStorageUnit(
+          item.storageID,
+          item.itemID,
+          false
+        );
+      } else {
+        await window.electron.ipcRenderer.moveFromStorageUnit(
+          item.storageID,
+          item.itemID,
+          false
+        );
+      }
+    }
+
+    async function runWorker(): Promise<void> {
+      while (nextIndex < queue.length) {
+        const item = queue[nextIndex++];
+
+        // Skip items whose batch was cancelled.
+        if (doCancelRef.current.includes(item.key)) {
+          setProgress((p) => ({ ...p, done: p.done + 1 }));
+          continue;
+        }
+
+        try {
+          await executeMove(item);
+        } catch {
+          // Don't count as a failure yet — retry happens in the second pass.
+          firstPassFailed.push(item);
+        }
+
+        setProgress((p) => ({ ...p, done: p.done + 1 }));
+      }
+    }
+
+    // Launch N workers concurrently, then handle retries and cleanup.
+    Promise.all(Array.from({ length: concurrency }, runWorker)).then(async () => {
+      // ── Retry pass: sequential, one attempt each ───────────────────────────
+      for (const item of firstPassFailed) {
+        if (doCancelRef.current.includes(item.key)) continue;
+        try {
+          await executeMove(item);
+        } catch {
+          // Still failing after retry — count as a confirmed failure.
+          dispatch(moveModalAddToFail());
+        }
+      }
+
+      // ── Cleanup ───────────────────────────────────────────────────────────
+      window.electron.ipcRenderer.refreshInventory();
+
+      const hasTo = queue.some((i: any) => i.type === 'to');
+      const hasFrom = queue.some((i: any) => i.type === 'from');
+      if (hasTo) dispatch(moveToClearAll());
+      if (hasFrom) dispatch(moveFromClearAll());
+
+      dispatch(modalResetStorageIdsToClearFrom());
+      dispatch(moveModalResetPayload());
+      dispatch(closeMoveModal());
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalData.moveOpen]);
+
+  // ── Display ──────────────────────────────────────────────────────────────────
+  const fastMode = settingsData.fastMove;
+  const open = modalData.doCancel.includes(modalData.modalPayload?.['key'])
     ? false
-    : Object.keys(modalData.modalPayload).length == 0
-    ? devMode
     : modalData.moveOpen;
 
   return (
@@ -143,8 +158,10 @@ export default function MoveModal() {
             <div>
               <div className="mx-auto flex items-center justify-center h-14 w-14 rounded-full bg-blue-500 dark:bg-blue-700">
                 <span className="animate-ping absolute inline-flex h-14 w-14 rounded-full dark:bg-blue-700 opacity-75"></span>
-                <span className="text-white dark:text-dark-white">
-                  {modalData.modalPayload['number']}
+                <span className="text-white dark:text-dark-white text-sm font-medium">
+                  {progress.total > 0
+                    ? `${progress.done}/${progress.total}`
+                    : '…'}
                 </span>
               </div>
               <div className="mt-3 text-center sm:mt-5">
@@ -152,18 +169,18 @@ export default function MoveModal() {
                   as="h3"
                   className="text-lg leading-6 font-medium text-gray-900 dark:text-dark-white"
                 >
-                  {modalData.modalPayload['name']}
+                  Moving items
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
                     Please wait while the app moves your items.
-                    {fastMode == false ? ' \nWant to speed this up? Enable fastmove in the settings.' : ''}
+                    {fastMode
+                      ? ` Running ${FAST_WORKERS} workers in parallel.`
+                      : ' Enable fastmove in settings to speed this up.'}
                   </p>
-                  {modalData.totalFailed == 0 ? (
-                    ''
-                  ) : (
+                  {modalData.totalFailed > 0 && (
                     <p className="text-sm text-red-500">
-                      Total failed: {modalData.totalFailed}
+                      Failed after retry: {modalData.totalFailed}
                     </p>
                   )}
                 </div>

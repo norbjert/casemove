@@ -167,7 +167,7 @@ function AppContent() {
       while (!cancelled) {
         const messageValue = await window.electron.ipcRenderer.userEvents();
         if (cancelled) break;
-        if (settingsDataRef.current.fastMove && modalDataRef.current.query.length > 0) {
+        if (modalDataRef.current.moveOpen) {
           continue;
         }
         if (messageValue.command == undefined) {
