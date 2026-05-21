@@ -5,13 +5,21 @@ on:
   push:
     branches: [main, master]
 
+permissions: read-all
+
 jobs:
   build:
+    permissions:
+      contents: read
     uses: ./.github/workflows/build.yml
 
   test:
+    permissions:
+      contents: read
     uses: ./.github/workflows/test.yml
 
   e2e:
     needs: build
+    permissions:
+      contents: read
     uses: ./.github/workflows/e2e.yml
