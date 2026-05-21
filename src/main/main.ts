@@ -184,7 +184,7 @@ const createWindow = async () => {
   await mainWindow.webContents.session.clearStorageData();
 
   // Allow cross-origin fetch() from the file:// renderer (e.g. image lookup JSON).
-  // This is narrower than webSecurity:false — web security stays on; we only
+  // This is narrower than webSecurity:false - web security stays on; we only
   // inject Access-Control-Allow-Origin so same-origin fetch works from null origin.
   mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
     callback({
