@@ -613,7 +613,6 @@ async function cancelLogin(user: {
 }) {
   console.log('Cancel login');
   user.removeAllListeners('loggedOn');
-  user.removeAllListeners('loginKey');
   user.removeAllListeners('steamGuard');
   user.removeAllListeners('error');
 }
