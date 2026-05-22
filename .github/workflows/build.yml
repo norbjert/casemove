@@ -3,9 +3,6 @@ name: Build
 on:
   workflow_call:
 
-env:
-  NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
-
 jobs:
   build:
     runs-on: ubuntu-latest
