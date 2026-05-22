@@ -3,9 +3,6 @@ name: E2E Tests
 on:
   workflow_call:
 
-env:
-  NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
-
 jobs:
   e2e:
     runs-on: ubuntu-latest
