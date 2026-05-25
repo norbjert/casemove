@@ -1,0 +1,34 @@
+name: Update CS2 Item Data
+
+on:
+  schedule:
+    # Run every Friday at 06:00 UTC
+    - cron: '0 6 * * 5'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update CS2 item backup files
+        id: update
+        run: node scripts/update-cs2-data.mjs
+
+      - name: Commit changes
+        if: steps.update.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/main/helpers/classes/steam/items/itemsBackupFiles/items_game.json
+          git add src/main/helpers/classes/steam/items/itemsBackupFiles/csgo_english.json
+          git commit -m "chore: update CS2 item data backups"
+          git push
