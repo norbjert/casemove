@@ -120,7 +120,7 @@ async function updateItemsGame() {
   if (!dict.items[1209]) throw new Error('Validation failed: item 1209 not found');
 
   const outPath = path.join(BACKUP_DIR, 'items_game.json');
-  const newContent = JSON.stringify(dict);
+  const newContent = JSON.stringify(dict, null, 2) + '\n';
   const existing = fs.existsSync(outPath) ? fs.readFileSync(outPath, 'utf-8') : null;
 
   if (existing === newContent) {
@@ -143,7 +143,7 @@ async function updateCsgoEnglish() {
   }
 
   const outPath = path.join(BACKUP_DIR, 'csgo_english.json');
-  const newContent = JSON.stringify(dict);
+  const newContent = JSON.stringify(dict, null, 2) + '\n';
   const existing = fs.existsSync(outPath) ? fs.readFileSync(outPath, 'utf-8') : null;
 
   if (existing === newContent) {
