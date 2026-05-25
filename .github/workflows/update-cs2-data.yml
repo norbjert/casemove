@@ -36,9 +36,12 @@ jobs:
           git add src/main/helpers/classes/steam/items/itemsBackupFiles/items_game.json
           git add src/main/helpers/classes/steam/items/itemsBackupFiles/csgo_english.json
           git commit -m "chore: update CS2 item data backups"
-          git push origin "$BRANCH"
+          git push --force origin "$BRANCH"
           gh pr create \
             --title "chore: update CS2 item data backups" \
             --body "Automated update of \`items_game.json\` and \`csgo_english.json\` from [SteamTracking/GameTracking-CS2](https://github.com/SteamTracking/GameTracking-CS2)." \
             --base main \
-            --head "$BRANCH"
+            --head "$BRANCH" \
+            || gh pr edit "$BRANCH" \
+              --title "chore: update CS2 item data backups" \
+              --body "Automated update of \`items_game.json\` and \`csgo_english.json\` from [SteamTracking/GameTracking-CS2](https://github.com/SteamTracking/GameTracking-CS2)."
