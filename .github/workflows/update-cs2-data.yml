@@ -42,6 +42,7 @@ jobs:
             --body "Automated update of \`items_game.json\` and \`csgo_english.json\` from [SteamTracking/GameTracking-CS2](https://github.com/SteamTracking/GameTracking-CS2)." \
             --base main \
             --head "$BRANCH" \
+            --label "dependencies" \
             || gh pr edit "$BRANCH" \
               --title "chore: update CS2 item data backups" \
               --body "Automated update of \`items_game.json\` and \`csgo_english.json\` from [SteamTracking/GameTracking-CS2](https://github.com/SteamTracking/GameTracking-CS2)."
