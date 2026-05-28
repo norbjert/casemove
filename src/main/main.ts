@@ -177,12 +177,23 @@ const createWindow = async () => {
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'),
-      webSecurity: false,
       sandbox: false,
       enableBlinkFeatures: 'CSSColorSchemeUARendering',
     },
   });
   await mainWindow.webContents.session.clearStorageData();
+
+  // Allow cross-origin fetch() from the file:// renderer (e.g. image lookup JSON).
+  // This is narrower than webSecurity:false - web security stays on; we only
+  // inject Access-Control-Allow-Origin so same-origin fetch works from null origin.
+  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Access-Control-Allow-Origin': ['*'],
+      },
+    });
+  });
 
   ipcMain.on('download', (_event, info) => {
     const fileP = path.join(os.homedir(), '/Downloads/casemove.csv');
@@ -613,7 +624,6 @@ async function cancelLogin(user: {
 }) {
   console.log('Cancel login');
   user.removeAllListeners('loggedOn');
-  user.removeAllListeners('loginKey');
   user.removeAllListeners('steamGuard');
   user.removeAllListeners('error');
 }

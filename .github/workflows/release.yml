@@ -24,7 +24,6 @@ permissions:
   pull-requests: read
 
 env:
-  NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -38,7 +37,7 @@ jobs:
           node-version: 22
           cache: npm
       - name: Set version
-        run: npm version ${{ inputs.version }} --no-git-tag-version
+        run: npm version ${{ inputs.version }} --no-git-tag-version --allow-same-version
       - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish
@@ -55,7 +54,7 @@ jobs:
         with:
           node-version: 22
       - name: Set version
-        run: npm version ${{ inputs.version }} --no-git-tag-version
+        run: npm version ${{ inputs.version }} --no-git-tag-version --allow-same-version
       - run: Remove-Item package-lock.json
       - run: npm install --ignore-scripts
       - run: npm run build
@@ -100,7 +99,7 @@ jobs:
           node-version: 22
           cache: npm
       - name: Set version
-        run: npm version ${{ inputs.version }} --no-git-tag-version
+        run: npm version ${{ inputs.version }} --no-git-tag-version --allow-same-version
       - run: npm install --ignore-scripts
       - run: npm run build
       - name: Package and publish

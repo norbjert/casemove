@@ -3,12 +3,11 @@ name: Unit Tests
 on:
   workflow_call:
 
-env:
-  NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
-
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v6
 
