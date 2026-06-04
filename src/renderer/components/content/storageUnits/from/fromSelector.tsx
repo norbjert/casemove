@@ -66,9 +66,15 @@ export default function StorageSelectorContent() {
     }
   }
 
-  // Get the inventory
+  // Unload all storage units then reload all of them from scratch
   async function refreshInventory() {
-    window.electron.ipcRenderer.refreshInventory();
+    dispatch(moveFromReset());
+    setLoadingSetStorage(true);
+    // Pass activeStorages as empty so getAllStorages treats every unit as unloaded
+    const freshState = { ...currentState, moveFromReducer: { ...fromReducer, activeStorages: [] } };
+    getAllStorages(dispatch, freshState).then(() => {
+      setLoadingSetStorage(false);
+    });
   }
 
   // Get all storage unit data
