@@ -11,6 +11,7 @@ const makeSettings = (overrides = {}) => ({
   source: { title: 'steam_listings', avatar: '', name: 'Steam' },
   currencyPrice: { EUR: 1.0, USD: 1.1 },
   fastMove: false,
+  fastConsistentMove: false,
   steamLoginShow: false,
   os: '',
   devmode: false,

@@ -2,6 +2,7 @@ import { Settings } from "renderer/interfaces/states";
 
 const initialState: Settings = {
   fastMove: false,
+  fastConsistentMove: false,
   currency: 'USD',
   locale: 'EN-GB',
   os: '',
@@ -27,6 +28,11 @@ const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         fastMove: action.payload,
+      };
+    case 'SETTINGS_SET_FASTCONSISTENTMOVE':
+      return {
+        ...state,
+        fastConsistentMove: action.payload,
       };
     case 'SETTINGS_SET_COLUMNS':
       return {

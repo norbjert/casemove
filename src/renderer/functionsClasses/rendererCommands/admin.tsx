@@ -3,6 +3,7 @@ import {
   setCurrencyRate,
   setCurrencyValue,
   setDevmode,
+  setFastConsistentMove,
   setFastMove,
   setLocale,
   setOS,
@@ -59,6 +60,10 @@ export class DispatchStore extends IPCCommunication {
     fastmove: {
       name: 'fastmove',
       action: setFastMove
+    },
+    fastconsistentmove: {
+      name: 'fastconsistentmove',
+      action: setFastConsistentMove
     },
     currency: {
       name: 'currency',

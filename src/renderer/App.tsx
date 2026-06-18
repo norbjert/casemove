@@ -157,6 +157,7 @@ function AppContent() {
       StoreClass.run(StoreClass.buildingObject.columns);
       StoreClass.run(StoreClass.buildingObject.devmode);
       StoreClass.run(StoreClass.buildingObject.fastmove);
+      StoreClass.run(StoreClass.buildingObject.fastconsistentmove);
       StoreClass.run(StoreClass.buildingObject.source);
       StoreClass.run(StoreClass.buildingObject.locale);
       StoreClass.run(StoreClass.buildingObject.steamLoginShow);
@@ -167,7 +168,7 @@ function AppContent() {
       while (!cancelled) {
         const messageValue = await window.electron.ipcRenderer.userEvents();
         if (cancelled) break;
-        if (settingsDataRef.current.fastMove && modalDataRef.current.query.length > 0) {
+        if (modalDataRef.current.moveOpen) {
           continue;
         }
         if (messageValue.command == undefined) {

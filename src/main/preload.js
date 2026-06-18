@@ -1,5 +1,10 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
+// Monotonically increasing counter used to create unique reply channels for
+// concurrent move operations so that N in-flight requests never steal each
+// other's replies.
+let _moveRequestCounter = 0;
+
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
     myPing(message = 'ping') {
@@ -209,55 +214,43 @@ contextBridge.exposeInMainWorld('electron', {
 
     // Commands
     moveFromStorageUnit(casketID, itemID, fastMode) {
-      // Create a promise that rejects in <ms> milliseconds
-      let storageUnitResponse = new Promise((resolve) => {
-        ipcRenderer.send('removeFromStorageUnit', casketID, itemID, fastMode);
-
-        if (fastMode) {
-          resolve(fastMode);
-        } else {
-          ipcRenderer.once('removeFromStorageUnit-reply', (event, arg) => {
-            resolve(arg);
-          });
-        }
-      });
       if (fastMode) {
-        return true;
-      } else {
-        let timeout = new Promise((_resolve, reject) => {
-          let id = setTimeout(() => {
-            clearTimeout(id);
-            reject();
-          }, 10000);
-        });
-        return Promise.race([storageUnitResponse, timeout]);
+        ipcRenderer.send('removeFromStorageUnit', casketID, itemID, true, null);
+        return Promise.resolve(true);
       }
+      const requestId = ++_moveRequestCounter;
+      const replyChannel = `removeFromStorageUnit-reply-${requestId}`;
+      return new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+          ipcRenderer.removeAllListeners(replyChannel);
+          reject();
+        }, 11000);
+        ipcRenderer.once(replyChannel, (_event, arg) => {
+          clearTimeout(timeoutId);
+          resolve(arg);
+        });
+        ipcRenderer.send('removeFromStorageUnit', casketID, itemID, false, requestId);
+      });
     },
-    // Commands
+
     moveToStorageUnit(casketID, itemID, fastMode) {
-      let storageUnitResponse = new Promise((resolve) => {
-        ipcRenderer.send('moveToStorageUnit', casketID, itemID, fastMode);
-        if (fastMode) {
-          resolve(fastMode);
-        } else {
-          ipcRenderer.once('moveToStorageUnit-reply', (event, arg) => {
-            resolve(arg);
-          });
-        }
-      });
-
       if (fastMode) {
-        return true;
-      } else {
-        let timeout = new Promise((_resolve, reject) => {
-          let id = setTimeout(() => {
-            clearTimeout(id);
-            reject();
-          }, 10000);
-        });
-
-        return Promise.race([storageUnitResponse, timeout]);
+        ipcRenderer.send('moveToStorageUnit', casketID, itemID, true, null);
+        return Promise.resolve(true);
       }
+      const requestId = ++_moveRequestCounter;
+      const replyChannel = `moveToStorageUnit-reply-${requestId}`;
+      return new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+          ipcRenderer.removeAllListeners(replyChannel);
+          reject();
+        }, 11000);
+        ipcRenderer.once(replyChannel, (_event, arg) => {
+          clearTimeout(timeoutId);
+          resolve(arg);
+        });
+        ipcRenderer.send('moveToStorageUnit', casketID, itemID, false, requestId);
+      });
     },
 
     on(channel, func) {
