@@ -24278,6 +24278,61 @@
         "pedestal display model": "models/inventory_items/cs2_maptokens/cs2_maptoken.vmdl"
       }
     },
+    "5281": {
+      "name": "Map Token Boulder",
+      "prefab": "map_token",
+      "item_name": "#CSGO_Collectible_MapTokenBoulder",
+      "item_description": "#CSGO_Collectible_MapTokenBoulder_Desc",
+      "image_inventory": "econ/status_icons/maptoken_boulder",
+      "map_name": "#SFUI_Map_de_boulder",
+      "attributes": {
+        "pedestal display model": "models/inventory_items/cs2_maptokens/cs2_maptoken.vmdl"
+      }
+    },
+    "5282": {
+      "name": "Map Token Fachwerk",
+      "prefab": "map_token",
+      "item_name": "#CSGO_Collectible_MapTokenFachwerk",
+      "item_description": "#CSGO_Collectible_MapTokenFachwerk_Desc",
+      "image_inventory": "econ/status_icons/maptoken_fachwerk",
+      "map_name": "#SFUI_Map_de_fachwerk",
+      "attributes": {
+        "pedestal display model": "models/inventory_items/cs2_maptokens/cs2_maptoken.vmdl"
+      }
+    },
+    "5283": {
+      "name": "Map Token Shelter",
+      "prefab": "map_token",
+      "item_name": "#CSGO_Collectible_MapTokenShelter",
+      "item_description": "#CSGO_Collectible_MapTokenShelter_Desc",
+      "image_inventory": "econ/status_icons/maptoken_shelter",
+      "map_name": "#SFUI_Map_cs_shelter",
+      "attributes": {
+        "pedestal display model": "models/inventory_items/cs2_maptokens/cs2_maptoken.vmdl"
+      }
+    },
+    "5284": {
+      "name": "Map Token Debris",
+      "prefab": "map_token",
+      "item_name": "#CSGO_Collectible_MapTokenDebris",
+      "item_description": "#CSGO_Collectible_MapTokenDebris_Desc",
+      "image_inventory": "econ/status_icons/maptoken_debris",
+      "map_name": "#SFUI_Map_de_debris",
+      "attributes": {
+        "pedestal display model": "models/inventory_items/cs2_maptokens/cs2_maptoken.vmdl"
+      }
+    },
+    "5285": {
+      "name": "Map Token El Dorado",
+      "prefab": "map_token",
+      "item_name": "#CSGO_Collectible_MapTokenElDorado",
+      "item_description": "#CSGO_Collectible_MapTokenElDorado_Desc",
+      "image_inventory": "econ/status_icons/maptoken_eldorado",
+      "map_name": "#SFUI_Map_de_eldorado",
+      "attributes": {
+        "pedestal display model": "models/inventory_items/cs2_maptokens/cs2_maptoken.vmdl"
+      }
+    },
     "5300": {
       "name": "customplayer_ctm_fbi",
       "prefab": "customplayer",
@@ -24583,6 +24638,621 @@
           "attribute_class": "tournament_event_id",
           "value": 26
         }
+      }
+    },
+    "5323": {
+      "item_name": "#keychain_kc_cologne2026",
+      "name": "crate_highlights_pack_cologne2026_1",
+      "item_description": "#CSGO_Tournament_Event_Stage_49",
+      "image_inventory": "econ/tournaments/cologne2026/cologne2026_credits",
+      "prefab": "cologne2026_sticker_capsule_prefab volatile_pricing_uniform1",
+      "attributes": {
+        "set supply crate series": 472,
+        "volatile container": 2
+      }
+    },
+    "5324": {
+      "item_name": "#keychain_kc_cologne2026",
+      "name": "crate_highlights_pack_cologne2026_2",
+      "item_description": "#CSGO_Tournament_Event_Stage_65",
+      "image_inventory": "econ/tournaments/cologne2026/cologne2026_credits",
+      "prefab": "cologne2026_sticker_capsule_prefab volatile_pricing_uniform1",
+      "attributes": {
+        "set supply crate series": 473,
+        "volatile container": 2
+      }
+    },
+    "5325": {
+      "item_name": "#keychain_kc_cologne2026",
+      "name": "crate_highlights_pack_cologne2026_3",
+      "item_description": "#CSGO_Tournament_Event_Stage_83",
+      "image_inventory": "econ/tournaments/cologne2026/cologne2026_credits",
+      "prefab": "cologne2026_sticker_capsule_prefab volatile_pricing_uniform1",
+      "attributes": {
+        "set supply crate series": 474,
+        "volatile container": 2
+      }
+    },
+    "5326": {
+      "item_name": "#keychain_kc_cologne2026",
+      "name": "crate_highlights_pack_cologne2026_4",
+      "item_description": "#CSGO_Tournament_Event_Stage_6",
+      "image_inventory": "econ/tournaments/cologne2026/cologne2026_credits",
+      "prefab": "cologne2026_sticker_capsule_prefab volatile_pricing_uniform1",
+      "attributes": {
+        "set supply crate series": 475,
+        "volatile container": 2
+      }
+    },
+    "5327": {
+      "item_name": "#keychain_kc_cologne2026",
+      "name": "crate_highlights_pack_cologne2026_5",
+      "item_description": "#CSGO_Tournament_Event_Stage_8",
+      "image_inventory": "econ/tournaments/cologne2026/cologne2026_credits",
+      "prefab": "cologne2026_sticker_capsule_prefab volatile_pricing_uniform1",
+      "attributes": {
+        "set supply crate series": 476,
+        "volatile container": 2
+      }
+    },
+    "5328": {
+      "item_name": "#keychain_kc_cologne2026",
+      "name": "crate_highlights_pack_cologne2026_6",
+      "item_description": "#CSGO_Tournament_Event_Stage_97",
+      "image_inventory": "econ/tournaments/cologne2026/cologne2026_credits",
+      "prefab": "cologne2026_sticker_capsule_prefab volatile_pricing_uniform1",
+      "attributes": {
+        "set supply crate series": 477,
+        "volatile container": 2
+      }
+    },
+    "5329": {
+      "item_name": "#CSGO_crate_sticker_pack_cologne2026_all",
+      "name": "crate_sticker_pack_cologne2026_champion",
+      "item_description": "#CSGO_crate_sticker_pack_cologne2026_all_desc",
+      "image_inventory": "econ/tournaments/cologne2026/cologne2026_credits",
+      "prefab": "cologne2026_sticker_capsule_prefab volatile_pricing_stickercap1",
+      "attributes": {
+        "set supply crate series": 478,
+        "volatile container": 2
+      }
+    },
+    "5330": {
+      "name": "premier season coin s=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_eg",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5331": {
+      "name": "premier season coin s=5 c=1 b=1",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_11",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 1,
+        "premier season bars": 1,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5332": {
+      "name": "premier season coin s=5 c=1 b=2",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_12",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 1,
+        "premier season bars": 2,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5333": {
+      "name": "premier season coin s=5 c=1 b=3",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_13",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 1,
+        "premier season bars": 3,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5334": {
+      "name": "premier season coin s=5 c=1 b=4",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_14",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 1,
+        "premier season bars": 4,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5335": {
+      "name": "premier season coin s=5 c=1 b=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_15",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 1,
+        "premier season bars": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5336": {
+      "name": "premier season coin s=5 c=2 b=1",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_21",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 2,
+        "premier season bars": 1,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5337": {
+      "name": "premier season coin s=5 c=2 b=2",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_22",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 2,
+        "premier season bars": 2,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5338": {
+      "name": "premier season coin s=5 c=2 b=3",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_23",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 2,
+        "premier season bars": 3,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5339": {
+      "name": "premier season coin s=5 c=2 b=4",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_24",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 2,
+        "premier season bars": 4,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5340": {
+      "name": "premier season coin s=5 c=2 b=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_25",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 2,
+        "premier season bars": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5341": {
+      "name": "premier season coin s=5 c=3 b=1",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_31",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 3,
+        "premier season bars": 1,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5342": {
+      "name": "premier season coin s=5 c=3 b=2",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_32",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 3,
+        "premier season bars": 2,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5343": {
+      "name": "premier season coin s=5 c=3 b=3",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_33",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 3,
+        "premier season bars": 3,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5344": {
+      "name": "premier season coin s=5 c=3 b=4",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_34",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 3,
+        "premier season bars": 4,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5345": {
+      "name": "premier season coin s=5 c=3 b=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_35",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 3,
+        "premier season bars": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5346": {
+      "name": "premier season coin s=5 c=4 b=1",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_41",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 4,
+        "premier season bars": 1,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5347": {
+      "name": "premier season coin s=5 c=4 b=2",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_42",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 4,
+        "premier season bars": 2,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5348": {
+      "name": "premier season coin s=5 c=4 b=3",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_43",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 4,
+        "premier season bars": 3,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5349": {
+      "name": "premier season coin s=5 c=4 b=4",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_44",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 4,
+        "premier season bars": 4,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5350": {
+      "name": "premier season coin s=5 c=4 b=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_45",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 4,
+        "premier season bars": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5351": {
+      "name": "premier season coin s=5 c=5 b=1",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_51",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 5,
+        "premier season bars": 1,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5352": {
+      "name": "premier season coin s=5 c=5 b=2",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_52",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 5,
+        "premier season bars": 2,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5353": {
+      "name": "premier season coin s=5 c=5 b=3",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_53",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 5,
+        "premier season bars": 3,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5354": {
+      "name": "premier season coin s=5 c=5 b=4",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_54",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 5,
+        "premier season bars": 4,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5355": {
+      "name": "premier season coin s=5 c=5 b=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_55",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 5,
+        "premier season bars": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5356": {
+      "name": "premier season coin s=5 c=6 b=1",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_61",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 6,
+        "premier season bars": 1,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5357": {
+      "name": "premier season coin s=5 c=6 b=2",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_62",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 6,
+        "premier season bars": 2,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5358": {
+      "name": "premier season coin s=5 c=6 b=3",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_63",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 6,
+        "premier season bars": 3,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5359": {
+      "name": "premier season coin s=5 c=6 b=4",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_64",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 6,
+        "premier season bars": 4,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5360": {
+      "name": "premier season coin s=5 c=6 b=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_65",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 6,
+        "premier season bars": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5361": {
+      "name": "premier season coin s=5 c=7 b=1",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_71",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 7,
+        "premier season bars": 1,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5362": {
+      "name": "premier season coin s=5 c=7 b=2",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_72",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 7,
+        "premier season bars": 2,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5363": {
+      "name": "premier season coin s=5 c=7 b=3",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_73",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 7,
+        "premier season bars": 3,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5364": {
+      "name": "premier season coin s=5 c=7 b=4",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_74",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 7,
+        "premier season bars": 4,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
+      }
+    },
+    "5365": {
+      "name": "premier season coin s=5 c=7 b=5",
+      "prefab": "premier_season_coin",
+      "item_name": "#CSGO_Collectible_PremierSeason5Coin",
+      "item_description": "#CSGO_Collectible_PremierSeason5Coin_Desc",
+      "image_inventory": "econ/premier_seasons/premier_season_5_coin_75",
+      "attributes": {
+        "premier season": 5,
+        "premier season clrs max": 7,
+        "premier season bars max": 5,
+        "premier season clrs": 7,
+        "premier season bars": 5,
+        "pedestal display model": "models/inventory_items/premier_seasons/premier_season_5_coin_eg.vmdl"
       }
     },
     "5400": {
@@ -26260,6 +26930,35 @@
       "loot_list_name": "coupon loot list - shockone_01",
       "prefab": "coupon_prefab",
       "image_inventory": "econ/music_kits/shockone_01"
+    },
+    "7041": {
+      "name": "crate_sticker_pack_jackass_capsule",
+      "item_name": "CSGO_crate_sticker_pack_jackass_capsule",
+      "item_description": "CSGO_crate_sticker_pack_jackass_capsule_desc",
+      "image_inventory": "econ/weapon_cases/crate_sticker_pack_jackass_capsule",
+      "first_sale_date": "2026-07-03",
+      "prefab": "sticker_capsule",
+      "attributes": {
+        "set supply crate series": {
+          "attribute_class": "supply_crate_series",
+          "value": 479
+        }
+      },
+      "tags": {
+        "StickerCapsule": {
+          "tag_value": "crate_sticker_pack_jackass_capsule_lootlist",
+          "tag_text": "#CSGO_crate_sticker_pack_jackass_capsule",
+          "tag_group": "StickerCapsule",
+          "tag_group_text": "#SFUI_InvTooltip_StickerCapsuleTag"
+        }
+      }
+    },
+    "7042": {
+      "name": "coupon - jackass_sticker_capsule",
+      "item_name": "#coupon_jackass_sticker_capsule",
+      "item_description": "#coupon_desc",
+      "loot_list_name": "coupon loot list - jackass_sticker_capsule",
+      "prefab": "coupon_jackass_capsule_prefab"
     },
     "20000": {
       "name": "coupon - bossyburger",
@@ -39797,6 +40496,312 @@
       "description_tag": "#PaintKit_glove_specialist_dragon_blue_Tag",
       "composite_material_path": "gloves/paints/volatile_02/glove_specialist_dragon_blue.vcompmat"
     },
+    "1442": {
+      "name": "nova_smart",
+      "description_string": "#PaintKit_nova_smart",
+      "description_tag": "#PaintKit_nova_smart_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/nova_smart.vcompmat"
+    },
+    "1443": {
+      "name": "cz75_hydraulics",
+      "description_string": "#PaintKit_cz75_hydraulics",
+      "description_tag": "#PaintKit_cz75_hydraulics_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/cz75_hydraulics.vcompmat"
+    },
+    "1445": {
+      "name": "r8_monarch_extended",
+      "description_string": "#PaintKit_r8_monarch",
+      "description_tag": "#PaintKit_r8_monarch_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/r8_monarch_extended.vcompmat"
+    },
+    "1446": {
+      "name": "m4a4_black_side_matte",
+      "description_string": "#PaintKit_m4a4_black_side_matte",
+      "description_tag": "#PaintKit_m4a4_black_side_matte_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/m4a4_black_side_matte.vcompmat"
+    },
+    "1447": {
+      "name": "tec9_perimeter_urban",
+      "description_string": "#PaintKit_tec9_perimeter_urban",
+      "description_tag": "#PaintKit_tec9_perimeter_urban_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/tec9_perimeter_urban.vcompmat"
+    },
+    "1448": {
+      "name": "mac10_video_cam",
+      "description_string": "#PaintKit_mac10_video_cam",
+      "description_tag": "#PaintKit_mac10_video_cam_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/mac10_video_cam.vcompmat"
+    },
+    "1449": {
+      "name": "ak47_autoexec_camo",
+      "description_string": "#PaintKit_ak47_autoexec_camo",
+      "description_tag": "#PaintKit_ak47_autoexec_camo_Tag",
+      "style": 7,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/ak47_autoexec_camo.vcompmat"
+    },
+    "1450": {
+      "name": "glock_ghost_protocol_red",
+      "description_string": "#PaintKit_glock_ghost_protocol_red",
+      "description_tag": "#PaintKit_glock_ghost_protocol_red_Tag",
+      "style": 7,
+      "wear_remap_min": 0,
+      "wear_remap_max": 0.9,
+      "composite_material_path": "weapons/paints/set_spy_tech/glock_ghost_protocol_red.vcompmat"
+    },
+    "1451": {
+      "name": "usps_spiral_glitch_iridescent",
+      "description_string": "#PaintKit_usps_spiral_glitch_iridescent",
+      "description_tag": "#PaintKit_usps_spiral_glitch_iridescent_Tag",
+      "style": 7,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/usps_spiral_glitch_iridescent.vcompmat"
+    },
+    "1452": {
+      "name": "aug_ghost_signal",
+      "description_string": "#PaintKit_aug_ghost_signal",
+      "description_tag": "#PaintKit_aug_ghost_signal_Tag",
+      "style": 7,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/aug_ghost_signal.vcompmat"
+    },
+    "1453": {
+      "name": "scar_sirocco",
+      "description_string": "#PaintKit_scar_sirocco",
+      "description_tag": "#PaintKit_scar_sirocco_Tag",
+      "style": 3,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/scar_sirocco.vcompmat"
+    },
+    "1454": {
+      "name": "mac10_arabesque_gold",
+      "description_string": "#PaintKit_mac10_arabesque_gold",
+      "description_tag": "#PaintKit_mac10_arabesque_gold_Tag",
+      "style": 3,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/mac10_arabesque_gold.vcompmat"
+    },
+    "1455": {
+      "name": "p250_lotus_imprint_glitter_purple",
+      "description_string": "#PaintKit_p250_lotus_imprint_glitter_purple",
+      "description_tag": "#PaintKit_p250_lotus_imprint_glitter_purple_Tag",
+      "style": 7,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/p250_lotus_imprint_glitter_purple.vcompmat"
+    },
+    "1457": {
+      "name": "fiveseven_desert_seal",
+      "description_string": "#PaintKit_fiveseven_desert_seal",
+      "description_tag": "#PaintKit_fiveseven_desert_seal_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/fiveseven_desert_seal.vcompmat"
+    },
+    "1458": {
+      "name": "deagle_eastern_enigma_blue",
+      "description_string": "#PaintKit_deagle_eastern_enigma_blue",
+      "description_tag": "#PaintKit_deagle_eastern_enigma_blue_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/deagle_eastern_enigma_blue.vcompmat"
+    },
+    "1459": {
+      "name": "dualies_mystic_conjunction_v3",
+      "description_string": "#PaintKit_dualies_mystic_conjunction_v3",
+      "description_tag": "#PaintKit_dualies_mystic_conjunction_v3_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/dualies_mystic_conjunction_v3.vcompmat"
+    },
+    "1460": {
+      "name": "glock_ifrit_lattice",
+      "description_string": "#PaintKit_glock_ifrit_lattice",
+      "description_tag": "#PaintKit_glock_ifrit_lattice_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/glock_ifrit_lattice.vcompmat"
+    },
+    "1461": {
+      "name": "famas_snake_song",
+      "description_string": "#PaintKit_famas_snake_song",
+      "description_tag": "#PaintKit_famas_snake_song_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/famas_snake_song.vcompmat"
+    },
+    "1462": {
+      "name": "tec9_sultan",
+      "description_string": "#PaintKit_tec9_sultan",
+      "description_tag": "#PaintKit_tec9_sultan_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/tec9_sultan.vcompmat"
+    },
+    "1463": {
+      "name": "m4a4_falak",
+      "description_string": "#PaintKit_m4a4_falak",
+      "description_tag": "#PaintKit_m4a4_falak_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/m4a4_falak.vcompmat"
+    },
+    "1464": {
+      "name": "aug_lapis_lazuli",
+      "description_string": "#PaintKit_aug_lapis_lazuli",
+      "description_tag": "#PaintKit_aug_lapis_lazuli_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/aug_lapis_lazuli.vcompmat"
+    },
+    "1465": {
+      "name": "awp_sovereign_flame",
+      "description_string": "#PaintKit_awp_sovereign_flame",
+      "description_tag": "#PaintKit_awp_sovereign_flame_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/awp_sovereign_flame.vcompmat"
+    },
+    "1466": {
+      "name": "ak47_jinn_consequence",
+      "description_string": "#PaintKit_ak47_jinn_consequence",
+      "description_tag": "#PaintKit_ak47_jinn_consequence_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/ak47_jinn_consequence.vcompmat"
+    },
+    "1467": {
+      "name": "awp_black_box",
+      "description_string": "#PaintKit_awp_black_box",
+      "description_tag": "#PaintKit_awp_black_box_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/awp_black_box.vcompmat"
+    },
+    "1468": {
+      "name": "mp7_binary_green",
+      "description_string": "#PaintKit_mp7_binary_green",
+      "description_tag": "#PaintKit_mp7_binary_green_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/mp7_binary_green.vcompmat"
+    },
+    "1469": {
+      "name": "mp9_prototype_extended",
+      "description_string": "#PaintKit_mp9_prototype_extended",
+      "description_tag": "#PaintKit_mp9_prototype_extended_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/mp9_prototype_extended.vcompmat"
+    },
+    "1470": {
+      "name": "scar_arctic_camo_panels",
+      "description_string": "#PaintKit_scar_arctic_camo_panels",
+      "description_tag": "#PaintKit_scar_arctic_camo_panels_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/scar_arctic_camo_panels.vcompmat"
+    },
+    "1471": {
+      "name": "xm1014_black_site",
+      "description_string": "#PaintKit_xm1014_black_site",
+      "description_tag": "#PaintKit_xm1014_black_site_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/xm1014_black_site.vcompmat"
+    },
+    "1472": {
+      "name": "bizon_traitor",
+      "description_string": "#PaintKit_bizon_traitor",
+      "description_tag": "#PaintKit_bizon_traitor_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/bizon_traitor.vcompmat"
+    },
+    "1473": {
+      "name": "mp9_dune_asp",
+      "description_string": "#PaintKit_mp9_dune_asp",
+      "description_tag": "#PaintKit_mp9_dune_asp_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/mp9_dune_asp.vcompmat"
+    },
+    "1474": {
+      "name": "nova_morning_sun",
+      "description_string": "#PaintKit_nova_morning_sun",
+      "description_tag": "#PaintKit_nova_morning_sun_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/nova_morning_sun.vcompmat"
+    },
+    "1475": {
+      "name": "sawedoff_lunar_wyrm",
+      "description_string": "#PaintKit_sawedoff_lunar_wyrm",
+      "description_tag": "#PaintKit_sawedoff_lunar_wyrm_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_arabesque/sawedoff_lunar_wyrm.vcompmat"
+    },
+    "1476": {
+      "name": "hye_spyglitch_green_m4a1s",
+      "description_string": "#PaintKit_hye_spyglitch",
+      "description_tag": "#PaintKit_hye_spyglitch_Tag",
+      "style": 2,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/hye_spyglitch_green_m4a1s.vcompmat"
+    },
+    "1477": {
+      "name": "famas_corp_defense",
+      "description_string": "#PaintKit_famas_corp_defense",
+      "description_tag": "#PaintKit_famas_corp_defense_Tag",
+      "style": 9,
+      "wear_remap_min": 0,
+      "wear_remap_max": 1,
+      "composite_material_path": "weapons/paints/set_spy_tech/famas_corp_defense.vcompmat"
+    },
     "9001": {
       "name": "workshop_default",
       "wear_remap_min": 0,
@@ -44699,6 +45704,9 @@
       "prefab": "coupon_prefab"
     },
     "coupon_warhammer_xenos_capsule_prefab": {
+      "prefab": "coupon_prefab"
+    },
+    "coupon_jackass_capsule_prefab": {
       "prefab": "coupon_prefab"
     },
     "coupon_masterminds2_capsule_prefab": {
@@ -142183,6 +143191,377 @@
       "tournament_team_id": 89,
       "tournament_player_id": 153400465
     },
+    "10314": {
+      "name": "paper_nana_strike",
+      "item_name": "StickerKit_fruits_veggies_paper_nana_strike",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_nana_strike",
+      "sticker_material": "community/fruits_veggies/paper_nana_strike",
+      "item_rarity": "rare"
+    },
+    "10315": {
+      "name": "paper_agent_kucumber",
+      "item_name": "StickerKit_fruits_veggies_paper_agent_kucumber",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_agent_kucumber",
+      "sticker_material": "community/fruits_veggies/paper_agent_kucumber",
+      "item_rarity": "rare"
+    },
+    "10316": {
+      "name": "paper_box_logo",
+      "item_name": "StickerKit_fruits_veggies_paper_box_logo",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_box_logo",
+      "sticker_material": "community/fruits_veggies/paper_box_logo",
+      "item_rarity": "rare"
+    },
+    "10317": {
+      "name": "paper_dont_cry",
+      "item_name": "StickerKit_fruits_veggies_paper_dont_cry",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_dont_cry",
+      "sticker_material": "community/fruits_veggies/paper_dont_cry",
+      "item_rarity": "rare"
+    },
+    "10318": {
+      "name": "paper_fresh_cut",
+      "item_name": "StickerKit_fruits_veggies_paper_fresh_cut",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_fresh_cut",
+      "sticker_material": "community/fruits_veggies/paper_fresh_cut",
+      "item_rarity": "rare"
+    },
+    "10319": {
+      "name": "paper_from_the_source",
+      "item_name": "StickerKit_fruits_veggies_paper_from_the_source",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_from_the_source",
+      "sticker_material": "community/fruits_veggies/paper_from_the_source",
+      "item_rarity": "rare"
+    },
+    "10320": {
+      "name": "paper_heckler",
+      "item_name": "StickerKit_fruits_veggies_paper_heckler",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_heckler",
+      "sticker_material": "community/fruits_veggies/paper_heckler",
+      "item_rarity": "rare"
+    },
+    "10321": {
+      "name": "paper_lemin",
+      "item_name": "StickerKit_fruits_veggies_paper_lemin",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_lemin",
+      "sticker_material": "community/fruits_veggies/paper_lemin",
+      "item_rarity": "rare"
+    },
+    "10322": {
+      "name": "paper_peekle",
+      "item_name": "StickerKit_fruits_veggies_paper_peekle",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_peekle",
+      "sticker_material": "community/fruits_veggies/paper_peekle",
+      "item_rarity": "rare"
+    },
+    "10323": {
+      "name": "paper_pungent_comms",
+      "item_name": "StickerKit_fruits_veggies_paper_pungent_comms",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_pungent_comms",
+      "sticker_material": "community/fruits_veggies/paper_pungent_comms",
+      "item_rarity": "rare"
+    },
+    "10324": {
+      "name": "paper_radish_k",
+      "item_name": "StickerKit_fruits_veggies_paper_radish_k",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_radish_k",
+      "sticker_material": "community/fruits_veggies/paper_radish_k",
+      "item_rarity": "rare"
+    },
+    "10325": {
+      "name": "paper_scratch_n_whiff",
+      "item_name": "StickerKit_fruits_veggies_paper_scratch_n_whiff",
+      "description_string": "StickerKit_desc_fruits_veggies_paper_scratch_n_whiff",
+      "sticker_material": "community/fruits_veggies/paper_scratch_n_whiff",
+      "item_rarity": "rare"
+    },
+    "10326": {
+      "name": "glitter_aceberry",
+      "item_name": "StickerKit_fruits_veggies_glitter_aceberry",
+      "description_string": "StickerKit_desc_fruits_veggies_glitter_aceberry",
+      "sticker_material": "community/fruits_veggies/glitter_aceberry",
+      "item_rarity": "mythical"
+    },
+    "10327": {
+      "name": "glitter_apple_a_day",
+      "item_name": "StickerKit_fruits_veggies_glitter_apple_a_day",
+      "description_string": "StickerKit_desc_fruits_veggies_glitter_apple_a_day",
+      "sticker_material": "community/fruits_veggies/glitter_apple_a_day",
+      "item_rarity": "mythical"
+    },
+    "10328": {
+      "name": "holo_juice_box",
+      "item_name": "StickerKit_fruits_veggies_holo_juice_box",
+      "description_string": "StickerKit_desc_fruits_veggies_holo_juice_box",
+      "sticker_material": "community/fruits_veggies/holo_juice_box",
+      "item_rarity": "mythical"
+    },
+    "10329": {
+      "name": "holo_knife_streak",
+      "item_name": "StickerKit_fruits_veggies_holo_knife_streak",
+      "description_string": "StickerKit_desc_fruits_veggies_holo_knife_streak",
+      "sticker_material": "community/fruits_veggies/holo_knife_streak",
+      "item_rarity": "mythical"
+    },
+    "10330": {
+      "name": "holo_from_the_vine",
+      "item_name": "StickerKit_fruits_veggies_holo_from_the_vine",
+      "description_string": "StickerKit_desc_fruits_veggies_holo_from_the_vine",
+      "sticker_material": "community/fruits_veggies/holo_from_the_vine",
+      "item_rarity": "mythical"
+    },
+    "10331": {
+      "name": "holo_hot_pepper",
+      "item_name": "StickerKit_fruits_veggies_holo_hot_pepper",
+      "description_string": "StickerKit_desc_fruits_veggies_holo_hot_pepper",
+      "sticker_material": "community/fruits_veggies/holo_hot_pepper",
+      "item_rarity": "mythical"
+    },
+    "10332": {
+      "name": "holo_quality_control",
+      "item_name": "StickerKit_fruits_veggies_holo_quality_control",
+      "description_string": "StickerKit_desc_fruits_veggies_holo_quality_control",
+      "sticker_material": "community/fruits_veggies/holo_quality_control",
+      "item_rarity": "mythical"
+    },
+    "10333": {
+      "name": "holo_ultra_fruity",
+      "item_name": "StickerKit_fruits_veggies_holo_ultra_fruity",
+      "description_string": "StickerKit_desc_fruits_veggies_holo_ultra_fruity",
+      "sticker_material": "community/fruits_veggies/holo_ultra_fruity",
+      "item_rarity": "mythical"
+    },
+    "10334": {
+      "name": "foil_banana_face",
+      "item_name": "StickerKit_fruits_veggies_foil_banana_face",
+      "description_string": "StickerKit_desc_fruits_veggies_foil_banana_face",
+      "sticker_material": "community/fruits_veggies/foil_banana_face",
+      "item_rarity": "legendary"
+    },
+    "10335": {
+      "name": "foil_modern_art",
+      "item_name": "StickerKit_fruits_veggies_foil_modern_art",
+      "description_string": "StickerKit_desc_fruits_veggies_foil_modern_art",
+      "sticker_material": "community/fruits_veggies/foil_modern_art",
+      "item_rarity": "legendary"
+    },
+    "10336": {
+      "name": "foil_dragon_fruit",
+      "item_name": "StickerKit_fruits_veggies_foil_dragon_fruit",
+      "description_string": "StickerKit_desc_fruits_veggies_foil_dragon_fruit",
+      "sticker_material": "community/fruits_veggies/foil_dragon_fruit",
+      "item_rarity": "legendary"
+    },
+    "10337": {
+      "name": "foil_early_bird",
+      "item_name": "StickerKit_fruits_veggies_foil_early_bird",
+      "description_string": "StickerKit_desc_fruits_veggies_foil_early_bird",
+      "sticker_material": "community/fruits_veggies/foil_early_bird",
+      "item_rarity": "legendary"
+    },
+    "10338": {
+      "name": "foil_fruit_fly",
+      "item_name": "StickerKit_fruits_veggies_foil_fruit_fly",
+      "description_string": "StickerKit_desc_fruits_veggies_foil_fruit_fly",
+      "sticker_material": "community/fruits_veggies/foil_fruit_fly",
+      "item_rarity": "legendary"
+    },
+    "10339": {
+      "name": "lenticular_pineapple_pizza",
+      "item_name": "StickerKit_fruits_veggies_lenticular_pineapple_pizza",
+      "description_string": "StickerKit_desc_fruits_veggies_lenticular_pineapple_pizza",
+      "sticker_material": "community/fruits_veggies/lenticular_pineapple_pizza",
+      "item_rarity": "ancient"
+    },
+    "10340": {
+      "name": "lenticular_pepper_gauge",
+      "item_name": "StickerKit_fruits_veggies_lenticular_pepper_gauge",
+      "description_string": "StickerKit_desc_fruits_veggies_lenticular_pepper_gauge",
+      "sticker_material": "community/fruits_veggies/lenticular_pepper_gauge",
+      "item_rarity": "ancient"
+    },
+    "10341": {
+      "name": "paper_blaze_breeze",
+      "item_name": "StickerKit_auto_racing_paper_blaze_breeze",
+      "description_string": "StickerKit_desc_auto_racing_paper_blaze_breeze",
+      "sticker_material": "community/auto_racing/paper_blaze_breeze",
+      "item_rarity": "rare"
+    },
+    "10342": {
+      "name": "paper_bomb_on_board",
+      "item_name": "StickerKit_auto_racing_paper_bomb_on_board",
+      "description_string": "StickerKit_desc_auto_racing_paper_bomb_on_board",
+      "sticker_material": "community/auto_racing/paper_bomb_on_board",
+      "item_rarity": "rare"
+    },
+    "10343": {
+      "name": "paper_boreal_blast",
+      "item_name": "StickerKit_auto_racing_paper_boreal_blast",
+      "description_string": "StickerKit_desc_auto_racing_paper_boreal_blast",
+      "sticker_material": "community/auto_racing/paper_boreal_blast",
+      "item_rarity": "rare"
+    },
+    "10344": {
+      "name": "paper_bhop_hydraulics",
+      "item_name": "StickerKit_auto_racing_paper_bhop_hydraulics",
+      "description_string": "StickerKit_desc_auto_racing_paper_bhop_hydraulics",
+      "sticker_material": "community/auto_racing/paper_bhop_hydraulics",
+      "item_rarity": "rare"
+    },
+    "10345": {
+      "name": "paper_racing_flag",
+      "item_name": "StickerKit_auto_racing_paper_racing_flag",
+      "description_string": "StickerKit_desc_auto_racing_paper_racing_flag",
+      "sticker_material": "community/auto_racing/paper_racing_flag",
+      "item_rarity": "rare"
+    },
+    "10346": {
+      "name": "paper_defusal_sprint",
+      "item_name": "StickerKit_auto_racing_paper_defusal_sprint",
+      "description_string": "StickerKit_desc_auto_racing_paper_defusal_sprint",
+      "sticker_material": "community/auto_racing/paper_defusal_sprint",
+      "item_rarity": "rare"
+    },
+    "10347": {
+      "name": "paper_killometer",
+      "item_name": "StickerKit_auto_racing_paper_killometer",
+      "description_string": "StickerKit_desc_auto_racing_paper_killometer",
+      "sticker_material": "community/auto_racing/paper_killometer",
+      "item_rarity": "rare"
+    },
+    "10348": {
+      "name": "paper_roentgen_raceclub",
+      "item_name": "StickerKit_auto_racing_paper_roentgen_raceclub",
+      "description_string": "StickerKit_desc_auto_racing_paper_roentgen_raceclub",
+      "sticker_material": "community/auto_racing/paper_roentgen_raceclub",
+      "item_rarity": "rare"
+    },
+    "10349": {
+      "name": "paper_run_boost",
+      "item_name": "StickerKit_auto_racing_paper_run_boost",
+      "description_string": "StickerKit_desc_auto_racing_paper_run_boost",
+      "sticker_material": "community/auto_racing/paper_run_boost",
+      "item_rarity": "rare"
+    },
+    "10350": {
+      "name": "paper_safari_shine",
+      "item_name": "StickerKit_auto_racing_paper_safari_shine",
+      "description_string": "StickerKit_desc_auto_racing_paper_safari_shine",
+      "sticker_material": "community/auto_racing/paper_safari_shine",
+      "item_rarity": "rare"
+    },
+    "10351": {
+      "name": "paper_sand_dune_baja_tour",
+      "item_name": "StickerKit_auto_racing_paper_sand_dune_baja_tour",
+      "description_string": "StickerKit_desc_auto_racing_paper_sand_dune_baja_tour",
+      "sticker_material": "community/auto_racing/paper_sand_dune_baja_tour",
+      "item_rarity": "rare"
+    },
+    "10353": {
+      "name": "paper_w_tires",
+      "item_name": "StickerKit_auto_racing_paper_w_tires",
+      "description_string": "StickerKit_desc_auto_racing_paper_w_tires",
+      "sticker_material": "community/auto_racing/paper_w_tires",
+      "item_rarity": "rare"
+    },
+    "10354": {
+      "name": "holo_cone_zone",
+      "item_name": "StickerKit_auto_racing_holo_cone_zone",
+      "description_string": "StickerKit_desc_auto_racing_holo_cone_zone",
+      "sticker_material": "community/auto_racing/holo_cone_zone",
+      "item_rarity": "mythical"
+    },
+    "10355": {
+      "name": "holo_engine_start",
+      "item_name": "StickerKit_auto_racing_holo_engine_start",
+      "description_string": "StickerKit_desc_auto_racing_holo_engine_start",
+      "sticker_material": "community/auto_racing/holo_engine_start",
+      "item_rarity": "mythical"
+    },
+    "10356": {
+      "name": "holo_first_lap",
+      "item_name": "StickerKit_auto_racing_holo_first_lap",
+      "description_string": "StickerKit_desc_auto_racing_holo_first_lap",
+      "sticker_material": "community/auto_racing/holo_first_lap",
+      "item_rarity": "mythical"
+    },
+    "10357": {
+      "name": "holo_neo_hold",
+      "item_name": "StickerKit_auto_racing_holo_neo_hold",
+      "description_string": "StickerKit_desc_auto_racing_holo_neo_hold",
+      "sticker_material": "community/auto_racing/holo_neo_hold",
+      "item_rarity": "mythical"
+    },
+    "10358": {
+      "name": "holo_neo_rush",
+      "item_name": "StickerKit_auto_racing_holo_neo_rush",
+      "description_string": "StickerKit_desc_auto_racing_holo_neo_rush",
+      "sticker_material": "community/auto_racing/holo_neo_rush",
+      "item_rarity": "mythical"
+    },
+    "10359": {
+      "name": "holo_safety_first",
+      "item_name": "StickerKit_auto_racing_holo_safety_first",
+      "description_string": "StickerKit_desc_auto_racing_holo_safety_first",
+      "sticker_material": "community/auto_racing/holo_safety_first",
+      "item_rarity": "mythical"
+    },
+    "10360": {
+      "name": "foil_eco_mode",
+      "item_name": "StickerKit_auto_racing_foil_eco_mode",
+      "description_string": "StickerKit_desc_auto_racing_foil_eco_mode",
+      "sticker_material": "community/auto_racing/foil_eco_mode",
+      "item_rarity": "legendary"
+    },
+    "10361": {
+      "name": "foil_lucky_charms",
+      "item_name": "StickerKit_auto_racing_foil_lucky_charms",
+      "description_string": "StickerKit_desc_auto_racing_foil_lucky_charms",
+      "sticker_material": "community/auto_racing/foil_lucky_charms",
+      "item_rarity": "legendary"
+    },
+    "10363": {
+      "name": "foil_turbo_peek",
+      "item_name": "StickerKit_auto_racing_foil_turbo_peek",
+      "description_string": "StickerKit_desc_auto_racing_foil_turbo_peek",
+      "sticker_material": "community/auto_racing/foil_turbo_peek",
+      "item_rarity": "legendary"
+    },
+    "10364": {
+      "name": "foil_watch_sniper",
+      "item_name": "StickerKit_auto_racing_foil_watch_sniper",
+      "description_string": "StickerKit_desc_auto_racing_foil_watch_sniper",
+      "sticker_material": "community/auto_racing/foil_watch_sniper",
+      "item_rarity": "legendary"
+    },
+    "10365": {
+      "name": "lenticular_burnout",
+      "item_name": "StickerKit_auto_racing_lenticular_burnout",
+      "description_string": "StickerKit_desc_auto_racing_lenticular_burnout",
+      "sticker_material": "community/auto_racing/lenticular_burnout",
+      "item_rarity": "ancient"
+    },
+    "10366": {
+      "name": "lenticular_digital_dashboard",
+      "item_name": "StickerKit_auto_racing_lenticular_digital_dashboard",
+      "description_string": "StickerKit_desc_auto_racing_lenticular_digital_dashboard",
+      "sticker_material": "community/auto_racing/lenticular_digital_dashboard",
+      "item_rarity": "ancient"
+    },
+    "10367": {
+      "name": "lenticular_handheld",
+      "item_name": "StickerKit_auto_racing_lenticular_handheld",
+      "description_string": "StickerKit_desc_auto_racing_lenticular_handheld",
+      "sticker_material": "community/auto_racing/lenticular_handheld",
+      "item_rarity": "ancient"
+    },
+    "10368": {
+      "name": "lenticular_nitro",
+      "item_name": "StickerKit_auto_racing_lenticular_nitro",
+      "description_string": "StickerKit_desc_auto_racing_lenticular_nitro",
+      "sticker_material": "community/auto_racing/lenticular_nitro",
+      "item_rarity": "ancient"
+    },
     "10369": {
       "name": "cologne2026_team_vita",
       "item_name": "#StickerKit_cologne2026_team_vita",
@@ -150067,6 +151446,493 @@
       "tournament_event_id": 26,
       "tournament_team_id": 132,
       "tournament_player_id": 372579523
+    },
+    "11174": {
+      "name": "cologne2026_signature_niko_champion",
+      "item_name": "#StickerKit_cologne2026_signature_niko_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_niko_champion",
+      "sticker_material": "cologne2026/sig_niko_champion",
+      "item_rarity": "rare",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 81417650
+    },
+    "11175": {
+      "name": "cologne2026_signature_niko_foil_champion",
+      "item_name": "#StickerKit_cologne2026_signature_niko_foil_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_niko_foil_champion",
+      "sticker_material": "cologne2026/sig_niko_champion_foil",
+      "item_rarity": "mythical",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 81417650
+    },
+    "11176": {
+      "name": "cologne2026_signature_niko_holo_champion",
+      "item_name": "#StickerKit_cologne2026_signature_niko_holo_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_niko_holo_champion",
+      "sticker_material": "cologne2026/sig_niko_champion_holo",
+      "item_rarity": "legendary",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 81417650
+    },
+    "11177": {
+      "name": "cologne2026_signature_niko_gold_champion",
+      "item_name": "#StickerKit_cologne2026_signature_niko_gold_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_niko_gold_champion",
+      "sticker_material": "cologne2026/sig_niko_champion_gold",
+      "item_rarity": "ancient",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 81417650
+    },
+    "11178": {
+      "name": "cologne2026_signature_kyxsan_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyxsan_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyxsan_champion",
+      "sticker_material": "cologne2026/sig_kyxsan_champion",
+      "item_rarity": "rare",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 97016704
+    },
+    "11179": {
+      "name": "cologne2026_signature_kyxsan_foil_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyxsan_foil_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyxsan_foil_champion",
+      "sticker_material": "cologne2026/sig_kyxsan_champion_foil",
+      "item_rarity": "mythical",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 97016704
+    },
+    "11180": {
+      "name": "cologne2026_signature_kyxsan_holo_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyxsan_holo_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyxsan_holo_champion",
+      "sticker_material": "cologne2026/sig_kyxsan_champion_holo",
+      "item_rarity": "legendary",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 97016704
+    },
+    "11181": {
+      "name": "cologne2026_signature_kyxsan_gold_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyxsan_gold_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyxsan_gold_champion",
+      "sticker_material": "cologne2026/sig_kyxsan_champion_gold",
+      "item_rarity": "ancient",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 97016704
+    },
+    "11182": {
+      "name": "cologne2026_signature_m0nesy_champion",
+      "item_name": "#StickerKit_cologne2026_signature_m0nesy_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_m0nesy_champion",
+      "sticker_material": "cologne2026/sig_m0nesy_champion",
+      "item_rarity": "rare",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 114497073
+    },
+    "11183": {
+      "name": "cologne2026_signature_m0nesy_foil_champion",
+      "item_name": "#StickerKit_cologne2026_signature_m0nesy_foil_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_m0nesy_foil_champion",
+      "sticker_material": "cologne2026/sig_m0nesy_champion_foil",
+      "item_rarity": "mythical",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 114497073
+    },
+    "11184": {
+      "name": "cologne2026_signature_m0nesy_holo_champion",
+      "item_name": "#StickerKit_cologne2026_signature_m0nesy_holo_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_m0nesy_holo_champion",
+      "sticker_material": "cologne2026/sig_m0nesy_champion_holo",
+      "item_rarity": "legendary",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 114497073
+    },
+    "11185": {
+      "name": "cologne2026_signature_m0nesy_gold_champion",
+      "item_name": "#StickerKit_cologne2026_signature_m0nesy_gold_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_m0nesy_gold_champion",
+      "sticker_material": "cologne2026/sig_m0nesy_champion_gold",
+      "item_rarity": "ancient",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 114497073
+    },
+    "11186": {
+      "name": "cologne2026_signature_teses_champion",
+      "item_name": "#StickerKit_cologne2026_signature_teses_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_teses_champion",
+      "sticker_material": "cologne2026/sig_teses_champion",
+      "item_rarity": "rare",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 36412550
+    },
+    "11187": {
+      "name": "cologne2026_signature_teses_foil_champion",
+      "item_name": "#StickerKit_cologne2026_signature_teses_foil_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_teses_foil_champion",
+      "sticker_material": "cologne2026/sig_teses_champion_foil",
+      "item_rarity": "mythical",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 36412550
+    },
+    "11188": {
+      "name": "cologne2026_signature_teses_holo_champion",
+      "item_name": "#StickerKit_cologne2026_signature_teses_holo_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_teses_holo_champion",
+      "sticker_material": "cologne2026/sig_teses_champion_holo",
+      "item_rarity": "legendary",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 36412550
+    },
+    "11189": {
+      "name": "cologne2026_signature_teses_gold_champion",
+      "item_name": "#StickerKit_cologne2026_signature_teses_gold_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_teses_gold_champion",
+      "sticker_material": "cologne2026/sig_teses_champion_gold",
+      "item_rarity": "ancient",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 36412550
+    },
+    "11190": {
+      "name": "cologne2026_signature_kyousuke_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyousuke_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyousuke_champion",
+      "sticker_material": "cologne2026/sig_kyousuke_champion",
+      "item_rarity": "rare",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 1071740496
+    },
+    "11191": {
+      "name": "cologne2026_signature_kyousuke_foil_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyousuke_foil_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyousuke_foil_champion",
+      "sticker_material": "cologne2026/sig_kyousuke_champion_foil",
+      "item_rarity": "mythical",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 1071740496
+    },
+    "11192": {
+      "name": "cologne2026_signature_kyousuke_holo_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyousuke_holo_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyousuke_holo_champion",
+      "sticker_material": "cologne2026/sig_kyousuke_champion_holo",
+      "item_rarity": "legendary",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 1071740496
+    },
+    "11193": {
+      "name": "cologne2026_signature_kyousuke_gold_champion",
+      "item_name": "#StickerKit_cologne2026_signature_kyousuke_gold_champion",
+      "description_string": "#StickerKit_desc_cologne2026_signature_kyousuke_gold_champion",
+      "sticker_material": "cologne2026/sig_kyousuke_champion_gold",
+      "item_rarity": "ancient",
+      "tournament_event_id": 26,
+      "tournament_team_id": 139,
+      "tournament_player_id": 1071740496
+    },
+    "11194": {
+      "name": "paper_be_patient",
+      "item_name": "StickerKit_auto_racing_paper_be_patient",
+      "description_string": "StickerKit_desc_auto_racing_paper_be_patient",
+      "sticker_material": "community/auto_racing/paper_be_patient",
+      "item_rarity": "rare"
+    },
+    "11195": {
+      "name": "foil_born_to_peek",
+      "item_name": "StickerKit_auto_racing_foil_born_to_peek",
+      "description_string": "StickerKit_desc_auto_racing_foil_born_to_peek",
+      "sticker_material": "community/auto_racing/foil_born_to_peek",
+      "item_rarity": "legendary"
+    },
+    "11196": {
+      "name": "paper_airhorn",
+      "item_name": "StickerKit_jackass_paper_airhorn",
+      "description_string": "StickerKit_desc_jackass_paper_airhorn",
+      "sticker_material": "community/jackass/paper_airhorn",
+      "item_rarity": "rare"
+    },
+    "11197": {
+      "name": "paper_assterisk",
+      "item_name": "StickerKit_jackass_paper_assterisk",
+      "description_string": "StickerKit_desc_jackass_paper_assterisk",
+      "sticker_material": "community/jackass/paper_assterisk",
+      "item_rarity": "rare"
+    },
+    "11198": {
+      "name": "paper_big_red_rocket",
+      "item_name": "StickerKit_jackass_paper_big_red_rocket",
+      "description_string": "StickerKit_desc_jackass_paper_big_red_rocket",
+      "sticker_material": "community/jackass/paper_big_red_rocket",
+      "item_rarity": "rare"
+    },
+    "11199": {
+      "name": "paper_boner_snap",
+      "item_name": "StickerKit_jackass_paper_boner_snap",
+      "description_string": "StickerKit_desc_jackass_paper_boner_snap",
+      "sticker_material": "community/jackass/paper_boner_snap",
+      "item_rarity": "rare"
+    },
+    "11200": {
+      "name": "paper_censored",
+      "item_name": "StickerKit_jackass_paper_censored",
+      "description_string": "StickerKit_desc_jackass_paper_censored",
+      "sticker_material": "community/jackass/paper_censored",
+      "item_rarity": "rare"
+    },
+    "11201": {
+      "name": "paper_explosives",
+      "item_name": "StickerKit_jackass_paper_explosives",
+      "description_string": "StickerKit_desc_jackass_paper_explosives",
+      "sticker_material": "community/jackass/paper_explosives",
+      "item_rarity": "rare"
+    },
+    "11202": {
+      "name": "paper_golf_cart",
+      "item_name": "StickerKit_jackass_paper_golf_cart",
+      "description_string": "StickerKit_desc_jackass_paper_golf_cart",
+      "sticker_material": "community/jackass/paper_golf_cart",
+      "item_rarity": "rare"
+    },
+    "11203": {
+      "name": "paper_leave_a_mark",
+      "item_name": "StickerKit_jackass_paper_leave_a_mark",
+      "description_string": "StickerKit_desc_jackass_paper_leave_a_mark",
+      "sticker_material": "community/jackass/paper_leave_a_mark",
+      "item_rarity": "rare"
+    },
+    "11204": {
+      "name": "paper_head_in_hands",
+      "item_name": "StickerKit_jackass_paper_head_in_hands",
+      "description_string": "StickerKit_desc_jackass_paper_head_in_hands",
+      "sticker_material": "community/jackass/paper_head_in_hands",
+      "item_rarity": "rare"
+    },
+    "11205": {
+      "name": "paper_high_five",
+      "item_name": "StickerKit_jackass_paper_high_five",
+      "description_string": "StickerKit_desc_jackass_paper_high_five",
+      "sticker_material": "community/jackass/paper_high_five",
+      "item_rarity": "rare"
+    },
+    "11206": {
+      "name": "paper_jackass",
+      "item_name": "StickerKit_jackass_paper_jackass",
+      "description_string": "StickerKit_desc_jackass_paper_jackass",
+      "sticker_material": "community/jackass/paper_jackass",
+      "item_rarity": "rare"
+    },
+    "11207": {
+      "name": "paper_partyboy",
+      "item_name": "StickerKit_jackass_paper_partyboy",
+      "description_string": "StickerKit_desc_jackass_paper_partyboy",
+      "sticker_material": "community/jackass/paper_partyboy",
+      "item_rarity": "rare"
+    },
+    "11208": {
+      "name": "paper_radiograph",
+      "item_name": "StickerKit_jackass_paper_radiograph",
+      "description_string": "StickerKit_desc_jackass_paper_radiograph",
+      "sticker_material": "community/jackass/paper_radiograph",
+      "item_rarity": "rare"
+    },
+    "11209": {
+      "name": "paper_rocket_skates",
+      "item_name": "StickerKit_jackass_paper_rocket_skates",
+      "description_string": "StickerKit_desc_jackass_paper_rocket_skates",
+      "sticker_material": "community/jackass/paper_rocket_skates",
+      "item_rarity": "rare"
+    },
+    "11210": {
+      "name": "paper_skull_bunny",
+      "item_name": "StickerKit_jackass_paper_skull_bunny",
+      "description_string": "StickerKit_desc_jackass_paper_skull_bunny",
+      "sticker_material": "community/jackass/paper_skull_bunny",
+      "item_rarity": "rare"
+    },
+    "11211": {
+      "name": "paper_bull",
+      "item_name": "StickerKit_jackass_paper_bull",
+      "description_string": "StickerKit_desc_jackass_paper_bull",
+      "sticker_material": "community/jackass/paper_bull",
+      "item_rarity": "rare"
+    },
+    "11212": {
+      "name": "paper_warning",
+      "item_name": "StickerKit_jackass_paper_warning",
+      "description_string": "StickerKit_desc_jackass_paper_warning",
+      "sticker_material": "community/jackass/paper_warning",
+      "item_rarity": "rare"
+    },
+    "11213": {
+      "name": "paper_zzzap",
+      "item_name": "StickerKit_jackass_paper_zzzap",
+      "description_string": "StickerKit_desc_jackass_paper_zzzap",
+      "sticker_material": "community/jackass/paper_zzzap",
+      "item_rarity": "rare"
+    },
+    "11214": {
+      "name": "glitter_airhorn",
+      "item_name": "StickerKit_jackass_glitter_airhorn",
+      "description_string": "StickerKit_desc_jackass_glitter_airhorn",
+      "sticker_material": "community/jackass/glitter_airhorn",
+      "item_rarity": "mythical"
+    },
+    "11215": {
+      "name": "glitter_assterisk",
+      "item_name": "StickerKit_jackass_glitter_assterisk",
+      "description_string": "StickerKit_desc_jackass_glitter_assterisk",
+      "sticker_material": "community/jackass/glitter_assterisk",
+      "item_rarity": "mythical"
+    },
+    "11216": {
+      "name": "glitter_big_red_rocket",
+      "item_name": "StickerKit_jackass_glitter_big_red_rocket",
+      "description_string": "StickerKit_desc_jackass_glitter_big_red_rocket",
+      "sticker_material": "community/jackass/glitter_big_red_rocket",
+      "item_rarity": "mythical"
+    },
+    "11217": {
+      "name": "glitter_head_in_hands",
+      "item_name": "StickerKit_jackass_glitter_head_in_hands",
+      "description_string": "StickerKit_desc_jackass_glitter_head_in_hands",
+      "sticker_material": "community/jackass/glitter_head_in_hands",
+      "item_rarity": "mythical"
+    },
+    "11218": {
+      "name": "glitter_high_five",
+      "item_name": "StickerKit_jackass_glitter_high_five",
+      "description_string": "StickerKit_desc_jackass_glitter_high_five",
+      "sticker_material": "community/jackass/glitter_high_five",
+      "item_rarity": "mythical"
+    },
+    "11219": {
+      "name": "glitter_skull_bunny",
+      "item_name": "StickerKit_jackass_glitter_skull_bunny",
+      "description_string": "StickerKit_desc_jackass_glitter_skull_bunny",
+      "sticker_material": "community/jackass/glitter_skull_bunny",
+      "item_rarity": "mythical"
+    },
+    "11220": {
+      "name": "glitter_bull",
+      "item_name": "StickerKit_jackass_glitter_bull",
+      "description_string": "StickerKit_desc_jackass_glitter_bull",
+      "sticker_material": "community/jackass/glitter_bull",
+      "item_rarity": "mythical"
+    },
+    "11221": {
+      "name": "holo_boner_snap",
+      "item_name": "StickerKit_jackass_holo_boner_snap",
+      "description_string": "StickerKit_desc_jackass_holo_boner_snap",
+      "sticker_material": "community/jackass/holo_boner_snap",
+      "item_rarity": "mythical"
+    },
+    "11222": {
+      "name": "holo_jackass",
+      "item_name": "StickerKit_jackass_holo_jackass",
+      "description_string": "StickerKit_desc_jackass_holo_jackass",
+      "sticker_material": "community/jackass/holo_jackass",
+      "item_rarity": "mythical"
+    },
+    "11223": {
+      "name": "holo_leave_a_mark",
+      "item_name": "StickerKit_jackass_holo_leave_a_mark",
+      "description_string": "StickerKit_desc_jackass_holo_leave_a_mark",
+      "sticker_material": "community/jackass/holo_leave_a_mark",
+      "item_rarity": "mythical"
+    },
+    "11224": {
+      "name": "lenticular_partyboy",
+      "item_name": "StickerKit_jackass_lenticular_partyboy",
+      "description_string": "StickerKit_desc_jackass_lenticular_partyboy",
+      "sticker_material": "community/jackass/lenticular_partyboy",
+      "item_rarity": "ancient"
+    },
+    "11225": {
+      "name": "holo_radiograph",
+      "item_name": "StickerKit_jackass_holo_radiograph",
+      "description_string": "StickerKit_desc_jackass_holo_radiograph",
+      "sticker_material": "community/jackass/holo_radiograph",
+      "item_rarity": "mythical"
+    },
+    "11226": {
+      "name": "holo_rocket_skates",
+      "item_name": "StickerKit_jackass_holo_rocket_skates",
+      "description_string": "StickerKit_desc_jackass_holo_rocket_skates",
+      "sticker_material": "community/jackass/holo_rocket_skates",
+      "item_rarity": "mythical"
+    },
+    "11227": {
+      "name": "holo_zzzap",
+      "item_name": "StickerKit_jackass_holo_zzzap",
+      "description_string": "StickerKit_desc_jackass_holo_zzzap",
+      "sticker_material": "community/jackass/holo_zzzap",
+      "item_rarity": "mythical"
+    },
+    "11228": {
+      "name": "foil_assterisk",
+      "item_name": "StickerKit_jackass_foil_assterisk",
+      "description_string": "StickerKit_desc_jackass_foil_assterisk",
+      "sticker_material": "community/jackass/foil_assterisk",
+      "item_rarity": "legendary"
+    },
+    "11229": {
+      "name": "foil_censored",
+      "item_name": "StickerKit_jackass_foil_censored",
+      "description_string": "StickerKit_desc_jackass_foil_censored",
+      "sticker_material": "community/jackass/foil_censored",
+      "item_rarity": "legendary"
+    },
+    "11230": {
+      "name": "foil_explosives",
+      "item_name": "StickerKit_jackass_foil_explosives",
+      "description_string": "StickerKit_desc_jackass_foil_explosives",
+      "sticker_material": "community/jackass/foil_explosives",
+      "item_rarity": "legendary"
+    },
+    "11231": {
+      "name": "foil_radiograph",
+      "item_name": "StickerKit_jackass_foil_radiograph",
+      "description_string": "StickerKit_desc_jackass_foil_radiograph",
+      "sticker_material": "community/jackass/foil_radiograph",
+      "item_rarity": "legendary"
+    },
+    "11232": {
+      "name": "foil_warning",
+      "item_name": "StickerKit_jackass_foil_warning",
+      "description_string": "StickerKit_desc_jackass_foil_warning",
+      "sticker_material": "community/jackass/foil_warning",
+      "item_rarity": "legendary"
+    },
+    "11233": {
+      "name": "lenticular_electric_avenue",
+      "item_name": "StickerKit_jackass_lenticular_electric_avenue",
+      "description_string": "StickerKit_desc_jackass_lenticular_electric_avenue",
+      "sticker_material": "community/jackass/lenticular_electric_avenue",
+      "item_rarity": "ancient"
+    },
+    "11234": {
+      "name": "lenticular_poo_cocktail",
+      "item_name": "StickerKit_jackass_lenticular_poo_cocktail",
+      "description_string": "StickerKit_desc_jackass_lenticular_poo_cocktail",
+      "sticker_material": "community/jackass/lenticular_poo_cocktail",
+      "item_rarity": "ancient"
     }
   },
   "music_kits": {
