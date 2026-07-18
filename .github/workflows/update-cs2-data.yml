@@ -2,8 +2,8 @@ name: Update CS2 Item Data
 
 on:
   schedule:
-    # Run every Friday at 06:00 UTC
-    - cron: '0 6 * * 5'
+    # Run every day at 06:00 UTC
+    - cron: '0 * * * 5'
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BRANCH="chore/update-cs2-data-$(date +%Y%m%d)"
+          BRANCH="chore/update-cs2-data"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
@@ -37,12 +37,17 @@ jobs:
           git add src/main/helpers/classes/steam/items/itemsBackupFiles/csgo_english.json
           git commit -m "chore: update CS2 item data backups"
           git push --force origin "$BRANCH"
-          gh pr create \
-            --title "chore: update CS2 item data backups" \
-            --body "Automated update of \`items_game.json\` and \`csgo_english.json\` from [SteamTracking/GameTracking-CS2](https://github.com/SteamTracking/GameTracking-CS2)." \
-            --base main \
-            --head "$BRANCH" \
-            --label "dependencies" \
-            || gh pr edit "$BRANCH" \
+          EXISTING_PR=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "Reusing existing PR #$EXISTING_PR"
+            gh pr edit "$EXISTING_PR" \
               --title "chore: update CS2 item data backups" \
               --body "Automated update of \`items_game.json\` and \`csgo_english.json\` from [SteamTracking/GameTracking-CS2](https://github.com/SteamTracking/GameTracking-CS2)."
+          else
+            gh pr create \
+              --title "chore: update CS2 item data backups" \
+              --body "Automated update of \`items_game.json\` and \`csgo_english.json\` from [SteamTracking/GameTracking-CS2](https://github.com/SteamTracking/GameTracking-CS2)." \
+              --base main \
+              --head "$BRANCH" \
+              --label "dependencies"
+          fi
