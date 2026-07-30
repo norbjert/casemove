@@ -260,6 +260,11 @@ contextBridge.exposeInMainWorld('electron', {
       }
     },
 
+
+    sellItems(items) {
+      return ipcRenderer.invoke('sellItems', items);
+    },
+
     on(channel, func) {
       const validChannels = [
         'ipc-example',

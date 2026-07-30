@@ -1,13 +1,36 @@
 
 import InventoryFilters from './filterHeader';
 import InventoryRowsComponent from './inventoryRows';
-import { useState } from 'react';
+import MultisellModal from './multisellModal';
+import { useState, useCallback } from 'react';
 import { LoadingButton } from '../shared/animations';
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon, TagIcon } from '@heroicons/react/24/solid';
+import { useDispatch, useSelector } from 'react-redux';
+import { setShowFloat } from 'renderer/store/actions/settings';
 
 function Content() {
   const [getLoadingButton, setLoadingButton] = useState(false);
   setLoadingButton;
+
+  const dispatch = useDispatch();
+  const settingsData = useSelector((state: any) => state.settingsReducer);
+
+  const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const [multisellOpen, setMultisellOpen] = useState(false);
+
+  const handleToggleSelect = useCallback((item: any) => {
+    setSelectedItems(prev => {
+      const exists = prev.some(s => s.item_id === item.item_id);
+      return exists ? prev.filter(s => s.item_id !== item.item_id) : [...prev, item];
+    });
+  }, []);
+
+  function toggleFloat() {
+    const next = !settingsData.showFloat;
+    dispatch(setShowFloat(next));
+    window.electron.store.set('showFloat', next);
+    window.electron.ipcRenderer.refreshInventory();
+  }
 
   // Get the inventory
   async function refreshInventory() {
@@ -16,6 +39,13 @@ function Content() {
 
   return (
     <>
+      <MultisellModal
+        open={multisellOpen}
+        onClose={() => setMultisellOpen(false)}
+        selectedItems={selectedItems}
+        onSuccess={() => setSelectedItems([])}
+      />
+
       {/* Page title & actions */}
       <div className="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 dark:border-opacity-50">
         <div className="flex-1 min-w-0">
@@ -23,7 +53,34 @@ function Content() {
             Inventory
           </h1>
         </div>
-        <div className="mt-4 flex sm:mt-0 sm:ml-4">
+        <div className="mt-4 flex items-center gap-3 sm:mt-0 sm:ml-4">
+
+          {/* Float toggle */}
+          <button
+            type="button"
+            onClick={toggleFloat}
+            title={settingsData.showFloat ? 'Showing floats (items de-stacked) — click to stack' : 'Showing stacked items — click to show floats'}
+            className={`focus:outline-none inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md border ${
+              settingsData.showFloat
+                ? 'bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-700'
+                : 'bg-white dark:bg-dark-level-three text-gray-600 dark:text-dark-white border-gray-200 dark:border-opacity-30 hover:bg-gray-50 dark:hover:bg-dark-level-four'
+            }`}
+          >
+            {settingsData.showFloat ? 'Float ON' : 'Float OFF'}
+          </button>
+
+          {/* Multisell button */}
+          {selectedItems.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setMultisellOpen(true)}
+              className="focus:outline-none inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md bg-green-600 hover:bg-green-700 text-white"
+            >
+              <TagIcon className="h-3.5 w-3.5" />
+              Sell {selectedItems.length} item{selectedItems.length !== 1 ? 's' : ''}
+            </button>
+          )}
+
           <button
             type="button"
             onClick={() => refreshInventory()}
@@ -56,7 +113,10 @@ function Content() {
       {/* Projects table (small breakpoint and up) */}
       <div className="hidden sm:block">
         <div className="align-middle inline-block min-w-full border-b border-gray-200 dark:border-opacity-50">
-          <InventoryRowsComponent />
+          <InventoryRowsComponent
+            selectedItems={selectedItems}
+            onToggleSelect={handleToggleSelect}
+          />
         </div>
       </div>
     </>

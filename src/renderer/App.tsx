@@ -160,6 +160,7 @@ function AppContent() {
       StoreClass.run(StoreClass.buildingObject.source);
       StoreClass.run(StoreClass.buildingObject.locale);
       StoreClass.run(StoreClass.buildingObject.steamLoginShow);
+      StoreClass.run(StoreClass.buildingObject.showFloat);
     }
 
     let cancelled = false;

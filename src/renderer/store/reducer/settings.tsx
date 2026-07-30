@@ -14,6 +14,7 @@ const initialState: Settings = {
     name: 'Steam Community Market',
     avatar: 'https://steamcommunity.com/favicon.ico'
   },
+  showFloat: false,
   overview: {
     by: 'price',
     chartleft: 'overall',
@@ -69,6 +70,11 @@ const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         devmode: action.payload,
+      };
+      case 'SETTINGS_SET_SHOWFLOAT':
+      return {
+        ...state,
+        showFloat: action.payload,
       };
       case 'SETTINGS_SET_OVERVIEW':
         return {
