@@ -163,6 +163,7 @@ class login {
 
   // 1 - Login key
   _login_refreshToken() {
+    this._defaultError();
     if (this.refreshToken) {
       this.loginOptionsLegacy = {
         refreshToken: this.refreshToken,
@@ -171,6 +172,12 @@ class login {
       return;
     }
     getRefreshToken(this.username).then((refreshToken) => {
+      if (!refreshToken) {
+        ClassLoginResponse.setEmptyPackage();
+        ClassLoginResponse.setResponseStatus('defaultError');
+        this._returnToSender();
+        return;
+      }
       this.loginOptionsLegacy = {
         refreshToken: refreshToken,
       };
