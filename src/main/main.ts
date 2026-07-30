@@ -591,6 +591,9 @@ ipcMain.on('startQRLogin', async (event, shouldRemember) => {
   emitterAccount.emit('qrLogin:cancel')
   flowLoginRegularQR(shouldRemember).then((returnValue) => {
     if (!returnValue.session) {
+      ClassLoginResponse.setEmptyPackage();
+      ClassLoginResponse.setResponseStatus('defaultError');
+      event.reply('login-reply', ClassLoginResponse.returnValue);
       return;
     }
 
