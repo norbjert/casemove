@@ -140,22 +140,38 @@ async function refreshMarketListings() {
         'https://steamcommunity.com/market/mylistings/render/',
         {
           params: { query: '', start, count, norender: 1 },
-          headers: { Cookie: steamWebCookieStr },
+          headers: {
+            Cookie: steamWebCookieStr,
+            Referer: 'https://steamcommunity.com/market/',
+          },
         }
       );
-      const data = resp.data as any;
-      const listinginfo = data?.listinginfo || {};
-      const keys = Object.keys(listinginfo);
-      for (const key of keys) {
-        const asset = listinginfo[key]?.asset;
-        if (asset && String(asset.appid) === '730') {
-          listedIds.add(String(asset.id));
+      // Steam sometimes serves this endpoint as text/javascript, in which case
+      // axios won't auto-parse it into an object.
+      let data = resp.data as any;
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          console.error('Market listings response was not JSON (likely not logged in on the web session):', data.slice(0, 300));
+          break;
+        }
+      }
+      // Listed assets for this page, keyed by appid -> contextid -> assetid.
+      // (Steam's "assets" object here only ever contains currently-listed items,
+      // possibly across multiple games, so filter to CS2's appid 730.)
+      const assetsByApp = data?.assets?.['730'] || {};
+      for (const contextid of Object.keys(assetsByApp)) {
+        for (const assetid of Object.keys(assetsByApp[contextid])) {
+          listedIds.add(assetid);
         }
       }
       start += count;
-      if (keys.length === 0 || start >= (data?.total_count ?? 0)) break;
+      const hasMorePages = Object.keys(data?.assets || {}).length > 0 && start < (data?.total_count ?? 0);
+      if (!hasMorePages) break;
     }
     marketListedAssetIds = listedIds;
+    console.log(`Market listings refreshed: ${listedIds.size} item(s) currently listed.`);
   } catch (err) {
     console.error('Failed to refresh market listings:', err);
   }
