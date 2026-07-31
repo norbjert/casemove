@@ -1,4 +1,4 @@
-import { PencilIcon, TagIcon } from "@heroicons/react/24/solid";
+import { BanknotesIcon, LockClosedIcon, PencilIcon, TagIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -82,6 +82,22 @@ export function RowProduct({ itemRow }) {
                       itemRow.item_customname !== null &&
                       !itemRow.item_url.includes('casket') ? (
                         <TagIcon className="h-3 w-3  ml-1" />
+                      ) : (
+                        ''
+                      )}
+                      {itemRow.trade_unlock != null ? (
+                        <LockClosedIcon
+                          className="h-3 w-3 ml-1 text-red-400"
+                          title={`Trade hold: ${Math.ceil((itemRow.trade_unlock.getTime() - Date.now()) / (1000 * 60 * 60 * 24))} days remaining`}
+                        />
+                      ) : (
+                        ''
+                      )}
+                      {itemRow.market_listed ? (
+                        <BanknotesIcon
+                          className="h-3 w-3 ml-1 text-blue-400"
+                          title="This item is currently listed on the Steam Community Market"
+                        />
                       ) : (
                         ''
                       )}

@@ -67,7 +67,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
   const PricingClass = new RequestPrices(dispatch, settingsData, pricesResult)
   PricingClass.handleRequested(projectRow)
 
-  const isTradelocked = projectRow.trade_unlock != null;
+  const isTradelocked = projectRow.trade_unlock != null || projectRow.market_listed;
 
   const isEmpty =
     toReducer.totalToMove.filter((row) => row[0] == projectRow.item_id)

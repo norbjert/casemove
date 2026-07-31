@@ -38,7 +38,7 @@ const SellRow = React.memo(function SellRow({ projectRow, index }: { projectRow:
     dispatch(sellSetQty(projectRow.item_id, listToReturn, projectRow.item_name));
   }
 
-  const isTradelocked = projectRow.trade_unlock != null;
+  const isTradelocked = projectRow.trade_unlock != null || projectRow.market_listed;
 
   const entry = sellReducer.totalToSell.find((row: any) => row[0] == projectRow.item_id);
   const isEmpty = entry == undefined;

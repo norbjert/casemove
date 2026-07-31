@@ -64,7 +64,7 @@ const StorageRow = React.memo(function StorageRow({ projectRow, index }: { proje
   }
 
 
-  const isTradelocked = projectRow.trade_unlock != null;
+  const isTradelocked = projectRow.trade_unlock != null || projectRow.market_listed;
 
   const isEmpty =
     fromReducer.totalToMove.filter((row) => row[0] == projectRow.item_id)

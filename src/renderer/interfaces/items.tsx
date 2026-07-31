@@ -28,6 +28,7 @@ export interface ItemRow {
     storage_id: string
     item_storage_total: number
     percentage: number
+    market_listed?: boolean
   }
 
   export interface ItemRowStorage extends ItemRow {

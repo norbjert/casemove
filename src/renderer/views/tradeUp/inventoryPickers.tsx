@@ -1,4 +1,4 @@
-import { BeakerIcon, PencilIcon, TagIcon } from '@heroicons/react/24/solid';
+import { BanknotesIcon, BeakerIcon, LockClosedIcon, PencilIcon, TagIcon } from '@heroicons/react/24/solid';
 import React, { useState, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -35,6 +35,8 @@ const TradeUpRow = React.memo(function TradeUpRow({
 }: TradeUpRowProps) {
   const [stickerHover, setStickerHover] = useState<number | null>(null);
   const [itemHover, setItemHover] = useState(false);
+
+  const isTradelocked = projectRow.trade_unlock != null || projectRow.market_listed;
 
   return (
     <>
@@ -117,6 +119,22 @@ const TradeUpRow = React.memo(function TradeUpRow({
               projectRow.item_customname !== null &&
               !projectRow.item_url.includes('casket') ? (
                 <TagIcon className="h-3 w-3  ml-1" />
+              ) : (
+                ''
+              )}
+              {projectRow.trade_unlock != null ? (
+                <LockClosedIcon
+                  className="h-3 w-3 ml-1 text-red-400"
+                  title={`Trade hold: ${Math.ceil((projectRow.trade_unlock.getTime() - Date.now()) / (1000 * 60 * 60 * 24))} days remaining`}
+                />
+              ) : (
+                ''
+              )}
+              {projectRow.market_listed ? (
+                <BanknotesIcon
+                  className="h-3 w-3 ml-1 text-blue-400"
+                  title="This item is currently listed on the Steam Community Market"
+                />
               ) : (
                 ''
               )}
@@ -247,9 +265,21 @@ const TradeUpRow = React.memo(function TradeUpRow({
         <div
           className={classNames(isFull ? 'hidden' : '', 'flex justify-center')}
         >
-          <button onClick={() => dispatch(tradeUpAddRemove(projectRow))}>
+          <button
+            onClick={() => dispatch(tradeUpAddRemove(projectRow))}
+            disabled={isTradelocked}
+            title={
+              projectRow.market_listed
+                ? 'This item is listed on the Steam Community Market and cannot be traded up.'
+                : isTradelocked
+                ? 'This item is on trade hold and cannot be traded up.'
+                : ''
+            }
+            className={classNames(isTradelocked ? 'pointer-events-none' : '')}
+          >
             <BeakerIcon
               className={classNames(
+                isTradelocked ? 'opacity-40' : '',
                 'text-gray-400 dark:text-gray-500 hover:text-yellow-400 dark:hover:text-yellow-400 h-5'
               )}
               aria-hidden="true"

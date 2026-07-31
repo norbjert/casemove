@@ -61,6 +61,7 @@ export default function combineInventory(thisInventory: Array<ItemRow | ItemRowS
       valued['item_customname'] +
       valued['item_url'] +
       valued['trade_unlock'] +
+      valued['market_listed'] +
       valued['item_moveable'] +
       valued['item_has_stickers'] +
       wearName +
@@ -79,6 +80,7 @@ export default function combineInventory(thisInventory: Array<ItemRow | ItemRowS
           item['item_customname'] +
           item['item_url'] +
           item['trade_unlock'] +
+          item['market_listed'] +
           item['item_moveable'] +
           item['item_has_stickers'] +
           wearName +
