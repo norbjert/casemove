@@ -122,7 +122,7 @@ export default function StorageFilter() {
                   : inventoryFilters.storageFilter.length + ' Filter'}
               </Disclosure.Button>
             </div>
-            <div className="pl-6 pr-6">
+            <div className="pr-6">
               <button
                 type="button"
                 className="text-gray-500 dark:text-gray-400"
