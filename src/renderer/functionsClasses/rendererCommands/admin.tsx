@@ -1,5 +1,6 @@
 import {
   setColumns,
+  setShowFloat,
   setCurrencyRate,
   setCurrencyValue,
   setDevmode,
@@ -67,6 +68,10 @@ export class DispatchStore extends IPCCommunication {
     steamLoginShow: {
       name: 'steamLogin',
       action: setSteamLoginShow
+    },
+    showFloat: {
+      name: 'showFloat',
+      action: setShowFloat
     }
   };
   constructor(dispatch: Function) {

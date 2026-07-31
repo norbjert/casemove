@@ -8,7 +8,6 @@ import { moveFromReset } from 'renderer/store/actions/moveFromActions';
 
 const columns = [
   { id: 1, name: 'Price' },
-  { id: 2, name: 'Float' },
   { id: 3, name: 'Stickers/patches' },
   { id: 4, name: 'Storage' },
   { id: 5, name: 'Tradehold' },

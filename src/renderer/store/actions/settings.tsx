@@ -64,3 +64,4 @@ export const setOverview = (newObject: Overview) => {
       payload: newObject
   }
 }
+export const setShowFloat = (valueToSet) => ({ type: 'SETTINGS_SET_SHOWFLOAT', payload: valueToSet })

@@ -66,7 +66,7 @@ export default function combineInventory(thisInventory: Array<ItemRow | ItemRowS
       wearName +
       valued['stickers'];
 
-    if (valued['item_paint_wear'] != undefined && settings.columns.includes('Float')) {
+    if (valued['item_paint_wear'] != undefined && settings.showFloat) {
       valueConditions = valueConditions + valued['item_paint_wear'];
     }
 
@@ -83,7 +83,7 @@ export default function combineInventory(thisInventory: Array<ItemRow | ItemRowS
           item['item_has_stickers'] +
           wearName +
           item['stickers'];
-        if (item['item_paint_wear'] != undefined && settings.columns.includes('Float')) {
+        if (item['item_paint_wear'] != undefined && settings.showFloat) {
           itemConditions = itemConditions + item['item_paint_wear'];
         }
 

@@ -19,7 +19,10 @@ import { RowStorage } from './inventoryRows/storageRow';
 import { RowTradehold } from './inventoryRows/tradeholdRow';
 
 
-export default function InventoryRowsComponent() {
+export default function InventoryRowsComponent({ selectedItems, onToggleSelect }: {
+  selectedItems: any[];
+  onToggleSelect: (item: any) => void;
+}) {
   const [getInventory, setInventory] = useState([] as any);
   const inventory = useSelector((state: any) => state.inventoryReducer);
   const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
@@ -109,12 +112,16 @@ export default function InventoryRowsComponent() {
               'border-gray-200 sticky'
             )}
           >
-
+            <th className="table-cell px-3 py-2 border-b border-gray-200 bg-gray-50 dark:border-opacity-50 dark:bg-dark-level-two w-8"></th>
             <RowHeader headerName='Product' sortName='Product name' />
             <RowHeaderCondition headerName='Collection' sortName='Collection' condition='Collections' />
             <RowHeaderCondition headerName='Price' sortName='Price' condition='Price' />
             <RowHeaderCondition headerName='Stickers/Patches' sortName='Stickers' condition='Stickers/patches' />
-            <RowHeaderCondition headerName='Float' sortName='wearValue' condition='Float' />
+            {settingsData.showFloat && (
+              <th className="table-cell px-6 py-2 border-b border-gray-200 bg-gray-50 dark:border-opacity-50 dark:bg-dark-level-two text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Float
+              </th>
+            )}
             <RowHeaderCondition headerName='Rarity' sortName='Rarity' condition='Rarity' />
             <RowHeaderCondition headerName='Storage' sortName='StorageName' condition='Storage' />
             <RowHeaderCondition headerName='Tradehold' sortName='tradehold' condition='Tradehold' />
@@ -127,28 +134,38 @@ export default function InventoryRowsComponent() {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-100 dark:bg-dark-level-one dark:divide-gray-500">
-          {finalToUse.map((projectRow) => (
-            <tr
-              key={projectRow.item_id}
-
-            >
-
-              <RowProduct itemRow={projectRow}  />
-              <RowCollections itemRow={projectRow} settingsData={settingsData} />
-              <RowPrice itemRow={projectRow} settingsData={settingsData} pricesReducer={pricesResult} />
-              <RowStickersPatches itemRow={projectRow} settingsData={settingsData} />
-              <RowFloat itemRow={projectRow} settingsData={settingsData} />
-              <RowRarity itemRow={projectRow} settingsData={settingsData} />
-              <RowStorage itemRow={projectRow}  settingsData={settingsData}/>
-              <RowTradehold itemRow={projectRow} settingsData={settingsData} />
-              <RowQTY itemRow={projectRow} />
-              <RowMoveable itemRow={projectRow} settingsData={settingsData} />
-              <RowLinkInventory itemRow={projectRow} settingsData={settingsData} userDetails={authReducer}/>
-              <td
-                className="hidden md:px-6 py-3 whitespace-nowrap text-right text-sm font-medium"
-              ></td>
-            </tr>
-          ))}
+          {finalToUse.map((projectRow) => {
+            const isSelected = selectedItems.some(s => s.item_id === projectRow.item_id);
+            return (
+              <tr
+                key={projectRow.item_id}
+                className={isSelected ? 'bg-indigo-50 dark:bg-indigo-900/20' : ''}
+              >
+                <td className="table-cell px-3 py-3">
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={() => onToggleSelect(projectRow)}
+                    className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                  />
+                </td>
+                <RowProduct itemRow={projectRow}  />
+                <RowCollections itemRow={projectRow} settingsData={settingsData} />
+                <RowPrice itemRow={projectRow} settingsData={settingsData} pricesReducer={pricesResult} />
+                <RowStickersPatches itemRow={projectRow} settingsData={settingsData} />
+                <RowFloat itemRow={projectRow} settingsData={settingsData} />
+                <RowRarity itemRow={projectRow} settingsData={settingsData} />
+                <RowStorage itemRow={projectRow}  settingsData={settingsData}/>
+                <RowTradehold itemRow={projectRow} settingsData={settingsData} />
+                <RowQTY itemRow={projectRow} />
+                <RowMoveable itemRow={projectRow} settingsData={settingsData} />
+                <RowLinkInventory itemRow={projectRow} settingsData={settingsData} userDetails={authReducer}/>
+                <td
+                  className="hidden md:px-6 py-3 whitespace-nowrap text-right text-sm font-medium"
+                ></td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </>
