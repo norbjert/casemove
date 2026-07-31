@@ -91,7 +91,7 @@ function Content() {
 
   function selectAll() {
     finalToUse.forEach((item: any) => {
-      if (item.trade_unlock != null) return;
+      if (item.trade_unlock != null || item.market_listed) return;
       dispatch(sellSetQty(item.item_id, item.combined_ids, item.item_name));
     });
   }
@@ -151,8 +151,27 @@ function Content() {
         text: `${succeeded} listed${failed > 0 ? `, ${failed} failed` : ''}.${firstError ? ` ${firstError}` : ''}`,
       });
       setShowResult(true);
+      if (succeeded > 0) {
+        // Listed items stay in the Steam inventory (just tagged as listed on
+        // the market), so refresh to pick up the market_listed flag here and
+        // everywhere else that reads from inventoryReducer — otherwise they'd
+        // stay selectable and any retry would fail as "already listed".
+        window.electron.ipcRenderer.refreshInventory();
+      }
       if (failed == 0) {
         dispatch(sellClearAll());
+      } else {
+        // Drop only the successfully-listed items from the selection; keep the
+        // failed ones selected so the user can retry just those.
+        const succeededIds = new Set(
+          res.filter((r: any) => r.success).map((r: any) => r.assetid)
+        );
+        sellReducer.totalToSell.forEach((entry: any) => {
+          const remainingIds = entry[1].filter((assetid: string) => !succeededIds.has(assetid));
+          if (remainingIds.length != entry[1].length) {
+            dispatch(sellSetQty(entry[0], remainingIds, entry[2]));
+          }
+        });
       }
     } catch (err) {
       console.error('sellItems error:', err);

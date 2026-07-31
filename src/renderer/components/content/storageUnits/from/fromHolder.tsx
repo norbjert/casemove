@@ -57,7 +57,7 @@ function StorageUnits() {
     const maxCapacity = 1000 - inventory.inventory.length;
 
     for (const item of storageFiltered) {
-      if (item.trade_unlock != null) continue;
+      if (item.trade_unlock != null || item.market_listed) continue;
 
       const existing = fromReducer.totalToMove.find((row: any) => row[0] === item.item_id);
       const currentQty = existing ? existing[2].length : 0;

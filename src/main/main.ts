@@ -123,6 +123,69 @@ const ClassLoginResponse = new LoginGenerator();
 let steamWebCookieStr = '';
 let steamWebSessionID = '';
 
+// Cache of assetids currently listed on the Steam Community Market (appid 730),
+// regardless of whether they were listed via this app or directly on Steam.
+// Refreshed on login, on manual inventory refresh, and after selling items.
+let marketListedAssetIds = new Set<string>();
+
+async function refreshMarketListings() {
+  if (!steamWebCookieStr) return;
+  const axios = (await import('axios')).default;
+  const listedIds = new Set<string>();
+  try {
+    let start = 0;
+    const count = 100;
+    for (;;) {
+      const resp = await axios.get(
+        'https://steamcommunity.com/market/mylistings/render/',
+        {
+          params: { query: '', start, count, norender: 1 },
+          headers: {
+            Cookie: steamWebCookieStr,
+            Referer: 'https://steamcommunity.com/market/',
+          },
+        }
+      );
+      // Steam sometimes serves this endpoint as text/javascript, in which case
+      // axios won't auto-parse it into an object.
+      let data = resp.data as any;
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          console.error('Market listings response was not JSON (likely not logged in on the web session):', data.slice(0, 300));
+          break;
+        }
+      }
+      // Listed assets for this page, keyed by appid -> contextid -> assetid.
+      // (Steam's "assets" object here only ever contains currently-listed items,
+      // possibly across multiple games, so filter to CS2's appid 730.)
+      const assetsByApp = data?.assets?.['730'] || {};
+      for (const contextid of Object.keys(assetsByApp)) {
+        for (const assetid of Object.keys(assetsByApp[contextid])) {
+          listedIds.add(assetid);
+        }
+      }
+      start += count;
+      const hasMorePages = Object.keys(data?.assets || {}).length > 0 && start < (data?.total_count ?? 0);
+      if (!hasMorePages) break;
+    }
+    marketListedAssetIds = listedIds;
+    console.log(`Market listings refreshed: ${listedIds.size} item(s) currently listed.`);
+  } catch (err) {
+    console.error('Failed to refresh market listings:', err);
+  }
+}
+
+// Tags each item with market_listed using the cached listings set above.
+async function convertInventoryTagged(inventory: any) {
+  const items = await fetchItemClass.convertInventory(inventory);
+  items.forEach((item: any) => {
+    item.market_listed = marketListedAssetIds.has(String(item.item_id));
+  });
+  return items;
+}
+
 
 // Electron stuff
 let mainWindow: BrowserWindow | null = null;
@@ -396,8 +459,7 @@ emitterAccount.on(
           console.log('Connected to GC!');
           if (csgo.haveGCSession) {
             console.log('Have Session!');
-            fetchItemClass
-              .convertInventory(csgo.inventory)
+            convertInventoryTagged(csgo.inventory)
               .then((returnValue) => {
                 tradeUpClass
                   .getTradeUp(returnValue)
@@ -648,6 +710,7 @@ async function startEvents(csgo, user) {
   user.on('webSession', (sessionID: string, cookies: string[]) => {
     steamWebSessionID = sessionID;
     steamWebCookieStr = cookies.join('; ');
+    refreshMarketListings();
   });
   // webLogOn() must be called explicitly — steam-user does not negotiate
   // a web session automatically, so without this, 'webSession' never fires
@@ -718,7 +781,7 @@ async function startEvents(csgo, user) {
         !Object.keys(item).includes('casket_contained_item_count')
       ) {
         console.log('Item ' + item.id + ' was removed');
-        fetchItemClass.convertInventory(csgo.inventory).then((returnValue) => {
+        convertInventoryTagged(csgo.inventory).then((returnValue) => {
           tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
             mainWindow?.webContents.send('userEvents', [
               1,
@@ -731,7 +794,7 @@ async function startEvents(csgo, user) {
     });
 
     csgo.on('itemChanged', (item) => {
-      fetchItemClass.convertInventory(csgo.inventory).then((returnValue) => {
+      convertInventoryTagged(csgo.inventory).then((returnValue) => {
         tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
           mainWindow?.webContents.send('userEvents', [
             1,
@@ -752,8 +815,7 @@ async function startEvents(csgo, user) {
         setTimeout(function () {
           console.log('ran');
           startChangeEvents();
-          fetchItemClass
-            .convertInventory(csgo.inventory)
+          convertInventoryTagged(csgo.inventory)
             .then((returnValue) => {
               tradeUpClass.getTradeUp(returnValue).then((newReturnValue) => {
                 mainWindow?.webContents.send('userEvents', [
@@ -765,7 +827,7 @@ async function startEvents(csgo, user) {
             });
         }, 1000);
 
-        fetchItemClass.convertInventory(csgo.inventory).then((returnValue) => {
+        convertInventoryTagged(csgo.inventory).then((returnValue) => {
           tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
             mainWindow?.webContents.send('userEvents', [
               1,
@@ -826,8 +888,9 @@ async function startEvents(csgo, user) {
   ipcMain.on('refreshInventory', async () => {
     await removeInventoryListeners();
     await startChangeEvents();
+    await refreshMarketListings();
 
-    fetchItemClass.convertInventory(csgo.inventory).then((returnValue) => {
+    convertInventoryTagged(csgo.inventory).then((returnValue) => {
       tradeUpClass.getTradeUp(returnValue).then((newReturnValue) => {
         mainWindow?.webContents.send('userEvents', [
           1,
@@ -1108,6 +1171,9 @@ ipcMain.handle('sellItems', async (_event, items: {assetid: string; price_in_cen
     if (i < items.length - 1 && !sellCancelled) {
       await new Promise(resolve => setTimeout(resolve, 800));
     }
+  }
+  if (results.some(r => r.success)) {
+    await refreshMarketListings();
   }
   return results;
 });
