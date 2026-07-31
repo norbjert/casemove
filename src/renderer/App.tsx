@@ -14,6 +14,7 @@ import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon,
   ArrowUpTrayIcon,
+  TagIcon,
 } from '@heroicons/react/24/solid';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -56,6 +57,7 @@ import { signOut } from './store/actions/userStatsActions';
 import { handleUserEvent } from './store/handleMessage';
 import LoginPage from './views/login/login';
 import OverviewPage from './views/overview/overview';
+import SellPage from './views/sell/sell';
 import SettingsPage from './views/settings/settings';
 import TradeupPage from './views/tradeUp/tradeUp';
 //{ name: 'Reports', href: '/reports', icon: ArrowDownTrayIcon, current: false }
@@ -75,6 +77,7 @@ const navigation = [
   },
   { name: 'Inventory', href: '/inventory', icon: ArchiveBoxIcon, current: false },
   { name: 'Trade up', href: '/tradeup', icon: BeakerIcon, current: false },
+  { name: 'Sell', href: '/sell', icon: TagIcon, current: false },
 ];
 
 function AppContent() {
@@ -820,6 +823,7 @@ function AppContent() {
                 <Route path="/transferto" element={<ToContent />} />
                 <Route path="/inventory" element={<InventoryContent />} />
                 <Route path="/tradeup" element={<TradeupPage />} />
+                <Route path="/sell" element={<SellPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/stats" element={<OverviewPage />} />
                 {!userDetails.isLoggedIn && <Route path="*" element={<Navigate to="/signin" replace />} />}

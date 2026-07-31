@@ -1,10 +1,9 @@
 
 import InventoryFilters from './filterHeader';
 import InventoryRowsComponent from './inventoryRows';
-import MultisellModal from './multisellModal';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { LoadingButton } from '../shared/animations';
-import { ArrowPathIcon, TagIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowFloat } from 'renderer/store/actions/settings';
 
@@ -14,16 +13,6 @@ function Content() {
 
   const dispatch = useDispatch();
   const settingsData = useSelector((state: any) => state.settingsReducer);
-
-  const [selectedItems, setSelectedItems] = useState<any[]>([]);
-  const [multisellOpen, setMultisellOpen] = useState(false);
-
-  const handleToggleSelect = useCallback((item: any) => {
-    setSelectedItems(prev => {
-      const exists = prev.some(s => s.item_id === item.item_id);
-      return exists ? prev.filter(s => s.item_id !== item.item_id) : [...prev, item];
-    });
-  }, []);
 
   function toggleFloat() {
     const next = !settingsData.showFloat;
@@ -39,13 +28,6 @@ function Content() {
 
   return (
     <>
-      <MultisellModal
-        open={multisellOpen}
-        onClose={() => setMultisellOpen(false)}
-        selectedItems={selectedItems}
-        onSuccess={() => setSelectedItems([])}
-      />
-
       {/* Page title & actions */}
       <div className="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 dark:border-opacity-50">
         <div className="flex-1 min-w-0">
@@ -68,18 +50,6 @@ function Content() {
           >
             {settingsData.showFloat ? 'Float ON' : 'Float OFF'}
           </button>
-
-          {/* Multisell button */}
-          {selectedItems.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setMultisellOpen(true)}
-              className="focus:outline-none inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md bg-green-600 hover:bg-green-700 text-white"
-            >
-              <TagIcon className="h-3.5 w-3.5" />
-              Sell {selectedItems.length} item{selectedItems.length !== 1 ? 's' : ''}
-            </button>
-          )}
 
           <button
             type="button"
@@ -113,10 +83,7 @@ function Content() {
       {/* Projects table (small breakpoint and up) */}
       <div className="hidden sm:block">
         <div className="align-middle inline-block min-w-full border-b border-gray-200 dark:border-opacity-50">
-          <InventoryRowsComponent
-            selectedItems={selectedItems}
-            onToggleSelect={handleToggleSelect}
-          />
+          <InventoryRowsComponent />
         </div>
       </div>
     </>

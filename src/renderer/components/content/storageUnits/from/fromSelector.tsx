@@ -26,6 +26,7 @@ import EmptyComponent from '../../shared/emptyState';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 import RenameModal from '../../shared/modals & notifcations/modalRename';
 import { createCSGOImage } from 'renderer/functionsClasses/createCSGOImage';
+import { setShowFloat } from 'renderer/store/actions/settings';
 
 export default function StorageSelectorContent() {
   const dispatch = useDispatch();
@@ -75,6 +76,15 @@ export default function StorageSelectorContent() {
     getAllStorages(dispatch, freshState).then(() => {
       setLoadingSetStorage(false);
     });
+  }
+
+  // Toggle float display/stacking, then reload already-loaded storages so they re-stack correctly
+  function toggleFloat() {
+    const next = !settingsData.showFloat;
+    dispatch(setShowFloat(next));
+    window.electron.store.set('showFloat', next);
+    window.electron.ipcRenderer.refreshInventory();
+    refreshInventory();
   }
 
   // Get all storage unit data
@@ -160,6 +170,19 @@ export default function StorageSelectorContent() {
           </div>
         </div>
         <div className="mt-4 flex items-center sm:mt-0 sm:ml-4">
+          <button
+            type="button"
+            onClick={toggleFloat}
+            title={settingsData.showFloat ? 'Showing floats (items de-stacked) — click to stack' : 'Showing stacked items — click to show floats'}
+            className={classNames(
+              settingsData.showFloat
+                ? 'bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-700'
+                : 'bg-white dark:bg-dark-level-three text-gray-600 dark:text-dark-white border-gray-200 dark:border-opacity-30 hover:bg-gray-50 dark:hover:bg-dark-level-four',
+              'focus:outline-none mr-3 inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md border'
+            )}
+          >
+            {settingsData.showFloat ? 'Float ON' : 'Float OFF'}
+          </button>
           <Link
             to=""
             type="button"

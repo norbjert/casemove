@@ -649,6 +649,10 @@ async function startEvents(csgo, user) {
     steamWebSessionID = sessionID;
     steamWebCookieStr = cookies.join('; ');
   });
+  // webLogOn() must be called explicitly — steam-user does not negotiate
+  // a web session automatically, so without this, 'webSession' never fires
+  // and steamWebCookieStr/steamWebSessionID stay empty forever.
+  user.webLogOn();
 
   // Pricing
   const pricing = new runItems(user);
@@ -1049,42 +1053,60 @@ ipcMain.on('electron-store-set', async (event, key, val) => {
 });
 
 // Multisell: list items on Steam Community Market
-ipcMain.handle('sellItems', async (_event, items: {assetid: string; price_in_cents: number}[]) => {
+async function sellSingleItem(item: {assetid: string; price_in_cents: number}): Promise<{assetid: string; success: boolean; error?: string}> {
   const axios = (await import('axios')).default;
-  const results: {assetid: string; success: boolean; error?: string}[] = [];
 
   if (!steamWebCookieStr || !steamWebSessionID) {
-    return items.map(i => ({ assetid: i.assetid, success: false, error: 'No web session. Please re-login.' }));
+    return { assetid: item.assetid, success: false, error: 'No web session. Please re-login.' };
   }
 
-  for (const item of items) {
-    try {
-      const params = new URLSearchParams({
-        sessionid: steamWebSessionID,
-        appid: '730',
-        contextid: '2',
-        assetid: item.assetid,
-        amount: '1',
-        price: item.price_in_cents.toString(),
-      });
-      const resp = await axios.post(
-        'https://steamcommunity.com/market/sellitem/',
-        params.toString(),
-        {
-          headers: {
-            'Cookie': steamWebCookieStr,
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Referer': 'https://steamcommunity.com/id/me/inventory/',
-          },
-        }
-      );
-      const data = resp.data as any;
-      results.push({ assetid: item.assetid, success: !!data.success });
-      // Avoid rate limiting
-      await new Promise(res => setTimeout(res, 800));
-    } catch (err: any) {
-      const msg = err?.response?.data?.message || err?.message || 'Unknown error';
-      results.push({ assetid: item.assetid, success: false, error: msg });
+  try {
+    const params = new URLSearchParams({
+      sessionid: steamWebSessionID,
+      appid: '730',
+      contextid: '2',
+      assetid: item.assetid,
+      amount: '1',
+      price: item.price_in_cents.toString(),
+    });
+    const resp = await axios.post(
+      'https://steamcommunity.com/market/sellitem/',
+      params.toString(),
+      {
+        headers: {
+          'Cookie': steamWebCookieStr,
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Referer': 'https://steamcommunity.com/id/me/inventory/',
+        },
+      }
+    );
+    const data = resp.data as any;
+    return { assetid: item.assetid, success: !!data.success };
+  } catch (err: any) {
+    const msg = err?.response?.data?.message || err?.message || 'Unknown error';
+    return { assetid: item.assetid, success: false, error: msg };
+  }
+}
+
+let sellCancelled = false;
+ipcMain.on('cancelSell', () => {
+  sellCancelled = true;
+});
+
+ipcMain.handle('sellItems', async (_event, items: {assetid: string; price_in_cents: number}[]) => {
+  sellCancelled = false;
+  const results: {assetid: string; success: boolean; error?: string}[] = [];
+  const total = items.length;
+
+  for (let i = 0; i < items.length; i++) {
+    if (sellCancelled) break;
+    const result = await sellSingleItem(items[i]);
+    results.push(result);
+    const failed = results.filter(r => !r.success).length;
+    mainWindow?.webContents.send('sellProgress', { done: i + 1, total, failed });
+    // Avoid rate limiting
+    if (i < items.length - 1 && !sellCancelled) {
+      await new Promise(resolve => setTimeout(resolve, 800));
     }
   }
   return results;

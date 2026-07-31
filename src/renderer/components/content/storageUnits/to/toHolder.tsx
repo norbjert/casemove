@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import {
   RowHeader,
   RowHeaderCondition,
+  RowHeaderConditionShowFloat,
   RowHeaderPlain,
 } from '../../Inventory/inventoryRows/headerRows';
 
@@ -146,10 +147,9 @@ function StorageUnits() {
                   sortName="Stickers"
                   condition="Stickers/patches"
                 />
-                <RowHeaderCondition
+                <RowHeaderConditionShowFloat
                   headerName="Float"
                   sortName="wearValue"
-                  condition="Float"
                 />
                 <RowHeaderCondition
                   headerName="Rarity"

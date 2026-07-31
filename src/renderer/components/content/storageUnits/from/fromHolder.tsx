@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 import { NoSymbolIcon, FireIcon } from '@heroicons/react/24/solid';
-import { RowHeader, RowHeaderCondition, RowHeaderPlain } from '../../Inventory/inventoryRows/headerRows';
+import { RowHeader, RowHeaderCondition, RowHeaderConditionShowFloat, RowHeaderPlain } from '../../Inventory/inventoryRows/headerRows';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { moveFromAddRemove } from 'renderer/store/actions/moveFromActions';
 
@@ -105,7 +105,7 @@ function StorageUnits() {
                 <RowHeaderCondition headerName='Collection' sortName='Collection' condition='Collections'/>
                 <RowHeaderCondition headerName='Price' sortName='Price' condition='Price'/>
                 <RowHeaderCondition headerName='Stickers/Patches' sortName='Stickers' condition='Stickers/patches'/>
-                <RowHeaderCondition headerName='Float' sortName='wearValue' condition='Float'/>
+                <RowHeaderConditionShowFloat headerName='Float' sortName='wearValue'/>
                 <RowHeaderCondition headerName='Rarity' sortName='Rarity' condition='Rarity'/>
                 <RowHeaderCondition headerName='Storage' sortName='StorageName' condition='Storage'/>
                 <RowHeaderCondition headerName='Tradehold' sortName='tradehold' condition='Tradehold'/>

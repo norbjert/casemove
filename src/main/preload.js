@@ -264,6 +264,9 @@ contextBridge.exposeInMainWorld('electron', {
     sellItems(items) {
       return ipcRenderer.invoke('sellItems', items);
     },
+    cancelSell() {
+      ipcRenderer.send('cancelSell');
+    },
 
     on(channel, func) {
       const validChannels = [
@@ -296,6 +299,7 @@ contextBridge.exposeInMainWorld('electron', {
         'cancelQRLogin',
         'qrLogin:show',
         'qrLogin:scanned',
+        'sellProgress',
       ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
@@ -333,6 +337,7 @@ contextBridge.exposeInMainWorld('electron', {
         'cancelQRLogin',
         'qrLogin:show',
         'qrLogin:scanned',
+        'sellProgress',
       ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
