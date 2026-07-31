@@ -178,6 +178,8 @@ async function updateItems(items) {
       music_kits: {},
       graffiti_tints: {},
       casket_icons: {},
+      keychain_definitions: {},
+      highlight_reels: {},
     };
     dict_to_write['items'] = updateItemsLoop(jsonData, 'items');
     dict_to_write['paint_kits'] = updateItemsLoop(jsonData, 'paint_kits');
@@ -186,6 +188,13 @@ async function updateItems(items) {
     dict_to_write['music_kits'] = updateItemsLoop(jsonData, 'music_definitions');
     dict_to_write['graffiti_tints'] = updateItemsLoop(jsonData, 'graffiti_tints');
     dict_to_write['casket_icons'] = updateItemsLoop(jsonData, 'alternate_icons2')?.['casket_icons'];
+    dict_to_write['keychain_definitions'] = updateItemsLoop(jsonData, 'keychain_definitions');
+    // "highlight_reels" maps a numeric ID (referenced by the "keychain slot
+    // 0 highlight" attribute) to a string identifier (e.g.
+    // "cologne2026_st1ultimatenukejumpkill"), which must then be matched
+    // against a keychain_definitions entry's own "highlight_reel" field to
+    // find the specific highlight-clip's loc_name.
+    dict_to_write['highlight_reels'] = updateItemsLoop(jsonData, 'highlight_reels');
     // Validate data
     if (!dict_to_write['items'][1209]) throw new Error('Validation failed: item 1209 not found');
     await writeCache('items_game_cache.json', dict_to_write);
@@ -260,6 +269,21 @@ class items {
       let graffitiTint = getAttributeValueBytes(value, 233);
       if (graffitiTint) {
         value.graffiti_tint = graffitiTint.readUInt32LE(0);
+      }
+      // "keychain slot 0 id" — the globaloffensive library doesn't decode
+      // this attribute (unlike stickers), so we read it ourselves.
+      let keychainIdBytes = getAttributeValueBytes(value, 299);
+      if (keychainIdBytes) {
+        value.keychain_id = keychainIdBytes.readUInt32LE(0);
+      }
+      // "keychain slot 0 highlight" — only present on souvenir/event charms
+      // tied to a specific highlight-reel play (e.g. "magixx 1v4 Clutch").
+      // keychain_id above resolves to the shared collection entry
+      // ("Cologne 2026 Highlight"); this attribute points to the specific
+      // highlight-reel entry for the third part of the full name.
+      let keychainHighlightBytes = getAttributeValueBytes(value, 314);
+      if (keychainHighlightBytes) {
+        value.keychain_highlight_id = keychainHighlightBytes.readUInt32LE(0);
       }
       if (
         (value['casket_id'] !== undefined && isCasket == false) ||
@@ -347,11 +371,20 @@ class items {
       if (returnDict['item_has_stickers']) {
         const stickerList = [];
         for (const [stickersKey, stickersValue] of Object.entries(
-          value['stickers']
+          value['stickers'] || {}
         )) {
           stickerList.push(
             this.handleError(this.stickersProcessData, [stickersValue])
           );
+        }
+        if (value['keychain_id'] !== undefined) {
+          const charmEntry = this.handleError(this.keychainProcessData, [
+            value['keychain_id'],
+            value['keychain_highlight_id'],
+          ]);
+          if (charmEntry) {
+            stickerList.push(charmEntry);
+          }
         }
         returnDict['stickers'] = stickerList;
       } else {
@@ -423,7 +456,10 @@ class items {
       returnDict['item_url'].includes('econ/default_generated') ||
       returnDict['item_url'].includes('weapons/base_weapons')
     ) {
-      if (storageRow['stickers'] !== undefined) {
+      if (
+        storageRow['stickers'] !== undefined ||
+        storageRow['keychain_id'] !== undefined
+      ) {
         return true;
       }
     }
@@ -516,6 +552,34 @@ class items {
       var baseTwo = this.getTranslation(skinPatternName?.['description_tag']);
     }
 
+    // Standalone charm item (not attached to a weapon) — resolve its
+    // specific name via the "keychain slot 0 id" attribute.
+    if (
+      storageRow['keychain_id'] !== undefined &&
+      defIndexresult['name'] == 'keychain'
+    ) {
+      var keychainDefIndex = this.getKeychainDetails(
+        storageRow['keychain_id']
+      );
+      if (keychainDefIndex) {
+        // Souvenir/event charms (e.g. "Cologne 2026 Highlight") also carry
+        // a separate "keychain slot 0 highlight" attribute pointing to the
+        // specific highlight-reel entry (e.g. "magixx 1v4 Clutch") for the
+        // third part of the full name.
+        const keychainHighlightName =
+          storageRow['keychain_highlight_id'] !== undefined
+            ? this.getKeychainHighlightName(storageRow['keychain_highlight_id'])
+            : undefined;
+        const keychainNameParts = [
+          this.getTranslation(keychainDefIndex['loc_name']),
+        ];
+        if (keychainHighlightName) {
+          keychainNameParts.push(keychainHighlightName);
+        }
+        var baseTwo = keychainNameParts.join(' | ');
+      }
+    }
+
     // Get third string (wear name)
     if (storageRow['paint_wear'] !== undefined) {
       var baseThree = getSkinWearName(storageRow['paint_wear']);
@@ -600,6 +664,20 @@ class items {
         }
       }
     }
+    // Standalone charm item (not attached to a weapon) — resolve its
+    // specific image via the "keychain slot 0 id" attribute.
+    if (
+      storageRow['keychain_id'] !== undefined &&
+      imageInventory == undefined &&
+      defIndexresult['name'] == 'keychain'
+    ) {
+      const keychainDefIndex = this.getKeychainDetails(
+        storageRow['keychain_id']
+      );
+      if (keychainDefIndex?.['image_inventory'] !== undefined) {
+        var imageInventory = keychainDefIndex['image_inventory'];
+      }
+    }
     // Weapons and knifes
     if (storageRow['paint_index'] !== undefined) {
       var skinPatternName = this.getPaintDetails(storageRow['paint_index']);
@@ -681,6 +759,30 @@ class items {
     };
     return stickerDict;
   }
+  keychainProcessData(keychainID, highlightID) {
+    const keychainDefIndex = this.getKeychainDetails(keychainID);
+    if (!keychainDefIndex) {
+      return null;
+    }
+    // Souvenir/event charms (e.g. "Cologne 2026 Highlight") also carry a
+    // separate "keychain slot 0 highlight" attribute pointing to the
+    // specific highlight-reel entry (e.g. "magixx 1v4 Clutch") for the
+    // third part of the full name.
+    const highlightName =
+      highlightID !== undefined
+        ? this.getKeychainHighlightName(highlightID)
+        : undefined;
+    const nameParts = [this.getTranslation(keychainDefIndex['loc_name'])];
+    if (highlightName) {
+      nameParts.push(highlightName);
+    }
+    const stickerDict = {
+      sticker_name: nameParts.join(' | '),
+      sticker_url: keychainDefIndex['image_inventory'],
+      sticker_type: 'Charm',
+    };
+    return stickerDict;
+  }
 
   get_def_index(def_index) {
     return this.csgoItems['items'][def_index];
@@ -720,6 +822,22 @@ class items {
 
   getStickerDetails(stickerID) {
     return this.csgoItems['sticker_kits'][stickerID];
+  }
+
+  getKeychainDetails(keychainID) {
+    return this.csgoItems['keychain_definitions']?.[keychainID];
+  }
+
+  // Resolves a "keychain slot 0 highlight" attribute value (a highlight_reels
+  // ID) to its specific play name (e.g. "1v2 Clutch", "910 Ace"). The
+  // translation file has a direct "highlightreel_<id>" entry for every
+  // highlight reel across all tournaments (not just ones with a dedicated
+  // keychain_definitions child entry, e.g. Cologne 2026) so this works
+  // uniformly instead of cross-referencing keychain_definitions.
+  getKeychainHighlightName(highlightReelID) {
+    const highlightReel = this.csgoItems['highlight_reels']?.[highlightReelID];
+    if (!highlightReel?.['id']) return undefined;
+    return this.getTranslation('highlightreel_' + highlightReel['id']) || undefined;
   }
 
   checkIfAttributeIsThere(item, attribDefIndex) {
