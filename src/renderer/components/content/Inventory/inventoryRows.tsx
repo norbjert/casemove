@@ -19,10 +19,7 @@ import { RowStorage } from './inventoryRows/storageRow';
 import { RowTradehold } from './inventoryRows/tradeholdRow';
 
 
-export default function InventoryRowsComponent({ selectedItems, onToggleSelect }: {
-  selectedItems: any[];
-  onToggleSelect: (item: any) => void;
-}) {
+export default function InventoryRowsComponent() {
   const [getInventory, setInventory] = useState([] as any);
   const inventory = useSelector((state: any) => state.inventoryReducer);
   const inventoryFilters = useSelector((state: any) => state.inventoryFiltersReducer);
@@ -112,7 +109,6 @@ export default function InventoryRowsComponent({ selectedItems, onToggleSelect }
               'border-gray-200 sticky'
             )}
           >
-            <th className="table-cell px-3 py-2 border-b border-gray-200 bg-gray-50 dark:border-opacity-50 dark:bg-dark-level-two w-8"></th>
             <RowHeader headerName='Product' sortName='Product name' />
             <RowHeaderCondition headerName='Collection' sortName='Collection' condition='Collections' />
             <RowHeaderCondition headerName='Price' sortName='Price' condition='Price' />
@@ -135,20 +131,8 @@ export default function InventoryRowsComponent({ selectedItems, onToggleSelect }
         </thead>
         <tbody className="bg-white divide-y divide-gray-100 dark:bg-dark-level-one dark:divide-gray-500">
           {finalToUse.map((projectRow) => {
-            const isSelected = selectedItems.some(s => s.item_id === projectRow.item_id);
             return (
-              <tr
-                key={projectRow.item_id}
-                className={isSelected ? 'bg-indigo-50 dark:bg-indigo-900/20' : ''}
-              >
-                <td className="table-cell px-3 py-3">
-                  <input
-                    type="checkbox"
-                    checked={isSelected}
-                    onChange={() => onToggleSelect(projectRow)}
-                    className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                  />
-                </td>
+              <tr key={projectRow.item_id}>
                 <RowProduct itemRow={projectRow}  />
                 <RowCollections itemRow={projectRow} settingsData={settingsData} />
                 <RowPrice itemRow={projectRow} settingsData={settingsData} pricesReducer={pricesResult} />

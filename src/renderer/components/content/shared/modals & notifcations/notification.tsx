@@ -19,7 +19,7 @@ export default function NotificationElement({
       {/* Global notification live region, render this permanently at the end of the document */}
       <div
         aria-live="assertive"
-        className="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
+        className="fixed inset-0 z-50 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
       >
         <div className={classNames(settingsData.os == 'win32' ? 'pt-7' : '', "w-full flex flex-col items-center space-y-4 sm:items-end")}>
           {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}

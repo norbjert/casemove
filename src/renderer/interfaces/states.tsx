@@ -151,6 +151,7 @@ export interface Settings {
   currencyPrice: { [key: string]: number },
   source: source
   overview: Overview
+  showFloat: boolean
 };
 
 
@@ -175,6 +176,12 @@ export interface AuthReducer {
   walletBalance: WalletInterface
 };
 
+export interface SellReducer {
+  totalToSell: Array<any>,
+  totalItemsToSell: number,
+  searchInput: string,
+}
+
 export interface State {
   authReducer: AuthReducer
   inventoryReducer: Inventory
@@ -187,4 +194,5 @@ export interface State {
   pricingReducer: Prices
   tradeUpReducer: TradeUpActions
   modalTradeReducer: ModalTrade
+  sellReducer: SellReducer
 }

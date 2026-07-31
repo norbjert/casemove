@@ -22,6 +22,7 @@ import { createCSGOImage } from 'renderer/functionsClasses/createCSGOImage';
 import EmptyComponent from '../../shared/emptyState';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 import RenameModal from '../../shared/modals & notifcations/modalRename';
+import { setShowFloat } from 'renderer/store/actions/settings';
 moveToClearAll;
 
 export default function StorageSelectorContent() {
@@ -29,6 +30,7 @@ export default function StorageSelectorContent() {
 
   const inventory = useSelector((state: any) => state.inventoryReducer);
   const toSelector = useSelector((state: any) => state.moveToReducer);
+  const settingsData = useSelector((state: any) => state.settingsReducer);
 
   // Clear all filters
 
@@ -41,6 +43,14 @@ export default function StorageSelectorContent() {
   // Get the inventory
   async function refreshInventory() {
     await window.electron.ipcRenderer.refreshInventory();
+  }
+
+  // Toggle float display/stacking, then refresh inventory so it re-stacks correctly
+  function toggleFloat() {
+    const next = !settingsData.showFloat;
+    dispatch(setShowFloat(next));
+    window.electron.store.set('showFloat', next);
+    refreshInventory();
   }
 
   // Sort run
@@ -96,6 +106,19 @@ export default function StorageSelectorContent() {
           </div>
         </div>
         <div className="mt-4 flex items-center sm:mt-0 sm:ml-4">
+          <button
+            type="button"
+            onClick={toggleFloat}
+            title={settingsData.showFloat ? 'Showing floats (items de-stacked) — click to stack' : 'Showing stacked items — click to show floats'}
+            className={classNames(
+              settingsData.showFloat
+                ? 'bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-700'
+                : 'bg-white dark:bg-dark-level-three text-gray-600 dark:text-dark-white border-gray-200 dark:border-opacity-30 hover:bg-gray-50 dark:hover:bg-dark-level-four',
+              'focus:outline-none inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md border'
+            )}
+          >
+            {settingsData.showFloat ? 'Float ON' : 'Float OFF'}
+          </button>
           <Link
             to=""
             type="button"
