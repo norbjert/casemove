@@ -3,7 +3,7 @@
 Casemove is an open-source desktop application that helps you easily move items in and out of Storage Units in Counter-Strike 2. 
 This project was initially developed as [Casemove](https://github.com/nombersDev/casemove) by nombers, before he changed the license, abandonded the open-source project and replaced it with the subscription-based, closed-sourced app [Skinledger](https://skinledger.com/).
 
-This fork of the original project will remain open source and up-to-date.
+This fork of the original project will remain open source under the proper [GPLv3 license](https://github.com/norbjert/casemove?tab=GPL-3.0-1-ov-file) and up-to-date.
 
 
 ## Download Latest Version
@@ -40,6 +40,7 @@ Features include:
   * Switch between multiple accounts easily
   * Use your shared secret key instead of an auth code to log in 
   * See your storage unit's and inventory value from Buff, Skinport & SCM in almost all currencies
+  * Easily multi-sell items from your inventory, including skins, on the SCM
 
 Trade up features:
   * Complete trade up contracts from within the app! 

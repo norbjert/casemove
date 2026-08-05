@@ -38,7 +38,7 @@ export default function TradeUpFilters() {
         <div className="flex justify-between">
         <div className="max-w-7xl flex h-8 items-center space-x-6 divide-x divide-gray-200 text-sm px-4 sm:px-6 lg:px-8">
 
-            <div className="">
+            <div className="pr-4">
               <button
                 type="button"
                 className="text-gray-500 dark:text-gray-400"
@@ -47,10 +47,10 @@ export default function TradeUpFilters() {
                 Clear all
               </button>
             </div>
-            <div className='pl-4 pr-2'>
+            <div className='pr-2'>
     <TradeUpOptionsDropDown />
     </div>
-    <div className='pl-4 pr-2'>
+    <div className='pr-2'>
     <CollectionsDropDown />
     </div>
             <label htmlFor="search" className="sr-only">
