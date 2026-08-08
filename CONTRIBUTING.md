@@ -123,3 +123,5 @@ This project follows the [Conventional Commits](https://www.conventionalcommits.
 ## Thank You
 
 Thank you for taking the time to contribute to Casemove! Every contribution, no matter how small, makes a difference.
+
+(Generated using [contributing-generator](https://www.dev-toolbox.tech/tools/contributing-generator))
