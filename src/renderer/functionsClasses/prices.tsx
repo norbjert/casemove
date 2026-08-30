@@ -30,10 +30,6 @@ export class ConvertPrices {
 }
 
 export class ConvertPricesFormatted extends ConvertPrices {
-  constructor(settingsData: Settings, prices: Prices) {
-    super(settingsData, prices);
-  }
-
   formatPrice(price: number) {
     return new Intl.NumberFormat(this.settingsData.locale, {
       style: 'currency',
@@ -46,22 +42,8 @@ export class ConvertPricesFormatted extends ConvertPrices {
   }
   getFormattedPriceCombined(itemRow: ItemRow) {
     const comQty = itemRow?.combined_QTY as number;
-    return new Intl.NumberFormat(this.settingsData.locale, {
-      style: 'currency',
-      currency: this.settingsData.currency,
-    }).format(comQty * this.getPrice(itemRow));
+    return this.formatPrice(comQty * this.getPrice(itemRow));
   }
-}
-
-async function requestPrice(priceToGet: Array<ItemRow>) {
-  window.electron.ipcRenderer.getPrice(priceToGet);
-}
-
-async function dispatchRequested(
-  dispatch: Function,
-  rowsToGet: Array<ItemRow>
-) {
-  dispatch(pricing_add_to_requested(rowsToGet));
 }
 
 export class RequestPrices extends ConvertPrices {
@@ -79,9 +61,7 @@ export class RequestPrices extends ConvertPrices {
 
   handleRequested(itemRow: ItemRow): void {
     if (isNaN(this.getPrice(itemRow)) == true && this._checkRequested(itemRow)) {
-      const rowsToSend = [itemRow];
-      requestPrice(rowsToSend);
-      dispatchRequested(this.dispatch, rowsToSend);
+      this._request([itemRow]);
     }
   }
 
@@ -93,9 +73,12 @@ export class RequestPrices extends ConvertPrices {
       }
     });
     if (rowsToSend.length > 0) {
-      requestPrice(rowsToSend);
-      dispatchRequested(this.dispatch, rowsToSend);
-
+      this._request(rowsToSend);
     }
+  }
+
+  _request(rowsToSend: Array<ItemRow>): void {
+    window.electron.ipcRenderer.getPrice(rowsToSend);
+    this.dispatch(pricing_add_to_requested(rowsToSend));
   }
 }

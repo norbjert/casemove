@@ -3,6 +3,46 @@ import { State } from 'renderer/interfaces/states';
 import { filterInventorySetSort } from 'renderer/store/actions/filtersInventoryActions';
 import {itemCategories, itemSubCategories} from '../categories';
 
+// Shared comparators. Missing values sort to the bottom; sortRunAlt is the
+// same but treats NaN as missing, which is what the price columns produce.
+const MISSING = -90000000000;
+
+export function sortRun(valueOne, valueTwo, useNaN = false) {
+  if (valueOne == undefined) {
+    valueOne = MISSING;
+  }
+  if (valueTwo == undefined) {
+    valueTwo = MISSING;
+  }
+  if (valueOne < valueTwo) {
+    return -1;
+  }
+  if (valueOne > valueTwo) {
+    return 1;
+  }
+  if (useNaN && isNaN(valueOne)) {
+    return -1;
+  }
+  return 0;
+}
+
+export function sortRunAlt(valueOne, valueTwo) {
+  if (isNaN(valueOne)) {
+    valueOne = MISSING;
+  }
+  if (isNaN(valueTwo)) {
+    valueTwo = MISSING;
+  }
+  if (valueOne < valueTwo) {
+    return -1;
+  }
+  if (valueOne > valueTwo) {
+    return 1;
+  }
+  return 0;
+}
+
+
 
 
 // Will get the categories
@@ -215,41 +255,6 @@ export async function sortDataFunction(
   prices,
   pricingSource
 ) {
-  function sortRun(valueOne, ValueTwo, useNaN = false) {
-    if (valueOne == undefined) {
-      valueOne = -90000000000
-    }
-    if (ValueTwo == undefined) {
-      ValueTwo = -90000000000
-    }
-    if (valueOne < ValueTwo) {
-      return -1;
-    }
-    if (valueOne > ValueTwo) {
-      return 1;
-    }
-
-    if (useNaN && isNaN(valueOne)) {
-      return -1;
-    }
-    return 0;
-  }
-  function sortRunAlt(valueOne, ValueTwo) {
-    if (isNaN(valueOne)) {
-      valueOne = -90000000000
-    }
-    if (isNaN(ValueTwo)) {
-      ValueTwo = -90000000000
-    }
-    if (valueOne < ValueTwo) {
-      return -1;
-    }
-    if (valueOne > ValueTwo) {
-      return 1;
-    }
-
-    return 0;
-  }
 
   // Check
   if (sortValue == 'Storages') {
@@ -358,41 +363,6 @@ export function sortDataFunctionTwo(
   prices,
   pricingSource
 ) {
-  function sortRun(valueOne, ValueTwo, useNaN = false) {
-    if (valueOne == undefined) {
-      valueOne = -90000000000
-    }
-    if (ValueTwo == undefined) {
-      ValueTwo = -90000000000
-    }
-    if (valueOne < ValueTwo) {
-      return -1;
-    }
-    if (valueOne > ValueTwo) {
-      return 1;
-    }
-
-    if (useNaN && isNaN(valueOne)) {
-      return -1;
-    }
-    return 0;
-  }
-  function sortRunAlt(valueOne, ValueTwo) {
-    if (isNaN(valueOne)) {
-      valueOne = -90000000000
-    }
-    if (isNaN(ValueTwo)) {
-      ValueTwo = -90000000000
-    }
-    if (valueOne < ValueTwo) {
-      return -1;
-    }
-    if (valueOne > ValueTwo) {
-      return 1;
-    }
-
-    return 0;
-  }
 
   // Check
   if (sortValue == 'Storages') {

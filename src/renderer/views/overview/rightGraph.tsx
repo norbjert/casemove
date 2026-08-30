@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
-import { ReducerManager } from "renderer/functionsClasses/reducerManager";
-import { Settings } from "renderer/interfaces/states";
+import { Settings, State } from "renderer/interfaces/states";
 import EmptyField from "./EmptyField";
 import ItemDistributionByVolume from "./categoryDistribution/categoryDistribution";
 
 export default function RightGraph() {
-    const ReducerClass = new ReducerManager(useSelector);
-    const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings)
+    const settingsData: Settings = useSelector((state: State) => state.settingsReducer)
 
     const by = settingsData.overview.by
     const right = settingsData.overview.chartRight

@@ -21,10 +21,10 @@ import { ConvertPricesFormatted } from 'renderer/functionsClasses/prices';
 import { createCSGOImage } from '../../../../functionsClasses/createCSGOImage';
 setTradeConfirm;
 export default function TradeModal() {
-  // Use granular selectors so this component only re-renders when the specific
-  // state it actually uses changes. Reading via ReducerManager.getStorage() was
-  // subscribing to the entire Redux state, causing a re-render whenever
-  // possibleOutcomes updated — which raced with the headlessui enter animation.
+  // Keep these selectors granular so this component only re-renders when the
+  // specific state it uses changes. Subscribing to the whole Redux state here
+  // re-rendered on every possibleOutcomes update, which raced with the
+  // headlessui enter animation.
   const tradeUpProducts = useSelector((state: any) => state.tradeUpReducer.tradeUpProducts);
   const tradeUpProductsIDS = useSelector((state: any) => state.tradeUpReducer.tradeUpProductsIDS);
   const settingsData = useSelector((state: any) => state.settingsReducer);

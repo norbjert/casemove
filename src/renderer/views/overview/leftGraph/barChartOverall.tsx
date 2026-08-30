@@ -1,10 +1,9 @@
 import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { ItemRow } from 'renderer/interfaces/items';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
-import { Prices, Settings } from 'renderer/interfaces/states';
+import { Prices, Settings, State } from 'renderer/interfaces/states';
 import {
   ConvertPrices,
   ConvertPricesFormatted,
@@ -71,11 +70,10 @@ function getObject(
 
 export default function OverallVolume() {
   // Go through inventory and find matching categories
-  const Reducer = new ReducerManager(useSelector);
-  const settingsData: Settings = Reducer.getStorage(Reducer.names.settings);
-  const pricingData: Prices = Reducer.getStorage(Reducer.names.pricing);
+  const settingsData: Settings = useSelector((state: State) => state.settingsReducer);
+  const pricingData: Prices = useSelector((state: State) => state.pricingReducer);
   const PricingConverter = new ConvertPrices(settingsData, pricingData);
-  const inventory = Reducer.getStorage(Reducer.names.inventory);
+  const inventory = useSelector((state: State) => state.inventoryReducer);
 
   // Convert inventory to chart data
 
@@ -85,13 +83,13 @@ export default function OverallVolume() {
 
   const inventoryFiltered = searchFilter(
     inventory.combinedInventory,
-    Reducer.getStorage(Reducer.names.inventoryFilters),
+    useSelector((state: State) => state.inventoryFiltersReducer),
     undefined
   );
 
   const storageFiltered = searchFilter(
     inventory.storageInventory,
-    Reducer.getStorage(Reducer.names.inventoryFilters),
+    useSelector((state: State) => state.inventoryFiltersReducer),
     undefined
   );
 

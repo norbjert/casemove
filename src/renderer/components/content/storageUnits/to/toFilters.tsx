@@ -8,6 +8,7 @@ import {
   ArrowUpTrayIcon,
 } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
+import { State } from 'renderer/interfaces/states';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 import { moveModalQuerySet } from 'renderer/store/actions/modalMove actions';
 import {
@@ -18,7 +19,6 @@ import {
 import PricingAmount from '../../shared/filters/pricingAmount';
 import InventoryFiltersDisclosure from '../../Inventory/filtersDisclosure';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
 import { getStorageFilterManager } from '../shared/storageFilterSetup';
 import { addMajorsFilters } from 'renderer/functionsClasses/filters/filters';
@@ -26,15 +26,12 @@ const ClassFilters = getStorageFilterManager()
 
 export default function StorageFilter() {
   const dispatch = useDispatch();
-  const ReducerClass = new ReducerManager(useSelector);
-  const pricesResult = ReducerClass.getStorage(ReducerClass.names.pricing);
-  const toReducer = ReducerClass.getStorage(ReducerClass.names.moveTo);
-  const inventory = ReducerClass.getStorage(ReducerClass.names.inventory);
-  const settingsData = ReducerClass.getStorage(ReducerClass.names.settings);
+  const pricesResult = useSelector((state: State) => state.pricingReducer);
+  const toReducer = useSelector((state: State) => state.moveToReducer);
+  const inventory = useSelector((state: State) => state.inventoryReducer);
+  const settingsData = useSelector((state: State) => state.settingsReducer);
 
-  const inventoryFilters = ReducerClass.getStorage(
-    ReducerClass.names.inventoryFilters
-  );
+  const inventoryFilters = useSelector((state: State) => state.inventoryFiltersReducer);
 
   async function moveItems() {
     const key = crypto.randomUUID();
@@ -65,11 +62,9 @@ export default function StorageFilter() {
   // Storage count
   let storageRow = [{ item_storage_total: 0 }];
   if (toReducer.activeStorages.length != 0) {
-    storageRow = inventory.inventory.filter(function (item) {
-      if (item.item_id.includes(toReducer.activeStorages[0])) {
-        return item;
-      }
-    });
+    storageRow = inventory.inventory.filter((item) =>
+      item.item_id.includes(toReducer.activeStorages[0])
+    );
   }
   if (
     storageRow[0]?.item_storage_total != toReducer?.activeStoragesAmount &&

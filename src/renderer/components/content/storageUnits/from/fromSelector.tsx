@@ -23,7 +23,7 @@ import {
 } from 'renderer/store/actions/moveFromActions';
 import { LoadingButton } from '../../shared/animations';
 import EmptyComponent from '../../shared/emptyState';
-import { classNames } from '../../shared/filters/inventoryFunctions';
+import { classNames, sortRun } from '../../shared/filters/inventoryFunctions';
 import RenameModal from '../../shared/modals & notifcations/modalRename';
 import { createCSGOImage } from 'renderer/functionsClasses/createCSGOImage';
 import { setShowFloat } from 'renderer/store/actions/settings';
@@ -118,19 +118,6 @@ export default function StorageSelectorContent() {
   });
 
   // Sort run
-  function sortRun(valueOne, ValueTwo, useNaN = false) {
-    if (valueOne < ValueTwo) {
-      return -1;
-    }
-    if (valueOne > ValueTwo) {
-      return 1;
-    }
-
-    if (useNaN && isNaN(valueOne)) {
-      return -1;
-    }
-    return 0;
-  }
 
   const inventoryToUse = inventory.inventory;
 

@@ -11,9 +11,8 @@ import {
 import { Pie } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ConvertPricesFormatted } from 'renderer/functionsClasses/prices';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { useSelector } from 'react-redux';
-import { Prices, Settings } from 'renderer/interfaces/states';
+import { Prices, Settings, State } from 'renderer/interfaces/states';
 
 ChartJS.register(
   RadialLinearScale,
@@ -26,11 +25,8 @@ ChartJS.register(
 );
 
 export default function PieChart({ data, headerName }) {
-  const ReducerClass = new ReducerManager(useSelector);
-  const settingsData: Settings = ReducerClass.getStorage(
-    ReducerClass.names.settings
-  );
-  const pricingData: Prices = ReducerClass.getStorage(ReducerClass.names.pricing);
+  const settingsData: Settings = useSelector((state: State) => state.settingsReducer);
+  const pricingData: Prices = useSelector((state: State) => state.pricingReducer);
   const converter = new ConvertPricesFormatted(settingsData, pricingData);
 
   const title = (tooltipItems) => {

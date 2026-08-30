@@ -1,7 +1,7 @@
 import { sortDataFunction } from "renderer/components/content/shared/filters/inventoryFunctions"
 import { Filter } from "renderer/interfaces/filters"
 import { State } from "renderer/interfaces/states"
-import _ from 'lodash';
+import { isEqual } from 'lodash';
 import { filterItemRows } from "renderer/functionsClasses/filters/custom";
 
 export const allButClear = (filterString: any, sortValue, inventoryFiltered) => {
@@ -66,7 +66,7 @@ export async function storageInventoryAddOption(currentState: State, newFilter: 
   const newFilterState = [] as Array<Filter>;
   let wasSeen: boolean = false;
   currentState.inventoryFiltersReducer.storageFilter.forEach(element => {
-      if (!_.isEqual(element, newFilter)) {
+      if (!isEqual(element, newFilter)) {
           newFilterState.push(element)
 
       } else {
@@ -87,7 +87,7 @@ export async function filterInventoryAddOption(currentState: State, newFilter: F
     const newFilterState = [] as Array<Filter>;
     let wasSeen: boolean = false;
     currentState.inventoryFiltersReducer.inventoryFilter.forEach(element => {
-        if (!_.isEqual(element, newFilter)) {
+        if (!isEqual(element, newFilter)) {
             newFilterState.push(element)
 
         } else {

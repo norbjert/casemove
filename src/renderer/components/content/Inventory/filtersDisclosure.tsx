@@ -7,7 +7,7 @@ import {
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
 import { Filter, Filters } from 'renderer/interfaces/filters';
-import _ from 'lodash';
+import { isEqual, some } from 'lodash';
 
 
 
@@ -59,7 +59,7 @@ export default function InventoryFiltersDisclosure({ClassFilters}) {
 
   Object.entries(ClassFilters.filters as Filters).map(([_key, filterObject]) => {
     filterObject.map((filter, _optionIdx) => {
-      if (inventoryFilters.inventoryFilter.filter(filt => _.isEqual(filt, filter)).length > 0) {
+      if (inventoryFilters.inventoryFilter.filter(filt => isEqual(filt, filter)).length > 0) {
         totalSeen += 1
         ignoreCategories.push(filter)
       }
@@ -69,7 +69,7 @@ export default function InventoryFiltersDisclosure({ClassFilters}) {
     const seen: Array<Filter> = [];
     Object.entries(ClassFilters.filters as Filters).forEach(([_key, filterObject]) => {
       filterObject.forEach((filter) => {
-        if (inventoryFilters.inventoryFilter.some(filt => _.isEqual(filt, filter))) {
+        if (inventoryFilters.inventoryFilter.some(filt => isEqual(filt, filter))) {
           seen.push(filter);
         }
       });
@@ -77,7 +77,7 @@ export default function InventoryFiltersDisclosure({ClassFilters}) {
 
     if (inventoryFilters.inventoryFilter.length > seen.length) {
       inventoryFilters.inventoryFilter.forEach(element => {
-        if (!_.some(seen, element) && element.label != 'Storage moveable') {
+        if (!some(seen, element) && element.label != 'Storage moveable') {
           addRemoveFilter(element);
         }
       });
@@ -108,7 +108,7 @@ export default function InventoryFiltersDisclosure({ClassFilters}) {
                         className="flex-shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                         onClick={() => addRemoveFilter(filter)}
                         checked={
-                          inventoryFilters.inventoryFilter.filter(filt => _.isEqual(filt, filter)).length > 0
+                          inventoryFilters.inventoryFilter.filter(filt => isEqual(filt, filter)).length > 0
                             ? true
                             : false
                         }

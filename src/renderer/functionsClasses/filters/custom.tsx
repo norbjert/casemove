@@ -2,60 +2,41 @@ import { Filter } from "renderer/interfaces/filters";
 import { ItemRow } from "renderer/interfaces/items";
 
 
-class CheckFilter {
-    itemRow: ItemRow
-    filter: Filter
-
-    constructor(itemRow: ItemRow, filter: Filter) {
-        this.itemRow = itemRow
-        this.filter = filter
-    }
-
-    // Check if string is in URL
-    CheckVariableIncludes(variableName: string): boolean {
-        return this.itemRow?.[variableName]?.includes(this.filter.valueToCheck)
-    }
-
-    // Check if variable exists and boolean
-    checkBooleanVariable(): boolean {
-        return this.itemRow?.[this.filter.valueToCheck] || false
-    }
-
-    // Check if Container and sub value
-    checkContainerSubValue(variableName: string): boolean {
-        return this.itemRow.category == 'Containers' && this.CheckVariableIncludes(variableName) || false
-    }
-
+// Check if the filter's value appears in one of the row's string fields
+function includesValue(itemRow: ItemRow, filter: Filter, variableName: string): boolean {
+    return itemRow?.[variableName]?.includes(filter.valueToCheck)
 }
 
-
+// Same, but only for containers
+function containerIncludesValue(itemRow: ItemRow, filter: Filter, variableName: string): boolean {
+    return itemRow.category == 'Containers' && includesValue(itemRow, filter, variableName) || false
+}
 
 function filterLogic(itemRow: ItemRow, IndividualFilter: Filter): boolean {
-    const FilterClass = new CheckFilter(itemRow, IndividualFilter)
     let returnValue: boolean = false;
     switch (IndividualFilter.commandType) {
         case 'checkBooleanVariable':
-            returnValue = FilterClass.checkBooleanVariable()
+            returnValue = itemRow?.[IndividualFilter.valueToCheck] || false
             break
 
         case 'checkName':
-            returnValue = FilterClass.CheckVariableIncludes('item_name')
+            returnValue = includesValue(itemRow, IndividualFilter, 'item_name')
             break
 
         case 'checkURL':
-            returnValue = FilterClass.CheckVariableIncludes('item_url')
+            returnValue = includesValue(itemRow, IndividualFilter, 'item_url')
             break
 
         case 'checkMajor':
-            returnValue = FilterClass.CheckVariableIncludes('major')
+            returnValue = includesValue(itemRow, IndividualFilter, 'major')
             break
 
         case 'checkNameAndContainer':
-            returnValue = FilterClass.checkContainerSubValue('item_name')
+            returnValue = containerIncludesValue(itemRow, IndividualFilter, 'item_name')
             break
 
         case 'checkCapsule':
-            returnValue = FilterClass.checkContainerSubValue('item_name')
+            returnValue = containerIncludesValue(itemRow, IndividualFilter, 'item_name')
             if (itemRow.item_name.includes('Challengers') || itemRow.item_name.includes('Legends') || itemRow.item_name.includes('Contenders')) {
                 if (!itemRow.item_name.includes('Patch')) {
                     returnValue = true;

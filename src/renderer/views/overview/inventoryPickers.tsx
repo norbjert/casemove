@@ -2,7 +2,7 @@ import { BeakerIcon, PencilIcon, ChevronUpDownIcon, TagIcon } from '@heroicons/r
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { classNames, onSortChange } from 'renderer/components/content/shared/filters/inventoryFunctions';
+import { classNames, onSortChange, sortRun, sortRunAlt } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import itemRarities from 'renderer/components/content/shared/rarities';
 import { setRenameModal } from 'renderer/store/actions/modalMove actions';
 import { pricing_add_to_requested } from 'renderer/store/actions/pricingActions';
@@ -110,43 +110,8 @@ export default function TradeUpPicker() {
   }
 
 
-  function sortRun(valueOne, ValueTwo, useNaN = false) {
-    if (valueOne == undefined) {
-      valueOne = -90000000000
-    }
-    if (ValueTwo == undefined) {
-      ValueTwo = -90000000000
-    }
-    if (valueOne < ValueTwo) {
-      return -1;
-    }
-    if (valueOne > ValueTwo) {
-      return 1;
-    }
-
-    if (useNaN && isNaN(valueOne)) {
-      return -1;
-    }
-    return 0;
-  }
 
   // SORT Fix for prices
-    function sortRunAlt(valueOne, ValueTwo) {
-      if (isNaN(valueOne)) {
-        valueOne = -90000000000
-      }
-      if (isNaN(ValueTwo)) {
-        ValueTwo = -90000000000
-      }
-      if (valueOne < ValueTwo) {
-        return -1;
-      }
-      if (valueOne > ValueTwo) {
-        return 1;
-      }
-
-      return 0;
-    }
 
 
 
