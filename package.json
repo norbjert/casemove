@@ -147,6 +147,7 @@
     "vite": "^7.3.2",
     "vitest": "^4.1.9",
     "@headlessui/react": "^2.2.10",
+    "@tanstack/react-virtual": "^3.14.9",
     "@reduxjs/toolkit": "^2.11.2",
     "chart.js": "^4.5.1",
     "chartjs-plugin-datalabels": "^2.0.0",
