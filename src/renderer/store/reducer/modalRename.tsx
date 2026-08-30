@@ -1,35 +1,22 @@
-import { RenameModal } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { RenameModal } from 'renderer/interfaces/states';
 
 const initialState: RenameModal = {
-    renameOpen: false,
-    modalPayload: {
-      itemID: '',
-      itemName: ''
-    },
-  };
+  renameOpen: false,
+  modalPayload: {
+    itemID: '',
+    itemName: '',
+  },
+};
 
-  const modalRenameReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'SET_RENAME_MODAL':
-          return {
-              ...state,
-              renameOpen: true,
-              modalPayload: action.payload
-          }
-      case 'CLOSE_RENAME_MODAL':
-        return {
-            ...state,
-            renameOpen: false
-        }
-      case 'SIGN_OUT':
-        return {
-          ...initialState
-        }
-      default:
-        return {...state}
-
-    }
-  };
-
-
-  export default modalRenameReducer;
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('SET_RENAME_MODAL', (state, action: any) => {
+      state.renameOpen = true;
+      state.modalPayload = action.payload;
+    })
+    .addCase('CLOSE_RENAME_MODAL', (state) => {
+      state.renameOpen = false;
+    })
+    .addCase('SIGN_OUT', () => initialState)
+);

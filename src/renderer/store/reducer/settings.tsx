@@ -1,4 +1,5 @@
-import { Settings } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { Settings } from 'renderer/interfaces/states';
 
 const initialState: Settings = {
   fastMove: false,
@@ -22,77 +23,43 @@ const initialState: Settings = {
   }
 };
 
-const settingsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SETTINGS_SET_FASTMOVE':
-      return {
-        ...state,
-        fastMove: action.payload,
-      };
-    case 'SETTINGS_SET_COLUMNS':
-      return {
-        ...state,
-        columns: action.payload,
-      };
-    case 'SETTINGS_SET_CURRENCY':
-      if (action.payload == true) {
-        return {
-          ...state
-        }
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('SETTINGS_SET_FASTMOVE', (state, action: any) => {
+      state.fastMove = action.payload;
+    })
+    .addCase('SETTINGS_SET_COLUMNS', (state, action: any) => {
+      state.columns = action.payload;
+    })
+    .addCase('SETTINGS_SET_CURRENCY', (state, action: any) => {
+      // `true` shows up while the store value is still loading; ignore it
+      if (action.payload != true) {
+        state.currency = action.payload;
       }
-      return {
-        ...state,
-        currency: action.payload,
-      };
-    
-    case 'SETTINGS_SET_STEAMLOGINSHOW':
-      return {
-        ...state,
-        steamLoginShow: action.payload,
-      };
-      
-    case 'SETTINGS_SET_SOURCE':
-      return {
-        ...state,
-        source: action.payload,
-      };
-      case 'SETTINGS_SET_LOCALE':
-      return {
-        ...state,
-        locale: action.payload,
-      };
-      case 'SETTINGS_SET_OS':
-      return {
-        ...state,
-        os: action.payload,
-      };
-      case 'SETTINGS_SET_DEVMODE':
-      return {
-        ...state,
-        devmode: action.payload,
-      };
-      case 'SETTINGS_SET_SHOWFLOAT':
-      return {
-        ...state,
-        showFloat: action.payload,
-      };
-      case 'SETTINGS_SET_OVERVIEW':
-        return {
-          ...state,
-          overview: action.payload,
-        };
-      case 'SETTINGS_ADD_CURRENCYPRICE':
-        const currencyDict = state.currencyPrice
-        currencyDict[action.payload.currency] = action.payload.rate
-      return {
-        ...state,
-        currency: action.payload.currency,
-        currencyPrice: currencyDict,
-      };
-
-    default:
-      return { ...state };
-  }
-};
-
-export default settingsReducer;
+    })
+    .addCase('SETTINGS_SET_STEAMLOGINSHOW', (state, action: any) => {
+      state.steamLoginShow = action.payload;
+    })
+    .addCase('SETTINGS_SET_SOURCE', (state, action: any) => {
+      state.source = action.payload;
+    })
+    .addCase('SETTINGS_SET_LOCALE', (state, action: any) => {
+      state.locale = action.payload;
+    })
+    .addCase('SETTINGS_SET_OS', (state, action: any) => {
+      state.os = action.payload;
+    })
+    .addCase('SETTINGS_SET_DEVMODE', (state, action: any) => {
+      state.devmode = action.payload;
+    })
+    .addCase('SETTINGS_SET_SHOWFLOAT', (state, action: any) => {
+      state.showFloat = action.payload;
+    })
+    .addCase('SETTINGS_SET_OVERVIEW', (state, action: any) => {
+      state.overview = action.payload;
+    })
+    .addCase('SETTINGS_ADD_CURRENCYPRICE', (state, action: any) => {
+      state.currency = action.payload.currency;
+      state.currencyPrice[action.payload.currency] = action.payload.rate;
+    })
+);
