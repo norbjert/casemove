@@ -2,10 +2,6 @@ import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
-    myPing(message = 'ping') {
-      ipcRenderer.send('ipc-example', message);
-    },
-
     // User commands
     refreshInventory() {
       ipcRenderer.send('refreshInventory');
@@ -270,7 +266,6 @@ contextBridge.exposeInMainWorld('electron', {
 
     on(channel, func) {
       const validChannels = [
-        'ipc-example',
         'login',
         'userEvents',
         'refreshInventory',
@@ -308,7 +303,6 @@ contextBridge.exposeInMainWorld('electron', {
     },
     once(channel, func) {
       const validChannels = [
-        'ipc-example',
         'login',
         'userEvents',
         'refreshInventory',
