@@ -44,7 +44,7 @@ export default function TradeModal() {
           element.storage_id,
           element.item_id,
           false
-        );
+        ).catch(() => {});
       }
     });
     if (hasRun) {
