@@ -1,3 +1,4 @@
+import log from 'electron-log';
 import fs from 'fs';
 import path from 'path';
 import { app } from 'electron';
@@ -23,7 +24,7 @@ async function readCache(filename) {
       return JSON.parse(raw);
     }
   } catch (err) {
-    console.log('Cache read failed:', filename, err.message);
+    log.warn('Cache read failed:', filename, err.message);
   }
   return null;
 }
@@ -33,7 +34,7 @@ async function writeCache(filename, data) {
     const filePath = path.join(getCacheDir(), filename);
     await fs.promises.writeFile(filePath, JSON.stringify(data), 'utf-8');
   } catch (err) {
-    console.log('Cache write failed:', filename, err.message);
+    log.warn('Cache write failed:', filename, err.message);
   }
 }
 
@@ -137,7 +138,7 @@ async function getTranslations(items) {
     await writeCache('csgo_english_cache.json', finalDict);
     items.setTranslations(finalDict, 'normal');
   } catch (err) {
-    console.log('Error occurred during translation parsing');
+    log.error('Error occurred during translation parsing');
     const cached = await readCache('csgo_english_cache.json');
     if (cached) {
       items.setTranslations(cached, 'cache');
@@ -167,7 +168,7 @@ async function updateItems(items) {
     try {
       jsonData = await parseVDFInWorker(data);
     } catch (vdfErr) {
-      console.log('VDF parse failed:', vdfErr.message);
+      log.warn('VDF parse failed:', vdfErr.message);
       throw vdfErr;
     }
     const dict_to_write = {
@@ -199,16 +200,13 @@ async function updateItems(items) {
     if (!dict_to_write['items'][1209]) throw new Error('Validation failed: item 1209 not found');
     await writeCache('items_game_cache.json', dict_to_write);
     items.setCSGOItems(dict_to_write);
-    console.log('Items loaded from live data');
   } catch (err) {
-    console.log('Error occurred during items parsing:', err.message);
+    log.error('Error occurred during items parsing:', err.message);
     const cached = await readCache('items_game_cache.json');
     if (cached) {
       items.setCSGOItems(cached);
-      console.log('Items loaded from cache');
     } else {
       items.setCSGOItems(itemsGameBackup);
-      console.log('Items loaded from backup');
     }
   }
 }
@@ -226,7 +224,6 @@ class items {
     this.csgoItems = value;
   }
   setTranslations(value, commandFrom) {
-    console.log(commandFrom);
     this.translation = value;
   }
 
@@ -234,7 +231,7 @@ class items {
     try {
       return callback.apply(this, args);
     } catch (err) {
-      console.log(err);
+      log.error(err);
       return '';
     }
   }
@@ -291,7 +288,6 @@ class items {
       ) {
         continue;
       }
-      // console.log(value['item_id'])
 
 
       const returnDict = {};
@@ -312,12 +308,7 @@ class items {
         imageURL,
       ]);
       if (returnDict['item_name'] == '') {
-        console.log('Error');
-        try {
-          console.log(value, this.get_def_index(value['def_index']));
-        } catch (err) {
-          console.log(value);
-        }
+        log.error('Could not resolve item name for def_index', value['def_index']);
       }
       returnDict['item_customname'] = value['custom_name'];
       returnDict['item_url'] = imageURL;
@@ -431,7 +422,6 @@ class items {
       }
 
       // returnDict['coordinator_data'] = JSON.stringify(value);
-      // console.log(value, returnDict)
 
       returnList.push(returnDict);
     }

@@ -4,10 +4,9 @@ fetch('https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/ma
   .then((r) => r.json())
   .then((data) => {
     imageLookup = data;
-    console.log('CS2 image lookup loaded:', Object.keys(data).length, 'entries');
   })
   .catch((err) => {
-    console.log('Could not load CS2 image lookup:', err.message);
+    console.error('Could not load CS2 image lookup:', err.message);
   });
 
 export function createCSGOImage(urlEndpath: string): string {

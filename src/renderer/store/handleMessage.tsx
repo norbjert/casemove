@@ -7,10 +7,6 @@ import combineInventory from "renderer/components/content/shared/filters/invento
 import { setInventoryAction } from "./inventory/inventoryActions"
 import { setConnection, setGC, signOut, setWalletBalance } from "./actions/userStatsActions"
 
-export async function handleLogonSuccess(message) {
-    console.log(message)
-}
-
 export async function handleUserEvent(message, settings) {
     const statusCode = message[0]
     const description = message[1]

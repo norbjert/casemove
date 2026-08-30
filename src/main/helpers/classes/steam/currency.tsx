@@ -1,3 +1,4 @@
+import log from 'electron-log';
 import axios from 'axios';
 import currencyBackup from './backup/currency.json';
 
@@ -6,11 +7,11 @@ async function loadLiveRates(currencyClass) {
     .then((response) => {
       if (response.data?.rates && typeof response.data.rates === 'object') {
         currencyClass.rates = { ...response.data.rates, USD: 1 };
-        console.log('Live exchange rates loaded from frankfurter.app');
+        log.info('Live exchange rates loaded from frankfurter.app');
       }
     })
     .catch((error) => {
-      console.log('Could not load live exchange rates, using backup:', error.message);
+      log.warn('Could not load live exchange rates, using backup:', error.message);
     });
 }
 

@@ -11,9 +11,7 @@ async function getGithubVersion(platform: string): Promise<GithubResponse> {
 
         for (const [_key, value] of Object.entries(responseData)) {
           if (value.prerelease == false) {
-            console.log('githubVersion', value.tag_name.replaceAll('.', ''));
             let downloadLink: string = value['html_url'];
-            console.log('Platform: ', platform)
 
             // Find the relevant download link
             switch (platform) {

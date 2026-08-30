@@ -1,3 +1,4 @@
+import log from 'electron-log';
 import { getValue, setValue } from './settings';
 import axios from 'axios';
 import dotenv from 'dotenv';
@@ -18,19 +19,14 @@ async function getPrices(cas) {
   axios
     .get(url)
     .then(function (response) {
-      console.log(
-        'prices, response',
-        typeof response === 'object',
-        response !== null
-      );
       if (typeof response === 'object' && response !== null) {
-        cas.setPricing(response.data, 'normal');
+        cas.setPricing(response.data);
       } else {
         getPricesBackup(cas);
       }
     })
     .catch(function (error) {
-      console.log('Error prices', error);
+      log.error('Error prices', error);
       getPricesBackup(cas);
     });
 }
@@ -107,11 +103,10 @@ class runItems {
         setValue('pricing.currency', currencyCode);
       }
     }).catch((err) => {
-      console.log('pricing currency init error:', err);
+      log.error('pricing currency init error:', err);
     });
   }
-  async setPricing(pricingData, commandFrom) {
-    console.log('pricingSet', commandFrom);
+  async setPricing(pricingData) {
     this.prices = pricingData;
   }
   async makeSinglerequest(itemRow) {
