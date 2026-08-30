@@ -1,3 +1,4 @@
+import { createReducer } from '@reduxjs/toolkit';
 import { InventoryFilters } from '../../interfaces/states';
 
 const initialState: InventoryFilters = {
@@ -19,126 +20,74 @@ const initialState: InventoryFilters = {
   rarityFilter: [],
 };
 
-const inventoryFiltersReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SET_FILTERED':
-      return {
-        ...state,
-        inventoryFilter: action.payload.inventoryFilter,
-        sortValue: action.payload.sortValue,
-        inventoryFiltered: action.payload.inventoryFiltered,
-      };
-    case 'SET_FILTERED_STORAGE':
-      return {
-        ...state,
-        storageFiltered: action.payload.storageFiltered,
-        storageFilter: action.payload.storageFilter,
-      };
-    case 'ALL_BUT_CLEAR':
+// present -> drop it, absent -> append
+function toggle<T>(list: T[], value: T): T[] {
+  const index = list.indexOf(value);
+  if (index == -1) {
+    return [...list, value];
+  }
+  const without = [...list];
+  without.splice(index, 1);
+  return without;
+}
+
+// clearing the from-side drops the storage view but keeps the inventory filters
+function clearStorageSide(state: InventoryFilters) {
+  state.categoryFilter = initialState.categoryFilter;
+  state.storageFiltered = initialState.storageFiltered;
+  state.storageFilter = initialState.storageFilter;
+}
+
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('SET_FILTERED', (state, action: any) => {
+      state.inventoryFilter = action.payload.inventoryFilter;
+      state.sortValue = action.payload.sortValue;
+      state.inventoryFiltered = action.payload.inventoryFiltered;
+    })
+    .addCase('SET_FILTERED_STORAGE', (state, action: any) => {
+      state.storageFiltered = action.payload.storageFiltered;
+      state.storageFilter = action.payload.storageFilter;
+    })
+    .addCase('ALL_BUT_CLEAR', (state, action: any) => {
       if (state.sortValue == action.payload.sortValue) {
-        return {
-          ...state,
-          inventoryFilter: action.payload.inventoryFilter,
-          sortValue: action.payload.sortValue,
-          inventoryFiltered: action.payload.inventoryFiltered,
-          sortBack: !state.sortBack,
-        };
-      } else {
-        return {
-          ...state,
-          inventoryFilter: action.payload.inventoryFilter,
-          sortValue: action.payload.sortValue,
-          inventoryFiltered: action.payload.inventoryFiltered,
-        };
+        state.sortBack = !state.sortBack;
       }
-    case 'INVENTORY_STORAGES_CLEAR_CASKET':
-      const AddToFiltered = state.storageFiltered.filter(
+      state.inventoryFilter = action.payload.inventoryFilter;
+      state.sortValue = action.payload.sortValue;
+      state.inventoryFiltered = action.payload.inventoryFiltered;
+    })
+    .addCase('INVENTORY_STORAGES_CLEAR_CASKET', (state, action: any) => {
+      state.storageFiltered = state.storageFiltered.filter(
         (id) => id.storage_id != action.payload.casketID
       );
-
-      return {
-        ...state,
-        storageFiltered: AddToFiltered
-      };
-    case 'INVENTORY_STORAGES_SET_SORT_STORAGES':
-      return {
-        ...state,
-        storageFiltered: action.payload.storageFiltered,
-      };
-    case 'CLEAR_ALL':
-      return {
-        ...initialState,
-        inventoryFilter: [],
-      };
-    case 'MOVE_FROM_CLEAR':
-      return {
-        ...state,
-        categoryFilter: initialState.categoryFilter,
-        storageFiltered: initialState.storageFiltered,
-        storageFilter: initialState.storageFilter
-      };
-
-    case 'MOVE_FROM_CLEAR_ALL':
-      return {
-        ...state,
-        categoryFilter: initialState.categoryFilter,
-        storageFiltered: initialState.storageFiltered,
-        storageFilter: initialState.storageFilter
-      };
-    case 'MOVE_TO_CLEAR_ALL':
-      return {
-        ...state,
-        categoryFilter: initialState.categoryFilter,
-        inventoryFilter: initialState.inventoryFilter
-      };
-
-    case 'INVENTORY_ADD_CATEGORY_FILTER':
-      let newFilters = state.categoryFilter;
-      if (newFilters.includes(action.payload)) {
-        newFilters.splice(newFilters.indexOf(action.payload), 1);
-      } else {
-        newFilters = [...newFilters, action.payload];
-      }
-      return {
-        ...state,
-        categoryFilter: newFilters,
-      };
-    case 'INVENTORY_ADD_RARITY_FILTER':
-      let newRarity = state.rarityFilter;
-      if (newRarity.includes(action.payload)) {
-        newRarity.splice(newRarity.indexOf(action.payload), 1);
-      } else {
-        newRarity = [...newRarity, action.payload];
-      }
-      return {
-        ...state,
-        rarityFilter: newRarity,
-      };
-    case 'INVENTORY_FILTERS_SET_SEARCH':
-      return {
-        ...state,
-        searchInput: action.payload.searchField,
-      };
-    case 'SET_SORT':
+    })
+    .addCase('INVENTORY_STORAGES_SET_SORT_STORAGES', (state, action: any) => {
+      state.storageFiltered = action.payload.storageFiltered;
+    })
+    .addCase('CLEAR_ALL', () => ({ ...initialState, inventoryFilter: [] }))
+    .addCase('MOVE_FROM_CLEAR', clearStorageSide)
+    .addCase('MOVE_FROM_CLEAR_ALL', clearStorageSide)
+    .addCase('MOVE_TO_CLEAR_ALL', (state) => {
+      state.categoryFilter = initialState.categoryFilter;
+      state.inventoryFilter = initialState.inventoryFilter;
+    })
+    .addCase('INVENTORY_ADD_CATEGORY_FILTER', (state, action: any) => {
+      state.categoryFilter = toggle(state.categoryFilter, action.payload);
+    })
+    .addCase('INVENTORY_ADD_RARITY_FILTER', (state, action: any) => {
+      state.rarityFilter = toggle(state.rarityFilter, action.payload);
+    })
+    .addCase('INVENTORY_FILTERS_SET_SEARCH', (state, action: any) => {
+      state.searchInput = action.payload.searchField;
+    })
+    .addCase('SET_SORT', (state, action: any) => {
       if (state.sortValue == action.payload.sortValue) {
-        return {
-          ...state,
-          sortBack: !state.sortBack,
-        };
+        state.sortBack = !state.sortBack;
       } else {
-        return {
-          ...state,
-          sortValue: action.payload.sortValue,
-          sortBack: initialState.sortBack,
-        };
+        state.sortValue = action.payload.sortValue;
+        state.sortBack = initialState.sortBack;
       }
-    case 'SIGN_OUT':
-      return {
-        ...initialState,
-      };
-    default:
-      return { ...state };
-  }
-};
-
-export default inventoryFiltersReducer;
+    })
+    .addCase('SIGN_OUT', () => initialState)
+);

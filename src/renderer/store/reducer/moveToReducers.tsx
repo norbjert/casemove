@@ -1,120 +1,76 @@
-import { MoveToReducer } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { MoveToReducer } from 'renderer/interfaces/states';
 
 const initialState: MoveToReducer = {
-    doHide: false,
-    hideFull: true,
-    activeStorages: [],
-    activeStoragesAmount: 0,
-    totalToMove: [],
-    totalItemsToMove: 0,
-    searchInput: '',
-    searchInputStorage: '',
-    sortValue: 'Default',
-    doCancel: false,
-    sortBack: false,
-  };
+  doHide: false,
+  hideFull: true,
+  activeStorages: [],
+  activeStoragesAmount: 0,
+  totalToMove: [],
+  totalItemsToMove: 0,
+  searchInput: '',
+  searchInputStorage: '',
+  sortValue: 'Default',
+  doCancel: false,
+  sortBack: false,
+};
 
-  const moveFromReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'MOVE_TO_SET_HIDE':
-          return {
-              ...state,
-              doHide: !state.doHide
-           }
+// rows are [itemID, casketID, toMove[], itemName]
+const countItems = (rows: any[]) =>
+  rows.reduce((total, row) => total + row[2].length, 0);
 
-      case 'MOVE_TO_SET_FULL':
-          return {
-              ...state,
-              hideFull: !state.hideFull
-           }
-      case 'MOVE_TO_ADD_TO':
-        // Add to or remove from active storages
-        const casketAlreadyExists = state.activeStorages.indexOf(action.payload.casketID) > -1;
-        let chosenActiveCopy = state.activeStorages.slice();
-        let storageAmount = 0
-        if (casketAlreadyExists) {
-            chosenActiveCopy = []
-        } else {
-            chosenActiveCopy = [action.payload.casketID]
-            storageAmount = action.payload.casketVolume
-        }
-        return {
-            ...state,
-            activeStorages: chosenActiveCopy,
-            activeStoragesAmount: storageAmount
-
-        }
-       case 'MOVE_TO_TOTAL_TO_ADD':
-        const toMoveAlreadyExists = state.totalToMove.filter(row => row[0] != action.payload.itemID)
-
-        if (action.payload.toMove.length > 0) {
-            toMoveAlreadyExists.push([action.payload.itemID, action.payload.casketID, action.payload.toMove, action.payload.itemName])
-        }
-        let newTotalItemsToMove = 0
-        toMoveAlreadyExists.forEach(element => {
-            newTotalItemsToMove += element[2].length
-        });
-        return {
-            ...state,
-            totalToMove: toMoveAlreadyExists,
-            totalItemsToMove: newTotalItemsToMove
-        }
-
-        case 'SET_STORAGE_AMOUNT':
-        return {
-          ...state,
-          activeStoragesAmount: action.payload.storageAmount
-        }
-
-        case 'MOVE_TO_SET_SEARCH':
-          return {
-              ...state,
-              searchInput: action.payload.searchField
-           }
-
-        case 'MOVE_TO_SET_SEARCH_STORAGE':
-          return {
-              ...state,
-              searchInputStorage: action.payload.searchField
-           }
-        case 'SET_SORT':
-          if (state.sortValue == action.payload.sortValue) {
-            return {
-              ...state,
-              sortBack: !state.sortBack
-            }
-          } else {
-            return {
-              ...state,
-              sortValue: action.payload.sortValue,
-              sortBack: initialState.sortBack
-           }
-          }
-        case 'MOVE_TO_CLEAR_ALL':
-          return {
-              ...state,
-              totalToMove: [] as any,
-              totalItemsToMove: 0,
-              searchInput: '',
-              sortValue: 'Default'
-           }
-        case 'DO_CANCEL':
-
-          return {
-              ...state,
-              doCancel: action.payload.doCancel
-           }
-        case 'SIGN_OUT':
-            return {
-          ...initialState
-        }
-
-
-
-      default:
-        return {...state}
-
-    }
-  };
-
-  export default moveFromReducer;
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('MOVE_TO_SET_HIDE', (state) => {
+      state.doHide = !state.doHide;
+    })
+    .addCase('MOVE_TO_SET_FULL', (state) => {
+      state.hideFull = !state.hideFull;
+    })
+    .addCase('MOVE_TO_ADD_TO', (state, action: any) => {
+      // only one destination storage can be active, so this toggles
+      const alreadyActive = state.activeStorages.includes(action.payload.casketID);
+      state.activeStorages = alreadyActive ? [] : [action.payload.casketID];
+      state.activeStoragesAmount = alreadyActive ? 0 : action.payload.casketVolume;
+    })
+    .addCase('MOVE_TO_TOTAL_TO_ADD', (state, action: any) => {
+      const rows = state.totalToMove.filter((row) => row[0] != action.payload.itemID);
+      if (action.payload.toMove.length > 0) {
+        rows.push([
+          action.payload.itemID,
+          action.payload.casketID,
+          action.payload.toMove,
+          action.payload.itemName,
+        ]);
+      }
+      state.totalToMove = rows;
+      state.totalItemsToMove = countItems(rows);
+    })
+    .addCase('SET_STORAGE_AMOUNT', (state, action: any) => {
+      state.activeStoragesAmount = action.payload.storageAmount;
+    })
+    .addCase('MOVE_TO_SET_SEARCH', (state, action: any) => {
+      state.searchInput = action.payload.searchField;
+    })
+    .addCase('MOVE_TO_SET_SEARCH_STORAGE', (state, action: any) => {
+      state.searchInputStorage = action.payload.searchField;
+    })
+    .addCase('SET_SORT', (state, action: any) => {
+      if (state.sortValue == action.payload.sortValue) {
+        state.sortBack = !state.sortBack;
+      } else {
+        state.sortValue = action.payload.sortValue;
+        state.sortBack = initialState.sortBack;
+      }
+    })
+    .addCase('MOVE_TO_CLEAR_ALL', (state) => {
+      state.totalToMove = [];
+      state.totalItemsToMove = 0;
+      state.searchInput = '';
+      state.sortValue = 'Default';
+    })
+    .addCase('DO_CANCEL', (state, action: any) => {
+      state.doCancel = action.payload.doCancel;
+    })
+    .addCase('SIGN_OUT', () => initialState)
+);

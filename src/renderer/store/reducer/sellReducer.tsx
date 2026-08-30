@@ -1,4 +1,5 @@
-import { SellReducer } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { SellReducer } from 'renderer/interfaces/states';
 
 const initialState: SellReducer = {
   totalToSell: [],
@@ -6,54 +7,27 @@ const initialState: SellReducer = {
   searchInput: '',
 };
 
-const sellReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SELL_TOTAL_TO_ADD': {
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('SELL_TOTAL_TO_ADD', (state, action: any) => {
       const existing = state.totalToSell.find((row: any) => row[0] == action.payload.itemID);
       const existingPrice = existing ? existing[3] : '';
-      const toSellAlreadyExists = state.totalToSell.filter((row: any) => row[0] != action.payload.itemID);
+      const rows = state.totalToSell.filter((row: any) => row[0] != action.payload.itemID);
 
       if (action.payload.toSell.length > 0) {
-        toSellAlreadyExists.push([action.payload.itemID, action.payload.toSell, action.payload.itemName, existingPrice]);
+        rows.push([action.payload.itemID, action.payload.toSell, action.payload.itemName, existingPrice]);
       }
-      let newTotalItemsToSell = 0;
-      toSellAlreadyExists.forEach((element: any) => {
-        newTotalItemsToSell += element[1].length;
-      });
-      return {
-        ...state,
-        totalToSell: toSellAlreadyExists,
-        totalItemsToSell: newTotalItemsToSell,
-      };
-    }
-
-    case 'SELL_SET_PRICE':
-      return {
-        ...state,
-        totalToSell: state.totalToSell.map((row: any) =>
-          row[0] == action.payload.itemID ? [row[0], row[1], row[2], action.payload.price] : row
-        ),
-      };
-
-    case 'SELL_SET_SEARCH':
-      return {
-        ...state,
-        searchInput: action.payload.searchField,
-      };
-
-    case 'SELL_CLEAR_ALL':
-      return {
-        ...initialState,
-      };
-
-    case 'SIGN_OUT':
-      return {
-        ...initialState,
-      };
-
-    default:
-      return { ...state };
-  }
-};
-
-export default sellReducer;
+      state.totalToSell = rows;
+      state.totalItemsToSell = rows.reduce((sum: number, row: any) => sum + row[1].length, 0);
+    })
+    .addCase('SELL_SET_PRICE', (state, action: any) => {
+      state.totalToSell = state.totalToSell.map((row: any) =>
+        row[0] == action.payload.itemID ? [row[0], row[1], row[2], action.payload.price] : row
+      );
+    })
+    .addCase('SELL_SET_SEARCH', (state, action: any) => {
+      state.searchInput = action.payload.searchField;
+    })
+    .addCase('SELL_CLEAR_ALL', () => initialState)
+    .addCase('SIGN_OUT', () => initialState)
+);

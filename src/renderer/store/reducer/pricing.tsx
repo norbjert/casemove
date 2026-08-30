@@ -1,4 +1,5 @@
-import { Prices } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { Prices } from 'renderer/interfaces/states';
 
 const initialState: Prices = {
   prices: {},
@@ -6,62 +7,29 @@ const initialState: Prices = {
   productsRequested: [],
 };
 
-const pricingReducer = (state = initialState, action) => {
-  switch (action.type) {
+const priceKey = (item: any) => item.item_name + (item.item_wear_name ?? '');
 
-
-    case 'PRICING_ADD_STORAGE_TOTAL':
-      return {
-        ...state,
-        storageAmount: state.storageAmount + action.payload.storageAmount,
-      };
-    case 'PRICING_ADD_TO':
-      const currentPrices = state.prices;
-      action.payload.itemRows.forEach(element => {
-        currentPrices[element.item_name + (element.item_wear_name ?? '')] = element.pricing;
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('PRICING_ADD_STORAGE_TOTAL', (state, action: any) => {
+      state.storageAmount += action.payload.storageAmount;
+    })
+    .addCase('PRICING_ADD_TO', (state, action: any) => {
+      action.payload.itemRows.forEach((element) => {
+        state.prices[priceKey(element)] = element.pricing;
       });
-      return {
-        ...state,
-        prices: currentPrices,
-      };
-
-    case 'PRICING_ADD_TO_REQUESTED':
-      const currentRequested = state.productsRequested;
-      action.payload.itemRows.forEach(element => {
-        const nameToPuse = element.item_name + (element.item_wear_name ?? '')
-        currentRequested.push(nameToPuse)
+    })
+    .addCase('PRICING_ADD_TO_REQUESTED', (state, action: any) => {
+      action.payload.itemRows.forEach((element) => {
+        state.productsRequested.push(priceKey(element));
       });
-      return {
-        ...state,
-        productsRequested: currentRequested,
-      };
-    case 'PRICING_REMOVE':
-      const removeCurrentPrices = state.prices;
-
-      if (removeCurrentPrices[action.payload.itemName] !== undefined) {
-        delete removeCurrentPrices[action.payload.itemName];
-      }
-      return {
-        ...state,
-        prices: removeCurrentPrices,
-      };
-    case 'PRICING_CLEAR':
-      return {
-        ...initialState,
-      };
-      case 'MOVE_FROM_CLEAR':
-        return {
-          ...state,
-          storageAmount: initialState.storageAmount
-        }
-
-    case 'SIGN_OUT':
-      return {
-        ...initialState,
-      };
-    default:
-      return { ...state };
-  }
-};
-
-export default pricingReducer;
+    })
+    .addCase('PRICING_REMOVE', (state, action: any) => {
+      delete state.prices[action.payload.itemName];
+    })
+    .addCase('PRICING_CLEAR', () => initialState)
+    .addCase('MOVE_FROM_CLEAR', (state) => {
+      state.storageAmount = initialState.storageAmount;
+    })
+    .addCase('SIGN_OUT', () => initialState)
+);
