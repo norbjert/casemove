@@ -26,15 +26,11 @@ function StorageUnits() {
   const toReducer = useSelector((state: State) => state.moveToReducer);
   const pricesResult = useSelector((state: State) => state.pricingReducer);
   const settingsData = useSelector((state: State) => state.settingsReducer);
-  const inventoryFilters = useSelector(
-    (state: any) => state.inventoryFiltersReducer
-  );
   let inventoryTouse = inventoryFilter.inventoryFiltered
-  if (inventoryTouse.length == 0 && inventoryFilters.inventoryFilter?.length == 0 ) {
+  if (inventoryTouse.length == 0 && inventoryFilter.inventoryFilter?.length == 0 ) {
     inventoryTouse = inventory.combinedInventory
   }
   const [getStorage, setStorage] = useState(inventoryTouse);
-  getStorage;
   function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
@@ -174,7 +170,7 @@ function StorageUnits() {
                           toReducer.totalItemsToMove ==
                           0 ||
                           toReducer.totalToMove.length ==
-                            inventoryFilters.inventoryFiltered.length
+                            inventoryFilter.inventoryFiltered.length
                           ? 'pointer-events-none text-gray-200 dark:text-gray-600'
                           : 'text-gray-600 dark:text-gray-400'
                       )}
