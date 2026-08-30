@@ -1,11 +1,9 @@
-import 'core-js/stable';
 import { createRequire } from 'module';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
 import * as fs from 'fs';
 import GlobalOffensive from 'globaloffensive';
 import os from 'os';
 import path from 'path';
-import 'regenerator-runtime/runtime';
 import { CurrencyReturnValue } from 'shared/Interfaces.tsx/IPCReturn';
 import { LoginCommandReturnPackage } from 'shared/Interfaces.tsx/store';
 import SteamUser from 'steam-user';
