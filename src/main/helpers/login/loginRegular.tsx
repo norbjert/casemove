@@ -1,3 +1,4 @@
+import log from 'electron-log';
 import { EAuthTokenPlatformType, LoginSession } from 'steam-session';
 import { StartLoginSessionWithCredentialsDetails } from 'steam-session/dist/interfaces-external';
 import { LoginOptions } from '../../../shared/Interfaces.tsx/store';
@@ -13,9 +14,7 @@ export async function flowLoginRegular(
   return new Promise(async (resolve) => {
     const session = new LoginSession(EAuthTokenPlatformType.SteamClient);
     session.on('authenticated', async () => {
-      console.log(
-        `Logged into Steam as authenticated -  ${session.accountName}`
-      );
+      log.info(`Logged into Steam as authenticated - ${session.accountName}`);
 
       if (doStoreLogin) {
         await storeRefreshToken(session.accountName, session.refreshToken);
@@ -34,7 +33,7 @@ export async function flowLoginRegular(
     });
 
     session.once('error', (err) => {
-      console.log('Error', err);
+      log.error('Login error', err);
       resolve({
         responseStatus: 'defaultError',
       });
@@ -42,7 +41,7 @@ export async function flowLoginRegular(
     try {
       await session.startWithCredentials(loginDetails);
     } catch (e) {
-      console.log(e);
+      log.error(e);
       resolve({
         responseStatus: 'defaultError',
       });
