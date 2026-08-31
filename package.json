@@ -139,7 +139,7 @@
     "globals": "^17.6.0",
     "husky": "9.1.7",
     "jsdom": "^30.0.1",
-    "lint-staged": "^17.2.0",
+    "lint-staged": "^17.4.1",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.3.1",
     "typescript": "^6.0.3",
