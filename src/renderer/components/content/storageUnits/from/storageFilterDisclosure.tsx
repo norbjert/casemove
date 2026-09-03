@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
 import { Filter, Filters } from 'renderer/interfaces/filters';
-import _ from 'lodash';
+import { isEqual, some } from 'lodash';
 import { storageInventoryAddOption } from 'renderer/store/actions/filtersInventoryActions';
 
 
@@ -60,7 +60,7 @@ export default function StorageFilterDisclosure({ClassFilters}) {
 
   Object.entries(ClassFilters.filters as Filters).map(([_key, filterObject]) => {
     filterObject.map((filter, _optionIdx) => {
-      if (filterToUse.filter(filt => _.isEqual(filt, filter)).length > 0) {
+      if (filterToUse.filter(filt => isEqual(filt, filter)).length > 0) {
         totalSeen += 1
         ignoreCategories.push(filter)
       }
@@ -69,7 +69,7 @@ export default function StorageFilterDisclosure({ClassFilters}) {
   const categoriesToRemove: Array<Filter> = []
   if (filterToUse.length > totalSeen) {
     filterToUse.forEach(element => {
-      if (!_.some(ignoreCategories, element) && element.label != 'Storage moveable') {
+      if (!some(ignoreCategories, element) && element.label != 'Storage moveable') {
         categoriesToRemove.push(element)
       }
     });
@@ -101,7 +101,7 @@ export default function StorageFilterDisclosure({ClassFilters}) {
                         className="shrink-0 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                         onClick={() => addRemoveFilter(filter)}
                         checked={
-                          filterToUse.filter(filt => _.isEqual(filt, filter)).length > 0
+                          filterToUse.filter(filt => isEqual(filt, filter)).length > 0
                         }
                         onChange={(e) => {
                           e;

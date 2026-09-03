@@ -12,9 +12,8 @@ import { useSelector } from 'react-redux';
 import { itemCategories } from 'renderer/components/content/shared/categories';
 import { categoriesRGB } from './categoriesRGB';
 import PieChart from '../charts/pieChart';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
-import { Settings } from 'renderer/interfaces/states';
+import { Inventory, Prices, Settings, State } from 'renderer/interfaces/states';
 
 
 ChartJS.register(
@@ -27,7 +26,12 @@ ChartJS.register(
   Legend
 );
 
-function getData(ReducerClass, by) {
+function getData(
+  settingsData: Settings,
+  pricingData: Prices,
+  inventory: Inventory,
+  by: string
+) {
   const categoriesFixed: Array<string> = [];
   const categoriesColors: any = {};
 
@@ -41,9 +45,8 @@ function getData(ReducerClass, by) {
     }
   });
 
-  const PricingConverter = new ConvertPrices(ReducerClass.getStorage(ReducerClass.names.settings), ReducerClass.getStorage(ReducerClass.names.pricing))
+  const PricingConverter = new ConvertPrices(settingsData, pricingData)
   // Go through inventory and find matching categories
-  const inventory = ReducerClass.getStorage(ReducerClass.names.inventory)
   inventory.combinedInventory.forEach(element => {
     if (resultingData[element.category]) {
       if (by == 'price') {
@@ -90,31 +93,15 @@ function getData(ReducerClass, by) {
 
 }
 export default function ItemDistributionByVolume() {
-  const ReducerClass = new ReducerManager(useSelector)
-  const settingsData: Settings = ReducerClass.getStorage(ReducerClass.names.settings);
+  const settingsData = useSelector((state: State) => state.settingsReducer);
+  const pricingData = useSelector((state: State) => state.pricingReducer);
+  const inventory = useSelector((state: State) => state.inventoryReducer);
 
-  let returnObject: any = {
-    labels: [],
-    data: [],
-    backgroundColor: [],
-    borderColor: []
-  }
-
-  switch (settingsData.overview.by) {
-    case 'price':
-      returnObject = getData(ReducerClass, settingsData.overview.by);
-      break
-
-    case 'volume':
-      returnObject = getData(ReducerClass, settingsData.overview.by);
-      break
-    default:
-      break;
-  }
-
-
-
-
+  const by = settingsData.overview.by;
+  const returnObject: any =
+    by == 'price' || by == 'volume'
+      ? getData(settingsData, pricingData, inventory, by)
+      : { labels: [], data: [], backgroundColor: [], borderColor: [] };
 
   const data = {
     labels: returnObject.labels,

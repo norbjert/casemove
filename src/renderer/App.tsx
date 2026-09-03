@@ -43,8 +43,8 @@ import ToContent from './components/content/storageUnits/to/toHolder';
 import { toMoveContext } from './context/toMoveContext';
 import { filterItemRows } from './functionsClasses/filters/custom';
 import {
-  DispatchIPC,
-  DispatchStore,
+  dispatchCurrencyRate,
+  dispatchStoreSetting,
 } from './functionsClasses/rendererCommands/admin';
 import {
   inventoryAddCategoryFilter,
@@ -132,8 +132,6 @@ function AppContent() {
 
   // Log out of session
   const dispatch = useDispatch();
-  const StoreClass = new DispatchStore(dispatch);
-  const IPCClass = new DispatchIPC(dispatch);
 
   async function handleFilterData(combinedInventory) {
     const fd = filterDetailsRef.current;
@@ -153,17 +151,21 @@ function AppContent() {
   useEffect(() => {
     const sd = settingsDataRef.current;
     if (sd.currencyPrice[sd.currency] == undefined) {
-      IPCClass.run(IPCClass.buildingObject.currency);
+      dispatchCurrencyRate(dispatch);
     }
     if (sd.os == '') {
-      StoreClass.run(StoreClass.buildingObject.os);
-      StoreClass.run(StoreClass.buildingObject.columns);
-      StoreClass.run(StoreClass.buildingObject.devmode);
-      StoreClass.run(StoreClass.buildingObject.fastmove);
-      StoreClass.run(StoreClass.buildingObject.source);
-      StoreClass.run(StoreClass.buildingObject.locale);
-      StoreClass.run(StoreClass.buildingObject.steamLoginShow);
-      StoreClass.run(StoreClass.buildingObject.showFloat);
+      for (const setting of [
+        'os',
+        'columns',
+        'devmode',
+        'fastmove',
+        'source',
+        'locale',
+        'steamLoginShow',
+        'showFloat',
+      ] as const) {
+        dispatchStoreSetting(dispatch, setting);
+      }
     }
 
     let cancelled = false;

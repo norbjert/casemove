@@ -11,7 +11,7 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid';
 import { classNames } from 'renderer/components/content/shared/filters/inventoryFunctions';
 import ColumnsDropDown from 'renderer/components/content/shared/dropdownRows';
-import { DispatchIPC } from 'renderer/functionsClasses/rendererCommands/admin';
+import { dispatchCurrencyRate } from 'renderer/functionsClasses/rendererCommands/admin';
 
 const sources = [
   {
@@ -216,8 +216,7 @@ export default function settingsPage() {
     setCurrency(valueToSet);
     dispatch(setCurrencyValue(valueToSet));
     window.electron.store.set('pricing.currency', valueToSet);
-    const IPCClass = new DispatchIPC(dispatch)
-    IPCClass.run(IPCClass.buildingObject.currency)
+    dispatchCurrencyRate(dispatch)
   }
   const [currency, setCurrency] = useState(settingsData.currency);
 

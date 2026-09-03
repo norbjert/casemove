@@ -1,6 +1,6 @@
 import combineInventory, { sortDataFunctionTwo } from "renderer/components/content/shared/filters/inventoryFunctions";
 import { filterItemRows } from "renderer/functionsClasses/filters/custom";
-import { DispatchIPC, DispatchStore } from "renderer/functionsClasses/rendererCommands/admin"
+import { dispatchCurrencyRate, dispatchStoreSetting } from "renderer/functionsClasses/rendererCommands/admin"
 import { Settings, InventoryFilters, Prices } from "renderer/interfaces/states";
 import { SignInActionPackage } from "renderer/interfaces/store/authReducerActionsInterfaces"
 import { inventorySetFilter } from "renderer/store/actions/filtersInventoryActions";
@@ -26,15 +26,9 @@ export async function handleSuccess(
   filtersState: InventoryFilters,
   pricingState: Prices,
 ) {
-  const StoreClass = new DispatchStore(dispatch)
-  const IPCClass = new DispatchIPC(dispatch)
-
-  // Source
-  StoreClass.run(StoreClass.buildingObject.source)
-  // Locale
-  StoreClass.run(StoreClass.buildingObject.locale)
-  // Currency
-  IPCClass.run(IPCClass.buildingObject.currency)
+  dispatchStoreSetting(dispatch, 'source')
+  dispatchStoreSetting(dispatch, 'locale')
+  dispatchCurrencyRate(dispatch)
   await new Promise((r) => setTimeout(r, 2500));
 
   const signInPackage: SignInActionPackage = {

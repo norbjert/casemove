@@ -1,30 +1,8 @@
 
 import { ItemRow, ItemRowStorage } from "renderer/interfaces/items";
+import { sortRun } from "renderer/components/content/shared/filters/inventoryFunctions";
 import { State } from "renderer/interfaces/states";
 import { HandleStorageData } from "./storageUnitsClass";
-
-function sorting(valueOne, valueTwo) {
-  if (valueOne < valueTwo) {
-    return -1;
-  }
-  if (valueOne > valueTwo) {
-    return 1;
-  }
-  return 0;
-}
-class Sort {
-  itemArray: Array<ItemRow | ItemRowStorage>
-  constructor(itemArray: Array<ItemRow | ItemRowStorage>) {
-    this.itemArray = itemArray
-  }
-
-  async item_customname() {
-    return this.itemArray.sort(function(a, b) {
-      return sorting(a.item_customname || '0000', b.item_customname || '0000')
-    })
-
-  }
-}
 
 export async function getAllStorages(
   dispatch: Function,
@@ -73,11 +51,8 @@ export async function getAllStorages(
   }
 
   // Handle storage data
-  const SortingClass = new Sort(casketResults)
-  return SortingClass.item_customname().then((returnValue) => {
-    return sendArrayAddStorage(returnValue)
-  })
-
-
-
+  casketResults.sort((a, b) =>
+    sortRun(a.item_customname || '0000', b.item_customname || '0000')
+  )
+  return sendArrayAddStorage(casketResults)
 }

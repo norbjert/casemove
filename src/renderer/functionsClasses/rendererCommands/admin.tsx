@@ -10,104 +10,36 @@ import {
   setSourceValue,
   setSteamLoginShow,
 } from 'renderer/store/actions/settings';
-import {
-  DispatchIPCBuildingObject,
-  DispatchIPCHandleBuildingOptionsClass,
-  DispatchStoreBuildingObject,
-  DispatchStoreHandleBuildingOptionsClass,
-} from 'shared/Interfaces.tsx/login';
 
-export class IPCCommunication {
-  ipc = window.electron.ipcRenderer;
-  store = window.electron.store;
+// Settings that live in electron-store, and the action that puts each in redux.
+const storeSettings = {
+  source: { name: 'pricing.source', action: setSourceValue },
+  locale: { name: 'locale', action: setLocale },
+  os: { name: 'os', action: setOS },
+  columns: { name: 'columns', action: setColumns },
+  devmode: { name: 'devmode.value', action: setDevmode },
+  fastmove: { name: 'fastmove', action: setFastMove },
+  currency: { name: 'currency', action: setCurrencyValue },
+  steamLoginShow: { name: 'steamLogin', action: setSteamLoginShow },
+  showFloat: { name: 'showFloat', action: setShowFloat },
+};
 
-  async get(command: Function) {
-    return await command().then((returnValue) => {
-      return returnValue;
-    });
-  }
-  async storeGet(settingToGet: string) {
-    return await this.store.get(settingToGet).then((returnValue) => {
-      return returnValue;
-    });
-  }
-}
+export type StoreSetting = keyof typeof storeSettings;
 
-// Dispatch Store
-export class DispatchStore extends IPCCommunication {
-  dispatch: Function;
-  buildingObject: DispatchStoreHandleBuildingOptionsClass = {
-    source: {
-      name: 'pricing.source',
-      action: setSourceValue,
-    },
-    locale: {
-      name: 'locale',
-      action: setLocale
-    },
-    os: {
-      name: 'os',
-      action: setOS
-    },
-    columns: {
-      name: 'columns',
-      action: setColumns
-    },
-    devmode: {
-      name: 'devmode.value',
-      action: setDevmode
-    },
-    fastmove: {
-      name: 'fastmove',
-      action: setFastMove
-    },
-    currency: {
-      name: 'currency',
-      action: setCurrencyValue
-    },
-    steamLoginShow: {
-      name: 'steamLogin',
-      action: setSteamLoginShow
-    },
-    showFloat: {
-      name: 'showFloat',
-      action: setShowFloat
-    }
-  };
-  constructor(dispatch: Function) {
-    super();
-    this.dispatch = dispatch;
-  }
-
-  async run(buildingObject: DispatchStoreBuildingObject) {
-    this.storeGet(buildingObject.name).then((returnValue) => {
-      if (returnValue != undefined) {
-        this.dispatch(buildingObject.action(returnValue));
-      }
-    });
+export async function dispatchStoreSetting(
+  dispatch: Function,
+  setting: StoreSetting
+) {
+  const { name, action } = storeSettings[setting];
+  const value = await window.electron.store.get(name);
+  if (value != undefined) {
+    dispatch(action(value));
   }
 }
 
-// Dispatch IPC
-export class DispatchIPC extends IPCCommunication {
-  dispatch: Function;
-  buildingObject: DispatchIPCHandleBuildingOptionsClass = {
-    currency: {
-      endpoint: this.ipc.getCurrencyRate,
-      action: setCurrencyRate,
-    },
-  };
-
-  constructor(dispatch: Function) {
-    super();
-    this.dispatch = dispatch;
-  }
-
-  async run(buildingObject: DispatchIPCBuildingObject) {
-    this.get(buildingObject.endpoint).then((returnValue) => {
-      if (returnValue != undefined) {
-        this.dispatch(buildingObject.action(returnValue));
-      }
-    });
+export async function dispatchCurrencyRate(dispatch: Function) {
+  const rate = await window.electron.ipcRenderer.getCurrencyRate();
+  if (rate != undefined) {
+    dispatch(setCurrencyRate(rate));
   }
 }

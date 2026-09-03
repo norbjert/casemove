@@ -7,6 +7,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid';
 import { useDispatch, useSelector } from 'react-redux';
+import { State } from 'renderer/interfaces/states';
 import {
   filterInventoryClearAll,
   inventoryFilterSetSearch,
@@ -17,7 +18,6 @@ import MoveLeft from '../shared/filters/inventoryAmount';
 import AccountAmount from '../shared/filters/accountAmount';
 import { searchFilter } from 'renderer/functionsClasses/filters/search';
 import { ConvertPrices } from 'renderer/functionsClasses/prices';
-import { ReducerManager } from 'renderer/functionsClasses/reducerManager';
 import { downloadReport } from 'renderer/functionsClasses/downloadReport';
 import InventoryFiltersDisclosure from './filtersDisclosure';
 import { addMajorsFilters } from 'renderer/functionsClasses/filters/filters';
@@ -30,11 +30,10 @@ const ClassFilters = InventoryGetFilterManager()
 
 function Content() {
   const dispatch = useDispatch();
-  const ReducerClass = new ReducerManager(useSelector)
-  const inventoryFilters = ReducerClass.getStorage(ReducerClass.names.inventoryFilters)
-  const inventory = ReducerClass.getStorage(ReducerClass.names.inventory)
-  const pricesResult = ReducerClass.getStorage(ReducerClass.names.pricing)
-  const settingsData = ReducerClass.getStorage(ReducerClass.names.settings)
+  const inventoryFilters = useSelector((state: State) => state.inventoryFiltersReducer)
+  const inventory = useSelector((state: State) => state.inventoryReducer)
+  const pricesResult = useSelector((state: State) => state.pricingReducer)
+  const settingsData = useSelector((state: State) => state.settingsReducer)
 
   async function clear_all() {
     dispatch(filterInventoryClearAll());
