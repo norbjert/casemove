@@ -1,5 +1,18 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
+// Channels the main process is allowed to push to the renderer. Everything
+// else is renderer -> main and now goes over invoke/handle, so it can never
+// arrive here.
+const validChannels = [
+  'login-reply',
+  'pricing',
+  'qrLogin:scanned',
+  'qrLogin:show',
+  'sellProgress',
+  'updater',
+  'userEvents',
+];
+
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
     // User commands
@@ -16,34 +29,16 @@ contextBridge.exposeInMainWorld('electron', {
     },
     // User commands
     needUpdate() {
-      return new Promise((resolve) => {
-        ipcRenderer.send('needUpdate');
-        ipcRenderer.once('needUpdate-reply', (evt, message) => {
-          resolve(message);
-        });
-      });
+      return ipcRenderer.invoke('needUpdate');
     },
     // User account
     getAccountDetails() {
-      return new Promise((resolve) => {
-        ipcRenderer.send('electron-store-getAccountDetails');
-        ipcRenderer.once(
-          'electron-store-getAccountDetails-reply',
-          (evt, message) => {
-            resolve(message);
-          }
-        );
-      });
+      return ipcRenderer.invoke('electron-store-getAccountDetails');
     },
 
     // User account
     getPossibleOutcomes(resultsToGet) {
-      return new Promise((resolve) => {
-        ipcRenderer.send('getTradeUpPossible', resultsToGet);
-        ipcRenderer.once('getTradeUpPossible-reply', (evt, message) => {
-          resolve(message);
-        });
-      });
+      return ipcRenderer.invoke('getTradeUpPossible', resultsToGet);
     },
 
     // Trade up
@@ -80,12 +75,7 @@ contextBridge.exposeInMainWorld('electron', {
       ipcRenderer.send('getPrice', itemRows);
     },
     getCurrencyRate() {
-      return new Promise((resolve) => {
-        ipcRenderer.send('getCurrency');
-        ipcRenderer.once('getCurrency-reply', (evt, message) => {
-          resolve(message);
-        });
-      });
+      return ipcRenderer.invoke('getCurrency');
     },
     // User commands
     retryConnection() {
@@ -129,7 +119,6 @@ contextBridge.exposeInMainWorld('electron', {
       sharedSecret,
       clientjstoken
     ) {
-
       if (authcode === '') {
         authcode = null;
       }
@@ -173,83 +162,22 @@ contextBridge.exposeInMainWorld('electron', {
 
     // Commands
     renameStorageUnit(itemID, newName) {
-      return new Promise((resolve) => {
-        ipcRenderer.send('renameStorageUnit', itemID, newName);
-
-        ipcRenderer.once('renameStorageUnit-reply', (event, arg) => {
-          resolve(arg);
-        });
-      });
+      return ipcRenderer.invoke('renameStorageUnit', itemID, newName);
     },
 
     // Commands
     getStorageUnitData(itemID, storageName) {
-      return new Promise((resolve, reject) => {
-        const handler = (_event, arg) => {
-          clearTimeout(timeoutId);
-          ipcRenderer.removeListener('getCasketContent-reply', handler);
-          resolve(arg);
-        };
-        const timeoutId = setTimeout(() => {
-          ipcRenderer.removeListener('getCasketContent-reply', handler);
-          reject(new Error('GC request timed out'));
-        }, 8000);
-        ipcRenderer.on('getCasketContent-reply', handler);
-        ipcRenderer.send('getCasketContents', itemID, storageName);
-      });
+      return ipcRenderer.invoke('getCasketContents', itemID, storageName);
     },
 
-    // Commands
+    // Commands — main resolves immediately in fastMode, otherwise when the GC
+    // confirms, or rejects on its own timeout.
     moveFromStorageUnit(casketID, itemID, fastMode) {
-      // Create a promise that rejects in <ms> milliseconds
-      let storageUnitResponse = new Promise((resolve) => {
-        ipcRenderer.send('removeFromStorageUnit', casketID, itemID, fastMode);
-
-        if (fastMode) {
-          resolve(fastMode);
-        } else {
-          ipcRenderer.once('removeFromStorageUnit-reply', (event, arg) => {
-            resolve(arg);
-          });
-        }
-      });
-      if (fastMode) {
-        return true;
-      } else {
-        let timeout = new Promise((_resolve, reject) => {
-          let id = setTimeout(() => {
-            clearTimeout(id);
-            reject();
-          }, 10000);
-        });
-        return Promise.race([storageUnitResponse, timeout]);
-      }
+      return ipcRenderer.invoke('removeFromStorageUnit', casketID, itemID, fastMode);
     },
     // Commands
     moveToStorageUnit(casketID, itemID, fastMode) {
-      let storageUnitResponse = new Promise((resolve) => {
-        ipcRenderer.send('moveToStorageUnit', casketID, itemID, fastMode);
-        if (fastMode) {
-          resolve(fastMode);
-        } else {
-          ipcRenderer.once('moveToStorageUnit-reply', (event, arg) => {
-            resolve(arg);
-          });
-        }
-      });
-
-      if (fastMode) {
-        return true;
-      } else {
-        let timeout = new Promise((_resolve, reject) => {
-          let id = setTimeout(() => {
-            clearTimeout(id);
-            reject();
-          }, 10000);
-        });
-
-        return Promise.race([storageUnitResponse, timeout]);
-      }
+      return ipcRenderer.invoke('moveToStorageUnit', casketID, itemID, fastMode);
     },
 
 
@@ -261,74 +189,12 @@ contextBridge.exposeInMainWorld('electron', {
     },
 
     on(channel, func) {
-      const validChannels = [
-        'login',
-        'userEvents',
-        'refreshInventory',
-        'renameStorageUnit',
-        'removeFromStorageUnit',
-        'errorMain',
-        'signOut',
-        'retryConnection',
-        'needUpdate',
-        'download',
-        'electron-store-getAccountDetails',
-        'electron-store-get',
-        'electron-store-set',
-        'pricing',
-        'getPrice',
-        'windowsActions',
-        'getTradeUpPossible',
-        'processTradeOrder',
-        'setItemsPositions',
-        'openContainer',
-        'forceLogin',
-        'checkSteam',
-        'closeSteam',
-        'updater',
-        'startQRLogin',
-        'cancelQRLogin',
-        'qrLogin:show',
-        'qrLogin:scanned',
-        'sellProgress',
-      ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.on(channel, (event, ...args) => func(...args));
       }
     },
     once(channel, func) {
-      const validChannels = [
-        'login',
-        'userEvents',
-        'refreshInventory',
-        'renameStorageUnit',
-        'removeFromStorageUnit',
-        'errorMain',
-        'signOut',
-        'retryConnection',
-        'needUpdate',
-        'download',
-        'electron-store-getAccountDetails',
-        'electron-store-get',
-        'electron-store-set',
-        'pricing',
-        'getPrice',
-        'windowsActions',
-        'getTradeUpPossible',
-        'processTradeOrder',
-        'setItemsPositions',
-        'openContainer',
-        'forceLogin',
-        'checkSteam',
-        'closeSteam',
-        'updater',
-        'startQRLogin',
-        'cancelQRLogin',
-        'qrLogin:show',
-        'qrLogin:scanned',
-        'sellProgress',
-      ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.once(channel, (event, ...args) => func(...args));
@@ -338,19 +204,7 @@ contextBridge.exposeInMainWorld('electron', {
   store: {
     // Commands
     get(val) {
-      const key =
-        Math.random().toString(36).slice(2, 3) +
-        '-' +
-        Math.random().toString(36).slice(2, 3) +
-        '-' +
-        Math.random().toString(36).slice(2, 4);
-      return new Promise((resolve) => {
-        ipcRenderer.send('electron-store-get', val, key);
-
-        ipcRenderer.once('electron-store-get-reply' + key, (event, arg) => {
-          resolve(arg);
-        });
-      });
+      return ipcRenderer.invoke('electron-store-get', val);
     },
     set(property, val) {
       ipcRenderer.send('electron-store-set', property, val);

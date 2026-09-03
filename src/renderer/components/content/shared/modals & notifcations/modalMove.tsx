@@ -45,11 +45,12 @@ export default function MoveModal() {
       if (modalData.doCancel.includes(modalData.modalPayload['key']) == false) {
         if (modalData.modalPayload['type'] == 'to') {
           if (fastMode && modalData.query.length > 1) {
+            // fire and forget: fastMode does not wait for GC confirmation
             window.electron.ipcRenderer.moveToStorageUnit(
               modalData.modalPayload['storageID'],
               modalData.modalPayload['itemID'],
               true
-            );
+            ).catch(() => {});
             await new Promise(r => setTimeout(r, waitTime));
           } else {
             try {
@@ -69,11 +70,12 @@ export default function MoveModal() {
         }
         if (modalData.modalPayload['type'] == 'from') {
           if (fastMode) {
+            // fire and forget: fastMode does not wait for GC confirmation
             window.electron.ipcRenderer.moveFromStorageUnit(
               modalData.modalPayload['storageID'],
               modalData.modalPayload['itemID'],
               true
-            );
+            ).catch(() => {});
             await new Promise(r => setTimeout(r, waitTime));
           } else {
             try {

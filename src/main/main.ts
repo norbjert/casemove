@@ -365,29 +365,27 @@ const fetchItemClass = new fetchItems();
 // Version manager
 
 let gitHub = 0;
-ipcMain.on('needUpdate', async (event: any) => {
+ipcMain.handle('needUpdate', async () => {
+  // App.tsx reads .currentVersion / .requireUpdate off this, so every path
+  // has to return that shape — the old code replied with an array on error
+  // and never replied at all once gitHub was flagged.
+  const noUpdate = {
+    requireUpdate: false,
+    currentVersion: app.getVersion(),
+    githubResponse: null,
+  };
+  if (gitHub != 0) return noUpdate;
   try {
-    if (gitHub == 0) {
-      getGithubVersion(process.platform).then((returnValue) => {
-        // Get the current version
-        const version = parseInt(
-          app.getVersion().toString().replaceAll('.', '')
-        );
-
-        // Check success status
-        const successStatus: boolean = returnValue.version > version;
-
-        // Send the event back back
-        event.reply('needUpdate-reply', {
-          requireUpdate: successStatus,
-          currentVersion: app.getVersion(),
-          githubResponse: returnValue,
-        });
-      });
-    }
+    const returnValue = await getGithubVersion(process.platform);
+    const version = parseInt(app.getVersion().toString().replaceAll('.', ''));
+    return {
+      requireUpdate: returnValue.version > version,
+      currentVersion: app.getVersion(),
+      githubResponse: returnValue,
+    };
   } catch {
-    event.reply('needUpdate-reply', [false, app.getVersion(), 0]);
     gitHub = 1;
+    return noUpdate;
   }
 });
 
@@ -680,6 +678,36 @@ function sendUpdaterStatusToWindow(text: string) {
   mainWindow?.webContents.send('updater', [text]);
 }
 
+// Same waits the renderer used to race against in preload.js.
+const GC_TIMEOUT_MS = 10000;
+const CASKET_TIMEOUT_MS = 8000;
+
+// ipcMain.handle throws if a channel already has a handler, and startEvents
+// runs again on every login, so clear the channel before claiming it.
+function reHandle(channel: string, fn: (...args: any[]) => any) {
+  ipcMain.removeHandler(channel);
+  ipcMain.handle(channel, fn);
+}
+
+// csgo fires itemCustomizationNotification for every kind of customization.
+// Wait for the one we asked for, and drop the listener on timeout instead of
+// leaving it attached forever.
+function awaitItemNotification(csgo: any, wantedType: any, timeoutMs: number) {
+  return new Promise<[number, any]>((resolve, reject) => {
+    const onNotification = (itemIds: any[], notificationType: any) => {
+      if (notificationType != wantedType) return;
+      clearTimeout(timer);
+      csgo.removeListener('itemCustomizationNotification', onNotification);
+      resolve([1, itemIds[0]]);
+    };
+    const timer = setTimeout(() => {
+      csgo.removeListener('itemCustomizationNotification', onNotification);
+      reject(new Error('Timed out waiting for ' + wantedType));
+    }, timeoutMs);
+    csgo.on('itemCustomizationNotification', onNotification);
+  });
+}
+
 // Adds events listeners the user
 // Forward Steam notifications to renderer
 async function startEvents(csgo, user) {
@@ -705,11 +733,10 @@ async function startEvents(csgo, user) {
   });
 
   // Trade up handlers
-  ipcMain.on('getTradeUpPossible', async (event, itemsToGet) => {
-    tradeUpClass.getPotentitalOutcome(itemsToGet).then((returnValue) => {
-      pricing.handleTradeUp(returnValue);
-      event.reply('getTradeUpPossible-reply', returnValue);
-    });
+  reHandle('getTradeUpPossible', async (_event, itemsToGet) => {
+    const returnValue = await tradeUpClass.getPotentitalOutcome(itemsToGet);
+    pricing.handleTradeUp(returnValue);
+    return returnValue;
   });
   ipcMain.on('processTradeOrder', async (_event, idsToProcess, rarityToUse) => {
     const rarObject = {
@@ -878,19 +905,14 @@ async function startEvents(csgo, user) {
     user.gamesPlayed([730]);
   });
   // Rename Storage units
-  ipcMain.on('renameStorageUnit', async (event, itemID, newName) => {
-    csgo.nameItem(0, itemID, newName);
-    csgo.once(
-      'itemCustomizationNotification',
-      (itemIds: any[], notificationType: any) => {
-        if (
-          notificationType ==
-          GlobalOffensive.ItemCustomizationNotification.NameItem
-        ) {
-          event.reply('renameStorageUnit-reply', [1, itemIds[0]]);
-        }
-      },
+  reHandle('renameStorageUnit', async (_event, itemID, newName) => {
+    const notification = awaitItemNotification(
+      csgo,
+      GlobalOffensive.ItemCustomizationNotification.NameItem,
+      GC_TIMEOUT_MS
     );
+    csgo.nameItem(0, itemID, newName);
+    return notification;
   });
 
   // Set item positions
@@ -921,68 +943,57 @@ async function startEvents(csgo, user) {
   );
 
   // Remove items from storage unit
-  ipcMain.on(
+  reHandle(
     'removeFromStorageUnit',
-    async (event, casketID, itemID, fastMode) => {
+    async (_event, casketID, itemID, fastMode) => {
       await removeInventoryListeners();
-      csgo.removeFromCasket(casketID, itemID);
-
-      if (fastMode == false) {
-        csgo.once(
-          'itemCustomizationNotification',
-          (itemIds: string | any[], notificationType: any) => {
-            if (
-              notificationType ==
-              GlobalOffensive.ItemCustomizationNotification.CasketRemoved
-            ) {
-              event.reply('removeFromStorageUnit-reply', [1, itemIds[0]]);
-            }
-          },
-        );
+      if (fastMode) {
+        csgo.removeFromCasket(casketID, itemID);
+        return true;
       }
+      const notification = awaitItemNotification(
+        csgo,
+        GlobalOffensive.ItemCustomizationNotification.CasketRemoved,
+        GC_TIMEOUT_MS
+      );
+      csgo.removeFromCasket(casketID, itemID);
+      return notification;
     }
   );
 
   // Move to Storage Unit
-  ipcMain.on('moveToStorageUnit', async (event, casketID, itemID, fastMode) => {
-    csgo.addToCasket(casketID, itemID);
-    //if (fastMode) {
-
-    removeInventoryListeners();
-
-    // }
-
-    if (fastMode == false) {
-      csgo.once(
-        'itemCustomizationNotification',
-        (itemIds, notificationType) => {
-          if (
-            notificationType ==
-            GlobalOffensive.ItemCustomizationNotification.CasketAdded
-          ) {
-            event.reply('moveToStorageUnit-reply', [1, itemIds[0]]);
-          }
-        }
-      );
+  reHandle('moveToStorageUnit', async (_event, casketID, itemID, fastMode) => {
+    if (fastMode) {
+      csgo.addToCasket(casketID, itemID);
+      removeInventoryListeners();
+      return true;
     }
+    const notification = awaitItemNotification(
+      csgo,
+      GlobalOffensive.ItemCustomizationNotification.CasketAdded,
+      GC_TIMEOUT_MS
+    );
+    csgo.addToCasket(casketID, itemID);
+    removeInventoryListeners();
+    return notification;
   });
 
   // Get storage unit contents
-  ipcMain.on('getCasketContents', async (event, casketID, _casketName) => {
-    await csgo.getCasketContents(
-      casketID,
-      async function (_err: any, items: any) {
-        if (!items || typeof items !== 'object') {
-          event.reply('getCasketContent-reply', [0]);
-          return;
-        }
-        fetchItemClass.convertStorageData(items).then((returnValue) => {
-          tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
-            event.reply('getCasketContent-reply', [1, newReturnValue]);
-          });
-        });
-      },
-    );
+  reHandle('getCasketContents', async (_event, casketID) => {
+    const items = await new Promise<any>((resolve, reject) => {
+      const timer = setTimeout(
+        () => reject(new Error('GC request timed out')),
+        CASKET_TIMEOUT_MS
+      );
+      csgo.getCasketContents(casketID, (_err: any, result: any) => {
+        clearTimeout(timer);
+        resolve(result);
+      });
+    });
+    if (!items || typeof items !== 'object') return [0];
+    const converted = await fetchItemClass.convertStorageData(items);
+    const withTradeUp: any = await tradeUpClass.getTradeUp(converted);
+    return [1, withTradeUp];
   });
   // Get commands from Renderer
   ipcMain.on('signOut', async () => {
@@ -1003,32 +1014,26 @@ async function startEvents(csgo, user) {
     user.removeAllListeners('loggedOn');
 
     // IPC
-    ipcMain.removeAllListeners('renameStorageUnit');
-    ipcMain.removeAllListeners('removeFromStorageUnit');
-    ipcMain.removeAllListeners('moveToStorageUnit');
-    ipcMain.removeAllListeners('getCasketContents');
+    ipcMain.removeHandler('renameStorageUnit');
+    ipcMain.removeHandler('removeFromStorageUnit');
+    ipcMain.removeHandler('moveToStorageUnit');
+    ipcMain.removeHandler('getCasketContents');
+    ipcMain.removeHandler('getTradeUpPossible');
     ipcMain.removeAllListeners('signOut');
     ipcMain.removeAllListeners('forceLogin');
   }
 }
 
 // Get currency
-ipcMain.on('getCurrency', async (event) => {
-  getValue('pricing.currency').then((returnValue) => {
-    currencyClass.getRate(returnValue).then((response) => {
-      const returnObject: CurrencyReturnValue = {
-        currency: returnValue,
-        rate: response as number,
-      };
-      event.reply('getCurrency-reply', returnObject);
-    }).catch((err) => {
-      log.error('getCurrency rate error:', err);
-      event.reply('getCurrency-reply', { currency: returnValue || 'USD', rate: 1 });
-    });
-  }).catch((err) => {
-    log.error('getCurrency getValue error:', err);
-    event.reply('getCurrency-reply', { currency: 'USD', rate: 1 });
-  });
+ipcMain.handle('getCurrency', async (): Promise<CurrencyReturnValue> => {
+  let currency: string | undefined;
+  try {
+    currency = await getValue('pricing.currency');
+    return { currency, rate: (await currencyClass.getRate(currency)) as number };
+  } catch (err) {
+    log.error('getCurrency error:', err);
+    return { currency: currency || 'USD', rate: 1 };
+  }
 });
 
 // Set initial settings
@@ -1050,10 +1055,7 @@ settingsSetup();
 setValue('os', process.platform);
 
 // Kinda store
-ipcMain.on('electron-store-getAccountDetails', async (event) => {
-  const accountDetails = await getValue('account');
-  event.returnValue = event.reply('electron-store-getAccountDetails-reply', accountDetails);
-});
+ipcMain.handle('electron-store-getAccountDetails', () => getValue('account'));
 
 ipcMain.on('electron-store-deleteAccountDetails', async (_event, username) => {
   deleteUserData(username);
@@ -1067,15 +1069,9 @@ ipcMain.on(
 );
 
 // Store IPC
-ipcMain.on('electron-store-get', async (event, val, key) => {
-  if (val == 'locale') {
-    event.reply('electron-store-get-reply' + key, currentLocale);
-    return;
-  }
-  getValue(val).then((returnValue) => {
-    event.reply('electron-store-get-reply' + key, returnValue);
-  });
-});
+ipcMain.handle('electron-store-get', async (_event, val) =>
+  val == 'locale' ? currentLocale : getValue(val)
+);
 ipcMain.on('electron-store-set', async (event, key, val) => {
   event;
   setValue(key, val);
