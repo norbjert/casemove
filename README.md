@@ -83,8 +83,8 @@ Casemove was originally created by Nombers:
 - Discord: Nombers#1046
 
 
-After Nombers abandonded the Open-Source project in favor of his subscription-based, closed source casemove replacement (skinledger)[https://skinledger.com/], this project was been taken over by [norbjert](https://github.com/norbjert).
-- (Steam)[https://steamcommunity.com/id/norbjert/]
+After Nombers abandonded the Open-Source project in favor of his subscription-based, closed source casemove replacement [skinledger](https://skinledger.com), this project was been taken over by [norbjert](https://github.com/norbjert).
+- [Steam](https://steamcommunity.com/id/norbjert)
 
 ----
 
@@ -100,7 +100,7 @@ You should have received a copy of the GNU General Public License along with thi
 ## Contributing
 
 Unlike the original casemove, this fork welcomes open-source contributions.
-Take a look at (Contributing.md)[https://github.com/norbjert/casemove/blob/main/CONTRIBUTING.md]
+Take a look at at the contributing guidelines [here](https://github.com/norbjert/casemove?tab=contributing-ov-file).
 
 ### Bugs and known issues
 - parts of the UI sometimes freeze up, in particular during storage unit loading and lots of clicks on various parts of the UI.
@@ -110,7 +110,7 @@ Hard to diagnose the exact issue, ill fix it if i ever find out what the exact p
 
 ----
 
-## How to build
+## How to build from source
 
 ### Prerequisites
 

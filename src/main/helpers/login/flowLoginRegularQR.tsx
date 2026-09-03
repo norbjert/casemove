@@ -1,3 +1,4 @@
+import log from 'electron-log';
 import { EAuthTokenPlatformType, LoginSession } from 'steam-session';
 import { LoginOptions } from '../../../shared/Interfaces.tsx/store';
 import { storeRefreshToken } from '../classes/steam/settings';
@@ -15,7 +16,7 @@ export async function flowLoginRegularQR(doStoreLogin: boolean): Promise<{
     });
 
     session.on('authenticated', async () => {
-      console.log(`Logged into Steam as ${session.accountName}`);
+      log.info(`Logged into Steam as ${session.accountName}`);
 
       if (doStoreLogin) {
         await storeRefreshToken(session.accountName, session.refreshToken);
@@ -34,7 +35,7 @@ export async function flowLoginRegularQR(doStoreLogin: boolean): Promise<{
     });
 
     session.once('error', (_err) => {
-      console.log('Error');
+      log.error('QR login error');
       resolve({
         responseStatus: 'defaultError',
       });

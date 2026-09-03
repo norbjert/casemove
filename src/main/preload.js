@@ -4,7 +4,6 @@ import { contextBridge, ipcRenderer } from 'electron';
 // else is renderer -> main and now goes over invoke/handle, so it can never
 // arrive here.
 const validChannels = [
-  'ipc-example',
   'login-reply',
   'pricing',
   'qrLogin:scanned',
@@ -16,10 +15,6 @@ const validChannels = [
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
-    myPing(message = 'ping') {
-      ipcRenderer.send('ipc-example', message);
-    },
-
     // User commands
     refreshInventory() {
       ipcRenderer.send('refreshInventory');
@@ -124,8 +119,6 @@ contextBridge.exposeInMainWorld('electron', {
       sharedSecret,
       clientjstoken
     ) {
-      console.log(clientjstoken);
-
       if (authcode === '') {
         authcode = null;
       }

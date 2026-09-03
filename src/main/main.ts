@@ -1,11 +1,9 @@
-import 'core-js/stable';
 import { createRequire } from 'module';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
 import * as fs from 'fs';
 import GlobalOffensive from 'globaloffensive';
 import os from 'os';
 import path from 'path';
-import 'regenerator-runtime/runtime';
 import { CurrencyReturnValue } from 'shared/Interfaces.tsx/IPCReturn';
 import { LoginCommandReturnPackage } from 'shared/Interfaces.tsx/store';
 import SteamUser from 'steam-user';
@@ -153,7 +151,7 @@ async function refreshMarketListings() {
         try {
           data = JSON.parse(data);
         } catch {
-          console.error('Market listings response was not JSON (likely not logged in on the web session):', data.slice(0, 300));
+          log.error('Market listings response was not JSON (likely not logged in on the web session):', data.slice(0, 300));
           break;
         }
       }
@@ -171,9 +169,9 @@ async function refreshMarketListings() {
       if (!hasMorePages) break;
     }
     marketListedAssetIds = listedIds;
-    console.log(`Market listings refreshed: ${listedIds.size} item(s) currently listed.`);
+    log.info(`Market listings refreshed: ${listedIds.size} item(s) currently listed.`);
   } catch (err) {
-    console.error('Failed to refresh market listings:', err);
+    log.error('Failed to refresh market listings:', err);
   }
 }
 
@@ -189,13 +187,6 @@ async function convertInventoryTagged(inventory: any) {
 
 // Electron stuff
 let mainWindow: BrowserWindow | null = null;
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
-});
-
-
 const isDevelopment =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
@@ -213,7 +204,7 @@ const installExtensions = async () => {
       extensions.map((name) => installer[name]),
       forceDownload
     )
-    .catch(console.log);
+    .catch(log.error);
 };
 
 const createWindow = async () => {
@@ -277,7 +268,6 @@ const createWindow = async () => {
   }
 
   mainWindow.on('ready-to-show', () => {
-    console.log(app.getVersion());
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -338,24 +328,22 @@ app.on('window-all-closed', () => {
   }
 });
 
-const myWindow = null as any;
 const gotTheLock = app.requestSingleInstanceLock();
 
 if (!gotTheLock) {
   app.quit();
 } else {
-  app.on('second-instance', (_event, _commandLine, _workingDirectory) => {
+  app.on('second-instance', () => {
     // Someone tried to run a second instance, we should focus our window.
-    if (myWindow) {
-      if (myWindow.isMinimized()) myWindow.restore();
-      myWindow.focus();
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
     }
   });
   app
     .whenReady()
     .then(async () => {
       currentLocale = app.getLocale();
-      console.log('Currentlocal', currentLocale);
 
 
       await createWindow();
@@ -365,7 +353,7 @@ if (!gotTheLock) {
         if (mainWindow === null) createWindow();
       });
     })
-    .catch(console.log);
+    .catch(log.error);
 }
 
 /**
@@ -438,7 +426,7 @@ emitterAccount.on(
   ) => {
     // Success
     user.once('accountInfo', (displayName: string) => {
-      console.log('Logged into Steam as main ' + displayName);
+      log.info('Logged into Steam as main ' + displayName);
       getValue('pricing.currency').then((returnValue) => {
         if (returnValue == undefined) {
           setValue(
@@ -447,16 +435,14 @@ emitterAccount.on(
           );
         }
       });
-      console.log('logged on main');
 
       async function gameCoordinate(resolve: any = null) {
         csgo.once('connectedToGC', () => {
           if (resolve) {
             resolve('GC');
           }
-          console.log('Connected to GC!');
+          log.info('Connected to GC!');
           if (csgo.haveGCSession) {
-            console.log('Have Session!');
             convertInventoryTagged(csgo.inventory)
               .then((returnValue) => {
                 tradeUpClass
@@ -529,7 +515,6 @@ emitterAccount.on(
         if (value == 'error') {
           // Force login
           ipcMain.on('forceLogin', async () => {
-            console.log('forceLogin');
             setTimeout(() => {
               // user.setPersona(SteamUser.EPersonaState.Online);
               gameCoordinate();
@@ -540,25 +525,20 @@ emitterAccount.on(
             ipcMain.removeAllListeners('signOut');
           });
           ipcMain.once('signOut', async () => {
-            console.log('Sign out');
             user.logOff();
             ipcMain.removeAllListeners('forceLogin');
             ipcMain.removeAllListeners('signOut');
           });
         }
         if (value == 'time') {
-          console.log(
-            'GC didnt start in time, adding CSGO to the library and retrying.',
-          );
-          user.requestFreeLicense([730], function (err, packageIds, appIds) {
+          log.warn('GC didnt start in time, adding CSGO to the library and retrying.');
+          user.requestFreeLicense([730], function (err) {
             if (err) {
-              console.log(err);
+              log.error(err);
               ClassLoginResponse.setEmptyPackage();
               ClassLoginResponse.setResponseStatus('playingElsewhere');
               sendLoginReply(event);
             }
-            console.log('Granted package: ', packageIds);
-            console.log('Granted App: ', appIds);
             startGameCoordinator();
           });
         }
@@ -570,7 +550,7 @@ emitterAccount.on(
       domain;
       callback;
       if (lastCodeWrong) {
-        console.log('Last code wrong, try again!');
+        log.info('Last code wrong, try again!');
         cancelLogin(user);
 
         ClassLoginResponse.setEmptyPackage();
@@ -632,7 +612,6 @@ ipcMain.on(
         clientjstoken
       )
       .then((returnValue: any) => {
-        console.log(returnValue);
         event.reply('login-reply', returnValue);
       });
   }
@@ -689,7 +668,6 @@ ipcMain.on('qrLogin:cancel', async () => {
 async function cancelLogin(user: {
   removeAllListeners: (arg0: string) => void;
 }) {
-  console.log('Cancel login');
   user.removeAllListeners('loggedOn');
   user.removeAllListeners('steamGuard');
   user.removeAllListeners('error');
@@ -801,13 +779,11 @@ async function startEvents(csgo, user) {
   // CSGO listeners
   // Inventory events
   async function startChangeEvents() {
-    console.log('Start events');
     csgo.on('itemRemoved', (item: { id?: any }) => {
       if (
         !Object.keys(item).includes('casket_id') &&
         !Object.keys(item).includes('casket_contained_item_count')
       ) {
-        console.log('Item ' + item.id + ' was removed');
         convertInventoryTagged(csgo.inventory).then((returnValue) => {
           tradeUpClass.getTradeUp(returnValue).then((newReturnValue: any) => {
             mainWindow?.webContents.send('userEvents', [
@@ -837,10 +813,8 @@ async function startEvents(csgo, user) {
         !Object.keys(item).includes('casket_id') &&
         !Object.keys(item).includes('casket_contained_item_count')
       ) {
-        console.log('Item ' + item.id + ' was acquired');
         removeInventoryListeners();
         setTimeout(function () {
-          console.log('ran');
           startChangeEvents();
           convertInventoryTagged(csgo.inventory)
             .then((returnValue) => {
@@ -869,7 +843,7 @@ async function startEvents(csgo, user) {
   startChangeEvents();
 
   csgo.on('disconnectedFromGC', (reason) => {
-    console.log('Disconnected from GC - reason: ', reason);
+    log.warn('Disconnected from GC - reason: ', reason);
     mainWindow?.webContents.send('userEvents', [
       3,
       'disconnectedFromGC',
@@ -878,7 +852,7 @@ async function startEvents(csgo, user) {
   });
 
   csgo.on('connectedToGC', () => {
-    console.log('Connected to GC!');
+    log.info('Connected to GC!');
     if (csgo.haveGCSession) {
       mainWindow?.webContents.send('userEvents', [3, 'connectedToGC']);
     }
@@ -887,12 +861,12 @@ async function startEvents(csgo, user) {
   // User listeners
   // Steam Connection
   user.on('error', (result: any, msg: any) => {
-    console.log('main', result, msg);
+    log.error('Steam user error:', result, msg);
     mainWindow?.webContents.send('userEvents', [2, 'fatalError']);
     clearForNewSession();
   });
   user.on('disconnected', (result: any, msg: any) => {
-    console.log(result, msg);
+    log.warn('Steam disconnected:', result, msg);
     mainWindow?.webContents.send('userEvents', [2, 'disconnected']);
   });
   user.on('loggedOn', () => {
@@ -901,13 +875,11 @@ async function startEvents(csgo, user) {
   user.on('wallet', (hasWallet: any, currency: any, balance: any) => {
     const walletToSend = { hasWallet, currency, balance };
     walletToSend.currency = currencyCodes?.[walletToSend?.currency];
-    console.log('Wallet update: ', balance);
     mainWindow?.webContents.send('userEvents', [4, walletToSend]);
   });
 
   // Get commands from Renderer
   async function removeInventoryListeners() {
-    console.log('Removed inventory listeners');
     csgo.removeAllListeners('itemRemoved');
     csgo.removeAllListeners('itemChanged');
     csgo.removeAllListeners('itemAcquired');
@@ -931,7 +903,6 @@ async function startEvents(csgo, user) {
   ipcMain.on('retryConnection', async () => {
     user.gamesPlayed([]);
     user.gamesPlayed([730]);
-    console.log('Retrying');
   });
   // Rename Storage units
   reHandle('renameStorageUnit', async (_event, itemID, newName) => {
@@ -1022,7 +993,6 @@ async function startEvents(csgo, user) {
     if (!items || typeof items !== 'object') return [0];
     const converted = await fetchItemClass.convertStorageData(items);
     const withTradeUp: any = await tradeUpClass.getTradeUp(converted);
-    console.log('Casket contains: ', withTradeUp.length);
     return [1, withTradeUp];
   });
   // Get commands from Renderer
@@ -1031,7 +1001,6 @@ async function startEvents(csgo, user) {
   });
 
   async function clearForNewSession() {
-    console.log('Signout');
     // Remove for CSGO
     await removeInventoryListeners();
     csgo.removeAllListeners('connectedToGC');
@@ -1062,7 +1031,7 @@ ipcMain.handle('getCurrency', async (): Promise<CurrencyReturnValue> => {
     currency = await getValue('pricing.currency');
     return { currency, rate: (await currencyClass.getRate(currency)) as number };
   } catch (err) {
-    console.log('getCurrency error:', err);
+    log.error('getCurrency error:', err);
     return { currency: currency || 'USD', rate: 1 };
   }
 });
@@ -1076,7 +1045,6 @@ async function settingsSetup() {
   });
   getValue('fastmove').then((returnValue) => {
     if (returnValue == undefined) {
-      console.log('fastmove', returnValue);
       setValue('fastmove', false);
     }
   });

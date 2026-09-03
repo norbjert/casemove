@@ -1,62 +1,34 @@
-
-import { ModalTrade } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { ModalTrade } from 'renderer/interfaces/states';
 
 const initialState: ModalTrade = {
-    moveOpen: false,
-    openResult: false,
-    inventoryFirst: [],
-    rowToMatch: {}
-  };
+  moveOpen: false,
+  openResult: false,
+  inventoryFirst: [],
+  rowToMatch: {},
+};
 
-  const modalTradeReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'TRADE_MODAL_OPEN_CLOSE':
-        return {
-          ...state,
-          moveOpen: !state.moveOpen
-        }
-      case 'TRADE_MODAL_CONFIRM':
-        return {
-          ...state,
-          moveOpen: false,
-          inventoryFirst: action.payload.inventory
-        }
-
-      case 'TRADE_MODAL_MATCH_FOUND':
-        return {
-          ...state,
-          openResult: true,
-          inventoryFirst: initialState.inventoryFirst,
-          rowToMatch: action.payload.matchRow
-        }
-      case 'TRADE_MODAL_RESET':
-        return {
-          ...initialState
-        }
-      case 'TRADE_MODAL_OPEN_RESULT':
-      if (state.moveOpen == true) {
-        return {
-          ...state,
-          moveOpen: false,
-          openResult: !state.openResult
-        }
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('TRADE_MODAL_OPEN_CLOSE', (state) => {
+      state.moveOpen = !state.moveOpen;
+    })
+    .addCase('TRADE_MODAL_CONFIRM', (state, action: any) => {
+      state.moveOpen = false;
+      state.inventoryFirst = action.payload.inventory;
+    })
+    .addCase('TRADE_MODAL_MATCH_FOUND', (state, action: any) => {
+      state.openResult = true;
+      state.inventoryFirst = initialState.inventoryFirst;
+      state.rowToMatch = action.payload.matchRow;
+    })
+    .addCase('TRADE_MODAL_RESET', () => initialState)
+    .addCase('TRADE_MODAL_OPEN_RESULT', (state) => {
+      // opening the result closes the move modal if it was up
+      if (state.moveOpen) {
+        state.moveOpen = false;
       }
-        return {
-          ...state,
-          openResult: !state.openResult
-        }
-
-
-
-      case 'SIGN_OUT':
-        return {
-          ...initialState
-        }
-      default:
-        return {...state}
-
-    }
-  };
-
-
-  export default modalTradeReducer;
+      state.openResult = !state.openResult;
+    })
+    .addCase('SIGN_OUT', () => initialState)
+);

@@ -1,104 +1,65 @@
-import { TradeUpActions } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { TradeUpActions } from 'renderer/interfaces/states';
 
 const initialState: TradeUpActions = {
-    tradeUpProducts: [],
-    tradeUpProductsIDS: [],
-    possibleOutcomes: [],
-    searchInput: '',
-    MinFloat: 0,
-    MaxFloat: 1,
-    collections: [],
-    options: ["Hide equipped"],
-  };
+  tradeUpProducts: [],
+  tradeUpProductsIDS: [],
+  possibleOutcomes: [],
+  searchInput: '',
+  MinFloat: 0,
+  MaxFloat: 1,
+  collections: [],
+  options: ['Hide equipped'],
+};
 
-  const tradeUpReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'TRADEUP_ADD_REMOVE':
-          const toMoveAlreadyExists = state.tradeUpProducts.filter(row => row.item_id != action.payload.item_id)
-          if (toMoveAlreadyExists.length == state.tradeUpProducts.length) {
-            toMoveAlreadyExists.push(action.payload)
-          }
-          const newTradeUpIDS = [] as any
-          toMoveAlreadyExists.forEach(element => {
-            newTradeUpIDS.push(element.item_id)
+// present -> remove, absent -> add
+function toggle<T>(list: T[], value: T): T[] {
+  const without = list.filter((row) => row != value);
+  return without.length == list.length ? [...without, value] : without;
+}
 
-          });
-          const isCovert = action.payload.rarityName === 'Covert' ||
-            (state.tradeUpProducts.length > 0 && state.tradeUpProducts[0].rarityName === 'Covert');
-          const maxItems = isCovert ? 5 : 10;
-          if (toMoveAlreadyExists.length != maxItems) {
-            return {
-              ...state,
-              tradeUpProducts: toMoveAlreadyExists,
-              tradeUpProductsIDS: newTradeUpIDS,
-              possibleOutcomes: initialState.possibleOutcomes
-           }
-          } else {
-            return {
-              ...state,
-              tradeUpProducts: toMoveAlreadyExists,
-              tradeUpProductsIDS: newTradeUpIDS,
-           }
-          }
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('TRADEUP_ADD_REMOVE', (state, action: any) => {
+      const products = state.tradeUpProducts.filter(
+        (row) => row.item_id != action.payload.item_id
+      );
+      if (products.length == state.tradeUpProducts.length) {
+        products.push(action.payload);
+      }
+      const isCovert =
+        action.payload.rarityName === 'Covert' ||
+        (state.tradeUpProducts.length > 0 &&
+          state.tradeUpProducts[0].rarityName === 'Covert');
 
-      case 'TRADEUP_ADDREMOVE_COLLECTION':
-          const collectionAlreadyExists = state.collections.filter(row => row != action.payload)
-          if (collectionAlreadyExists.length == state.collections.length) {
-            collectionAlreadyExists.push(action.payload)
-          }
-          return {
-            ...state,
-            collections: collectionAlreadyExists
-          }
-
-      case 'TRADEUP_ADDREMOVE_OPTION':
-          const optionAlready = state.options.filter(row => row != action.payload)
-          if (optionAlready.length == state.options.length) {
-            optionAlready.push(action.payload)
-          }
-          return {
-            ...state,
-            options: optionAlready
-          }
-      case 'TRADEUP_SET_SEARCH':
-          return {
-              ...state,
-              searchInput: action.payload.searchField
-           }
-     case 'TRADEUP_SET_MIN':
-          return {
-              ...state,
-              MinFloat: action.payload
-           }
-      case 'TRADEUP_SET_MAX':
-          return {
-              ...state,
-              MaxFloat: action.payload
-           }
-      case 'TRADEUP_SET_POSSIBLE':
-          return {
-              ...state,
-              possibleOutcomes: action.payload
-           }
-        case 'TRADEUP_RESET':
-            return {
-              ...initialState,
-              collections: state.collections
-            }
-
-
-
-        case 'SIGN_OUT':
-        return {
-          ...initialState
-        }
-
-
-
-      default:
-        return {...state}
-
-    }
-  };
-
-  export default tradeUpReducer;
+      state.tradeUpProducts = products;
+      state.tradeUpProductsIDS = products.map((element) => element.item_id);
+      // a full contract keeps whatever outcomes were already computed
+      if (products.length != (isCovert ? 5 : 10)) {
+        state.possibleOutcomes = initialState.possibleOutcomes;
+      }
+    })
+    .addCase('TRADEUP_ADDREMOVE_COLLECTION', (state, action: any) => {
+      state.collections = toggle(state.collections, action.payload);
+    })
+    .addCase('TRADEUP_ADDREMOVE_OPTION', (state, action: any) => {
+      state.options = toggle(state.options, action.payload);
+    })
+    .addCase('TRADEUP_SET_SEARCH', (state, action: any) => {
+      state.searchInput = action.payload.searchField;
+    })
+    .addCase('TRADEUP_SET_MIN', (state, action: any) => {
+      state.MinFloat = action.payload;
+    })
+    .addCase('TRADEUP_SET_MAX', (state, action: any) => {
+      state.MaxFloat = action.payload;
+    })
+    .addCase('TRADEUP_SET_POSSIBLE', (state, action: any) => {
+      state.possibleOutcomes = action.payload;
+    })
+    .addCase('TRADEUP_RESET', (state) => ({
+      ...initialState,
+      collections: state.collections,
+    }))
+    .addCase('SIGN_OUT', () => initialState)
+);

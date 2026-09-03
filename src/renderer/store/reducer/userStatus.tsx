@@ -1,62 +1,40 @@
-import { AuthReducer } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { AuthReducer } from 'renderer/interfaces/states';
 
 const initialState: AuthReducer = {
-    displayName: null ,
-    CSGOConnection: false,
-    userProfilePicture: null ,
-    steamID: null,
-    isLoggedIn: false ,
-    hasConnection: false,
-    walletBalance: {
-      hasWallet: false,
-      currency: '',
-      balance: 0
-    }
-  };
+  displayName: null,
+  CSGOConnection: false,
+  userProfilePicture: null,
+  steamID: null,
+  isLoggedIn: false,
+  hasConnection: false,
+  walletBalance: {
+    hasWallet: false,
+    currency: '',
+    balance: 0,
+  },
+};
 
-  const authReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'SIGN_IN':
-          return {
-              ...state,
-              displayName: action.payload.displayName,
-              CSGOConnection: action.payload.CSGOConnection,
-              userProfilePicture: action.payload.userProfilePicture,
-              steamID: action.payload.steamID,
-              isLoggedIn: true,
-              hasConnection: true,
-              walletBalance: action.payload.wallet
-          }
-      case 'SIGN_OUT':
-          return {
-            ...initialState
-          }
-
-      case 'SET_CONNECTION':
-        return {
-          ...state,
-          hasConnection: action.payload.hasConnection
-        }
-      case 'SET_WALLET_BALANCE':
-        return {
-          ...state,
-          walletBalance: action.payload
-        }
-
-
-      case 'SET_GC':
-        return {
-          ...state,
-          CSGOConnection: action.payload.CSGOConnection
-        }
-      case 'LOGOUT':
-        return {
-          ...initialState
-        }
-      default:
-        return state
-
-    }
-  };
-
-  export default authReducer;
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('SIGN_IN', (state, action: any) => {
+      state.displayName = action.payload.displayName;
+      state.CSGOConnection = action.payload.CSGOConnection;
+      state.userProfilePicture = action.payload.userProfilePicture;
+      state.steamID = action.payload.steamID;
+      state.isLoggedIn = true;
+      state.hasConnection = true;
+      state.walletBalance = action.payload.wallet;
+    })
+    .addCase('SET_CONNECTION', (state, action: any) => {
+      state.hasConnection = action.payload.hasConnection;
+    })
+    .addCase('SET_WALLET_BALANCE', (state, action: any) => {
+      state.walletBalance = action.payload;
+    })
+    .addCase('SET_GC', (state, action: any) => {
+      state.CSGOConnection = action.payload.CSGOConnection;
+    })
+    .addCase('SIGN_OUT', () => initialState)
+    .addCase('LOGOUT', () => initialState)
+);

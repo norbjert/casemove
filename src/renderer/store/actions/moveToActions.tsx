@@ -1,72 +1,31 @@
-export const moveToSetHide = () => {
-    return {
-        type: 'MOVE_TO_SET_HIDE'
-    }
-}
-export const moveToSetFull = () => {
-    return {
-        type: 'MOVE_TO_SET_FULL'
-    }
-}
-export const moveToClearAll = () => {
-    return {
-        type: 'MOVE_TO_CLEAR_ALL'
-    }
-}
-export const doCancel = (doCancel) => {
-    return {
-        type: 'DO_CANCEL',
-        payload: {
-            doCancel: doCancel
-        }
-    }
-}
-export const moveTosetSearchField = (searchField) => {
-    return {
-        type: 'MOVE_TO_SET_SEARCH',
-        payload: {
-            searchField: searchField
-        }
-    }
-}
-export const moveTosetSearchFieldStorage = (searchField) => {
-    return {
-        type: 'MOVE_TO_SET_SEARCH_STORAGE',
-        payload: {
-            searchField: searchField
-        }
-    }
-}
+import { createAction } from '@reduxjs/toolkit';
 
-export const moveToAddCasketToStorages = (casketID, casketVolume) => {
-    return {
-        type: 'MOVE_TO_ADD_TO',
-        payload: {
-            casketID: casketID,
-            casketVolume: casketVolume
-        }
-    }
-}
+export const moveToSetHide = createAction('MOVE_TO_SET_HIDE');
+export const moveToSetFull = createAction('MOVE_TO_SET_FULL');
+export const moveToClearAll = createAction('MOVE_TO_CLEAR_ALL');
 
-export const moveToSetStorageAmount = (storageAmount) => {
-    return {
-        type: 'SET_STORAGE_AMOUNT',
-        payload: {
-            storageAmount: storageAmount
-        }
-    }
-}
-export const moveToAddRemove = (casketID, itemID, totalItems, itemName) => {
-    return {
-        type: 'MOVE_TO_TOTAL_TO_ADD',
-        payload: {
-            casketID: casketID,
-            toMove: totalItems,
-            itemID: itemID,
-            itemName:itemName
-            
-        }
-    }
-}
-
-
+export const doCancel = createAction('DO_CANCEL', (doCancel) => ({
+  payload: { doCancel },
+}));
+export const moveTosetSearchField = createAction(
+  'MOVE_TO_SET_SEARCH',
+  (searchField) => ({ payload: { searchField } })
+);
+export const moveTosetSearchFieldStorage = createAction(
+  'MOVE_TO_SET_SEARCH_STORAGE',
+  (searchField) => ({ payload: { searchField } })
+);
+export const moveToAddCasketToStorages = createAction(
+  'MOVE_TO_ADD_TO',
+  (casketID, casketVolume) => ({ payload: { casketID, casketVolume } })
+);
+export const moveToSetStorageAmount = createAction(
+  'SET_STORAGE_AMOUNT',
+  (storageAmount) => ({ payload: { storageAmount } })
+);
+export const moveToAddRemove = createAction(
+  'MOVE_TO_TOTAL_TO_ADD',
+  (casketID, itemID, totalItems, itemName) => ({
+    payload: { casketID, toMove: totalItems, itemID, itemName },
+  })
+);
