@@ -2,10 +2,6 @@ import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
-    myPing(message = 'ping') {
-      ipcRenderer.send('ipc-example', message);
-    },
-
     // User commands
     refreshInventory() {
       ipcRenderer.send('refreshInventory');
@@ -42,11 +38,9 @@ contextBridge.exposeInMainWorld('electron', {
 
     // User account
     getPossibleOutcomes(resultsToGet) {
-      console.log(resultsToGet);
       return new Promise((resolve) => {
         ipcRenderer.send('getTradeUpPossible', resultsToGet);
         ipcRenderer.once('getTradeUpPossible-reply', (evt, message) => {
-          console.log(message);
           resolve(message);
         });
       });
@@ -89,7 +83,6 @@ contextBridge.exposeInMainWorld('electron', {
       return new Promise((resolve) => {
         ipcRenderer.send('getCurrency');
         ipcRenderer.once('getCurrency-reply', (evt, message) => {
-          console.log(message);
           resolve(message);
         });
       });
@@ -136,7 +129,6 @@ contextBridge.exposeInMainWorld('electron', {
       sharedSecret,
       clientjstoken
     ) {
-      console.log(clientjstoken);
 
       if (authcode === '') {
         authcode = null;
@@ -270,7 +262,6 @@ contextBridge.exposeInMainWorld('electron', {
 
     on(channel, func) {
       const validChannels = [
-        'ipc-example',
         'login',
         'userEvents',
         'refreshInventory',
@@ -308,7 +299,6 @@ contextBridge.exposeInMainWorld('electron', {
     },
     once(channel, func) {
       const validChannels = [
-        'ipc-example',
         'login',
         'userEvents',
         'refreshInventory',
@@ -358,7 +348,6 @@ contextBridge.exposeInMainWorld('electron', {
         ipcRenderer.send('electron-store-get', val, key);
 
         ipcRenderer.once('electron-store-get-reply' + key, (event, arg) => {
-          console.log(arg);
           resolve(arg);
         });
       });

@@ -1,55 +1,17 @@
+import { createAction } from '@reduxjs/toolkit';
 
-export const tradeUpAddRemove = (productRow) => {
-    return {
-        type: 'TRADEUP_ADD_REMOVE',
-        payload: productRow
-    }
-}
-
-export const tradeUpSetPossible = (productRow) => {
-    return {
-        type: 'TRADEUP_SET_POSSIBLE',
-        payload: productRow
-    }
-}
-
-export const tradeUpResetPossible = () => {
-    return {
-        type: 'TRADEUP_RESET'
-    }
-}
-
-export const tradeUpSetSearch = (searchField) => {
-  return {
-      type: 'TRADEUP_SET_SEARCH',
-      payload: {
-          searchField: searchField
-      }
-  }
-}
-
-export const tradeUpSetMin = (min) => {
-  return {
-      type: 'TRADEUP_SET_MIN',
-      payload: min
-  }
-}
-export const tradeUpSetMax = (max) => {
-  return {
-      type: 'TRADEUP_SET_MAX',
-      payload: max
-  }
-}
-export const tradeUpCollectionsAddRemove = (collection) => {
-    return {
-        type: 'TRADEUP_ADDREMOVE_COLLECTION',
-        payload: collection
-    }
-  }
-
-export const tradeUpOptionsAddRemove = (option) => {
-    return {
-        type: 'TRADEUP_ADDREMOVE_OPTION',
-        payload: option
-    }
-  }
+export const tradeUpAddRemove = createAction<any>('TRADEUP_ADD_REMOVE');
+export const tradeUpSetPossible = createAction<any>('TRADEUP_SET_POSSIBLE');
+export const tradeUpResetPossible = createAction('TRADEUP_RESET');
+export const tradeUpSetSearch = createAction(
+  'TRADEUP_SET_SEARCH',
+  (searchField) => ({ payload: { searchField } })
+);
+export const tradeUpSetMin = createAction<any>('TRADEUP_SET_MIN');
+export const tradeUpSetMax = createAction<any>('TRADEUP_SET_MAX');
+export const tradeUpCollectionsAddRemove = createAction<any>(
+  'TRADEUP_ADDREMOVE_COLLECTION'
+);
+export const tradeUpOptionsAddRemove = createAction<any>(
+  'TRADEUP_ADDREMOVE_OPTION'
+);

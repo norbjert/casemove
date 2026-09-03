@@ -13,7 +13,7 @@ import { RowStickersPatches } from '../../Inventory/inventoryRows/stickerPatches
 import { RowTradehold } from '../../Inventory/inventoryRows/tradeholdRow';
 import { classNames } from '../../shared/filters/inventoryFunctions';
 
-function content({ projectRow, index }: {projectRow: any, index: number}) {
+export default function StorageRow({ projectRow, index }: { projectRow: any; index: number }) {
   const dispatch = useDispatch();
   const toReducer = useSelector((state: State) => state.moveToReducer);
   const pricesResult = useSelector((state: State) => state.pricingReducer);
@@ -98,13 +98,7 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
               name="postal-code"
               id="postal-code"
               autoComplete="off"
-              value={
-                isEmpty
-                  ? ''
-                  : toReducer.totalToMove.filter(
-                      (row) => row[0] == projectRow.item_id
-                    )[0][2].length
-              }
+              value={isEmpty ? '' : totalFieldValue}
               placeholder="0"
               onChange={(e) => returnField(e.target.value)}
               disabled={isTradelocked}
@@ -153,7 +147,4 @@ function content({ projectRow, index }: {projectRow: any, index: number}) {
       <td className="hidden md:px-6 py-3 whitespace-nowrap text-right text-sm font-medium dark:bg-dark-level-one"></td>
     </>
   );
-}
-export default function StorageRow(projects) {
-  return content(projects);
 }

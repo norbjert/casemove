@@ -1,3 +1,4 @@
+import log from 'electron-log';
 import Store from 'electron-store';
 import { safeStorage } from 'electron';
 import axios from 'axios';
@@ -16,7 +17,7 @@ async function getURL(steamID: any) {
             .getElementsByTagName('avatarMedium')[0]?.childNodes[0]?.nodeValue,
         );
       });
-  }).catch((error) => console.log(error.message));
+  }).catch((error) => log.error(error.message));
 }
 // Define store — wrapped in try/catch to handle corrupt config files (e.g. from
 // a version migration where the on-disk format changed). If the file can't be
@@ -59,7 +60,6 @@ async function storeRefreshToken(username: string, loginKey?: string) {
   }
 
   // Set store
-  console.log('saving refreshToken')
   store.set({
     account: accountDetails,
   });
@@ -77,7 +77,7 @@ async function storeUserAccount(
   try {
     imageURL = await getURL(steamID);
   } catch (error) {
-    console.log(error);
+    log.error(error);
   }
 
 
@@ -106,7 +106,6 @@ async function storeUserAccount(
   }
 
   // Set store
-  console.log('Saving regular')
   store.set({
     account: accountDetails,
   });

@@ -1,35 +1,12 @@
-export const setTradeMove = () => {
-    return {
-        type: 'TRADE_MODAL_OPEN_CLOSE',
-    }
-}
-export const setTradeConfirm = (inven) => {
-  return {
-      type: 'TRADE_MODAL_CONFIRM',
-      payload: {
-        inventory: inven
-    }
-  }
-}
+import { createAction } from '@reduxjs/toolkit';
 
-export const setTradeReset = () => {
-  return {
-      type: 'TRADE_MODAL_RESET'
-    }
-}
-
-export const setTradeFoundMatch = (matchRow) => {
-  return {
-      type: 'TRADE_MODAL_MATCH_FOUND',
-      payload: {
-        matchRow: matchRow
-    }
-  }
-}
-export const setTradeMoveResult = () => {
-  return {
-      type: 'TRADE_MODAL_OPEN_RESULT',
-  }
-}
-
-
+export const setTradeMove = createAction('TRADE_MODAL_OPEN_CLOSE');
+export const setTradeConfirm = createAction('TRADE_MODAL_CONFIRM', (inven) => ({
+  payload: { inventory: inven },
+}));
+export const setTradeReset = createAction('TRADE_MODAL_RESET');
+export const setTradeFoundMatch = createAction(
+  'TRADE_MODAL_MATCH_FOUND',
+  (matchRow) => ({ payload: { matchRow } })
+);
+export const setTradeMoveResult = createAction('TRADE_MODAL_OPEN_RESULT');

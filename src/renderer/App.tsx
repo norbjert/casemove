@@ -33,7 +33,7 @@ import {
   classNames,
   sortDataFunction,
 } from './components/content/shared/filters/inventoryFunctions';
-import Logo from './components/content/shared/iconsLogo/logo 2';
+import Logo from './components/content/shared/iconsLogo/logo';
 import TradeResultModal from './components/content/shared/modals & notifcations/modalTradeResult';
 import MoveModal from './components/content/shared/modals & notifcations/modalMove';
 import itemRarities from './components/content/shared/rarities';

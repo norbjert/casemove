@@ -1,93 +1,65 @@
-import { ModalMove } from "renderer/interfaces/states";
+import { createReducer } from '@reduxjs/toolkit';
+import { ModalMove } from 'renderer/interfaces/states';
 
 const initialState: ModalMove = {
-    moveOpen: false,
-    notifcationOpen: false,
-    storageIdsToClearFrom: [],
-    modalPayload: {
-      number: 0,
-      itemID: '',
-      isLast: false
-    },
-    doCancel: [],
-    query: [],
-    totalFailed: 0
-  };
+  moveOpen: false,
+  notifcationOpen: false,
+  storageIdsToClearFrom: [],
+  modalPayload: {
+    number: 0,
+    itemID: '',
+    isLast: false,
+  },
+  doCancel: [],
+  query: [],
+  totalFailed: 0,
+};
 
-  const modalMoveReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'MOVE_MODAL_QUERY_SET':
-          const queryData = [...action.payload.query]
-          queryData.shift()
-          return {
-              ...state,
-              moveOpen: true,
-              modalPayload: action.payload.query[0].payload,
-              query: queryData
-          }
-
-      case 'MOVE_MODAL_UPDATE':
-        if (state.query.length == 0) {
-          return {
-            ...state,
-            modalPayload: initialState.modalPayload,
-            moveOpen: false
-          }
-        }
-          const initialStoragesToClear = state.storageIdsToClearFrom
-           if (!initialStoragesToClear.includes(state.query[0].payload.storageID)) {
-            initialStoragesToClear.push(state.query[0].payload.storageID)
-           }
-           if (state.doCancel.includes(state.query[0].payload.key)) {
-             return {
-               ...state
-             }
-           }
-          const newQuery = [...state.query]
-          newQuery.shift()
-          return {
-              ...state,
-              moveOpen: true,
-              modalPayload: state.query[0].payload,
-              storageIdsToClearFrom: initialStoragesToClear,
-              query: newQuery
-          }
-      case 'CLOSE_MOVE_MODAL':
-        return {
-            ...state,
-            moveOpen: false,
-            totalFailed: initialState.totalFailed
-        }
-      case 'MOVE_MODAL_RESET_PAYLOAD':
-        return {
-          ...state,
-          query: initialState.query
-        }
-      case 'MOVE_MODAL_CANCEL':
-        return {
-            ...state,
-            doCancel: [...state.doCancel, action.payload.doCancel],
-            totalFailed: initialState.totalFailed
-        }
-      case 'MODAL_RESET_STORAGE_IDS_TO_CLEAR_FROM':
-        return {
-            ...state,
-            storageIdsToClearFrom: initialState.storageIdsToClearFrom
-        }
-      case 'MODAL_ADD_TO_FAILED':
-        return {
-            ...state,
-            totalFailed: state.totalFailed + 1
-        }
-      case 'SIGN_OUT':
-        return {
-          ...initialState
-        }
-      default:
-        return {...state}
-
-    }
-  };
-
-
-  export default modalMoveReducer;
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase('MOVE_MODAL_QUERY_SET', (state, action: any) => {
+      const rest = [...action.payload.query];
+      rest.shift();
+      state.moveOpen = true;
+      state.modalPayload = action.payload.query[0].payload;
+      state.query = rest;
+    })
+    .addCase('MOVE_MODAL_UPDATE', (state) => {
+      if (state.query.length == 0) {
+        state.modalPayload = initialState.modalPayload;
+        state.moveOpen = false;
+        return;
+      }
+      const next = state.query[0].payload;
+      if (!state.storageIdsToClearFrom.includes(next.storageID)) {
+        state.storageIdsToClearFrom.push(next.storageID);
+      }
+      if (state.doCancel.includes(next.key)) {
+        return;
+      }
+      state.moveOpen = true;
+      // query payloads carry {key, storageID}; modalPayload is read loosely downstream
+      state.modalPayload = next as any;
+      const rest = [...state.query];
+      rest.shift();
+      state.query = rest;
+    })
+    .addCase('CLOSE_MOVE_MODAL', (state) => {
+      state.moveOpen = false;
+      state.totalFailed = initialState.totalFailed;
+    })
+    .addCase('MOVE_MODAL_RESET_PAYLOAD', (state) => {
+      state.query = initialState.query;
+    })
+    .addCase('MOVE_MODAL_CANCEL', (state, action: any) => {
+      state.doCancel.push(action.payload.doCancel);
+      state.totalFailed = initialState.totalFailed;
+    })
+    .addCase('MODAL_RESET_STORAGE_IDS_TO_CLEAR_FROM', (state) => {
+      state.storageIdsToClearFrom = initialState.storageIdsToClearFrom;
+    })
+    .addCase('MODAL_ADD_TO_FAILED', (state) => {
+      state.totalFailed += 1;
+    })
+    .addCase('SIGN_OUT', () => initialState)
+);
