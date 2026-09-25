@@ -4142,6 +4142,14 @@
       },
       "inv_container_and_tools": "tool"
     },
+    "1202": {
+      "name": "expired_itemdef",
+      "item_class": "expired_itemdef",
+      "item_type_name": "#expired_itemdef",
+      "item_name": "#expired_itemdef",
+      "item_description": "#expired_itemdef_desc",
+      "image_inventory": "econ/tools/expired_itemdef"
+    },
     "1203": {
       "name": "Weapon Case Key",
       "first_sale_date": "2013/09/20",
@@ -15433,6 +15441,31 @@
       },
       "stickers": "agent"
     },
+    "4681": {
+      "name": "pet",
+      "item_class": "pet",
+      "item_type_name": "#CSGO_Type_Pet",
+      "flexible_loadout_slot": "pet",
+      "inv_group_equipment": "pet",
+      "inv_display_slot": "pet",
+      "item_rarity": "rare",
+      "item_quality": "unique",
+      "min_ilevel": 1,
+      "max_ilevel": 1,
+      "image_inventory_size_w": 128,
+      "image_inventory_size_h": 82,
+      "mouse_pressed_sound": "sounds/ui/item_paper_pickup.vsnd",
+      "drop_sound": "sounds/ui/item_paper_pickup.vsnd",
+      "attributes": {
+        "cannot trade": 1
+      },
+      "used_by_classes": {
+        "noteam": 1
+      },
+      "capabilities": {
+        "nameable": 1
+      }
+    },
     "4682": {
       "name": "Commodity Pin - alyx_04",
       "prefab": "commodity_pin",
@@ -19895,6 +19928,36 @@
           "value": 414
         }
       }
+    },
+    "4948": {
+      "name": "chicken_egg",
+      "item_class": "chicken_egg",
+      "item_type_name": "#chicken_egg",
+      "item_name": "#chicken_egg",
+      "item_description": "#chicken_egg_desc",
+      "flexible_loadout_slot": "pet",
+      "inv_group_equipment": "pet",
+      "inv_display_slot": "pet",
+      "attributes": {
+        "pedestal display model": "models/chicken/egg_pristine.vmdl",
+        "upgrade level": 0
+      },
+      "image_inventory": "econ/pets/chicken_egg"
+    },
+    "4949": {
+      "name": "chicken_feed",
+      "item_class": "chicken_feed",
+      "item_type_name": "#chicken_feed",
+      "item_name": "#chicken_feed",
+      "item_description": "#chicken_feed_desc",
+      "flexible_loadout_slot": "pet",
+      "inv_group_equipment": "pet",
+      "inv_display_slot": "pet",
+      "attributes": {
+        "pedestal display model": "models/chicken_feed/chicken_feed_bag.vmdl",
+        "upgrade level": 0
+      },
+      "image_inventory": "econ/pets/chicken_feed_bag"
     },
     "4950": {
       "name": "Remove Keychain Tool Pack",
@@ -26970,6 +27033,23 @@
       "item_description": "#coupon_desc",
       "loot_list_name": "coupon loot list - jackass_sticker_capsule",
       "prefab": "coupon_jackass_capsule_prefab"
+    },
+    "7043": {
+      "name": "coupon - starjunk95_01",
+      "item_name": "#coupon_starjunk95_01",
+      "item_description": "#coupon_desc",
+      "loot_list_name": "coupon loot list - starjunk95_01",
+      "prefab": "coupon_prefab",
+      "image_inventory": "econ/music_kits/starjunk95_01"
+    },
+    "7044": {
+      "name": "coupon - starjunk95_01_stattrak",
+      "item_name": "#coupon_starjunk95_01_stattrak",
+      "item_description": "#coupon_desc",
+      "loot_list_name": "coupon loot list - starjunk95_01_stattrak",
+      "prefab": "coupon_prefab",
+      "image_inventory": "econ/music_kits/starjunk95_01",
+      "will_produce_stattrak": 1
     },
     "20000": {
       "name": "coupon - bossyburger",
@@ -42452,7 +42532,7 @@
       }
     },
     "c4": {
-      "prefab": "weapon_base weapon_supports_keychains",
+      "prefab": "weapon_base weapon_supports_stickers weapon_supports_keychains",
       "item_type_name": "#CSGO_Type_C4",
       "item_class": "weapon_c4",
       "flexible_loadout_category": "c4",
@@ -158345,6 +158425,13 @@
       "loc_description": "#MusicKit_shockone_01_desc",
       "image_inventory": "econ/music_kits/shockone_01",
       "pedestal_display_model": "models/inventory_items/music_kits/music_kit_shockone_01.vmdl"
+    },
+    "104": {
+      "name": "starjunk95_01",
+      "loc_name": "#MusicKit_starjunk95_01",
+      "loc_description": "#MusicKit_starjunk95_01_desc",
+      "image_inventory": "econ/music_kits/starjunk95_01",
+      "pedestal_display_model": "models/inventory_items/music_kits/music_kit_starjunk95_01.vmdl"
     }
   },
   "graffiti_tints": {
