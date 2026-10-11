@@ -1038,7 +1038,7 @@ ipcMain.handle('getCurrency', async (): Promise<CurrencyReturnValue> => {
 });
 
 // ponytail: hardcoded LAN instance of cs2-pricing, make it a setting once the API is public
-const PRICE_HISTORY_API = 'http://192.168.178.23:6969';
+const PRICE_HISTORY_API = 'http://192.168.0.21:6969';
 
 ipcMain.handle('getPortfolioHistory', async (_event, names: string[], from: string, to: string) => {
   try {
