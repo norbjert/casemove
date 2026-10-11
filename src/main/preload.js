@@ -77,6 +77,9 @@ contextBridge.exposeInMainWorld('electron', {
     getCurrencyRate() {
       return ipcRenderer.invoke('getCurrency');
     },
+    getPortfolioHistory(names, from, to) {
+      return ipcRenderer.invoke('getPortfolioHistory', names, from, to);
+    },
     // User commands
     retryConnection() {
       ipcRenderer.send('retryConnection');

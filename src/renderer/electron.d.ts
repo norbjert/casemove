@@ -10,6 +10,12 @@ interface ElectronAPI {
   retryConnection: () => Promise<void>;
 
   needUpdate: () => Promise<boolean>;
+
+  getPortfolioHistory: (
+    names: string[],
+    from: string,
+    to: string
+  ) => Promise<{ history?: Record<string, any[]>; error?: string }>;
 }
 
 declare global {
