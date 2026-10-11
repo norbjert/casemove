@@ -1,0 +1,51 @@
+name: Lockfile Maintenance
+
+on:
+  schedule:
+    # Mondays at 05:00 UTC
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # Re-resolve every transitive dependency to the newest version allowed by package.json
+      - name: Regenerate package-lock.json
+        run: |
+          rm package-lock.json
+          npm install --package-lock-only --ignore-scripts
+
+      - name: Create PR with changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet package-lock.json; then
+            echo "Lockfile already up to date"
+            exit 0
+          fi
+          BRANCH="chore/lockfile-maintenance"
+          TITLE="chore: lockfile maintenance"
+          BODY="Regenerated \`package-lock.json\` to pick up the latest transitive dependency versions within the ranges in \`package.json\`."
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add package-lock.json
+          git commit -m "$TITLE"
+          git push --force origin "$BRANCH"
+          EXISTING_PR=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "Reusing existing PR #$EXISTING_PR"
+          else
+            gh pr create --title "$TITLE" --body "$BODY" --base main --head "$BRANCH" --label "dependencies"
+          fi
