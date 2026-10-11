@@ -4,6 +4,12 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 20
+    groups:
+      vitest:
+        patterns: ["vitest", "@vitest/*"]
+      npm-minor-patch:
+        update-types: ["minor", "patch"]
     commit-message:
       prefix: "chore"
     ignore:
@@ -36,3 +42,6 @@ updates:
       interval: "weekly"
     commit-message:
       prefix: "chore"
+    groups:
+      actions:
+        patterns: ["*"]
