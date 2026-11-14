@@ -37059,6 +37059,8 @@
   "sfui_settings_playerconstrast_enabled": "\"Enabled\"",
   "sfui_settings_aoproxy": "\"Ambient Occlusion\"",
   "sfui_settings_aoproxy_info": "\"Calculate lighting using Ambient Occlusion.  Enabling Ambient Occlusion can degrade graphics performance.\"",
+  "sfui_settings_parallax": "\"Parallax Occlusion Mapping\"",
+  "sfui_settings_parallax_info": "\"Gives some surfaces, such as snow, real looking depth.  Enabling it can degrade graphics performance.\"",
   "sfui_settings_fsr": "\"FidelityFX Super Resolution\"",
   "sfui_settings_fsr_info": "\"FidelityFX Super Resolution may improve performance by rendering at reduced resolution and upscaling using a high-quality spatial technique.\"",
   "sfui_settings_fsr_disabled": "\"Disabled (Highest Quality)\"",
