@@ -9,6 +9,7 @@ import {
 } from '@heroicons/react/24/outline';
 import {
   ChartBarIcon,
+  PresentationChartLineIcon,
   InboxArrowDownIcon,
   ArrowPathIcon,
   MagnifyingGlassIcon,
@@ -60,6 +61,7 @@ import OverviewPage from './views/overview/overview';
 import SellPage from './views/sell/sell';
 import SettingsPage from './views/settings/settings';
 import TradeupPage from './views/tradeUp/tradeUp';
+import PortfolioPage from './views/portfolio/portfolio';
 //{ name: 'Reports', href: '/reports', icon: ArrowDownTrayIcon, current: false }
 const navigation = [
   { name: 'Overview', href: '/stats', icon: ChartBarIcon, current: false },
@@ -77,6 +79,7 @@ const navigation = [
   },
   { name: 'Inventory', href: '/inventory', icon: ArchiveBoxIcon, current: false },
   { name: 'Trade up', href: '/tradeup', icon: BeakerIcon, current: false },
+  { name: 'Portfolio', href: '/portfolio', icon: PresentationChartLineIcon, current: false },
   { name: 'Sell', href: '/sell', icon: TagIcon, current: false },
 ];
 
@@ -825,6 +828,7 @@ function AppContent() {
                 <Route path="/transferto" element={<ToContent />} />
                 <Route path="/inventory" element={<InventoryContent />} />
                 <Route path="/tradeup" element={<TradeupPage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
                 <Route path="/sell" element={<SellPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/stats" element={<OverviewPage />} />

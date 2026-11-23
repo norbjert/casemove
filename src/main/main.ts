@@ -1,4 +1,5 @@
 import { createRequire } from 'module';
+import axios from 'axios';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
 import * as fs from 'fs';
 import GlobalOffensive from 'globaloffensive';
@@ -1033,6 +1034,19 @@ ipcMain.handle('getCurrency', async (): Promise<CurrencyReturnValue> => {
   } catch (err) {
     log.error('getCurrency error:', err);
     return { currency: currency || 'USD', rate: 1 };
+  }
+});
+
+// ponytail: hardcoded LAN instance of cs2-pricing, make it a setting once the API is public
+const PRICE_HISTORY_API = 'http://192.168.0.21:6969';
+
+ipcMain.handle('getPortfolioHistory', async (_event, names: string[], from: string, to: string) => {
+  try {
+    const response = await axios.post(`${PRICE_HISTORY_API}/api/v1/prices/history`, { names, from, to }, { timeout: 30000 });
+    return { history: response.data };
+  } catch (err) {
+    log.error('getPortfolioHistory error:', err);
+    return { error: 'Could not reach the price history server.' };
   }
 });
 
