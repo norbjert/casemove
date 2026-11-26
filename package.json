@@ -167,7 +167,7 @@
     "bytebuffer": "^5.0.1",
     "electron-debug": "^5.0.0",
     "electron-log": "^5.4.3",
-    "electron-store": "^8.2.0",
+    "electron-store": "^12.0.0",
     "electron-updater": "^6.8.11",
     "find-process": "^2.1.1",
     "globaloffensive": "^3.3.0",
@@ -207,7 +207,7 @@
     "protobufjs": "^7.5.6",
     "chalk": "^4.1.2",
     "rimraf": "^3.0.2",
-    "minimatch": "^9.0.7",
+    "minimatch": "^11.0.1",
     "ip-address": ">=10.1.1",
     "adm-zip": "^0.6.0",
     "undici": "^7.28.0"

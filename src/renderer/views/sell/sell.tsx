@@ -67,14 +67,12 @@ function Content() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventoryToUse, inventoryFilters.sortValue, inventoryFilters.sortBack]);
 
-  if (inventoryFilters.sortBack == true) {
-    getInventory.reverse();
-  }
+  const ordered = inventoryFilters.sortBack ? [...getInventory].reverse() : getInventory;
 
   const finalToUse = useMemo(
-    () => searchFilter(getInventory, inventoryFilters, sellReducer),
+    () => searchFilter(ordered, inventoryFilters, sellReducer),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [getInventory, inventoryFilters, sellReducer.searchInput]
+    [ordered, inventoryFilters, sellReducer.searchInput]
   );
 
   const rowVirtualizer = useVirtualizer({

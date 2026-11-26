@@ -56,11 +56,8 @@ export default function InventoryRowsComponent() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventoryToUse, inventoryFilters.sortValue, inventoryFilters.sortBack]);
 
-  if (inventoryFilters.sortBack == true) {
-    getInventory.reverse();
-  }
-
-  const finalToUse = searchFilter(getInventory, inventoryFilters, inventoryFilters)
+  const ordered = inventoryFilters.sortBack ? [...getInventory].reverse() : getInventory;
+  const finalToUse = searchFilter(ordered, inventoryFilters, inventoryFilters)
 
   return (
     <>
@@ -77,7 +74,7 @@ export default function InventoryRowsComponent() {
           role="list"
           className="mt-3 border-t border-gray-200 divide-y divide-gray-100 dark:divide-gray-500"
         >
-          {getInventory.map((project) => (
+          {ordered.map((project) => (
             <li key={project.item_id}>
               <a
                 href="#"

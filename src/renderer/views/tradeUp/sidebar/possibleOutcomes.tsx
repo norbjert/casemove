@@ -31,19 +31,18 @@ export default function PossibleOutcomes() {
   });
   totalPrice;
 
-  tradeUpData.possibleOutcomes.forEach((element) => {
-    const priceKey = marketName(element.item_name) + (element.item_wear_name ?? '');
-    element['profit_cal'] =
-      (100 / (totalPrice * 100)) *
-      (pricesResult?.prices[priceKey]?.['steam_listing'] * 100);
-  });
-  tradeUpData.possibleOutcomes.sort(function (a, b) {
-    const keyA = a.profit_cal,
-      keyB = b.profit_cal;
-    if (keyA < keyB) return 1;
-    if (keyA > keyB) return -1;
-    return 0;
-  });
+  // Store state is frozen (immer): derive a new array instead of mutating it.
+  const outcomes = tradeUpData.possibleOutcomes
+    .map((element) => {
+      const priceKey = marketName(element.item_name) + (element.item_wear_name ?? '');
+      return {
+        ...element,
+        profit_cal:
+          (100 / (totalPrice * 100)) *
+          (pricesResult?.prices[priceKey]?.['steam_listing'] * 100),
+      };
+    })
+    .sort((a, b) => (a.profit_cal < b.profit_cal ? 1 : a.profit_cal > b.profit_cal ? -1 : 0));
 
   // Get outcomes — run as an effect to avoid calling setState during render,
   // which was causing the headlessui Transition to replay its enter animation.
@@ -66,9 +65,9 @@ export default function PossibleOutcomes() {
       <h2 className="text-gray-500  text-xs font-medium uppercase tracking-wide dark:text-gray-400">
         Possible outcomes
       </h2>
-      {tradeUpData.possibleOutcomes.length != 0 ? (
+      {outcomes.length != 0 ? (
         <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:gap-6 ">
-          {tradeUpData.possibleOutcomes.map((project, index) => (
+          {outcomes.map((project, index) => (
             <li key={index} className="col-span-1 flex shadow-sm rounded-md">
               <a
                 href={

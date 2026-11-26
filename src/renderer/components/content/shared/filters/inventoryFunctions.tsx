@@ -255,6 +255,8 @@ export async function sortDataFunction(
   prices,
   pricingSource
 ) {
+  // Redux (immer) state is frozen; sorting it in place throws.
+  inventory = [...inventory];
 
   // Check
   if (sortValue == 'Storages') {
@@ -363,6 +365,8 @@ export function sortDataFunctionTwo(
   prices,
   pricingSource
 ) {
+  // Redux (immer) state is frozen; sorting it in place throws.
+  inventory = [...inventory];
 
   // Check
   if (sortValue == 'Storages') {

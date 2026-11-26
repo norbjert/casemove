@@ -104,6 +104,6 @@ export async function filterInventoryAddOption(currentState: State, newFilter: F
 }
 
 export async function filterInventorySetSort(currentState: State, newSort: string) {
-    const inventoryData = sortDataFunction(newSort, currentState.inventoryReducer.inventory, currentState.pricingReducer.prices, currentState.settingsReducer?.source?.title)
+    const inventoryData = await sortDataFunction(newSort, currentState.inventoryReducer.inventory, currentState.pricingReducer.prices, currentState.settingsReducer?.source?.title)
     return allButClear(currentState.inventoryFiltersReducer.inventoryFilter, newSort, inventoryData)
 }
