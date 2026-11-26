@@ -16,7 +16,8 @@ function removeCrossOriginPlugin() {
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()],
+    // electron-store is ESM-only; bundle it so the CJS main build gets proper default interop.
+    plugins: [externalizeDepsPlugin({ exclude: ['electron-store'] })],
     define: {
       'process.env.NODE_ENV': '"production"',
     },

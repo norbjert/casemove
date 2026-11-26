@@ -241,6 +241,16 @@ const createWindow = async () => {
   });
   await mainWindow.webContents.session.clearStorageData();
 
+  // Renderer errors/crashes otherwise vanish and just leave a white window.
+  mainWindow.webContents.on('console-message', (e: any) => {
+    if (e.level === 'error' || e.level === 'warning') {
+      log.error(`[renderer] ${e.message} (${e.sourceId}:${e.lineNumber})`);
+    }
+  });
+  mainWindow.webContents.on('render-process-gone', (_e, details) => {
+    log.error('[renderer] process gone:', details);
+  });
+
   // Allow cross-origin fetch() from the file:// renderer (e.g. image lookup JSON).
   // This is narrower than webSecurity:false - web security stays on; we only
   // inject Access-Control-Allow-Origin so same-origin fetch works from null origin.
